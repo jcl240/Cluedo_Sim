@@ -15,6 +15,9 @@ public class Board {
         initializeRooms();
     }
 
+    /**
+     * Initialize the rooms and set the secret passages
+     */
     private void initializeRooms() {
         rooms[0] = new Room(new int[][]{{6,3}},true, "study");
         rooms[1] = new Room(new int[][]{{6,8},{3,10}},false,"library");
