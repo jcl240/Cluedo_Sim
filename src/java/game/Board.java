@@ -5,18 +5,28 @@ import java.util.Arrays;
 
 public class Board {
     private final boolean[][] tiles = new boolean[24][25];
+    private final Room[] rooms = new Room[9];
 
     /**
      * Constructor for Board
      */
     public Board() {
         initializeTiles();
-        //System.out.println(Arrays.deepToString(tiles).replaceAll("],", "]," + System.getProperty("line.separator")));
-        int[] end = {9,24};
-        int[] start = {14,24};
-        AStar searcher = new AStar(start,end,tiles);
-        int success = searcher.search();
-        System.out.println(Arrays.deepToString(searcher.getFinalPath()));
+        initializeRooms();
+    }
+
+    private void initializeRooms() {
+        rooms[0] = new Room(new int[][]{{6,3}},true, "study");
+        rooms[1] = new Room(new int[][]{{6,8},{3,10}},false,"library");
+        rooms[2] = new Room(new int[][]{{1,12},{5,15}},false,"billiardRoom");
+        rooms[3] = new Room(new int[][]{{4,19}},true,"conservatory");
+        rooms[4] = new Room(new int[][]{{8,19},{9,17},{14,17},{15,19}},false,"ballroom");
+        rooms[5] = new Room(new int[][]{{19,18}},true,"kitchen");
+        rooms[6] = new Room(new int[][]{{16,12},{17,9}},false,"diningRoom");
+        rooms[7] = new Room(new int[][]{{17,5}},true,"lounge");
+        rooms[8] = new Room(new int[][]{{11,6},{12,6},{9,4}},false, "hall");
+        rooms[0].setSecretPassageway(rooms[5]);
+        rooms[3].setSecretPassageway(rooms[7]);
     }
 
     /**
@@ -73,3 +83,12 @@ public class Board {
         for(int i = startCol; i <= endCol; i++) this.tiles[i][row] = true;
     }
 }
+
+/*
+ * Code for A* testing
+ * int[] end = {9,24};
+ * int[] start = {14,24};
+ * AStar searcher = new AStar(start,end,tiles);
+ * int success = searcher.search();
+ * System.out.println(Arrays.deepToString(searcher.getFinalPath()));
+ */

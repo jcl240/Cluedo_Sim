@@ -3,6 +3,12 @@ import java.util.Comparator;
 
 public class NodeComparator implements Comparator<Node>{
 
+    /**
+     * Compares nodes by their current costs plus the distance to the goal
+     * @param x
+     * @param y
+     * @return
+     */
     @Override
     public int compare(Node x, Node y)
     {
