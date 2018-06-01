@@ -1,21 +1,22 @@
 package search;
 
-public class Node {
-    public Node parent;
-    public int currentCost;
-    public double distanceToGoal;
-    public int x;
-    public int y;
+class Node {
+    Node parent = null;
+    int currentCost;
+    double distanceToGoal;
+    int x;
+    int y;
+    static Node Goal = null;
 
-    public Node(Node parent, int currentCost, int x, int y, Node Goal) {
-        this.parent = parent;
+    Node(int currentCost, int x, int y) {
         this.currentCost = currentCost;
         this.x = x;
         this.y = y;
-        setDistanceToGoal(Goal);
+        if( Goal != null )setDistanceToGoal(Goal);
+        else this.distanceToGoal = 0;
     }
 
     private void setDistanceToGoal(Node Goal){
-        this.distanceToGoal = Math.sqrt((Goal.x - this.x)^2 + (Goal.y-this.y)^2);
+        this.distanceToGoal = Math.sqrt((Math.pow(Goal.x - this.x,2) + Math.pow(Goal.y-this.y,2)));
     }
 }

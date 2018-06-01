@@ -1,11 +1,19 @@
+import search.AStar;
+
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Board {
-    private final boolean[][] tiles = new boolean[25][24];;
+    private final boolean[][] tiles = new boolean[24][25];
 
     public Board() {
         initializeTiles();
         //System.out.println(Arrays.deepToString(tiles).replaceAll("],", "]," + System.getProperty("line.separator")));
+        int[] end = {9,24};
+        int[] start = {14,24};
+        AStar searcher = new AStar(start,end,tiles);
+        int success = searcher.search();
+        System.out.println(Arrays.deepToString(searcher.getFinalPath()));
     }
 
     public static void main(String[] args){
@@ -46,6 +54,6 @@ public class Board {
     }
 
     private void setRange(int row, int startCol, int endCol) {
-        for(int i = startCol; i <= endCol; i++) this.tiles[row][i] = true;
+        for(int i = startCol; i <= endCol; i++) this.tiles[i][row] = true;
     }
 }
