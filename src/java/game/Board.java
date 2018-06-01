@@ -6,6 +6,9 @@ import java.util.Arrays;
 public class Board {
     private final boolean[][] tiles = new boolean[24][25];
 
+    /**
+     * Constructor for Board
+     */
     public Board() {
         initializeTiles();
         //System.out.println(Arrays.deepToString(tiles).replaceAll("],", "]," + System.getProperty("line.separator")));
@@ -16,10 +19,17 @@ public class Board {
         System.out.println(Arrays.deepToString(searcher.getFinalPath()));
     }
 
+    /**
+     * Main method for testing purposes
+     * @param args
+     */
     public static void main(String[] args){
         Board board = new Board();
     }
 
+    /**
+     * Defines the board tiles where trues are valid board tiles
+     */
     private void initializeTiles(){
         int[][] rowRanges = {
                 {0,7,7},{0,16,16},
@@ -53,6 +63,12 @@ public class Board {
         }
     }
 
+    /**
+     *  Helper method for setting a range of columns to true in a row
+     * @param row
+     * @param startCol
+     * @param endCol
+     */
     private void setRange(int row, int startCol, int endCol) {
         for(int i = startCol; i <= endCol; i++) this.tiles[i][row] = true;
     }

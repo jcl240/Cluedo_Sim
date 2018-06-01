@@ -11,6 +11,12 @@ public class AStar {
     private Node goalNode;
     private LinkedList<Node> finalPath = new LinkedList<>();
 
+    /**
+     *
+     * @param start Where the search starts
+     * @param end Where the search ends
+     * @param map The game map defined as elaborated in Board.java
+     */
     public AStar(int[] start, int[] end, boolean[][] map) {
         //Reset Goal node
         Node.Goal = null;
@@ -23,6 +29,11 @@ public class AStar {
         closed.add(Node.Goal);
     }
 
+    /**
+     * Main search logic, expand most promising node and add successors,
+     * if the expanded node is the goal node, finish search
+     * @return
+     */
     public int search(){
         while(!openQueue.isEmpty()){
             Node expanded = openQueue.poll();
@@ -57,6 +68,11 @@ public class AStar {
         else return 1;
     }
 
+    /**
+     * Expand the node and find/return successors
+     * @param expanded
+     * @return
+     */
     private LinkedList<Node> expandNode(Node expanded) {
         LinkedList<Node> successors = new LinkedList<>();
         int x = expanded.x;
@@ -72,6 +88,11 @@ public class AStar {
         return successors;
     }
 
+    /**
+     * Helper method for determining if a coordinate is a valid game tile
+     * @param coord
+     * @return
+     */
     private boolean isValid(int[] coord) {
         int x = coord[0];
         int y = coord[1];
@@ -80,6 +101,12 @@ public class AStar {
         return map[x][y];
     }
 
+    /**
+     * Helper method for checking if a Node with the specified coordinates
+     * exists in the open or closed list
+     * @param coord
+     * @return
+     */
     private Node findNode(int[] coord) {
         int x = coord[0];
         int y = coord[1];
@@ -93,6 +120,9 @@ public class AStar {
         return null;
     }
 
+    /**
+     * Traverse the parents and add them to the final path
+     */
     private void finishSearch() {
         Node parent = Node.Goal;
         while(parent != null){
@@ -101,13 +131,18 @@ public class AStar {
         }
     }
 
+    /**
+     * Getter method that converts the final path (full of nodes)
+     * into an array of coordinates from the start to the end
+     * @return
+     */
     public int[][] getFinalPath() {
         int[][] path = new int[finalPath.size()][2];
-        int i = 0;
+        int i = finalPath.size()-1;
         for(Node node: finalPath) {
             path[i][0] = node.x;
             path[i][1] = node.y;
-            i++;
+            i--;
         }
         return path;
     }
