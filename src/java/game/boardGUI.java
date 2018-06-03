@@ -10,6 +10,7 @@ public class boardGUI {
     private JPanel tilePanel = new JPanel();
     private JPanel backgroundPanel = new JPanel();
     private GridBagConstraints c = new GridBagConstraints();
+    ImageIcon gamePiece = new ImageIcon(getClass().getResource("gamePieceBlue.png"));
 
     public boardGUI() {
         frame.add(mainPanel);
@@ -17,14 +18,7 @@ public class boardGUI {
         mainPanel.setPreferredSize(new Dimension(672,705));
         mainPanel.setLayout(new OverlayLayout(mainPanel));
         frame.setResizable(false);
-        tilePanel.setLayout(new GridBagLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-
-        mainPanel.add(tilePanel,0);
-        mainPanel.add(backgroundPanel,-1);
-
 
         addBoard();
         addTiles();
@@ -34,6 +28,7 @@ public class boardGUI {
     }
 
     private void addBoard() {
+        mainPanel.add(backgroundPanel,-1);
         JLabel board = new JLabel();
         backgroundPanel.add(board);
         ImageIcon image = new ImageIcon(
@@ -43,6 +38,8 @@ public class boardGUI {
     }
 
     private void addTiles() {
+        tilePanel.setLayout(new GridBagLayout());
+        mainPanel.add(tilePanel,0);
         tilePanel.setOpaque(false);
         c.fill = BOTH;
         c.weighty=c.weightx=1;
@@ -51,9 +48,9 @@ public class boardGUI {
                 c.gridx=x;
                 c.gridy=y;
                 tiles[x][y] = new JButton();
+                tiles[x][y].setPreferredSize(new Dimension(28,28));
                 tiles[x][y].setOpaque(false);
                 tiles[x][y].setContentAreaFilled(false);
-                //tiles[x][y].setBorder( null );
                 tilePanel.add(tiles[x][y], c);
             }
         }
