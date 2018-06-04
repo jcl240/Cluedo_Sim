@@ -10,10 +10,19 @@ public class boardGUI {
     private JPanel tilePanel = new JPanel();
     private JPanel backgroundPanel = new JPanel();
     private GridBagConstraints c = new GridBagConstraints();
-    ImageIcon gamePiece = new ImageIcon(getClass().getResource("gamePieceBlue.png"));
+    private int[][] pieceLocations = new int[4][2];
+    ImageIcon[] gamePieceIcons = {new ImageIcon(getClass().getResource("pieces/gamePieceBlue.png")),
+            new ImageIcon(getClass().getResource("pieces/gamePieceGreen.png")),
+            new ImageIcon(getClass().getResource("pieces/gamePieceRed.png")),
+            new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
+    private JPanel playerPanel = new JPanel();
+
 
     public boardGUI() {
+        frame.setLayout(new GridBagLayout());
+        c.gridx=c.gridy=0;
         frame.add(mainPanel);
+        addPlayerPanels();
 
         mainPanel.setPreferredSize(new Dimension(672,705));
         mainPanel.setLayout(new OverlayLayout(mainPanel));
@@ -25,6 +34,20 @@ public class boardGUI {
 
         frame.pack();
         frame.setVisible(true);
+
+
+    }
+
+    private void addPlayerPanels() {
+        c.gridx=1;c.gridy=0;
+        playerPanel.setPreferredSize(new Dimension(200,705));
+        frame.add(playerPanel,c);
+        JLabel wood = new JLabel();
+        playerPanel.add(wood);
+        ImageIcon image = new ImageIcon(
+                getClass().getResource(
+                        "wood.jpg"));
+        wood.setIcon(image);
     }
 
     private void addBoard() {
@@ -53,6 +76,27 @@ public class boardGUI {
                 tiles[x][y].setContentAreaFilled(false);
                 tilePanel.add(tiles[x][y], c);
             }
+        }
+    }
+
+    public void setPieces(int[][] locations){
+        removeOldPieces();
+        this.pieceLocations = locations;
+        for(int player = 0; player < 4; player++){
+            int x = pieceLocations[player][0];
+            int y = pieceLocations[player][1];
+            tiles[x][y].setIcon(gamePieceIcons[player]);
+            //tiles[x][y].repaint();
+        }
+
+    }
+
+    private void removeOldPieces() {
+        for(int player = 0; player < 4; player++){
+            int x = pieceLocations[player][0];
+            int y = pieceLocations[player][1];
+            tiles[x][y].setIcon(null);
+            //tiles[x][y].repaint();
         }
     }
 
