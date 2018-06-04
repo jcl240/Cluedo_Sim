@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 
 import static java.awt.GridBagConstraints.BOTH;
+import static java.awt.GridBagConstraints.PAGE_END;
+import static java.awt.GridBagConstraints.PAGE_START;
 
 public class boardGUI {
     private JFrame frame = new JFrame();
@@ -35,6 +37,7 @@ public class boardGUI {
         frame.pack();
         frame.setVisible(true);
 
+        showCard("lol","candlestick","weapon");
 
     }
 
@@ -98,6 +101,16 @@ public class boardGUI {
             tiles[x][y].setIcon(null);
             //tiles[x][y].repaint();
         }
+    }
+
+    private void showCard(String player, String cardName, String cardType){
+        JDialog cardDialog = new JDialog();
+        cardDialog.setLayout(new FlowLayout());
+        cardDialog.add(new JLabel(player+" has shown you:"));
+        cardDialog.add(new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardType+"s/"+cardName +".jpg"))));
+        cardDialog.setPreferredSize(new Dimension(300,400));
+        cardDialog.pack();
+        cardDialog.setVisible(true);
     }
 
     public static void main(String[] args){
