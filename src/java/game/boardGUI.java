@@ -37,7 +37,7 @@ public class boardGUI {
         frame.pack();
         frame.setVisible(true);
 
-        showCard("lol","candlestick","weapon");
+        showCard("lol","candlestick");
 
     }
 
@@ -103,11 +103,15 @@ public class boardGUI {
         }
     }
 
-    private void showCard(String player, String cardName, String cardType){
+    private void setPlayerCards(){
+
+    }
+
+    private void showCard(String player, String cardName){
         JDialog cardDialog = new JDialog();
         cardDialog.setLayout(new FlowLayout());
         cardDialog.add(new JLabel(player+" has shown you:"));
-        cardDialog.add(new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardType+"s/"+cardName +".jpg"))));
+        cardDialog.add(new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg"))));
         cardDialog.setPreferredSize(new Dimension(300,400));
         cardDialog.pack();
         cardDialog.setVisible(true);
