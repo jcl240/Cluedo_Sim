@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static java.awt.GridBagConstraints.BOTH;
 import static java.awt.GridBagConstraints.PAGE_END;
@@ -21,24 +23,29 @@ public class boardGUI {
 
 
     public boardGUI() {
-        frame.setLayout(new GridBagLayout());
-        c.gridx=c.gridy=0;
-        frame.add(mainPanel);
-        addPlayerPanels();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
 
-        mainPanel.setPreferredSize(new Dimension(672,705));
-        mainPanel.setLayout(new OverlayLayout(mainPanel));
-        frame.setResizable(false);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLayout(new GridBagLayout());
+                c.gridx = c.gridy = 0;
+                frame.add(mainPanel);
+                addPlayerPanels();
 
-        addBoard();
-        addTiles();
+                mainPanel.setPreferredSize(new Dimension(672, 705));
+                mainPanel.setLayout(new OverlayLayout(mainPanel));
+                frame.setResizable(false);
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        frame.pack();
-        frame.setVisible(true);
+                addBoard();
+                addTiles();
 
-        showCard("lol","candlestick");
+                frame.pack();
+                frame.setVisible(true);
 
+                showCard("lol", "candlestick");
+            }
+        });
     }
 
     private void addPlayerPanels() {
@@ -109,20 +116,41 @@ public class boardGUI {
 
     private void showCard(String player, String cardName){
         JDialog cardDialog = new JDialog();
-        cardDialog.setLayout(new FlowLayout());
-        cardDialog.add(new JLabel(player+" has shown you:"));
-        cardDialog.add(new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg"))));
-        cardDialog.setPreferredSize(new Dimension(300,400));
+        cardDialog.setLayout(new BoxLayout(cardDialog.getContentPane(),BoxLayout.Y_AXIS));
+        cardDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        JLabel text = new JLabel(player+" has shown you:");
+        JLabel image = new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")));
+        JButton okayButton = new JButton("End Turn");
+        initializeDialogButton(okayButton, cardDialog);
+
+        text.setAlignmentX(Component.CENTER_ALIGNMENT);
+        image.setAlignmentX(Component.CENTER_ALIGNMENT);
+        okayButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cardDialog.add(text);
+        cardDialog.add(image);
+        cardDialog.add(okayButton);
+        cardDialog.setPreferredSize(new Dimension(200,425));
         cardDialog.pack();
         cardDialog.setVisible(true);
     }
 
-    public static void main(String[] args){
-        SwingUtilities.invokeLater(new Runnable() {
+    private void initializeDialogButton(JButton button, JDialog cardDialog) {
+        button.addActionListener(new ActionListener() {
             @Override
-            public void run() {
-                boardGUI board = new boardGUI();
+            public void actionPerformed(ActionEvent e) {
+                cardDialog.dispose();
+                endTurn();
             }
         });
+    }
+
+    public void endTurn(){
+
+    }
+
+    public static void main(String[] args){
+            boardGUI board = new boardGUI();
+
     }
 }
