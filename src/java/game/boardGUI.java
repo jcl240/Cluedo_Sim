@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static java.awt.GridBagConstraints.BOTH;
-import static java.awt.GridBagConstraints.PAGE_END;
-import static java.awt.GridBagConstraints.PAGE_START;
 
 public class boardGUI {
     private JFrame frame = new JFrame();
@@ -21,7 +19,10 @@ public class boardGUI {
             new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
     private JPanel playerPanel = new JPanel();
 
-
+    /**
+     * boardGUI constructor
+     * Runs in a Swing Thread and sets up entire GUI
+     */
     public boardGUI() {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -49,17 +50,23 @@ public class boardGUI {
         });
     }
 
-
+    /**
+     * Adds the board image to the MainPanel
+     */
     private void addBoard() {
         mainPanel.add(backgroundPanel,-1);
         JLabel board = new JLabel();
         backgroundPanel.add(board);
+        backgroundPanel.setBackground(Color.DARK_GRAY);
         ImageIcon image = new ImageIcon(
                 getClass().getResource(
                         "clue_board_v2.jpg"));
         board.setIcon(image);
     }
 
+    /**
+     *  Adds the buttons over each tile
+     */
     private void addTiles() {
         tilePanel.setLayout(new GridBagLayout());
         mainPanel.add(tilePanel,0);
@@ -79,6 +86,10 @@ public class boardGUI {
         }
     }
 
+    /**
+     * Sets the locations and draws the game pieces
+     * @param locations
+     */
     public void setPieces(int[][] locations){
         removeOldPieces();
         this.pieceLocations = locations;
@@ -91,6 +102,10 @@ public class boardGUI {
 
     }
 
+    /**
+     * Helper method for removing old pieces from the board before
+     * setting new locations
+     */
     private void removeOldPieces() {
         for(int player = 0; player < 4; player++){
             int x = pieceLocations[player][0];
@@ -100,13 +115,17 @@ public class boardGUI {
         }
     }
 
+    /**
+     * Adds the player panel to the right with a wood background
+     */
     private void addPlayerPanel() {
         c.gridx=1;c.gridy=0;
         playerPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
-        playerPanel.setPreferredSize(new Dimension(200,715));
+        playerPanel.setPreferredSize(new Dimension(215,715));
         playerPanel.setLayout(new OverlayLayout(playerPanel));
         frame.add(playerPanel,c);
         JPanel woodPanel = new JPanel();
+        woodPanel.setBackground(Color.DARK_GRAY);
         JLabel wood = new JLabel();
         woodPanel.add(wood);
         playerPanel.add(woodPanel,-1);
@@ -117,6 +136,11 @@ public class boardGUI {
         setPlayerCards(new String[]{"leadpipe","mustard","lounge","knife"});
     }
 
+    /**
+     * Helper method for setting player cards and adding them
+     * to the player panel
+     * @param cards
+     */
     private void setPlayerCards(String[] cards){
         JPanel cardPanel = new JPanel();
         cardPanel.setOpaque(false);
@@ -133,6 +157,12 @@ public class boardGUI {
         }
     }
 
+    /**
+     * Method that creates a dialog for when a player shows you a card
+     * then ends your turn upon clicking 'End Turn'
+     * @param player
+     * @param cardName
+     */
     private void showCard(String player, String cardName){
         JDialog cardDialog = new JDialog();
         cardDialog.setLayout(new BoxLayout(cardDialog.getContentPane(),BoxLayout.Y_AXIS));
@@ -146,14 +176,20 @@ public class boardGUI {
         text.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
         okayButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        cardDialog.setPreferredSize(new Dimension(200,425));
+
         cardDialog.add(text);
         cardDialog.add(image);
         cardDialog.add(okayButton);
-        cardDialog.setPreferredSize(new Dimension(200,425));
         cardDialog.pack();
         cardDialog.setVisible(true);
     }
 
+    /**
+     * Helper method for adding an action listener to the End Turn button
+     * @param button
+     * @param cardDialog
+     */
     private void initializeDialogButton(JButton button, JDialog cardDialog) {
         button.addActionListener(new ActionListener() {
             @Override
@@ -164,6 +200,9 @@ public class boardGUI {
         });
     }
 
+    /**
+     *  Ends the player's turn by prompting the game
+     */
     public void endTurn(){
 
     }
