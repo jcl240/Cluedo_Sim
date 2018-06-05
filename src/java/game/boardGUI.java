@@ -30,11 +30,10 @@ public class boardGUI {
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 c.gridx = c.gridy = 0;
-                mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+                mainPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
                 frame.add(mainPanel);
                 addPlayerPanel();
 
-                mainPanel.setPreferredSize(new Dimension(672, 705));
                 mainPanel.setLayout(new OverlayLayout(mainPanel));
                 frame.setResizable(false);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,7 +102,8 @@ public class boardGUI {
 
     private void addPlayerPanel() {
         c.gridx=1;c.gridy=0;
-        playerPanel.setPreferredSize(new Dimension(200,705));
+        playerPanel.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
+        playerPanel.setPreferredSize(new Dimension(200,715));
         playerPanel.setLayout(new OverlayLayout(playerPanel));
         frame.add(playerPanel,c);
         JPanel woodPanel = new JPanel();
