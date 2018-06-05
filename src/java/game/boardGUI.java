@@ -27,10 +27,12 @@ public class boardGUI {
             @Override
             public void run() {
 
+                frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 c.gridx = c.gridy = 0;
+                mainPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
                 frame.add(mainPanel);
-                addPlayerPanels();
+                addPlayerPanel();
 
                 mainPanel.setPreferredSize(new Dimension(672, 705));
                 mainPanel.setLayout(new OverlayLayout(mainPanel));
@@ -43,22 +45,11 @@ public class boardGUI {
                 frame.pack();
                 frame.setVisible(true);
 
-                showCard("lol", "candlestick");
+                //showCard("lol", "candlestick");
             }
         });
     }
 
-    private void addPlayerPanels() {
-        c.gridx=1;c.gridy=0;
-        playerPanel.setPreferredSize(new Dimension(200,705));
-        frame.add(playerPanel,c);
-        JLabel wood = new JLabel();
-        playerPanel.add(wood);
-        ImageIcon image = new ImageIcon(
-                getClass().getResource(
-                        "wood.jpg"));
-        wood.setIcon(image);
-    }
 
     private void addBoard() {
         mainPanel.add(backgroundPanel,-1);
@@ -110,8 +101,36 @@ public class boardGUI {
         }
     }
 
-    private void setPlayerCards(){
+    private void addPlayerPanel() {
+        c.gridx=1;c.gridy=0;
+        playerPanel.setPreferredSize(new Dimension(200,705));
+        playerPanel.setLayout(new OverlayLayout(playerPanel));
+        frame.add(playerPanel,c);
+        JPanel woodPanel = new JPanel();
+        JLabel wood = new JLabel();
+        woodPanel.add(wood);
+        playerPanel.add(woodPanel,-1);
+        ImageIcon image = new ImageIcon(
+                getClass().getResource(
+                        "wood.jpg"));
+        wood.setIcon(image);
+        setPlayerCards(new String[]{"leadpipe","mustard","lounge","knife"});
+    }
 
+    private void setPlayerCards(String[] cards){
+        JPanel cardPanel = new JPanel();
+        cardPanel.setOpaque(false);
+        JLabel textLabel = new JLabel("Your Cards:");
+        textLabel.setFont(new Font("Serif", Font.BOLD, 32));
+        textLabel.setForeground(new Color(255, 237, 211));
+        cardPanel.add(textLabel);
+        playerPanel.add(cardPanel,0);
+        for(String cardName: cards){
+            Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
+            Image scaledCardImage = cardImage.getScaledInstance(81,126,java.awt.Image.SCALE_SMOOTH);
+            JLabel card = new JLabel(new ImageIcon(scaledCardImage));
+            cardPanel.add(card);
+        }
     }
 
     private void showCard(String player, String cardName){
