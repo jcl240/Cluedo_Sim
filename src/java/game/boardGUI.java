@@ -8,18 +8,18 @@ import static java.awt.GridBagConstraints.BOTH;
 public class boardGUI {
     private JFrame frame = new JFrame();
     private PlayerPanel playerPanel = new PlayerPanel();
-    private MainPanel mainPanel = new MainPanel();
+    private MainPanel mainPanel;
     private GridBagConstraints c = new GridBagConstraints();
 
     /**
      * boardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
-    public boardGUI() {
+    public boardGUI(boolean[][] map) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-
+                mainPanel = new MainPanel(map);
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 addMainPanel();
@@ -99,8 +99,4 @@ public class boardGUI {
 
     }
 
-    public static void main(String[] args){
-            boardGUI board = new boardGUI();
-
-    }
 }

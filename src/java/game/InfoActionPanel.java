@@ -1,9 +1,9 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class ActionPanel extends JPanel {
+public class InfoActionPanel extends JPanel {
 
-    public ActionPanel() {
+    public InfoActionPanel() {
         this.setOpaque(false);
         this.setLayout(new CardLayout());
         JPanel panel = new JPanel();

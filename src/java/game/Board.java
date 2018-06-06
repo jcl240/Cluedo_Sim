@@ -4,6 +4,8 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Board {
+
+
     private final boolean[][] tiles = new boolean[24][25];
     private final Room[] rooms = new Room[9];
     private final Gamepiece[] gamepieces = new Gamepiece[4];
@@ -37,13 +39,6 @@ public class Board {
         rooms[3].setSecretPassageway(rooms[7]);
     }
 
-    /**
-     * Main method for testing purposes
-     * @param args
-     */
-    public static void main(String[] args){
-        Board board = new Board();
-    }
 
     /**
      * Defines the board tiles where trues are valid board tiles, includes doors
@@ -90,7 +85,12 @@ public class Board {
     private void setRange(int row, int startCol, int endCol) {
         for(int i = startCol; i <= endCol; i++) this.tiles[i][row] = true;
     }
+
+    public boolean[][] getTiles() {
+        return tiles;
+    }
 }
+
 
 /*
  * Code for A* testing

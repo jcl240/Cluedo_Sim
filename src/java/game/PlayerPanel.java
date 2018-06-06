@@ -23,8 +23,8 @@ public class PlayerPanel extends JPanel {
     }
 
     private void addActionPanel() {
-        ActionPanel actionPanel = new ActionPanel();
-        sidePanel.add(actionPanel);
+        InfoActionPanel infoActionPanel = new InfoActionPanel();
+        sidePanel.add(infoActionPanel);
     }
 
     private void addWoodPanel() {

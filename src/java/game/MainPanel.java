@@ -5,6 +5,7 @@ import static java.awt.GridBagConstraints.BOTH;
 
 public class MainPanel extends JPanel {
 
+    private boolean[][] map = new boolean[24][25];
     private JButton[][] tiles = new JButton[24][25];
     private JPanel tilePanel = new JPanel();
     private JPanel backgroundPanel = new JPanel();
@@ -16,7 +17,8 @@ public class MainPanel extends JPanel {
             new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
 
 
-    public MainPanel() {
+    public MainPanel(boolean[][] map) {
+        this.map = map;
         this.setLayout(new OverlayLayout(this));
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
         this.setBackground(Color.DARK_GRAY);
@@ -56,6 +58,7 @@ public class MainPanel extends JPanel {
                 tiles[x][y].setPreferredSize(new Dimension(28,28));
                 tiles[x][y].setOpaque(false);
                 tiles[x][y].setContentAreaFilled(false);
+                if(!map[x][y]) tiles[x][y].setBorderPainted(false);
                 tilePanel.add(tiles[x][y], c);
             }
         }
