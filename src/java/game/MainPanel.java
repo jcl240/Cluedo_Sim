@@ -5,13 +5,13 @@ import static java.awt.GridBagConstraints.BOTH;
 
 public class MainPanel extends JPanel {
 
-    private boolean[][] map = new boolean[24][25];
+    private boolean[][] map;
     private JButton[][] tiles = new JButton[24][25];
     private JPanel tilePanel = new JPanel();
     private JPanel backgroundPanel = new JPanel();
     private GridBagConstraints c = new GridBagConstraints();
     private int[][] pieceLocations = new int[4][2];
-    ImageIcon[] gamePieceIcons = {new ImageIcon(getClass().getResource("pieces/gamePieceBlue.png")),
+    private ImageIcon[] gamePieceIcons = {new ImageIcon(getClass().getResource("pieces/gamePieceBlue.png")),
             new ImageIcon(getClass().getResource("pieces/gamePieceGreen.png")),
             new ImageIcon(getClass().getResource("pieces/gamePieceRed.png")),
             new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
@@ -58,7 +58,7 @@ public class MainPanel extends JPanel {
                 tiles[x][y].setPreferredSize(new Dimension(28,28));
                 tiles[x][y].setOpaque(false);
                 tiles[x][y].setContentAreaFilled(false);
-                if(!map[x][y]) tiles[x][y].setBorderPainted(false);
+                if(!map[x][y]) {tiles[x][y].setBorderPainted(false); tiles[x][y].setEnabled(false);}
                 tilePanel.add(tiles[x][y], c);
             }
         }
