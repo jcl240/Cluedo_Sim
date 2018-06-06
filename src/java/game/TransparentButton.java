@@ -1,11 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class NextButton extends JButton {
-    public NextButton(String next) {
+public class TransparentButton extends JButton {
+    public TransparentButton(String next) {
         this.setText(next);
         this.setOpaque(false);
-        this.setFont(new Font("Serif", Font.BOLD, 26));
+        this.setFont(new Font("Serif", Font.BOLD, 16));
         this.setForeground(new Color(255, 237, 211));
         this.setBackground(new Color(43, 30, 25));
     }
