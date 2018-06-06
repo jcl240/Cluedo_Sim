@@ -3,12 +3,28 @@ import java.awt.*;
 
 public class PlayerPanel extends JPanel {
 
+    JPanel sidePanel = new JPanel();
+
     public PlayerPanel() {
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
         this.setPreferredSize(new Dimension(215,715));
         this.setLayout(new OverlayLayout(this));
+        addSidePanel();
         addWoodPanel();
+    }
+
+    private void addSidePanel() {
+        sidePanel.setOpaque(false);
+        sidePanel.setPreferredSize(new Dimension(215,715));
+        sidePanel.setLayout(new GridLayout(2,1));
+        this.add(sidePanel,0);
         setPlayerCards(new String[]{"leadpipe","mustard","lounge","knife"});
+        addActionPanel();
+    }
+
+    private void addActionPanel() {
+        ActionPanel actionPanel = new ActionPanel();
+        sidePanel.add(actionPanel);
     }
 
     private void addWoodPanel() {
@@ -35,7 +51,7 @@ public class PlayerPanel extends JPanel {
         textLabel.setFont(new Font("Serif", Font.BOLD, 32));
         textLabel.setForeground(new Color(255, 237, 211));
         cardPanel.add(textLabel);
-        this.add(cardPanel,0);
+        sidePanel.add(cardPanel);
         for(String cardName: cards){
             Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
             Image scaledCardImage = cardImage.getScaledInstance(81,126,java.awt.Image.SCALE_SMOOTH);
