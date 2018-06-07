@@ -98,6 +98,27 @@ public class boardGUI {
         });
     }
 
+    public void falsifyDialog(String player, String[] cards){
+        JDialog falsifyDialog = new JDialog();
+        falsifyDialog.setLayout(new GridBagLayout());
+        falsifyDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        JLabel text = new JLabel("Pick a card to prove "+player+"'s suggestion false:");
+        c.gridx=1;c.gridy=0;
+        falsifyDialog.add(text,c);
+        int i = 0;
+        for(String cardName:cards){
+            Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
+            Image scaledCardImage = cardImage.getScaledInstance(81,126,java.awt.Image.SCALE_SMOOTH);
+            TransparentButton cardButton = new TransparentButton(new ImageIcon(scaledCardImage));
+            initializeDialogButton(cardButton, falsifyDialog, "falsify");
+            c.gridx=i;c.gridy=1;
+            falsifyDialog.add(cardButton,c);
+            i++;
+        }
+        falsifyDialog.pack();
+        falsifyDialog.setVisible(true);
+    }
+
     public void suggestDialog() {
         JDialog suggestDialog = new JDialog();
         JLabel text = new JLabel("Pick the weapon, suspect and room you want to suggest:");
@@ -117,9 +138,6 @@ public class boardGUI {
         dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         initializeDialogButton(button, dialog, type);
-
-        text.setAlignmentX(Component.CENTER_ALIGNMENT);
-        button.setAlignmentX(Component.CENTER_ALIGNMENT);
         //accuseDialog.setPreferredSize(new Dimension(200,425));
 
         JComboBox weaponsCombo = new JComboBox(weapons);
@@ -141,6 +159,7 @@ public class boardGUI {
     }
 
     public void rollDie() {
+        falsifyDialog("Player 1", new String[]{"knife", "green","lounge"});
     }
 
     private void suggest() {
