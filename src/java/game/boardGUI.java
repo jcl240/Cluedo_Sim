@@ -7,9 +7,12 @@ import static java.awt.GridBagConstraints.BOTH;
 
 public class boardGUI {
     private JFrame frame = new JFrame();
-    private PlayerPanel playerPanel = new PlayerPanel();
+    private PlayerPanel playerPanel = new PlayerPanel(this);
     private MainPanel mainPanel;
     private GridBagConstraints c = new GridBagConstraints();
+    private static String[] weapons = {"Knife","Candlestick","Lead pipe","Wrench","Revolver","Rope"};
+    private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
+    private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining Room", "Conservatory", "Library","Hall","Study"};
 
     /**
      * boardGUI constructor
@@ -19,10 +22,9 @@ public class boardGUI {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                mainPanel = new MainPanel(map);
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
-                addMainPanel();
+                addMainPanel(map);
                 addPlayerPanel();
                 frame.setResizable(false);
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,7 +37,8 @@ public class boardGUI {
         });
     }
 
-    private void addMainPanel() {
+    private void addMainPanel(boolean[][] map) {
+        mainPanel = new MainPanel(map, this);
         c.gridx = c.gridy = 0;
         frame.add(mainPanel);
     }
@@ -63,7 +66,7 @@ public class boardGUI {
         JLabel text = new JLabel(player+" has shown you:");
         JLabel image = new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")));
         JButton okayButton = new JButton("End Turn");
-        initializeDialogButton(okayButton, cardDialog);
+        initializeDialogButton(okayButton, cardDialog, "endTurn");
 
         text.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -82,20 +85,78 @@ public class boardGUI {
      * @param button
      * @param cardDialog
      */
-    private void initializeDialogButton(JButton button, JDialog cardDialog) {
-        button.addActionListener(new ActionListener() {
+    private void initializeDialogButton(JButton button, JDialog dialog, String type) {
+            button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardDialog.dispose();
-                endTurn();
+                dialog.dispose();
+                if(type == "endTurn") endTurn();
+                else if(type == "accuse") accuse();
+                else if(type == "suggest") suggest();
+                else if (type == "falsify") falsify();
             }
         });
     }
 
+    public void suggestDialog() {
+        JDialog suggestDialog = new JDialog();
+        JLabel text = new JLabel("Pick the weapon, suspect and room you want to suggest:");
+        JButton okayButton = new JButton("End Turn");
+        initializeComboDialog(suggestDialog, text, okayButton, "suggest");
+    }
+
+    public void accuseDialog() {
+        JDialog accuseDialog = new JDialog();
+        JLabel text = new JLabel("Pick the weapon, suspect and room you want to accuse:");
+        JButton okayButton = new JButton("End Turn");
+        initializeComboDialog(accuseDialog, text, okayButton, "accuse");
+    }
+
+    private void initializeComboDialog(JDialog dialog, JLabel text, JButton button, String type){
+        dialog.setLayout(new GridBagLayout());
+        dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+
+        initializeDialogButton(button, dialog, type);
+
+        text.setAlignmentX(Component.CENTER_ALIGNMENT);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //accuseDialog.setPreferredSize(new Dimension(200,425));
+
+        JComboBox weaponsCombo = new JComboBox(weapons);
+        JComboBox suspectsCombo = new JComboBox(suspects);
+        JComboBox roomsCombo = new JComboBox(rooms);
+
+        c.gridx=1;c.gridy=0;
+        dialog.add(text,c);
+        c.gridx=0;c.gridy=1;
+        dialog.add(weaponsCombo,c);
+        c.gridx=1;
+        dialog.add(suspectsCombo,c);
+        c.gridx=2;
+        dialog.add(roomsCombo,c);
+        c.gridx=1;c.gridy=2;
+        dialog.add(button,c);
+        dialog.pack();
+        dialog.setVisible(true);
+    }
+
+    public void rollDie() {
+    }
+
+    private void suggest() {
+    }
+
+    private void accuse() {
+    }
+
+    private void falsify() {
+    }
+
+
     /**
      *  Ends the player's turn by prompting the game
      */
-    public void endTurn(){
+    private void endTurn(){
 
     }
 

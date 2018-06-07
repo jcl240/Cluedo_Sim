@@ -8,8 +8,10 @@ public class InfoActionPanel extends JPanel {
     private static final String infoCard = "infoCard";
     private CardLayout cl;
     private JLabel infoLabel;
+    private boardGUI GUI;
 
-    public InfoActionPanel() {
+    public InfoActionPanel(boardGUI GUI) {
+        this.GUI = GUI;
         this.setOpaque(false);
         this.setLayout(new CardLayout());
         addActionCard();
@@ -80,13 +82,14 @@ public class InfoActionPanel extends JPanel {
     }
 
     private void suggest() {
-        cl.show(this,infoCard);
+        GUI.suggestDialog();
     }
 
     private void accuse() {
-        setInfoText("You accused!");
+        GUI.accuseDialog();
     }
 
     private void rollDie() {
+        GUI.rollDie();
     }
 }

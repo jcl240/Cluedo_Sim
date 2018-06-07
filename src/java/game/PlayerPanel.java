@@ -4,8 +4,10 @@ import java.awt.*;
 public class PlayerPanel extends JPanel {
 
     JPanel sidePanel = new JPanel();
+    private boardGUI GUI;
 
-    public PlayerPanel() {
+    public PlayerPanel(boardGUI GUI) {
+        this.GUI = GUI;
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
         this.setPreferredSize(new Dimension(215,715));
         this.setLayout(new OverlayLayout(this));
@@ -23,7 +25,7 @@ public class PlayerPanel extends JPanel {
     }
 
     private void addActionPanel() {
-        InfoActionPanel infoActionPanel = new InfoActionPanel();
+        InfoActionPanel infoActionPanel = new InfoActionPanel(GUI);
         sidePanel.add(infoActionPanel);
     }
 
