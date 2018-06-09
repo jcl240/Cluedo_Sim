@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 public class Card {
 
@@ -29,8 +29,45 @@ public class Card {
     }
 
     public static Card[] makeCards(){
+        String[] names = new String[]{"ballroom","billiardroom","conservatory","diningroom","hall","kitchen","library","lounge","study",
+                                        "candlestick","knife","leadpipe","revolver","rope","wrench",
+                                        "green","mustard","peacock","plum","scarlet","white"};
         Card[] deck = new Card[21];
+        String type;
+        for(int i = 0; i < names.length; i++){
+            if(i < 9) type = "room";
+            else if(i <15) type = "weapon";
+            else type = "suspect";
+            deck[i] = new Card(type,names[i]);
+        }
         return deck;
+    }
+
+    public static  Card[] makeEnvelope(Card[] deck){
+        Card[] rooms = shuffle(Arrays.copyOfRange(deck,0,9));
+        Card[] weapons = shuffle(Arrays.copyOfRange(deck,9,15));
+        Card[] suspects = shuffle(Arrays.copyOfRange(deck,15,21));
+        Card[] envelope = new Card[]{rooms[0],weapons[0],suspects[0]};
+        return envelope;
+    }
+
+    public static Card[] removeCards(Card[] envelope, Card[] deck){
+        Card[] newDeck = new Card[18];
+        int j = 0;
+        for(int i = 0; i <deck.length; i++){
+            if(!inEnvelope(deck[i], envelope)){
+                newDeck[j] = deck[i];
+                j++;
+            }
+        }
+        return newDeck;
+    }
+
+    private static boolean inEnvelope(Card card, Card[] envelope) {
+        for(Card x: envelope){
+            if(x.cardName.equals(card.cardName)) return true;
+        }
+        return false;
     }
 
 }
