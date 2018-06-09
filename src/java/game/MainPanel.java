@@ -27,6 +27,7 @@ public class MainPanel extends JPanel {
 
         addBoard();
         addTiles();
+        setPieces(new int[][]{{0,5},{9,24},{23,7},{16,0}});
     }
 
     /**

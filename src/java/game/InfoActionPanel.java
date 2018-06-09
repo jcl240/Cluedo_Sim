@@ -38,14 +38,12 @@ public class InfoActionPanel extends JPanel {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                next();
+                GUI.next();
             }
         });
         panel.add(nextButton);
     }
 
-    private void next() {
-    }
 
     private void addActionCard() {
         JPanel panel = new JPanel();

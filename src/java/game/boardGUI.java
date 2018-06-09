@@ -171,6 +171,9 @@ public class boardGUI {
     private void falsify() {
     }
 
+    public void next() {
+    }
+
 
     /**
      *  Ends the player's turn by prompting the game
