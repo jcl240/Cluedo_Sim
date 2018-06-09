@@ -27,4 +27,10 @@ public class Card {
         }
         return cards;
     }
+
+    public static Card[] makeCards(){
+        Card[] deck = new Card[21];
+        return deck;
+    }
+
 }
