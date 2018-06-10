@@ -1,4 +1,4 @@
-package main;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +15,7 @@ public class BoardGUI {
     private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
 
     /**
-     * main.BoardGUI constructor
+     * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
     public BoardGUI(boolean[][] map) {

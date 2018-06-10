@@ -1,4 +1,4 @@
-package main;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,10 +13,10 @@ public class MainPanel extends JPanel {
     private JPanel backgroundPanel = new JPanel();
     private GridBagConstraints c = new GridBagConstraints();
     private int[][] pieceLocations = new int[4][2];
-    private ImageIcon[] gamePieceIcons = {new ImageIcon(getClass().getResource("pieces/gamePieceBlue.png")),
-            new ImageIcon(getClass().getResource("pieces/gamePieceGreen.png")),
-            new ImageIcon(getClass().getResource("pieces/gamePieceRed.png")),
-            new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
+    private ImageIcon[] gamePieceIcons = {new ImageIcon(getClass().getResource("/pieces/gamePieceBlue.png")),
+            new ImageIcon(getClass().getResource("/pieces/gamePieceGreen.png")),
+            new ImageIcon(getClass().getResource("/pieces/gamePieceRed.png")),
+            new ImageIcon(getClass().getResource("/pieces/gamePieceYellow.png"))};
     private BoardGUI GUI;
 
 
@@ -33,7 +33,7 @@ public class MainPanel extends JPanel {
     }
 
     /**
-     * Adds the board image to the main.MainPanel
+     * Adds the board image to the GUI.MainPanel
      */
     private void addBoard() {
         this.add(backgroundPanel,-1);
@@ -42,7 +42,7 @@ public class MainPanel extends JPanel {
         backgroundPanel.setOpaque(false);
         ImageIcon image = new ImageIcon(
                 getClass().getResource(
-                        "clue_board_v2.jpg"));
+                        "/clue_board_v2.jpg"));
         board.setIcon(image);
     }
 

@@ -1,5 +1,6 @@
 package main;
 
+import GUI.BoardGUI;
 import agents.HumanAgent;
 import agents.Player;
 import agents.RandomAgent;

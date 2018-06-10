@@ -1,4 +1,4 @@
-package main;
+package GUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class PlayerPanel extends JPanel {
         this.add(woodPanel,-1);
         ImageIcon image = new ImageIcon(
                 getClass().getResource(
-                        "wood.jpg"));
+                        "/wood.jpg"));
         wood.setIcon(image);
     }
 
