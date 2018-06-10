@@ -8,9 +8,9 @@ public class InfoActionPanel extends JPanel {
     private static final String infoCard = "infoCard";
     private CardLayout cl;
     private JLabel infoLabel;
-    private boardGUI GUI;
+    private BoardGUI GUI;
 
-    public InfoActionPanel(boardGUI GUI) {
+    public InfoActionPanel(BoardGUI GUI) {
         this.GUI = GUI;
         this.setOpaque(false);
         this.setLayout(new CardLayout());
@@ -28,7 +28,7 @@ public class InfoActionPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         panel.setOpaque(false);
         this.add(panel, infoCard);
-        infoLabel = new JLabel("<html>Player 3 is rolling the die.</html>");
+        infoLabel = new JLabel("<html>agents.Player 3 is rolling the die.</html>");
         infoLabel.setFont(new Font("Serif", Font.BOLD, 26));
         infoLabel.setForeground(new Color(255, 237, 211));
         infoLabel.setAlignmentX(CENTER_ALIGNMENT);

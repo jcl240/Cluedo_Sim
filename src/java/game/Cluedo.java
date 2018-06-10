@@ -2,14 +2,33 @@ import java.util.Arrays;
 
 public class Cluedo {
 
-    public Card[] deck;
-    public Card[] envelope;
-    public Card[] faceUpCards;
+    private Card[] deck;
+    private Card[] envelope;
+    private Card[] faceUpCards;
+    private boolean useGUI = true;
+    private BoardGUI boardGUI;
+    private Board board;
 
     public Cluedo() {
         initializeCards();
-        Board board = new Board();
-        boardGUI boardGUI = new boardGUI(board.getTiles());
+        initializePlayers();
+        dealCards();
+        board = new Board();
+        if(useGUI)
+            boardGUI = new BoardGUI(board.getTiles());
+        play();
+    }
+
+    private void play() {
+
+    }
+
+    private void dealCards() {
+
+    }
+
+    private void initializePlayers() {
+
     }
 
     public void initializeCards(){

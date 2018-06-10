@@ -4,9 +4,9 @@ import java.awt.*;
 public class PlayerPanel extends JPanel {
 
     JPanel sidePanel = new JPanel();
-    private boardGUI GUI;
+    private BoardGUI GUI;
 
-    public PlayerPanel(boardGUI GUI) {
+    public PlayerPanel(BoardGUI GUI) {
         this.GUI = GUI;
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
         this.setPreferredSize(new Dimension(215,715));

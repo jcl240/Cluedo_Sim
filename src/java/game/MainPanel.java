@@ -15,10 +15,10 @@ public class MainPanel extends JPanel {
             new ImageIcon(getClass().getResource("pieces/gamePieceGreen.png")),
             new ImageIcon(getClass().getResource("pieces/gamePieceRed.png")),
             new ImageIcon(getClass().getResource("pieces/gamePieceYellow.png"))};
-    private boardGUI GUI;
+    private BoardGUI GUI;
 
 
-    public MainPanel(boolean[][] map, boardGUI GUI) {
+    public MainPanel(boolean[][] map, BoardGUI GUI) {
         this.GUI = GUI;
         this.map = map;
         this.setLayout(new OverlayLayout(this));

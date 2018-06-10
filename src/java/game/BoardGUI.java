@@ -3,9 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static java.awt.GridBagConstraints.BOTH;
-
-public class boardGUI {
+public class BoardGUI {
     private JFrame frame = new JFrame();
     private PlayerPanel playerPanel = new PlayerPanel(this);
     private MainPanel mainPanel;
@@ -15,10 +13,10 @@ public class boardGUI {
     private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining Room", "Conservatory", "Library","Hall","Study"};
 
     /**
-     * boardGUI constructor
+     * BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
-    public boardGUI(boolean[][] map) {
+    public BoardGUI(boolean[][] map) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
