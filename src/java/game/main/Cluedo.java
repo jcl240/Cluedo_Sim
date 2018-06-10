@@ -1,11 +1,10 @@
 package main;
 
 import GUI.BoardGUI;
-import agents.HumanAgent;
-import agents.Player;
-import agents.RandomAgent;
+import agents.*;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Cluedo {
 
@@ -16,6 +15,8 @@ public class Cluedo {
     private BoardGUI boardGUI;
     private Board board;
     private Player[] players;
+    private boolean gameFinished = false;
+    private int playerTurnIndex = 0;
 
     public Cluedo() {
         initializeCards();
@@ -27,7 +28,29 @@ public class Cluedo {
     }
 
     private void play() {
+        while(!gameFinished){
+            Player currentPlayer = players[playerTurnIndex];
+            Action[] possibleActions = getPossibleActions(currentPlayer);
+            Action actionTaken = currentPlayer.takeTurn(possibleActions);
+            doAction(actionTaken);
+            possibleActions = getPossibleActions(currentPlayer);
+            if(possibleActions.length == 0){
+                playerTurnIndex = (playerTurnIndex+1)%4;
+            }
+        }
+    }
 
+    private void doAction(Action actionTaken) {
+    }
+
+    public int roll() {
+        Random rand = new Random();
+        return 1 + rand.nextInt(6);
+    }
+
+    private Action[] getPossibleActions(Player currentPlayer) {
+
+        return new Action[]{};
     }
 
     private Card[][] dealCards() {
