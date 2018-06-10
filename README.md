@@ -1,2 +1,2 @@
 # Cluedo_Sim
-Cluedo board game simulator for MSc Dissertation
+main.Cluedo board game simulator for MSc Dissertation

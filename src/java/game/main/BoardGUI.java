@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,10 +12,10 @@ public class BoardGUI {
     private GridBagConstraints c = new GridBagConstraints();
     private static String[] weapons = {"Knife","Candlestick","Lead pipe","Wrench","Revolver","Rope"};
     private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
-    private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining Room", "Conservatory", "Library","Hall","Study"};
+    private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
 
     /**
-     * BoardGUI constructor
+     * main.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
     public BoardGUI(boolean[][] map) {

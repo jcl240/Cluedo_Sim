@@ -1,4 +1,10 @@
 package agents;
 
-public class HumanAgent implements Player{
+import main.Card;
+
+public class HumanAgent extends  Agent implements Player{
+
+    public HumanAgent(Card[] hand) {
+        super(hand);
+    }
 }

@@ -15,7 +15,7 @@ public class AStar {
      *
      * @param start Where the search starts
      * @param end Where the search ends
-     * @param map The game map defined as elaborated in Board.java
+     * @param map The game map defined as elaborated in main.Board.java
      */
     public AStar(int[] start, int[] end, boolean[][] map) {
         //Reset Goal node

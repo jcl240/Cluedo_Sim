@@ -1,7 +1,4 @@
-import search.AStar;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
+package main;
 
 public class Board {
 
@@ -11,7 +8,7 @@ public class Board {
     private final Gamepiece[] gamepieces = new Gamepiece[4];
 
     /**
-     * Constructor for Board
+     * Constructor for main.Board
      */
     public Board() {
         initializeTiles();

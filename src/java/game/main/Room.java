@@ -1,3 +1,5 @@
+package main;
+
 public class Room {
 
     public final int[][] entranceTiles;

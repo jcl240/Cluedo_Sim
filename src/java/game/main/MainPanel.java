@@ -1,3 +1,5 @@
+package main;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -31,7 +33,7 @@ public class MainPanel extends JPanel {
     }
 
     /**
-     * Adds the board image to the MainPanel
+     * Adds the board image to the main.MainPanel
      */
     private void addBoard() {
         this.add(backgroundPanel,-1);

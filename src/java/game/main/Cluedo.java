@@ -1,3 +1,9 @@
+package main;
+
+import agents.HumanAgent;
+import agents.Player;
+import agents.RandomAgent;
+
 import java.util.Arrays;
 
 public class Cluedo {
@@ -8,11 +14,11 @@ public class Cluedo {
     private boolean useGUI = true;
     private BoardGUI boardGUI;
     private Board board;
+    private Player[] players;
 
     public Cluedo() {
         initializeCards();
         initializePlayers();
-        dealCards();
         board = new Board();
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles());
@@ -23,12 +29,18 @@ public class Cluedo {
 
     }
 
-    private void dealCards() {
-
+    private Card[][] dealCards() {
+        Card[][] hands = new Card[4][4];
+        for(int player = 1; player < 5; player++){
+            for(int card = 4; card > 0; card--)
+                hands[player-1][card-1] = deck[(player*4)-card];
+        }
+        return hands;
     }
 
     private void initializePlayers() {
-
+        Card[][] cards = dealCards();
+        players = new Player[]{new HumanAgent(cards[0]),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
     }
 
     public void initializeCards(){
