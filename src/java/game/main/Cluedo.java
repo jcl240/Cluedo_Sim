@@ -22,7 +22,7 @@ public class Cluedo {
     public Cluedo() {
         initializeCards();
         initializePlayers();
-        board = new Board();
+        board = new Board(players);
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles());
         play();
@@ -33,11 +33,11 @@ public class Cluedo {
             Player currentPlayer = players[playerTurnIndex];
             LinkedList<Action> possibleActions = getPossibleActions(currentPlayer);
             Action actionTaken = currentPlayer.takeTurn(possibleActions);
-            doAction(actionTaken);
+            doAction(actionTaken, currentPlayer);
             possibleActions = getPossibleActions(currentPlayer);
             if(!possibleActions.isEmpty()){
                 actionTaken = currentPlayer.takeTurn(possibleActions);
-                doAction(actionTaken);
+                doAction(actionTaken, currentPlayer);
             }
             else{
                 playerTurnIndex = (playerTurnIndex+1)%4;
@@ -46,7 +46,15 @@ public class Cluedo {
         }
     }
 
-    private void doAction(Action actionTaken) {
+    private void doAction(Action actionTaken, Player currentPlayer) {
+        if(actionTaken.actionType.equals("move"))
+            board.movePiece(actionTaken, currentPlayer);
+
+        if(useGUI)
+            updateGUI();
+    }
+
+    private void updateGUI() {
     }
 
     public int roll() {
@@ -78,7 +86,7 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new HumanAgent(cards[0]),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
+        players = new Player[]{new HumanAgent(cards[0], boardGUI),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
     }
 
     public void initializeCards(){

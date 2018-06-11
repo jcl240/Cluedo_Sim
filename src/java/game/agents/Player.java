@@ -1,5 +1,7 @@
 package agents;
 
+import main.Gamepiece;
+
 import java.util.LinkedList;
 
 public interface Player {
@@ -11,4 +13,5 @@ public interface Player {
     void endTurn();
 
     boolean inRoom();
+
 }

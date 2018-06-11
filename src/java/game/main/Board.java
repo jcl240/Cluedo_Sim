@@ -1,22 +1,30 @@
 package main;
 
+import agents.Action;
+import agents.Player;
+
+import java.util.LinkedList;
+
 public class Board {
 
 
     private final boolean[][] tiles = new boolean[24][25];
     private Room[] rooms = new Room[9];
-    private final Gamepiece[] gamepieces = new Gamepiece[4];
+    private LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples = new LinkedList<>();
 
     /**
      * Constructor for main.Board
      */
-    public Board() {
+    public Board(Player[] players) {
         initializeTiles();
         initializeRooms();
-        initializePieces();
+        initializePieces(players);
     }
 
-    private void initializePieces() {
+    private void initializePieces(Player[] players) {
+        for(Player player: players){
+            playerPieceTuples.add(new Tuple<>(player, new Gamepiece()));
+        }
     }
 
     /**
@@ -75,6 +83,9 @@ public class Board {
 
     public boolean[][] getTiles() {
         return tiles;
+    }
+
+    public void movePiece(Action actionTaken, Player currentPlayer) {
     }
 }
 
