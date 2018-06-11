@@ -30,7 +30,8 @@ public class HumanAgent extends  Agent implements Player{
 
 
     @Override
-    public void falsifySuggestion(Card[] suggestion) {
+    public Card falsifySuggestion(Card[] suggestion) {
 
+        return null;
     }
 }

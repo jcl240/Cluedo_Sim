@@ -90,8 +90,15 @@ public class Cluedo {
     }
 
     private void suggest(Action actionTaken, Player currentPlayer) {
-        for(int i = 1; i < 4; i++)
-            players[(playerTurnIndex+i)%4].falsifySuggestion(actionTaken.suggestion);
+        Card cardToShow = null;
+        for(int i = 1; i < 4; i++) {
+            cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(actionTaken.suggestion);
+            if (!(cardToShow == null)){
+                currentPlayer.showCard(cardToShow);
+                break;
+            }
+        }
+        
     }
 
     private void updateGUI(Action actionTaken) {

@@ -1,7 +1,6 @@
 package agents;
 
 import main.Card;
-import main.Gamepiece;
 
 import java.util.LinkedList;
 
@@ -11,5 +10,7 @@ public interface Player {
 
     void endTurn();
 
-    void falsifySuggestion(Card[] suggestion);
+    Card falsifySuggestion(Card[] suggestion);
+
+    void showCard(Card cardToShow);
 }
