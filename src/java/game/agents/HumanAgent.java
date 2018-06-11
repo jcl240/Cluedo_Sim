@@ -24,4 +24,9 @@ public class HumanAgent extends  Agent implements Player{
 
         return new Action("");
     }
+
+    public boolean inRoom(){
+
+        return false;
+    }
 }
