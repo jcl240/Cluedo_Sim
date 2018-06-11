@@ -25,4 +25,9 @@ public class RandomAgent extends  Agent implements Player {
 
         return null;
     }
+
+    @Override
+    public void showCard(Card cardToShow) {
+
+    }
 }
