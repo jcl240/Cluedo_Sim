@@ -9,4 +9,6 @@ public interface Player {
     boolean inRoomWithSecretPassage();
 
     void endTurn();
+
+    boolean inRoom();
 }

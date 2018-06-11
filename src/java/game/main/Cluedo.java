@@ -56,10 +56,14 @@ public class Cluedo {
 
     private LinkedList<Action> getPossibleActions(Player currentPlayer) {
         LinkedList<Action> possibleActions = new LinkedList<>();
-        if(currentPlayer.inRoomWithSecretPassage() && !((Agent)currentPlayer).justMoved)
-            possibleActions.add(new Action("useSecretPassage"));
-        if(!((Agent)currentPlayer).justMoved)
+        possibleActions.add(new Action("accuse"));
+        if(!((Agent)currentPlayer).justMoved) {
             possibleActions.add(new Action("move"));
+            if (currentPlayer.inRoomWithSecretPassage())
+                possibleActions.add(new Action("useSecretPassage"));
+        }
+        else if(currentPlayer.inRoom())
+            possibleActions.add(new Action("suggest"));
         return possibleActions;
     }
 
