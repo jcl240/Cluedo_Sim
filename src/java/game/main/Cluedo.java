@@ -4,6 +4,7 @@ import GUI.BoardGUI;
 import agents.*;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.Random;
 
 public class Cluedo {
@@ -30,12 +31,17 @@ public class Cluedo {
     private void play() {
         while(!gameFinished){
             Player currentPlayer = players[playerTurnIndex];
-            Action[] possibleActions = getPossibleActions(currentPlayer);
+            LinkedList<Action> possibleActions = getPossibleActions(currentPlayer);
             Action actionTaken = currentPlayer.takeTurn(possibleActions);
             doAction(actionTaken);
             possibleActions = getPossibleActions(currentPlayer);
-            if(possibleActions.length == 0){
+            if(!possibleActions.isEmpty()){
+                actionTaken = currentPlayer.takeTurn(possibleActions);
+                doAction(actionTaken);
+            }
+            else{
                 playerTurnIndex = (playerTurnIndex+1)%4;
+                currentPlayer.endTurn();
             }
         }
     }
@@ -48,9 +54,13 @@ public class Cluedo {
         return 1 + rand.nextInt(6);
     }
 
-    private Action[] getPossibleActions(Player currentPlayer) {
-
-        return new Action[]{};
+    private LinkedList<Action> getPossibleActions(Player currentPlayer) {
+        LinkedList<Action> possibleActions = new LinkedList<>();
+        if(currentPlayer.inRoomWithSecretPassage() && !((Agent)currentPlayer).justMoved)
+            possibleActions.add(new Action("useSecretPassage"));
+        if(!((Agent)currentPlayer).justMoved)
+            possibleActions.add(new Action("move"));
+        return possibleActions;
     }
 
     private Card[][] dealCards() {

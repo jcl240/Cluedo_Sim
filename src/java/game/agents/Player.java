@@ -1,7 +1,12 @@
 package agents;
 
+import java.util.LinkedList;
+
 public interface Player {
 
-    public Action takeTurn(Action[] possibleActions);
+    Action takeTurn(LinkedList<Action> possibleActions);
 
+    boolean inRoomWithSecretPassage();
+
+    void endTurn();
 }
