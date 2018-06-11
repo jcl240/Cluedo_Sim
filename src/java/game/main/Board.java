@@ -11,6 +11,7 @@ public class Board {
     private final boolean[][] tiles = new boolean[24][25];
     private Room[] rooms = new Room[9];
     private LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples = new LinkedList<>();
+    private int[][] startingLocations = new int[][]{{0,5},{9,24},{23,7},{16,0}};
 
     /**
      * Constructor for main.Board
@@ -22,8 +23,10 @@ public class Board {
     }
 
     private void initializePieces(Player[] players) {
+        int i = 0;
         for(Player player: players){
-            playerPieceTuples.add(new Tuple<>(player, new Gamepiece()));
+            playerPieceTuples.add(new Tuple<>(player, new Gamepiece(startingLocations[i])));
+            i++;
         }
     }
 

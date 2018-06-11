@@ -4,6 +4,7 @@ public class Gamepiece {
     
     private int[] currentLocation;
 
-    public Gamepiece() {
+    public Gamepiece(int[] location) {
+        currentLocation = location;
     }
 }

@@ -47,14 +47,54 @@ public class Cluedo {
     }
 
     private void doAction(Action actionTaken, Player currentPlayer) {
-        if(actionTaken.actionType.equals("move"))
-            board.movePiece(actionTaken, currentPlayer);
+        switch (actionTaken.actionType) {
+            case "move":
+                board.movePiece(actionTaken, currentPlayer);
+                break;
+            case "suggest":
+                suggest(actionTaken, currentPlayer);
+                break;
+            case "accuse":
+                accuse(actionTaken, currentPlayer);
+                break;
+            case "useSecretPassage":
+                board.movePiece(actionTaken, currentPlayer);
+                break;
+        }
 
         if(useGUI)
-            updateGUI();
+            updateGUI(actionTaken);
     }
 
-    private void updateGUI() {
+    private void accuse(Action actionTaken, Player currentPlayer) {
+        boolean accusationCorrect = checkAccusation(actionTaken);
+        if(accusationCorrect)
+            gameFinished = true;
+        finishGame();
+    }
+
+    private boolean checkAccusation(Action actionTaken) {
+        int numberCorrect = 0;
+        for(Card accusedCard: actionTaken.accusation){
+            for(Card realCard: envelope){
+                if(accusedCard == realCard) {
+                    numberCorrect++;
+                    break;
+                }
+            }
+        }
+        return (numberCorrect == 3);
+    }
+
+    private void finishGame() {
+    }
+
+    private void suggest(Action actionTaken, Player currentPlayer) {
+
+    }
+
+    private void updateGUI(Action actionTaken) {
+
     }
 
     public int roll() {

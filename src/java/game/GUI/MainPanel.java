@@ -18,6 +18,7 @@ public class MainPanel extends JPanel {
             new ImageIcon(getClass().getResource("/pieces/gamePieceRed.png")),
             new ImageIcon(getClass().getResource("/pieces/gamePieceYellow.png"))};
     private BoardGUI GUI;
+    private int[][] startingLocations = new int[][]{{0,5},{9,24},{23,7},{16,0}};
 
 
     public MainPanel(boolean[][] map, BoardGUI GUI) {
@@ -29,7 +30,7 @@ public class MainPanel extends JPanel {
 
         addBoard();
         addTiles();
-        setPieces(new int[][]{{0,5},{9,24},{23,7},{16,0}});
+        setPieces(startingLocations);
     }
 
     /**
