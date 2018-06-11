@@ -90,7 +90,8 @@ public class Cluedo {
     }
 
     private void suggest(Action actionTaken, Player currentPlayer) {
-
+        for(int i = 1; i < 4; i++)
+            players[(playerTurnIndex+i)%4].falsifySuggestion(actionTaken.suggestion);
     }
 
     private void updateGUI(Action actionTaken) {
@@ -107,10 +108,10 @@ public class Cluedo {
         if(!((Agent)currentPlayer).justMoved) {
             possibleActions.add(new Action("move"));
             possibleActions.add(new Action("accuse"));
-            if (currentPlayer.inRoomWithSecretPassage())
+            if (board.inRoomWithSecretPassage(currentPlayer))
                 possibleActions.add(new Action("useSecretPassage"));
         }
-        else if(currentPlayer.inRoom())
+        else if(board.inRoom(currentPlayer))
             possibleActions.add(new Action("suggest"));
         return possibleActions;
     }

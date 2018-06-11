@@ -15,18 +15,13 @@ public class RandomAgent extends  Agent implements Player {
         this.justMoved = false;
     }
 
-    @Override
-    public boolean inRoomWithSecretPassage() {
-        return false;
-    }
-
     public Action takeTurn(LinkedList<Action> possibleActions){
 
         return new Action("");
     }
 
-    public boolean inRoom(){
+    @Override
+    public void falsifySuggestion(Card[] suggestion) {
 
-        return false;
     }
 }

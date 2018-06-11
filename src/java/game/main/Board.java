@@ -90,6 +90,14 @@ public class Board {
 
     public void movePiece(Action actionTaken, Player currentPlayer) {
     }
+
+    public boolean inRoomWithSecretPassage(Player currentPlayer) {
+        return false;
+    }
+
+    public boolean inRoom(Player currentPlayer) {
+        return false;
+    }
 }
 
 
