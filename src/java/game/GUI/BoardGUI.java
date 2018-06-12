@@ -1,5 +1,8 @@
 package GUI;
 
+import agents.Action;
+import agents.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -182,4 +185,7 @@ public class BoardGUI {
 
     }
 
+    public void movePiece(int[][] locations) {
+        mainPanel.setPieces(locations);
+    }
 }

@@ -1,5 +1,6 @@
 package main;
 
+import GUI.BoardGUI;
 import agents.Action;
 import agents.Player;
 
@@ -12,14 +13,16 @@ public class Board {
     private Room[] rooms = new Room[9];
     private LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples = new LinkedList<>();
     private int[][] startingLocations = new int[][]{{0,5},{9,24},{23,7},{16,0}};
+    private BoardGUI boardGUI;
 
     /**
      * Constructor for main.Board
      */
-    public Board(Player[] players) {
+    public Board(Player[] players, BoardGUI boardGUI) {
         initializeTiles();
         initializeRooms();
         initializePieces(players);
+        this.boardGUI = boardGUI;
     }
 
     private void initializePieces(Player[] players) {
@@ -89,6 +92,18 @@ public class Board {
     }
 
     public void movePiece(Action actionTaken, Player currentPlayer) {
+
+        boardGUI.movePiece(getLocations());
+    }
+
+    private int[][] getLocations() {
+        int[][] locations = new int[4][2];
+        int i = 0;
+        for(Tuple<Player, Gamepiece> tuple: playerPieceTuples){
+            locations[i] = tuple.y.getCurrentLocation();
+            i++;
+        }
+        return locations;
     }
 
     public boolean inRoomWithSecretPassage(Player currentPlayer) {

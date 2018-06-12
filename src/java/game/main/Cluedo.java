@@ -22,7 +22,7 @@ public class Cluedo {
     public Cluedo() {
         initializeCards();
         initializePlayers();
-        board = new Board(players);
+        board = new Board(players, boardGUI);
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles());
         play();
@@ -63,14 +63,13 @@ public class Cluedo {
         }
 
         if(useGUI)
-            updateGUI(actionTaken);
+            updateGUI(actionTaken, currentPlayer);
     }
 
     private void accuse(Action actionTaken, Player currentPlayer) {
         boolean accusationCorrect = checkAccusation(actionTaken);
         if(accusationCorrect)
-            gameFinished = true;
-        finishGame();
+            finishGame();
     }
 
     private boolean checkAccusation(Action actionTaken) {
@@ -87,10 +86,11 @@ public class Cluedo {
     }
 
     private void finishGame() {
+        gameFinished = true;
     }
 
     private void suggest(Action actionTaken, Player currentPlayer) {
-        Card cardToShow = null;
+        Card cardToShow;
         for(int i = 1; i < 4; i++) {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(actionTaken.suggestion);
             if (!(cardToShow == null)){
@@ -101,7 +101,7 @@ public class Cluedo {
         
     }
 
-    private void updateGUI(Action actionTaken) {
+    private void updateGUI(Action actionTaken, Player currentPlayer) {
 
     }
 

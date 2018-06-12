@@ -7,4 +7,8 @@ public class Gamepiece {
     public Gamepiece(int[] location) {
         currentLocation = location;
     }
+
+    public int[] getCurrentLocation(){
+        return currentLocation;
+    }
 }
