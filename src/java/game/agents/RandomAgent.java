@@ -4,10 +4,13 @@ import main.Card;
 import main.Room;
 import search.AStar;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
 public class RandomAgent extends  Agent implements Player {
+
+    private int[] movementGoal;
 
     public RandomAgent(Card[] hand, Card[] faceUp) {
         super(hand, faceUp);
@@ -18,20 +21,28 @@ public class RandomAgent extends  Agent implements Player {
         this.justMoved = false;
     }
 
-    public Action takeTurn(LinkedList<Action> possibleActions){
+    public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
         Action actionTaken;
+        if(Arrays.equals(currentLocation,movementGoal))
+            movementGoal = null;
         if(possibleActions.contains(new Action("accuse")) && notebook.unknownCardCount() == 3)
             return(new Action("accuse", notebook.getAccusation()));
-        else
+        else {
+            possibleActions.remove(new Action("accuse"));
             actionTaken = possibleActions.get(new Random().nextInt(possibleActions.size()));
+        }
         return decideAction(actionTaken);
     }
 
     private Action decideAction(Action actionTaken) {
         if(actionTaken.actionType.equals("move")){
-            Room[] rooms = Room.makeRooms();
-            Room randRoom = rooms[new Random().nextInt(rooms.length)];
-            actionTaken.towards = randRoom.entranceTiles[0];
+            if(movementGoal != null)
+                actionTaken.towards = movementGoal;
+            else {
+                Room[] rooms = Room.makeRooms();
+                Room randRoom = rooms[new Random().nextInt(rooms.length)];
+                actionTaken.towards = movementGoal =randRoom.entranceTiles[0];
+            }
         }
         else if(actionTaken.actionType.equals("suggest")){
             actionTaken.suggestion = notebook.getRandomSuggestion(actionTaken.currentRoom);

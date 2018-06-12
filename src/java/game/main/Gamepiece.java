@@ -11,4 +11,8 @@ public class Gamepiece {
     public int[] getCurrentLocation(){
         return currentLocation;
     }
+
+    public void setCurrentLocation(int[] newLocation) {
+        currentLocation = newLocation;
+    }
 }

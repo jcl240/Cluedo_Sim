@@ -23,7 +23,7 @@ public class HumanAgent extends  Agent implements Player{
 
     }
 
-    public Action takeTurn(LinkedList<Action> possibleActions){
+    public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
 
         return new Action("");
     }

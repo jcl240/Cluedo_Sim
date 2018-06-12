@@ -34,7 +34,7 @@ public class AStar {
      * if the expanded node is the goal node, finish search
      * @return
      */
-    public int search(){
+    public Boolean search(){
         while(!openQueue.isEmpty()){
             Node expanded = openQueue.poll();
             //if this is goal node finish search and break loop
@@ -62,10 +62,7 @@ public class AStar {
             }
             closed.add(expanded);
         }
-        if(finalPath.isEmpty()){
-            return 0;
-        }
-        else return 1;
+        return !finalPath.isEmpty();
     }
 
     /**

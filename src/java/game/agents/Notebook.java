@@ -58,11 +58,11 @@ public class Notebook {
         String[] types = {"weapon", "suspect"};
         int i = 1;
         for(Tuple<Card, Boolean> tuple: notebook){
-            if(!tuple.y && tuple.x.cardType.equals(types[i])) {
+            if(!tuple.y && tuple.x.cardType.equals(types[i-1])) {
                 accusation[i] = tuple.x;
                 i++;
             }
-            if(i == 2) break;
+            if(i == 3) break;
         }
         return accusation;
     }

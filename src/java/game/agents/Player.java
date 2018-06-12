@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public interface Player {
 
-    Action takeTurn(LinkedList<Action> possibleActions);
+    Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation);
 
     void endTurn();
 

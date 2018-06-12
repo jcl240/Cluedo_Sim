@@ -6,6 +6,7 @@ import agents.Agent;
 import agents.Player;
 import search.AStar;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class Board {
@@ -93,13 +94,32 @@ public class Board {
         return tiles;
     }
 
-    public Boolean movePiece(Action actionTaken, Player currentPlayer, boolean useGUI) {
+    public Boolean movePlayer(Action actionTaken, Player currentPlayer, boolean useGUI) {
         int[] start = getPlayerLocation(currentPlayer);
         int[] end = actionTaken.towards;
-
+        AStar astar = new AStar(start,end,getCurrentTiles());
+        Boolean successful = astar.search();
+        int[][] path = astar.getFinalPath();
+        if(successful) {
+            if (path.length > actionTaken.roll)
+                movePiece(currentPlayer, path[actionTaken.roll]);
+            else
+                movePiece(currentPlayer, path[path.length-1]);
+        }
         if(useGUI)
             boardGUI.movePiece(getLocations());
-        return false;
+        return successful;
+    }
+
+    private void movePiece(Player currentPlayer, int[] newLocation) {
+        for(Tuple<Player, Gamepiece> tuple: playerPieceTuples) {
+            if(tuple.x.equals(currentPlayer)) tuple.y.setCurrentLocation(newLocation);
+        }
+    }
+
+    private boolean[][] getCurrentTiles() {
+        boolean[][] currentTiles = tiles;
+        return currentTiles;
     }
 
     private int[][] getLocations() {
@@ -119,7 +139,7 @@ public class Board {
         return (room.hasSecretPassage);
     }
 
-    private int[] getPlayerLocation(Player currentPlayer) {
+    public int[] getPlayerLocation(Player currentPlayer) {
         for(Tuple<Player, Gamepiece> tuple:playerPieceTuples){
             if((tuple.x).equals(currentPlayer)){
                 return tuple.y.getCurrentLocation();
@@ -137,7 +157,7 @@ public class Board {
     private Room getRoomByLocation(int[] playerLocation) {
         for(Room room:rooms){
             for(int[] location:room.entranceTiles){
-                if(playerLocation.equals(location)) return room;
+                if(Arrays.equals(playerLocation,location)) return room;
             }
         }
         return null;

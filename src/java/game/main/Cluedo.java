@@ -38,11 +38,11 @@ public class Cluedo {
             }
 
             LinkedList<Action> possibleActions = getPossibleActions(currentPlayer);
-            Action actionTaken = currentPlayer.takeTurn(possibleActions);
+            Action actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
             doAction(actionTaken, currentPlayer);
             possibleActions = getPossibleActions(currentPlayer);
             if(!possibleActions.isEmpty()){
-                actionTaken = currentPlayer.takeTurn(possibleActions);
+                actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
                 doAction(actionTaken, currentPlayer);
             }
             else{
@@ -53,9 +53,11 @@ public class Cluedo {
     }
 
     private void doAction(Action actionTaken, Player currentPlayer) {
+        Boolean successful;
         switch (actionTaken.actionType) {
             case "move":
-                Boolean successful = board.movePiece(actionTaken, currentPlayer, useGUI);
+                successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
+                if(successful) ((Agent)currentPlayer).justMoved = true;
                 break;
             case "suggest":
                 suggest(actionTaken, currentPlayer);
@@ -64,7 +66,8 @@ public class Cluedo {
                 accuse(actionTaken, currentPlayer);
                 break;
             case "useSecretPassage":
-                board.movePiece(actionTaken, currentPlayer, useGUI);
+                successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
+                if(successful) ((Agent)currentPlayer).justMoved = true;
                 break;
         }
 
