@@ -91,9 +91,10 @@ public class Board {
         return tiles;
     }
 
-    public void movePiece(Action actionTaken, Player currentPlayer) {
+    public void movePiece(Action actionTaken, Player currentPlayer, boolean useGUI) {
 
-        boardGUI.movePiece(getLocations());
+        if(useGUI)
+            boardGUI.movePiece(getLocations());
     }
 
     private int[][] getLocations() {

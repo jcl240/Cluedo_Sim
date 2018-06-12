@@ -49,7 +49,7 @@ public class Cluedo {
     private void doAction(Action actionTaken, Player currentPlayer) {
         switch (actionTaken.actionType) {
             case "move":
-                board.movePiece(actionTaken, currentPlayer);
+                board.movePiece(actionTaken, currentPlayer, useGUI);
                 break;
             case "suggest":
                 suggest(actionTaken, currentPlayer);
@@ -58,7 +58,7 @@ public class Cluedo {
                 accuse(actionTaken, currentPlayer);
                 break;
             case "useSecretPassage":
-                board.movePiece(actionTaken, currentPlayer);
+                board.movePiece(actionTaken, currentPlayer, useGUI);
                 break;
         }
 
