@@ -54,7 +54,7 @@ public class RandomAgent extends  Agent implements Player {
     public Card falsifySuggestion(Card[] suggestion) {
         for(Card suggestedCard: suggestion){
             for(Card myCard: this.hand){
-                if(suggestedCard == myCard) {
+                if(suggestedCard.equals(myCard)) {
                     return myCard;
                 }
             }
