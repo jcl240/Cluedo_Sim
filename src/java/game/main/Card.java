@@ -72,4 +72,15 @@ public class Card {
         return false;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        final Card other = (Card)obj;
+        return (this.cardType.equals(other.cardType) &&
+                this.cardName.equals(other.cardName));
+    }
+
 }

@@ -12,7 +12,7 @@ public class Cluedo {
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = true;
+    private boolean useGUI = false;
     private BoardGUI boardGUI;
     private Board board;
     private Player[] players;
@@ -112,7 +112,7 @@ public class Cluedo {
     private LinkedList<Action> getPossibleActions(Player currentPlayer) {
         LinkedList<Action> possibleActions = new LinkedList<>();
         if(!((Agent)currentPlayer).justMoved) {
-            possibleActions.add(new Action("move"));
+            possibleActions.add(new Action("move", roll()));
             possibleActions.add(new Action("accuse"));
             if (board.inRoomWithSecretPassage(currentPlayer))
                 possibleActions.add(new Action("useSecretPassage"));
@@ -133,7 +133,7 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new HumanAgent(cards[0], boardGUI),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
+        players = new Player[]{new RandomAgent(cards[0]),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
     }
 
     public void initializeCards(){

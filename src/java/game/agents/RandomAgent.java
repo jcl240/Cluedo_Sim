@@ -3,6 +3,7 @@ package agents;
 import main.Card;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 public class RandomAgent extends  Agent implements Player {
 
@@ -17,9 +18,9 @@ public class RandomAgent extends  Agent implements Player {
 
     public Action takeTurn(LinkedList<Action> possibleActions){
         if(possibleActions.contains(new Action("accuse")) && notebook.unknownCardCount() == 3)
-            return(new Action("accuse"));
+            return(new Action("accuse", notebook.getAccusation()));
         else
-            return null;
+            return possibleActions.get(new Random().nextInt(possibleActions.size()));
     }
 
     @Override
