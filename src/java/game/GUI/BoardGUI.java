@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 public class BoardGUI {
     private JFrame frame = new JFrame();
     private PlayerPanel playerPanel = new PlayerPanel(this);
-    private MainPanel mainPanel;
+    private MainPanel mainPanel = new MainPanel(this);
     private GridBagConstraints c = new GridBagConstraints();
     private static String[] weapons = {"Knife","Candlestick","Lead pipe","Wrench","Revolver","Rope"};
     private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
@@ -35,13 +35,12 @@ public class BoardGUI {
                 frame.pack();
                 frame.setVisible(true);
 
-                //showCard("lol", "candlestick");
             }
         });
     }
 
     private void addMainPanel(boolean[][] map) {
-        mainPanel = new MainPanel(map, this);
+        mainPanel.initialize(map);
         c.gridx = c.gridy = 0;
         frame.add(mainPanel);
     }

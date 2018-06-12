@@ -21,18 +21,20 @@ public class MainPanel extends JPanel {
     private int[][] startingLocations = new int[][]{{0,5},{9,24},{23,7},{16,0}};
 
 
-    public MainPanel(boolean[][] map, BoardGUI GUI) {
+    public MainPanel(BoardGUI GUI) {
         this.GUI = GUI;
-        this.map = map;
         this.setLayout(new OverlayLayout(this));
         this.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY,2));
         this.setBackground(Color.DARK_GRAY);
 
+    }
+
+    public void initialize(boolean[][] map){
+        this.map = map;
         addBoard();
         addTiles();
         setPieces(startingLocations);
     }
-
     /**
      * Adds the board image to the GUI.MainPanel
      */

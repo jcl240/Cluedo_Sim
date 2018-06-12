@@ -106,8 +106,6 @@ public class Board {
             else
                 movePiece(currentPlayer, path[path.length-1]);
         }
-        if(useGUI)
-            boardGUI.movePiece(getLocations());
         return successful;
     }
 
@@ -167,6 +165,16 @@ public class Board {
         int[] playerLocation = getPlayerLocation(currentPlayer);
         Room room = getRoomByLocation(playerLocation);
         return room;
+    }
+
+    public int[][] getPlayerLocations() {
+        int[][] locations = new int[4][2];
+        int i = 0;
+        for(Tuple<Player, Gamepiece> tuple:playerPieceTuples){
+            locations[i] = tuple.y.getCurrentLocation();
+            i++;
+        }
+        return locations;
     }
 }
 

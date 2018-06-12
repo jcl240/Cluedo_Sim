@@ -2,17 +2,21 @@ package main;
 
 import GUI.BoardGUI;
 import agents.*;
+import agents.Action;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
+
+import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = false;
+    private boolean useGUI = true;
     private BoardGUI boardGUI;
     private Board board;
     private Player[] players;
@@ -111,7 +115,18 @@ public class Cluedo {
     }
 
     private void updateGUI(Action actionTaken, Player currentPlayer) {
-
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                boardGUI.movePiece(board.getPlayerLocations());
+            }
+        });
+        try {
+            Thread.sleep(5000);
+        }
+        catch(InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
     }
 
     public int roll() {
