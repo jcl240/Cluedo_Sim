@@ -98,7 +98,6 @@ public class Cluedo {
                 break;
             }
         }
-        
     }
 
     private void updateGUI(Action actionTaken, Player currentPlayer) {

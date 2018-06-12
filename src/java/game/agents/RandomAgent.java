@@ -16,8 +16,10 @@ public class RandomAgent extends  Agent implements Player {
     }
 
     public Action takeTurn(LinkedList<Action> possibleActions){
-
-        return new Action("");
+        if(possibleActions.contains(new Action("accuse")) && notebook.unknownCardCount() == 3)
+            return(new Action("accuse"));
+        else
+            return null;
     }
 
     @Override
@@ -34,6 +36,6 @@ public class RandomAgent extends  Agent implements Player {
 
     @Override
     public void showCard(Card cardToShow) {
-
+        notebook.checkOffCard(cardToShow);
     }
 }
