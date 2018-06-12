@@ -2,7 +2,9 @@ package main;
 
 import GUI.BoardGUI;
 import agents.Action;
+import agents.Agent;
 import agents.Player;
+import search.AStar;
 
 import java.util.LinkedList;
 
@@ -91,10 +93,13 @@ public class Board {
         return tiles;
     }
 
-    public void movePiece(Action actionTaken, Player currentPlayer, boolean useGUI) {
+    public Boolean movePiece(Action actionTaken, Player currentPlayer, boolean useGUI) {
+        int[] start = getPlayerLocation(currentPlayer);
+        int[] end = actionTaken.towards;
 
         if(useGUI)
             boardGUI.movePiece(getLocations());
+        return false;
     }
 
     private int[][] getLocations() {
@@ -108,11 +113,40 @@ public class Board {
     }
 
     public boolean inRoomWithSecretPassage(Player currentPlayer) {
-        return false;
+        int[] playerLocation = getPlayerLocation(currentPlayer);
+        Room room = getRoomByLocation(playerLocation);
+        if(room == null) return false;
+        return (room.hasSecretPassage);
+    }
+
+    private int[] getPlayerLocation(Player currentPlayer) {
+        for(Tuple<Player, Gamepiece> tuple:playerPieceTuples){
+            if((tuple.x).equals(currentPlayer)){
+                return tuple.y.getCurrentLocation();
+            }
+        }
+        return null;
     }
 
     public boolean inRoom(Player currentPlayer) {
-        return false;
+        int[] playerLocation = getPlayerLocation(currentPlayer);
+        Room room = getRoomByLocation(playerLocation);
+        return (room != null);
+    }
+
+    private Room getRoomByLocation(int[] playerLocation) {
+        for(Room room:rooms){
+            for(int[] location:room.entranceTiles){
+                if(playerLocation.equals(location)) return room;
+            }
+        }
+        return null;
+    }
+
+    public Room getRoom(Player currentPlayer) {
+        int[] playerLocation = getPlayerLocation(currentPlayer);
+        Room room = getRoomByLocation(playerLocation);
+        return room;
     }
 }
 

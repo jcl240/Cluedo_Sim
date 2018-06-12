@@ -9,12 +9,12 @@ public class HumanAgent extends  Agent implements Player{
 
     private BoardGUI boardGUI;
 
-    public HumanAgent(Card[] hand) {
-        super(hand);
+    public HumanAgent(Card[] hand, Card[] faceUp) {
+        super(hand, faceUp);
     }
 
-    public HumanAgent(Card[] hand, BoardGUI gui) {
-        super(hand);
+    public HumanAgent(Card[] hand, BoardGUI gui, Card[] faceUp) {
+        super(hand, faceUp);
         this.boardGUI = gui;
     }
 

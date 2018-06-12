@@ -31,6 +31,12 @@ public class Cluedo {
     private void play() {
         while(!gameFinished){
             Player currentPlayer = players[playerTurnIndex];
+
+            if(((Agent)currentPlayer).accused){
+                playerTurnIndex = (playerTurnIndex+1)%4;
+                continue;
+            }
+
             LinkedList<Action> possibleActions = getPossibleActions(currentPlayer);
             Action actionTaken = currentPlayer.takeTurn(possibleActions);
             doAction(actionTaken, currentPlayer);
@@ -49,7 +55,7 @@ public class Cluedo {
     private void doAction(Action actionTaken, Player currentPlayer) {
         switch (actionTaken.actionType) {
             case "move":
-                board.movePiece(actionTaken, currentPlayer, useGUI);
+                Boolean successful = board.movePiece(actionTaken, currentPlayer, useGUI);
                 break;
             case "suggest":
                 suggest(actionTaken, currentPlayer);
@@ -68,6 +74,7 @@ public class Cluedo {
 
     private void accuse(Action actionTaken, Player currentPlayer) {
         boolean accusationCorrect = checkAccusation(actionTaken);
+        ((Agent)currentPlayer).accused = true;
         if(accusationCorrect)
             finishGame();
     }
@@ -118,7 +125,7 @@ public class Cluedo {
                 possibleActions.add(new Action("useSecretPassage"));
         }
         else if(board.inRoom(currentPlayer))
-            possibleActions.add(new Action("suggest"));
+            possibleActions.add(new Action("suggest", board.getRoom(currentPlayer)));
         return possibleActions;
     }
 
@@ -133,7 +140,8 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new RandomAgent(cards[0]),new RandomAgent(cards[1]), new RandomAgent(cards[2]), new RandomAgent(cards[3])};
+        players = new Player[]{new RandomAgent(cards[0], faceUpCards),new RandomAgent(cards[1], faceUpCards),
+                new RandomAgent(cards[2], faceUpCards), new RandomAgent(cards[3], faceUpCards)};
     }
 
     public void initializeCards(){
