@@ -9,12 +9,6 @@ public class Notebook {
 
     LinkedList<Tuple<Card, Boolean>> notebook = new LinkedList<>();
 
-    public Notebook(){
-        initializeNotebook();
-        checkOffCard(new Card("weapon","knife"));
-        
-    }
-
     public Notebook(Card[] startingHand){
         initializeNotebook();
         for(Card card: startingHand){
@@ -46,10 +40,14 @@ public class Notebook {
     }
 
     public Card[] getAccusation() {
-        return new Card[3];
-    }
-
-    public static void main(String[] args){
-        Notebook nb = new Notebook();
+        Card[] accusation = new Card[3];
+        int i = 0;
+        for(Tuple<Card, Boolean> tuple: notebook){
+            if(!tuple.y) {
+                accusation[i] = tuple.x;
+                i++;
+            }
+        }
+        return accusation;
     }
 }
