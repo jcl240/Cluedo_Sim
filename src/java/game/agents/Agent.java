@@ -5,7 +5,7 @@ public class Agent {
 
     public boolean justMoved = false;
 
-    private Card[] hand;
+    protected Card[] hand;
 
     public Agent(Card[] hand) {
         this.hand = hand;
