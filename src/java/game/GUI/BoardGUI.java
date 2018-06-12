@@ -187,4 +187,7 @@ public class BoardGUI {
     public void movePiece(int[][] locations) {
         mainPanel.setPieces(locations);
     }
+
+    public void updateInfo(Action actionTaken) {
+    }
 }

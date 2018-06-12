@@ -119,6 +119,7 @@ public class Cluedo {
             @Override
             public void run() {
                 boardGUI.movePiece(board.getPlayerLocations());
+                boardGUI.updateInfo(actionTaken);
             }
         });
         try {
