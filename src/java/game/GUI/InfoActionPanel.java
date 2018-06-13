@@ -47,7 +47,7 @@ public class InfoActionPanel extends JPanel {
         nextButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GUI.next();
+                GUI.playerManager.next();
             }
         });
         panel.add(nextButton);

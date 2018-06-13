@@ -32,7 +32,7 @@ public class HumanAgent extends  Agent implements Player{
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                boardGUI.takeTurn(possibleActions, currentLocation);
+                boardGUI.playerManager.takeTurn(possibleActions, currentLocation);
             }
         });
         try {

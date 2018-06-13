@@ -21,7 +21,7 @@ public class BoardGUI {
     private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
     private Cluedo game;
     private Player humanPlayer;
-
+    public PlayerManager playerManager;
     /**
      * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
@@ -32,6 +32,7 @@ public class BoardGUI {
             public void run() {
                 humanPlayer = human;
                 game = newGame;
+                playerManager = new PlayerManager(human, game, playerPanel);
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 addMainPanel(map);
@@ -107,10 +108,10 @@ public class BoardGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
-                if(type == "doneViewing") doneViewingCard();
-                else if(type == "accuse") accuse();
-                else if(type == "suggest") suggest();
-                else if (type == "falsify") falsify();
+                if(type == "doneViewing") playerManager.doneViewingCard();
+                else if(type == "accuse") playerManager.accuse();
+                else if(type == "suggest") playerManager.suggest();
+                else if (type == "falsify") playerManager.falsify();
             }
         });
     }
@@ -176,35 +177,7 @@ public class BoardGUI {
         dialog.setVisible(true);
     }
 
-    private void suggest() {
-    }
-
-    private void accuse() {
-    }
-
-    private void falsify() {
-    }
-
-    public void next() {
-        game.doneUpdating();
-    }
-
-
-    /**
-     *  Ends the player's turn by prompting the game
-     */
-    private void doneViewingCard(){
-
-    }
-
     public void movePiece(int[][] locations) {
         mainPanel.setPieces(locations);
-    }
-
-    public void updateInfo(Action actionTaken, Player currentPlayer) {
-        playerPanel.passAction(actionTaken, currentPlayer);
-    }
-
-    public void takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
     }
 }

@@ -127,7 +127,7 @@ public class Cluedo {
                 @Override
                 public void run() {
                     boardGUI.movePiece(board.getPlayerLocations());
-                    boardGUI.updateInfo(actionTaken, currentPlayer);
+                    boardGUI.playerManager.updateInfo(actionTaken, currentPlayer);
                 }
             });
             try {

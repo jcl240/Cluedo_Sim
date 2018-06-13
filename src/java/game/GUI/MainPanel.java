@@ -2,6 +2,8 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import static java.awt.GridBagConstraints.BOTH;
 
@@ -67,6 +69,18 @@ public class MainPanel extends JPanel {
                 tiles[x][y].setOpaque(false);
                 tiles[x][y].setContentAreaFilled(false);
                 if(!map[x][y]) {tiles[x][y].setBorderPainted(false); tiles[x][y].setEnabled(false);}
+
+                if(tiles[x][y].isEnabled()){
+                    final int x_coord = x;
+                    final int y_coord = y;
+                    tiles[x][y].addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            GUI.playerManager.clickedTile(x_coord,y_coord);
+                        }
+                    });
+                }
+
                 tilePanel.add(tiles[x][y], c);
             }
         }
