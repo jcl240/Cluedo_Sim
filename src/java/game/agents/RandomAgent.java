@@ -51,7 +51,7 @@ public class RandomAgent extends  Agent implements Player {
     }
 
     @Override
-    public Card falsifySuggestion(Card[] suggestion) {
+    public Card falsifySuggestion(Player player, Card[] suggestion) {
         for(Card suggestedCard: suggestion){
             for(Card myCard: this.hand){
                 if(suggestedCard.equals(myCard)) {
@@ -63,7 +63,7 @@ public class RandomAgent extends  Agent implements Player {
     }
 
     @Override
-    public void showCard(Card cardToShow) {
+    public void showCard(Player player, Card cardToShow) {
         notebook.checkOffCard(cardToShow);
     }
 

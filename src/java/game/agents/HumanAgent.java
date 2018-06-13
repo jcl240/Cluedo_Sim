@@ -3,11 +3,15 @@ package agents;
 import GUI.BoardGUI;
 import main.Card;
 
+import javax.swing.*;
 import java.util.LinkedList;
 
 public class HumanAgent extends  Agent implements Player{
 
     private BoardGUI boardGUI;
+    private boolean usingGUI;
+    private Action chosenAction;
+    private Card falsifiedCard;
 
     public HumanAgent(Card[] hand, Card[] faceUp, int index) {
         super(hand, faceUp, index);
@@ -20,24 +24,106 @@ public class HumanAgent extends  Agent implements Player{
 
     @Override
     public void endTurn(){
-
+        chosenAction = null;
     }
 
-    public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
-
-        return new Action("");
+    public synchronized Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
+        usingGUI = true;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                boardGUI.takeTurn(possibleActions, currentLocation);
+            }
+        });
+        try {
+            while (usingGUI) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+        return chosenAction;
     }
 
+    public void setChosenAction(Action chosenAction){
+        synchronized(this) {
+            this.chosenAction = chosenAction;
+            usingGUI = false;
+            notifyAll();
+        }
+    }
 
     @Override
-    public Card falsifySuggestion(Card[] suggestion) {
+    public synchronized Card falsifySuggestion(Player player, Card[] suggestion) {
+        usingGUI = true;
+        String playerName = "Player " + ((Agent)player).playerIndex;
+        Card[] cardsContained = handContains(suggestion);
+        if(cardsContained.length == 0)
+            return null;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                boardGUI.falsifyDialog(playerName, cardsContained);
+            }
+        });
+        try {
+            while (usingGUI) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+        return falsifiedCard;
+    }
 
-        return null;
+    public void setFalsifiedCard(Card falsifiedCard){
+        synchronized(this) {
+            this.falsifiedCard = falsifiedCard;
+            usingGUI = false;
+            notifyAll();
+        }
+    }
+
+    private Card[] handContains(Card[] suggestion) {
+        LinkedList<Card> contained = new LinkedList<>();
+        for(Card suggestedCard: suggestion){
+            for(Card myCard: hand){
+                if(suggestedCard.equals(myCard)){
+                    contained.add(myCard);
+                }
+            }
+        }
+        return (Card[])contained.toArray();
     }
 
     @Override
-    public void showCard(Card cardToShow) {
+    public synchronized void showCard(Player player, Card cardToShow) {
+        usingGUI = true;
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                String playerName = "Player " + ((Agent)player).playerIndex;
+                boardGUI.showCard(playerName,cardToShow.cardName);
+            }
+        });
+        try {
+            while (usingGUI) {
+                wait();
+            }
+        } catch (InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
+    }
 
+    public void setBoardGUI(BoardGUI gui){
+        boardGUI = gui;
+    }
+
+    public void doneViewingCard(){
+        synchronized(this) {
+            usingGUI = false;
+            notifyAll();
+        }
     }
 
     @Override

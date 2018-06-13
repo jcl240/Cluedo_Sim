@@ -2,12 +2,14 @@ package GUI;
 
 import agents.Action;
 import agents.Player;
+import main.Card;
 import main.Cluedo;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 public class BoardGUI {
     private JFrame frame = new JFrame();
@@ -18,15 +20,17 @@ public class BoardGUI {
     private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
     private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
     private Cluedo game;
+    private Player humanPlayer;
 
     /**
      * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
-    public BoardGUI(boolean[][] map, Cluedo newGame) {
+    public BoardGUI(boolean[][] map, Cluedo newGame, Player human) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                humanPlayer = human;
                 game = newGame;
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
@@ -71,15 +75,15 @@ public class BoardGUI {
      * @param player
      * @param cardName
      */
-    private void showCard(String player, String cardName){
+    public void showCard(String player, String cardName){
         JDialog cardDialog = new JDialog();
         cardDialog.setLayout(new BoxLayout(cardDialog.getContentPane(),BoxLayout.Y_AXIS));
         cardDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         JLabel text = new JLabel(player+" has shown you:");
         JLabel image = new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")));
-        JButton okayButton = new JButton("End Turn");
-        initializeDialogButton(okayButton, cardDialog, "endTurn");
+        JButton okayButton = new JButton("Done");
+        initializeDialogButton(okayButton, cardDialog, "doneViewing");
 
         text.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -103,7 +107,7 @@ public class BoardGUI {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
-                if(type == "endTurn") endTurn();
+                if(type == "doneViewing") doneViewingCard();
                 else if(type == "accuse") accuse();
                 else if(type == "suggest") suggest();
                 else if (type == "falsify") falsify();
@@ -111,7 +115,7 @@ public class BoardGUI {
         });
     }
 
-    public void falsifyDialog(String player, String[] cards){
+    public void falsifyDialog(String player, Card[] cards){
         JDialog falsifyDialog = new JDialog();
         falsifyDialog.setLayout(new GridBagLayout());
         falsifyDialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
@@ -119,7 +123,8 @@ public class BoardGUI {
         c.gridx=1;c.gridy=0;
         falsifyDialog.add(text,c);
         int i = 0;
-        for(String cardName:cards){
+        for(Card card:cards){
+            String cardName = card.cardName;
             Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
             Image scaledCardImage = cardImage.getScaledInstance(81,126,java.awt.Image.SCALE_SMOOTH);
             TransparentButton cardButton = new TransparentButton(new ImageIcon(scaledCardImage));
@@ -188,7 +193,7 @@ public class BoardGUI {
     /**
      *  Ends the player's turn by prompting the game
      */
-    private void endTurn(){
+    private void doneViewingCard(){
 
     }
 
@@ -198,5 +203,8 @@ public class BoardGUI {
 
     public void updateInfo(Action actionTaken, Player currentPlayer) {
         playerPanel.passAction(actionTaken, currentPlayer);
+    }
+
+    public void takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
     }
 }

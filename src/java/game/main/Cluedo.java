@@ -13,7 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
-    public boolean hasHumanPlayer = false;
+    public boolean hasHumanPlayer = true;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -30,7 +30,10 @@ public class Cluedo {
         initializePlayers();
         board = new Board(players, boardGUI);
         if(useGUI)
-            boardGUI = new BoardGUI(board.getTiles(), this);
+            boardGUI = new BoardGUI(board.getTiles(), this, players[0]);
+        if(hasHumanPlayer){
+            ((HumanAgent)players[0]).setBoardGUI(boardGUI);
+        }
         play();
     }
 
@@ -107,9 +110,9 @@ public class Cluedo {
     private void suggest(Action actionTaken, Player currentPlayer) {
         Card cardToShow;
         for(int i = 1; i < 4; i++) {
-            cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(actionTaken.suggestion);
+            cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(currentPlayer, actionTaken.suggestion);
             if (!(cardToShow == null)){
-                currentPlayer.showCard(cardToShow);
+                currentPlayer.showCard(players[(playerTurnIndex + i) % 4], cardToShow);
                 if(useGUI)
                     updateGUI(new Action("showCard", cardToShow, currentPlayer), players[(playerTurnIndex + i) % 4]);
                 break;
@@ -166,7 +169,7 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new RandomAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
+        players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
                 new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
     }
 
