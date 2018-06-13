@@ -37,6 +37,11 @@ public class Action {
         cardShown = cardToShow;
     }
 
+    public Action(String useSecretPassage, int[] secretPassage) {
+        actionType = useSecretPassage;
+        towards = secretPassage;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

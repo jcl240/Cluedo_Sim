@@ -176,6 +176,11 @@ public class Board {
         }
         return locations;
     }
+
+    public int[] getSecretPassage(Player currentPlayer) {
+        Room nextRoom = getRoom(currentPlayer).getSecretPassage();
+        return nextRoom.entranceTiles[0];
+    }
 }
 
 

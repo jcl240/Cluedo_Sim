@@ -33,4 +33,8 @@ public class Room {
         rooms[3].setSecretPassageway(rooms[7]);
         return rooms;
     }
+
+    public Room getSecretPassage() {
+        return secretPassage;
+    }
 }

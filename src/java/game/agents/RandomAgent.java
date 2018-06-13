@@ -12,8 +12,8 @@ public class RandomAgent extends  Agent implements Player {
 
     private int[] movementGoal;
 
-    public RandomAgent(Card[] hand, Card[] faceUp) {
-        super(hand, faceUp);
+    public RandomAgent(Card[] hand, Card[] faceUp, int index) {
+        super(hand, faceUp, index);
     }
 
     @Override
