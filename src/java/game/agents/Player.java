@@ -13,4 +13,6 @@ public interface Player {
     Card falsifySuggestion(Card[] suggestion);
 
     void showCard(Card cardToShow);
+
+    String[] getHand();
 }

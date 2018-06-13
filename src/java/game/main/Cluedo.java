@@ -13,6 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
+    public boolean hasHumanPlayer = false;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -117,21 +118,22 @@ public class Cluedo {
     }
 
     private synchronized void updateGUI(Action actionTaken, Player currentPlayer) {
-        stillUpdating = true;
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                boardGUI.movePiece(board.getPlayerLocations());
-                boardGUI.updateInfo(actionTaken, currentPlayer);
+        if(useGUI) {
+            stillUpdating = true;
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    boardGUI.movePiece(board.getPlayerLocations());
+                    boardGUI.updateInfo(actionTaken, currentPlayer);
+                }
+            });
+            try {
+                while (stillUpdating) {
+                    wait();
+                }
+            } catch (InterruptedException e) {
+                System.out.println("got interrupted!");
             }
-        });
-        try {
-            while(stillUpdating) {
-                wait();
-            }
-        }
-        catch(InterruptedException e) {
-            System.out.println("got interrupted!");
         }
     }
 
@@ -186,5 +188,15 @@ public class Cluedo {
             this.stillUpdating = false;
             notifyAll();
         }
+    }
+
+    public String[][] getPlayerHands() {
+        String hands[][] = new String[4][4];
+        int i = 0;
+        for(Player player: players){
+            hands[i] = player.getHand();
+            i++;
+        }
+        return hands;
     }
 }

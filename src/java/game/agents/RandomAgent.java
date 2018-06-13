@@ -66,4 +66,15 @@ public class RandomAgent extends  Agent implements Player {
     public void showCard(Card cardToShow) {
         notebook.checkOffCard(cardToShow);
     }
+
+    @Override
+    public String[] getHand() {
+        String[] stringHand = new String[4];
+        int i = 0;
+        for(Card card: hand) {
+            stringHand[i] = card.cardName;
+            i++;
+        }
+        return stringHand;
+    }
 }

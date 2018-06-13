@@ -13,7 +13,7 @@ public class Agent {
     public Agent(Card[] hand, Card[] faceUp, int index) {
         this.hand = hand;
         this.notebook = new Notebook(hand);
-        this.playerIndex = index;
+        this.playerIndex = index+1;
         for(Card card: faceUp){
             notebook.checkOffCard(card);
         }
