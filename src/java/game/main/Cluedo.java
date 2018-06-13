@@ -22,13 +22,14 @@ public class Cluedo {
     private Player[] players;
     private boolean gameFinished = false;
     private int playerTurnIndex = 0;
+    private boolean stillUpdating = false;
 
     public Cluedo() {
         initializeCards();
         initializePlayers();
         board = new Board(players, boardGUI);
         if(useGUI)
-            boardGUI = new BoardGUI(board.getTiles());
+            boardGUI = new BoardGUI(board.getTiles(), this);
         play();
     }
 
@@ -109,21 +110,26 @@ public class Cluedo {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(actionTaken.suggestion);
             if (!(cardToShow == null)){
                 currentPlayer.showCard(cardToShow);
+                if(useGUI)
+                    updateGUI(new Action("showCard", cardToShow), players[(playerTurnIndex + i) % 4]);
                 break;
             }
         }
     }
 
-    private void updateGUI(Action actionTaken, Player currentPlayer) {
+    private synchronized void updateGUI(Action actionTaken, Player currentPlayer) {
+        stillUpdating = true;
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 boardGUI.movePiece(board.getPlayerLocations());
-                boardGUI.updateInfo(actionTaken);
+                boardGUI.updateInfo(actionTaken, currentPlayer);
             }
         });
         try {
-            Thread.sleep(5000);
+            while(stillUpdating) {
+                wait();
+            }
         }
         catch(InterruptedException e) {
             System.out.println("got interrupted!");
@@ -174,5 +180,18 @@ public class Cluedo {
 
     public static void main(String[] args) {
         Cluedo game = new Cluedo();
+    }
+
+    public void doneUpdating() {
+        synchronized(this){
+            this.stillUpdating = false;
+            notifyAll();
+        }
+        try{
+            Thread.sleep(2000);
+        }
+        catch(InterruptedException e) {
+            System.out.println("got interrupted!");
+        }
     }
 }

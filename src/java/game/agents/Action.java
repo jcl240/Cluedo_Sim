@@ -11,6 +11,7 @@ public class Action {
     public int[] towards;
     public int roll;
     public Room currentRoom;
+    public Card cardShown;
 
     public Action(String actionType) {
         this.actionType = actionType;
@@ -29,6 +30,11 @@ public class Action {
     public Action(String suggest, Room room) {
         this.actionType = suggest;
         this.currentRoom = room;
+    }
+
+    public Action(String showCard, Card cardToShow) {
+        actionType = showCard;
+        cardShown = cardToShow;
     }
 
     @Override

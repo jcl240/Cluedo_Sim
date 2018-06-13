@@ -2,6 +2,7 @@ package GUI;
 
 import agents.Action;
 import agents.Player;
+import main.Cluedo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,15 +17,17 @@ public class BoardGUI {
     private static String[] weapons = {"Knife","Candlestick","Lead pipe","Wrench","Revolver","Rope"};
     private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
     private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
+    private Cluedo game;
 
     /**
      * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
-    public BoardGUI(boolean[][] map) {
+    public BoardGUI(boolean[][] map, Cluedo newGame) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
+                game = newGame;
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 addMainPanel(map);
@@ -188,6 +191,7 @@ public class BoardGUI {
         mainPanel.setPieces(locations);
     }
 
-    public void updateInfo(Action actionTaken) {
+    public void updateInfo(Action actionTaken, Player currentPlayer) {
+        game.doneUpdating();
     }
 }
