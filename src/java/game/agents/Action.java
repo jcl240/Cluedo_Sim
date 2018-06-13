@@ -12,6 +12,7 @@ public class Action {
     public int roll;
     public Room currentRoom;
     public Card cardShown;
+    public Player shownTo;
 
     public Action(String actionType) {
         this.actionType = actionType;
@@ -32,14 +33,16 @@ public class Action {
         this.currentRoom = room;
     }
 
-    public Action(String showCard, Card cardToShow) {
-        actionType = showCard;
-        cardShown = cardToShow;
-    }
 
     public Action(String useSecretPassage, int[] secretPassage) {
         actionType = useSecretPassage;
         towards = secretPassage;
+    }
+
+    public Action(String showCard, Card cardToShow, Player currentPlayer) {
+        actionType = showCard;
+        cardShown = cardToShow;
+        shownTo = currentPlayer;
     }
 
     @Override

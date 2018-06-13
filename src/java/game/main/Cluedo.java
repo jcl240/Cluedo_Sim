@@ -63,6 +63,7 @@ public class Cluedo {
                 if(successful) ((Agent)currentPlayer).justMoved = true;
                 break;
             case "suggest":
+                updateGUI(actionTaken, currentPlayer);
                 suggest(actionTaken, currentPlayer);
                 break;
             case "accuse":
@@ -74,7 +75,7 @@ public class Cluedo {
                 break;
         }
 
-        if(useGUI)
+        if(useGUI && !actionTaken.actionType.equals("accuse"))
             updateGUI(actionTaken, currentPlayer);
     }
 
@@ -109,7 +110,7 @@ public class Cluedo {
             if (!(cardToShow == null)){
                 currentPlayer.showCard(cardToShow);
                 if(useGUI)
-                    updateGUI(new Action("showCard", cardToShow), players[(playerTurnIndex + i) % 4]);
+                    updateGUI(new Action("showCard", cardToShow, currentPlayer), players[(playerTurnIndex + i) % 4]);
                 break;
             }
         }

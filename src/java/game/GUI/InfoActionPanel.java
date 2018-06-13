@@ -13,7 +13,7 @@ public class InfoActionPanel extends JPanel {
     private static final String actionCard = "actionCard";
     private static final String infoCard = "infoCard";
     private CardLayout cl;
-    private JLabel infoLabel;
+    private JTextArea infoLabel;
     private BoardGUI GUI;
 
     public InfoActionPanel(BoardGUI GUI) {
@@ -34,8 +34,11 @@ public class InfoActionPanel extends JPanel {
         panel.setLayout(new BoxLayout(panel,BoxLayout.Y_AXIS));
         panel.setOpaque(false);
         this.add(panel, infoCard);
-        infoLabel = new JLabel("<html>agents.Player 3 is rolling the die.</html>");
-        infoLabel.setFont(new Font("Serif", Font.BOLD, 26));
+        infoLabel = new JTextArea("");
+        infoLabel.setEditable(false);
+        infoLabel.setOpaque(false);
+        infoLabel.setLineWrap(true);
+        infoLabel.setFont(new Font("Serif", Font.BOLD, 16));
         infoLabel.setForeground(new Color(255, 237, 211));
         infoLabel.setAlignmentX(CENTER_ALIGNMENT);
         panel.add(infoLabel);
@@ -87,7 +90,23 @@ public class InfoActionPanel extends JPanel {
 
     public void updateInfo(Action actionTaken, Player currentPlayer) {
         String playerIndex = Integer.toString(((Agent) currentPlayer).playerIndex);
-        setInfoText("Player " + playerIndex + " did " + actionTaken.actionType);
+        if(actionTaken.actionType.equals("move"))
+            setInfoText("Player " + playerIndex + " moved");
+        else if(actionTaken.actionType.equals("useSecretPassage"))
+            setInfoText("Player " + playerIndex + " used a secret passage!");
+        else if(actionTaken.actionType.equals("suggest"))
+            setInfoText("Player " + playerIndex + " suggested " +
+                    actionTaken.suggestion[0].cardName + ", " +
+                    actionTaken.suggestion[1].cardName + ", " +
+                    actionTaken.suggestion[2].cardName);
+        else if(actionTaken.actionType.equals("accuse"))
+            setInfoText("Player " + playerIndex + " accused " +
+                    actionTaken.accusation[0].cardName + ", " +
+                    actionTaken.accusation[1].cardName + ", " +
+                    actionTaken.accusation[2].cardName);
+        else if(actionTaken.actionType.equals("showCard"))
+            setInfoText("Player " + playerIndex + " showed Player " +
+                    ((Agent)actionTaken.shownTo).playerIndex + " " + actionTaken.cardShown.cardName);
         cl.show(this, infoCard);
     }
 }
