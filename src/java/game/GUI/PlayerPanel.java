@@ -1,11 +1,15 @@
 package GUI;
 
+import agents.Action;
+import agents.Player;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PlayerPanel extends JPanel {
 
     JPanel sidePanel = new JPanel();
+    InfoActionPanel infoActionPanel;
     private BoardGUI GUI;
 
     public PlayerPanel(BoardGUI GUI) {
@@ -27,7 +31,7 @@ public class PlayerPanel extends JPanel {
     }
 
     private void addActionPanel() {
-        InfoActionPanel infoActionPanel = new InfoActionPanel(GUI);
+        infoActionPanel = new InfoActionPanel(GUI);
         sidePanel.add(infoActionPanel);
     }
 
@@ -62,5 +66,9 @@ public class PlayerPanel extends JPanel {
             JLabel card = new JLabel(new ImageIcon(scaledCardImage));
             cardPanel.add(card);
         }
+    }
+
+    public void passAction(Action actionTaken, Player currentPlayer) {
+        infoActionPanel.updateInfo(actionTaken,currentPlayer);
     }
 }

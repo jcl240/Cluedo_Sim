@@ -163,10 +163,6 @@ public class BoardGUI {
         dialog.setVisible(true);
     }
 
-    public void rollDie() {
-        falsifyDialog("Player 1", new String[]{"knife", "green","lounge"});
-    }
-
     private void suggest() {
     }
 
@@ -177,6 +173,7 @@ public class BoardGUI {
     }
 
     public void next() {
+        game.doneUpdating();
     }
 
 
@@ -192,6 +189,6 @@ public class BoardGUI {
     }
 
     public void updateInfo(Action actionTaken, Player currentPlayer) {
-        game.doneUpdating();
+        playerPanel.passAction(actionTaken, currentPlayer);
     }
 }

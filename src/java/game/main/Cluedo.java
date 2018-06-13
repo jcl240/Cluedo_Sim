@@ -50,10 +50,8 @@ public class Cluedo {
                 actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
                 doAction(actionTaken, currentPlayer);
             }
-            else{
-                playerTurnIndex = (playerTurnIndex+1)%4;
-                currentPlayer.endTurn();
-            }
+            playerTurnIndex = (playerTurnIndex+1)%4;
+            currentPlayer.endTurn();
         }
     }
 
@@ -147,7 +145,7 @@ public class Cluedo {
             possibleActions.add(new Action("move", roll()));
             possibleActions.add(new Action("accuse"));
             if (board.inRoomWithSecretPassage(currentPlayer))
-                possibleActions.add(new Action("useSecretPassage"));
+                possibleActions.add(new Action("useSecretPassage", board.getSecretPassage(currentPlayer)));
         }
         else if(board.inRoom(currentPlayer))
             possibleActions.add(new Action("suggest", board.getRoom(currentPlayer)));
@@ -165,8 +163,8 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new RandomAgent(cards[0], faceUpCards),new RandomAgent(cards[1], faceUpCards),
-                new RandomAgent(cards[2], faceUpCards), new RandomAgent(cards[3], faceUpCards)};
+        players = new Player[]{new RandomAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
+                new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
     }
 
     public void initializeCards(){
@@ -186,12 +184,6 @@ public class Cluedo {
         synchronized(this){
             this.stillUpdating = false;
             notifyAll();
-        }
-        try{
-            Thread.sleep(2000);
-        }
-        catch(InterruptedException e) {
-            System.out.println("got interrupted!");
         }
     }
 }

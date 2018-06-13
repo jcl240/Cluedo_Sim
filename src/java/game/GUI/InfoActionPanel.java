@@ -1,5 +1,9 @@
 package GUI;
 
+import agents.Action;
+import agents.Agent;
+import agents.Player;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -55,13 +59,6 @@ public class InfoActionPanel extends JPanel {
         label.setFont(new Font("Serif", Font.BOLD, 32));
         label.setForeground(new Color(255, 237, 211));
         panel.add(label);
-        JButton rollDieButton = new TransparentButton("Roll die");
-        rollDieButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                rollDie();
-            }
-        });
         JButton suggestButton = new TransparentButton("Suggest");
         suggestButton.addActionListener(new ActionListener() {
             @Override
@@ -76,7 +73,6 @@ public class InfoActionPanel extends JPanel {
                 accuse();
             }
         });
-        panel.add(rollDieButton);
         panel.add(suggestButton);
         panel.add(accuseButton);
     }
@@ -89,7 +85,9 @@ public class InfoActionPanel extends JPanel {
         GUI.accuseDialog();
     }
 
-    private void rollDie() {
-        GUI.rollDie();
+    public void updateInfo(Action actionTaken, Player currentPlayer) {
+        String playerIndex = Integer.toString(((Agent) currentPlayer).playerIndex);
+        setInfoText("Player " + playerIndex + " did " + actionTaken.actionType);
+        cl.show(this, infoCard);
     }
 }
