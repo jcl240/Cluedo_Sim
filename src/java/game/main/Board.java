@@ -181,6 +181,10 @@ public class Board {
         Room nextRoom = getRoom(currentPlayer).getSecretPassage();
         return nextRoom.entranceTiles[0];
     }
+
+    public void useSecretPassage(Action actionTaken, Player currentPlayer, boolean useGUI) {
+        movePiece(currentPlayer, actionTaken.towards);
+    }
 }
 
 

@@ -61,6 +61,7 @@ public class Cluedo {
             case "move":
                 successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
                 if(successful) ((Agent)currentPlayer).justMoved = true;
+                updateGUI(actionTaken, currentPlayer);
                 break;
             case "suggest":
                 updateGUI(actionTaken, currentPlayer);
@@ -68,15 +69,14 @@ public class Cluedo {
                 break;
             case "accuse":
                 accuse(actionTaken, currentPlayer);
+                updateGUI(actionTaken, currentPlayer);
                 break;
             case "useSecretPassage":
-                successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
-                if(successful) ((Agent)currentPlayer).justMoved = true;
+                board.useSecretPassage(actionTaken, currentPlayer, useGUI);
+                ((Agent)currentPlayer).justMoved = true;
+                updateGUI(actionTaken, currentPlayer);
                 break;
         }
-
-        if(useGUI && !actionTaken.actionType.equals("accuse"))
-            updateGUI(actionTaken, currentPlayer);
     }
 
     private void accuse(Action actionTaken, Player currentPlayer) {
