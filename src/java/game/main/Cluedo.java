@@ -13,7 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
-    public boolean hasHumanPlayer = true;
+    public boolean hasHumanPlayer = false;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -30,7 +30,7 @@ public class Cluedo {
         initializePlayers();
         board = new Board(players, boardGUI);
         if(useGUI)
-            boardGUI = new BoardGUI(board.getTiles(), this, players[0]);
+            boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
         if(hasHumanPlayer){
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
@@ -171,8 +171,12 @@ public class Cluedo {
 
     private void initializePlayers() {
         Card[][] cards = dealCards();
-        players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
+        if(hasHumanPlayer)
+            players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
                 new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
+        else
+            players = new Player[]{new RandomAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
+                    new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
     }
 
     public void initializeCards(){

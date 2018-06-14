@@ -32,13 +32,16 @@ public class BoardGUI {
      * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
      */
-    public BoardGUI(boolean[][] map, Cluedo newGame, Player human) {
+    public BoardGUI(boolean[][] map, Cluedo newGame, Player human, boolean hasHumanPlayer) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
                 humanPlayer = human;
                 game = newGame;
-                playerManager = new PlayerManager(human, game, playerPanel);
+                if(hasHumanPlayer)
+                    playerManager = new PlayerManager(human, game, playerPanel);
+                else
+                    playerManager = new PlayerManager(game, playerPanel);
                 frame.setTitle("Cluedo_Sim");
                 frame.setLayout(new GridBagLayout());
                 addMainPanel(map);

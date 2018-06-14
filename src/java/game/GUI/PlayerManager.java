@@ -25,6 +25,12 @@ public class PlayerManager {
 
     }
 
+    public PlayerManager(Cluedo game, PlayerPanel playerPanel){
+        this.game = game;
+        this.playerPanel = playerPanel;
+
+    }
+
 
     public void suggest(Card[] comboBoxSelections) {
         if(takingTurn){
