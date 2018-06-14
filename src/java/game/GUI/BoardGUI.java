@@ -25,6 +25,9 @@ public class BoardGUI {
     private Cluedo game;
     private Player humanPlayer;
     public PlayerManager playerManager;
+    private JComboBox weaponsCombo;
+    private JComboBox suspectsCombo;
+    private JComboBox roomsCombo;
     /**
      * GUI.BoardGUI constructor
      * Runs in a Swing Thread and sets up entire GUI
@@ -87,7 +90,7 @@ public class BoardGUI {
         JLabel text = new JLabel(player+" has shown you:");
         JLabel image = new JLabel(new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")));
         JButton okayButton = new JButton("Done");
-        initializeDialogButton(okayButton, cardDialog, "doneViewing");
+        initializeDialogButton(okayButton, cardDialog, "doneViewing", null);
 
         text.setAlignmentX(Component.CENTER_ALIGNMENT);
         image.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -106,17 +109,27 @@ public class BoardGUI {
      * @param button
      * @param cardDialog
      */
-    private void initializeDialogButton(JButton button, JDialog dialog, String type) {
+    private void initializeDialogButton(JButton button, JDialog dialog, String type, Card card) {
             button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dialog.dispose();
                 if(type == "doneViewing") playerManager.doneViewingCard();
-                else if(type == "accuse") playerManager.accuse();
-                else if(type == "suggest") playerManager.suggest();
-                else if (type == "falsify") playerManager.falsify();
+                else if(type == "accuse") playerManager.accuse(getComboBoxSelections());
+                else if(type == "suggest") playerManager.suggest(getComboBoxSelections());
+                else if (type == "falsify") playerManager.falsify(card);
             }
         });
+    }
+
+    private Card[] getComboBoxSelections() {
+        String roomName = (String)roomsCombo.getSelectedItem();
+        String weaponName = (String)weaponsCombo.getSelectedItem();
+        String suspectName = (String)suspectsCombo.getSelectedItem();
+        Card roomCard = new Card("room",roomName);
+        Card weaponCard = new Card("weapon",weaponName);
+        Card suspectCard = new Card("suspect", suspectName);
+        return new Card[]{roomCard,weaponCard,suspectCard};
     }
 
     public void falsifyDialog(String player, Card[] cards){
@@ -132,7 +145,7 @@ public class BoardGUI {
             Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
             Image scaledCardImage = cardImage.getScaledInstance(81,126,java.awt.Image.SCALE_SMOOTH);
             TransparentButton cardButton = new TransparentButton(new ImageIcon(scaledCardImage));
-            initializeDialogButton(cardButton, falsifyDialog, "falsify");
+            initializeDialogButton(cardButton, falsifyDialog, "falsify", card);
             c.gridx=i;c.gridy=1;
             falsifyDialog.add(cardButton,c);
             i++;
@@ -159,12 +172,11 @@ public class BoardGUI {
         dialog.setLayout(new GridBagLayout());
         dialog.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
-        initializeDialogButton(button, dialog, type);
+        initializeDialogButton(button, dialog, type, null);
         //accuseDialog.setPreferredSize(new Dimension(200,425));
 
-        JComboBox weaponsCombo = new JComboBox(weapons);
-        JComboBox suspectsCombo = new JComboBox(suspects);
-        JComboBox roomsCombo;
+        weaponsCombo = new JComboBox(weapons);
+        suspectsCombo = new JComboBox(suspects);
         if(type.equals("suggest")) {
             roomsCombo = new JComboBox(new String[]{game.board.getRoom(humanPlayer).roomName});
         }

@@ -56,11 +56,11 @@ public class HumanAgent extends  Agent implements Player{
 
     @Override
     public synchronized Card falsifySuggestion(Player player, Card[] suggestion) {
-        usingGUI = true;
         String playerName = "Player " + ((Agent)player).playerIndex;
         Card[] cardsContained = handContains(suggestion);
         if(cardsContained.length == 0)
             return null;
+        usingGUI = true;
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
@@ -94,7 +94,7 @@ public class HumanAgent extends  Agent implements Player{
                 }
             }
         }
-        return (Card[])contained.toArray();
+        return contained.toArray(new Card[contained.size()]);
     }
 
     @Override
