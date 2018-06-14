@@ -19,7 +19,7 @@ public class Cluedo {
     private Card[] faceUpCards;
     private boolean useGUI = true;
     private BoardGUI boardGUI;
-    private Board board;
+    public Board board;
     private Player[] players;
     private boolean gameFinished = false;
     private int playerTurnIndex = 0;
@@ -50,10 +50,12 @@ public class Cluedo {
             Action actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
             doAction(actionTaken, currentPlayer);
             possibleActions = getPossibleActions(currentPlayer);
+
             if(!possibleActions.isEmpty()){
                 actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
                 doAction(actionTaken, currentPlayer);
             }
+
             playerTurnIndex = (playerTurnIndex+1)%4;
             currentPlayer.endTurn();
         }

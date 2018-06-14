@@ -3,6 +3,7 @@ package GUI;
 import agents.Action;
 import agents.Agent;
 import agents.Player;
+import main.Room;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,9 @@ public class InfoActionPanel extends JPanel {
     private CardLayout cl;
     private JTextArea infoLabel;
     private BoardGUI GUI;
+    private JLabel rollLabel = new JLabel();
+    private JButton suggestButton;
+    private JButton accuseButton;
 
     public InfoActionPanel(BoardGUI GUI) {
         this.GUI = GUI;
@@ -53,6 +57,9 @@ public class InfoActionPanel extends JPanel {
         panel.add(nextButton);
     }
 
+    public void setRollLabel(int roll){
+        rollLabel.setText("You rolled a " + roll);
+    }
 
     private void addActionCard() {
         JPanel panel = new JPanel();
@@ -62,14 +69,17 @@ public class InfoActionPanel extends JPanel {
         label.setFont(new Font("Serif", Font.BOLD, 32));
         label.setForeground(new Color(255, 237, 211));
         panel.add(label);
-        JButton suggestButton = new TransparentButton("Suggest");
+        rollLabel.setFont(new Font("Serif", Font.BOLD, 32));
+        rollLabel.setForeground(new Color(255, 237, 211));
+        panel.add(rollLabel);
+        suggestButton = new TransparentButton("Suggest");
         suggestButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 suggest();
             }
         });
-        JButton accuseButton = new TransparentButton("Accuse");
+        accuseButton = new TransparentButton("Accuse");
         accuseButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -108,5 +118,20 @@ public class InfoActionPanel extends JPanel {
             setInfoText("Player " + playerIndex + " showed Player " +
                     ((Agent)actionTaken.shownTo).playerIndex + " " + actionTaken.cardShown.cardName);
         cl.show(this, infoCard);
+    }
+
+    public void hideRollLabel() {
+        rollLabel.setText("");
+    }
+
+    public void setTakingTurn() {
+        cl.show(this, actionCard);
+    }
+
+    public void setAccuseButton(boolean set){
+        accuseButton.setEnabled(set);
+    }
+    public void setSuggestButton(boolean set){
+        suggestButton.setEnabled(set);
     }
 }

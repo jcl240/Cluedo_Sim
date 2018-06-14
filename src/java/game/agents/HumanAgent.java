@@ -25,6 +25,7 @@ public class HumanAgent extends  Agent implements Player{
     @Override
     public void endTurn(){
         chosenAction = null;
+        justMoved = false;
     }
 
     public synchronized Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){

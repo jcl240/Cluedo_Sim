@@ -1,9 +1,12 @@
 package GUI;
 
 import agents.Action;
+import agents.Agent;
 import agents.Player;
+import main.Board;
 import main.Card;
 import main.Cluedo;
+import main.Room;
 
 import javax.swing.*;
 import java.awt.*;
@@ -161,7 +164,12 @@ public class BoardGUI {
 
         JComboBox weaponsCombo = new JComboBox(weapons);
         JComboBox suspectsCombo = new JComboBox(suspects);
-        JComboBox roomsCombo = new JComboBox(rooms);
+        JComboBox roomsCombo;
+        if(type.equals("suggest")) {
+            roomsCombo = new JComboBox(new String[]{game.board.getRoom(humanPlayer).roomName});
+        }
+        else
+            roomsCombo = new JComboBox(rooms);
 
         c.gridx=1;c.gridy=0;
         dialog.add(text,c);

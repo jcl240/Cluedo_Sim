@@ -1,6 +1,7 @@
 package GUI;
 
 import agents.Action;
+import agents.HumanAgent;
 import agents.Player;
 import main.Cluedo;
 
@@ -10,12 +11,13 @@ public class PlayerManager {
 
     private boolean takingTurn = false;
     private boolean canMove = false;
-    Player humanPlayer;
+    HumanAgent humanPlayer;
     Cluedo game;
     PlayerPanel playerPanel;
+    private LinkedList<Action> currentPossibleActions;
 
     public PlayerManager(Player humanPlayer, Cluedo game, PlayerPanel playerPanel){
-        this.humanPlayer = humanPlayer;
+        this.humanPlayer = (HumanAgent)humanPlayer;
         this.game = game;
         this.playerPanel = playerPanel;
 
@@ -33,7 +35,10 @@ public class PlayerManager {
 
     public void clickedTile(int x, int y){
         if(takingTurn && canMove){
-
+            int moveIndex = currentPossibleActions.indexOf(new Action("move"));
+            Action moveAction = currentPossibleActions.get(moveIndex);
+            moveAction.towards= new int[]{x,y};
+            humanPlayer.setChosenAction(moveAction);
         }
     }
 
@@ -54,8 +59,28 @@ public class PlayerManager {
     }
 
     public void takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
+        playerPanel.infoActionPanel.setTakingTurn();
+        currentPossibleActions = possibleActions;
         takingTurn = true;
-        if(possibleActions.contains(new Action("move")))
+        initializeMoveAction(possibleActions);
+        initializeSuggestAndAccuse(possibleActions);
+
+    }
+
+    private void initializeSuggestAndAccuse(LinkedList<Action> possibleActions) {
+        playerPanel.infoActionPanel.setAccuseButton(possibleActions.contains(new Action("accuse")));
+        playerPanel.infoActionPanel.setSuggestButton(possibleActions.contains(new Action("suggest")));
+    }
+
+    private void initializeMoveAction(LinkedList<Action> possibleActions) {
+        int moveIndex = possibleActions.indexOf(new Action("move"));
+        if(moveIndex != -1) {
             canMove = true;
+            playerPanel.infoActionPanel.setRollLabel(possibleActions.get(moveIndex).roll);
+        }
+        else{
+            canMove = false;
+            playerPanel.infoActionPanel.hideRollLabel();
+        }
     }
 }
