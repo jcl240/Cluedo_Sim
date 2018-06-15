@@ -70,7 +70,7 @@ public class PlayerPanel extends JPanel {
     public void setBotCards(String[][] hands){
         int i = 0;
         for(String[] hand: hands){
-            setPlayerCards(hand,"Player " + i + "'s cards:", new int[]{36,56});
+            setPlayerCards(hand,"Player " + (i+1) + "'s cards:", new int[]{36,56});
             i++;
         }
     }
