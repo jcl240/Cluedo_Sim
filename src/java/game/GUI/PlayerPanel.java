@@ -50,11 +50,11 @@ public class PlayerPanel extends JPanel {
      * to the player panel
      * @param cards
      */
-    public void setPlayerCards(String[] cards, String text, int[] cardSize){
+    public JPanel setPlayerCards(String[] cards, String text, int[] cardSize){
         JPanel cardPanel = new JPanel();
         cardPanel.setOpaque(false);
         JLabel textLabel = new JLabel(text);
-        textLabel.setFont(new Font("Serif", Font.BOLD, 26));
+        textLabel.setFont(new Font("Serif", Font.BOLD, 28));
         textLabel.setForeground(new Color(255, 237, 211));
         cardPanel.add(textLabel);
         sidePanel.add(cardPanel);
@@ -65,7 +65,26 @@ public class PlayerPanel extends JPanel {
             card.setToolTipText("<html><img src=\"" + (getClass().getResource("/cards/"+cardName +".jpg")) + "\"></img></html>");
             cardPanel.add(card);
         }
+        return cardPanel;
     }
+
+    public void setFaceUpCards(String[] faceUpCards, int[] cardSize){
+        JPanel cardPanel = new JPanel();
+        cardPanel.setOpaque(false);
+        JLabel faceUpLabel = new JLabel("Face up cards:");
+        faceUpLabel.setFont(new Font("Serif", Font.BOLD, 28));
+        faceUpLabel.setForeground(new Color(255, 237, 211));
+        cardPanel.add(faceUpLabel);
+        sidePanel.add(cardPanel);
+        for(String cardName: faceUpCards){
+            Image cardImage = new ImageIcon(getClass().getResource("/cards/"+cardName +".jpg")).getImage();
+            Image scaledCardImage = cardImage.getScaledInstance(cardSize[0],cardSize[1],java.awt.Image.SCALE_SMOOTH);
+            JLabel card = new JLabel(new ImageIcon(scaledCardImage));
+            card.setToolTipText("<html><img src=\"" + (getClass().getResource("/cards/"+cardName +".jpg")) + "\"></img></html>");
+            cardPanel.add(card);
+        }
+    }
+
 
     public void setBotCards(String[][] hands){
         int i = 0;

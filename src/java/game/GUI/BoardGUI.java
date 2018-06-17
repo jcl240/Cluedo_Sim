@@ -69,12 +69,14 @@ public class BoardGUI {
     private void addPlayerPanel() {
         c.gridx=1;c.gridy=0;
         if(game.hasHumanPlayer) {
-            playerPanel.addSidePanel(2);
-            playerPanel.setPlayerCards(game.getPlayerHands()[0], "Your Cards:", new int[]{81,126});
+            playerPanel.addSidePanel(3);
+            playerPanel.setPlayerCards(game.getPlayerHands()[0], "Your Cards:", new int[]{54,84});
+            playerPanel.setFaceUpCards(game.getFaceUpCards(), new int[]{54,84});
         }
         else {
-            playerPanel.addSidePanel(5);
+            playerPanel.addSidePanel(6);
             playerPanel.setBotCards(game.getPlayerHands());
+            playerPanel.setFaceUpCards(game.getFaceUpCards(), new int[]{36,56});
         }
         frame.add(playerPanel,c);
     }

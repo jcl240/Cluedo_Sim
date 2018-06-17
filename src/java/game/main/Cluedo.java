@@ -13,7 +13,7 @@ import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
-    public boolean hasHumanPlayer = true;
+    public boolean hasHumanPlayer = false;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -207,5 +207,15 @@ public class Cluedo {
             i++;
         }
         return hands;
+    }
+
+    public String[] getFaceUpCards() {
+        String[] faceUpStrings = new String[2];
+        int i = 0;
+        for(Card card: faceUpCards){
+            faceUpStrings[i] = card.cardName;
+            i++;
+        }
+        return faceUpStrings;
     }
 }
