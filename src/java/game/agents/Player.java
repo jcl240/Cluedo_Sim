@@ -16,4 +16,6 @@ public interface Player {
     void showCard(Player player,Card cardToShow);
 
     String[] getHand();
+
+    void actionFailed(Action actionTaken);
 }

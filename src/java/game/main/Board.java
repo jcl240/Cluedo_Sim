@@ -6,6 +6,7 @@ import agents.Agent;
 import agents.Player;
 import search.AStar;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -97,7 +98,7 @@ public class Board {
     public Boolean movePlayer(Action actionTaken, Player currentPlayer, boolean useGUI) {
         int[] start = getPlayerLocation(currentPlayer);
         int[] end = actionTaken.towards;
-        AStar astar = new AStar(start,end,getCurrentTiles());
+        AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
         Boolean successful = astar.search();
         int[][] path = astar.getFinalPath();
         if(successful) {
@@ -115,20 +116,32 @@ public class Board {
         }
     }
 
-    private boolean[][] getCurrentTiles() {
-        boolean[][] currentTiles = tiles;
+    private boolean[][] getCurrentTiles(Player currentPlayer) {
+        boolean[][] currentTiles = getTilesCopy();
+        int[] playerLocation = getPlayerLocation(currentPlayer);
+        int[][] playerLocations = getPlayerLocations();
+        for(int[] location: playerLocations){
+            int x = location[0];
+            int y = location[1];
+            if(!isRoomTile(location) && !Arrays.equals(location, playerLocation))
+                currentTiles[x][y] = false;
+        }
         return currentTiles;
     }
 
-    private int[][] getLocations() {
-        int[][] locations = new int[4][2];
-        int i = 0;
-        for(Tuple<Player, Gamepiece> tuple: playerPieceTuples){
-            locations[i] = tuple.y.getCurrentLocation();
-            i++;
+    private boolean[][] getTilesCopy() {
+        boolean [][] copy = new boolean[24][25];
+        for(int x = 0; x < tiles.length; x++){
+            copy[x] = tiles[x].clone();
         }
-        return locations;
+        return copy;
     }
+
+    private boolean isRoomTile(int[] location) {
+        Room room = getRoomByLocation(location);
+        return !(room == null);
+    }
+
 
     public boolean inRoomWithSecretPassage(Player currentPlayer) {
         int[] playerLocation = getPlayerLocation(currentPlayer);

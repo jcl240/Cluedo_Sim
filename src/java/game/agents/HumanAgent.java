@@ -137,4 +137,9 @@ public class HumanAgent extends  Agent implements Player{
         }
         return stringHand;
     }
+
+    @Override
+    public void actionFailed(Action actionTaken) {
+
+    }
 }

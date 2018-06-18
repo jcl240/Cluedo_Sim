@@ -11,6 +11,7 @@ import java.util.Random;
 public class RandomAgent extends  Agent implements Player {
 
     private int[] movementGoal;
+    private int actionFailCount = 0;
 
     public RandomAgent(Card[] hand, Card[] faceUp, int index) {
         super(hand, faceUp, index);
@@ -19,10 +20,14 @@ public class RandomAgent extends  Agent implements Player {
     @Override
     public void endTurn(){
         this.justMoved = false;
+        actionFailCount = 0;
     }
 
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
         Action actionTaken;
+        if(actionFailCount == 10){
+            return(new Action("doNothing"));
+        }
         if(Arrays.equals(currentLocation,movementGoal))
             movementGoal = null;
         if(possibleActions.contains(new Action("accuse")) && notebook.unknownCardCount() == 3)
@@ -76,5 +81,12 @@ public class RandomAgent extends  Agent implements Player {
             i++;
         }
         return stringHand;
+    }
+
+    @Override
+    public void actionFailed(Action actionTaken) {
+        actionFailCount++;
+        if(actionTaken.actionType.equals("move"))
+            movementGoal = null;
     }
 }

@@ -5,6 +5,7 @@ public class Agent {
 
     public boolean justMoved = false;
     public int playerIndex;
+    public boolean hasSuggested = false;
 
     protected Card[] hand;
     protected Notebook notebook;
