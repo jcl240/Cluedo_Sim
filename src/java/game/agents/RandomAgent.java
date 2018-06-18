@@ -1,12 +1,13 @@
 package agents;
 
 import main.Card;
+import main.Cluedo;
 import main.Room;
-import search.AStar;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.Random;
+
+import static main.Card.shuffle;
 
 public class RandomAgent extends  Agent implements Player {
 
@@ -34,7 +35,7 @@ public class RandomAgent extends  Agent implements Player {
             return(new Action("accuse", notebook.getAccusation()));
         else {
             possibleActions.remove(new Action("accuse"));
-            actionTaken = possibleActions.get(new Random().nextInt(possibleActions.size()));
+            actionTaken = possibleActions.get(Cluedo.rand.nextInt(possibleActions.size()));
         }
         return decideAction(actionTaken);
     }
@@ -45,7 +46,8 @@ public class RandomAgent extends  Agent implements Player {
                 actionTaken.towards = movementGoal;
             else {
                 Room[] rooms = Room.makeRooms();
-                Room randRoom = rooms[new Random().nextInt(rooms.length)];
+                Room randRoom = rooms[Cluedo.rand.nextInt(rooms.length)];
+                LinkedList<Card> ukr = getUnknownRooms();
                 actionTaken.towards = movementGoal =randRoom.entranceTiles[0];
             }
         }
@@ -57,6 +59,7 @@ public class RandomAgent extends  Agent implements Player {
 
     @Override
     public Card falsifySuggestion(Player player, Card[] suggestion) {
+        suggestion = shuffle(suggestion);
         for(Card suggestedCard: suggestion){
             for(Card myCard: this.hand){
                 if(suggestedCard.equals(myCard)) {
@@ -69,6 +72,7 @@ public class RandomAgent extends  Agent implements Player {
 
     @Override
     public void showCard(Player player, Card cardToShow) {
+        LinkedList<Card> ukr = getUnknownRooms();
         notebook.checkOffCard(cardToShow);
     }
 
@@ -88,5 +92,10 @@ public class RandomAgent extends  Agent implements Player {
         actionFailCount++;
         if(actionTaken.actionType.equals("move"))
             movementGoal = null;
+    }
+
+
+    public LinkedList<Card> getUnknownRooms() {
+        return notebook.getUnknownRooms();
     }
 }

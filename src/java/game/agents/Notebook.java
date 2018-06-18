@@ -1,14 +1,17 @@
 package agents;
 
 import main.Card;
+import main.Cluedo;
 import main.Room;
 import main.Tuple;
 
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Notebook {
 
     LinkedList<Tuple<Card, Boolean>> notebook = new LinkedList<>();
+    int unknownCount;
 
     public Notebook(Card[] startingHand){
         initializeNotebook();
@@ -28,7 +31,7 @@ public class Notebook {
         int index = notebook.indexOf(new Tuple<>(card,false));
         if(index != -1)
             notebook.get(index).y = true;
-
+        unknownCount = unknownCardCount();
     }
 
     public int unknownCardCount() {
@@ -57,13 +60,23 @@ public class Notebook {
         accusation[0] = new Card("room",currentRoom.roomName);
         String[] types = {"weapon", "suspect"};
         int i = 1;
-        for(Tuple<Card, Boolean> tuple: notebook){
+        while(i < 3){
+            Tuple<Card,Boolean> tuple = notebook.get(Cluedo.rand.nextInt(notebook.size()));
             if(!tuple.y && tuple.x.cardType.equals(types[i-1])) {
                 accusation[i] = tuple.x;
                 i++;
             }
-            if(i == 3) break;
         }
+        LinkedList<Card> ukr = getUnknownRooms();
         return accusation;
+    }
+
+    public LinkedList<Card> getUnknownRooms() {
+        LinkedList<Card> roomlist = new LinkedList<>();
+        for(Tuple<Card,Boolean> tuple: notebook){
+            if(!tuple.y && tuple.x.cardType.equals("room"))
+                roomlist.add(tuple.x);
+        }
+        return roomlist;
     }
 }

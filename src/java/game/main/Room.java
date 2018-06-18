@@ -22,11 +22,11 @@ public class Room {
         Room[] rooms = new Room[9];
         rooms[0] = new Room(new int[][]{{6,3}},true, "study");
         rooms[1] = new Room(new int[][]{{6,8},{3,10}},false,"library");
-        rooms[2] = new Room(new int[][]{{1,12},{5,15}},false,"billiardRoom");
+        rooms[2] = new Room(new int[][]{{1,12},{5,15}},false,"billiardroom");
         rooms[3] = new Room(new int[][]{{4,19}},true,"conservatory");
         rooms[4] = new Room(new int[][]{{8,19},{9,17},{14,17},{15,19}},false,"ballroom");
         rooms[5] = new Room(new int[][]{{19,18}},true,"kitchen");
-        rooms[6] = new Room(new int[][]{{16,12},{17,9}},false,"diningRoom");
+        rooms[6] = new Room(new int[][]{{16,12},{17,9}},false,"diningroom");
         rooms[7] = new Room(new int[][]{{17,5}},true,"lounge");
         rooms[8] = new Room(new int[][]{{11,6},{12,6},{9,4}},false, "hall");
         rooms[0].setSecretPassageway(rooms[5]);

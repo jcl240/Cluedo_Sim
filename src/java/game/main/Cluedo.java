@@ -5,6 +5,7 @@ import agents.*;
 import agents.Action;
 
 import javax.swing.*;
+import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
@@ -17,13 +18,15 @@ public class Cluedo {
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = true;
+    private boolean useGUI = false;
     private BoardGUI boardGUI;
     public Board board;
     private Player[] players;
     private boolean gameFinished = false;
     private int playerTurnIndex = 0;
     private boolean stillUpdating = false;
+    private int turnsTaken = 0;
+    public static Random rand = new SecureRandom();
 
     public Cluedo() {
         initializeCards();
@@ -57,17 +60,17 @@ public class Cluedo {
 
             if(!possibleActions.isEmpty()){
                 actionTaken = currentPlayer.takeTurn(possibleActions, board.getPlayerLocation(currentPlayer));
-                actionSuccessful = doAction(actionTaken, currentPlayer);
+                doAction(actionTaken, currentPlayer);
             }
 
             playerTurnIndex = (playerTurnIndex+1)%4;
+            turnsTaken++;
             currentPlayer.endTurn();
         }
     }
 
     private boolean doAction(Action actionTaken, Player currentPlayer) {
         Boolean successful;
-        int i = 0;
         switch (actionTaken.actionType) {
             case "move":
                 successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
@@ -112,7 +115,7 @@ public class Cluedo {
         int numberCorrect = 0;
         for(Card accusedCard: actionTaken.accusation){
             for(Card realCard: envelope){
-                if(accusedCard == realCard) {
+                if(accusedCard.equals(realCard)) {
                     numberCorrect++;
                     break;
                 }
@@ -127,6 +130,7 @@ public class Cluedo {
 
     private void suggest(Action actionTaken, Player currentPlayer) {
         Card cardToShow;
+        LinkedList<Card> unknownRooms = ((RandomAgent)currentPlayer).getUnknownRooms();
         for(int i = 1; i < 4; i++) {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(currentPlayer, actionTaken.suggestion);
             if (!(cardToShow == null)){
@@ -159,12 +163,13 @@ public class Cluedo {
     }
 
     public int roll() {
-        Random rand = new Random();
         return 1 + rand.nextInt(6);
     }
 
     private LinkedList<Action> getPossibleActions(Player currentPlayer) {
         LinkedList<Action> possibleActions = new LinkedList<>();
+        if(((Agent)currentPlayer).accused)
+            return possibleActions;
         if(!((Agent)currentPlayer).justMoved) {
             possibleActions.add(new Action("move", roll()));
             possibleActions.add(new Action("accuse"));
@@ -234,4 +239,5 @@ public class Cluedo {
         }
         return faceUpStrings;
     }
+
 }
