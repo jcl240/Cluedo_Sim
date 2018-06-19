@@ -3,6 +3,7 @@ package main;
 import GUI.BoardGUI;
 import agents.*;
 import agents.Action;
+import com.mongodb.*;
 
 import javax.swing.*;
 import java.security.SecureRandom;
@@ -10,7 +11,6 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
 
 public class Cluedo {
 
@@ -29,6 +29,7 @@ public class Cluedo {
     public static Random rand = new SecureRandom();
 
     public Cluedo() {
+        initializeMongo();
         initializeCards();
         initializePlayers();
         board = new Board(players, boardGUI);
@@ -38,6 +39,21 @@ public class Cluedo {
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
         play();
+    }
+
+    private void initializeMongo() {
+        MongoClient mongoClient = new MongoClient();
+        DB database = mongoClient.getDB("testdb");
+        DBCollection collection = database.getCollection("testCollection");
+        DBObject query = new BasicDBObject("first_name","Joe");
+        DBCursor cursor = collection.find(query);
+        DBObject joe = cursor.one();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                mongoClient.close();
+            }
+        }));
     }
 
     private void play() {
