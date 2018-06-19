@@ -27,9 +27,9 @@ public class Cluedo {
     private boolean stillUpdating = false;
     private int turnsTaken = 0;
     public static Random rand = new SecureRandom();
+    public Logger logger = new Logger();
 
     public Cluedo() {
-        initializeLogger();
         initializeCards();
         initializePlayers();
         board = new Board(players, boardGUI);
@@ -39,9 +39,6 @@ public class Cluedo {
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
         play();
-    }
-
-    private void initializeLogger() {
     }
 
     private void play() {

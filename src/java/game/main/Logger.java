@@ -6,7 +6,8 @@ public class Logger {
 
     MongoClient mongoClient;
     DB database;
-    DBCollection collection;
+    private DBCollection simulationCollection;
+    private DBCollection gameCollection;
 
     public Logger(){
         initializeMongo();
@@ -15,10 +16,9 @@ public class Logger {
     private void initializeMongo() {
         mongoClient = new MongoClient();
         database = mongoClient.getDB("testdb");
-        collection = database.getCollection("testCollection");
-        DBObject query = new BasicDBObject("first_name","Joe");
-        DBCursor cursor = collection.find(query);
-        DBObject joe = cursor.one();
+        simulationCollection = database.getCollection("simulationCollection");
+        gameCollection = database.getCollection("gameCollection");
+
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
             public void run() {
@@ -26,4 +26,13 @@ public class Logger {
             }
         }));
     }
+
+    private void storeSimulation(BasicDBObject simulation){
+        simulationCollection.insert(simulation);
+    }
+
+    private void storeGame(BasicDBObject game){
+        simulationCollection.insert(game);
+    }
+
 }
