@@ -18,7 +18,7 @@ public class Cluedo {
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = false;
+    private boolean useGUI = true;
     private BoardGUI boardGUI;
     public Board board;
     private Player[] players;

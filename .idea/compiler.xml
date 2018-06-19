@@ -13,5 +13,9 @@
       <entry name="!?*.aj" />
       <entry name="*.jpg" />
     </wildcardResourcePatterns>
+    <bytecodeTargetLevel>
+      <module name="cluedo_gradle_main" target="1.8" />
+      <module name="cluedo_gradle_test" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
