@@ -29,7 +29,7 @@ public class Cluedo {
     public static Random rand = new SecureRandom();
 
     public Cluedo() {
-        initializeMongo();
+        initializeLogger();
         initializeCards();
         initializePlayers();
         board = new Board(players, boardGUI);
@@ -41,19 +41,7 @@ public class Cluedo {
         play();
     }
 
-    private void initializeMongo() {
-        MongoClient mongoClient = new MongoClient();
-        DB database = mongoClient.getDB("testdb");
-        DBCollection collection = database.getCollection("testCollection");
-        DBObject query = new BasicDBObject("first_name","Joe");
-        DBCursor cursor = collection.find(query);
-        DBObject joe = cursor.one();
-
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            public void run() {
-                mongoClient.close();
-            }
-        }));
+    private void initializeLogger() {
     }
 
     private void play() {
