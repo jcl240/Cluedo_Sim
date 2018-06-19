@@ -3,7 +3,7 @@ package main;
 import GUI.BoardGUI;
 import agents.*;
 import agents.Action;
-import com.mongodb.*;
+import simulation.Logger;
 
 import javax.swing.*;
 import java.security.SecureRandom;
@@ -18,7 +18,7 @@ public class Cluedo {
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = true;
+    private boolean useGUI = false;
     private BoardGUI boardGUI;
     public Board board;
     private Player[] players;
@@ -27,11 +27,12 @@ public class Cluedo {
     private boolean stillUpdating = false;
     private int turnsTaken = 0;
     public static Random rand = new SecureRandom();
-    public Logger logger = new Logger();
+    public Logger logger;
 
-    public Cluedo() {
+    public Cluedo(Logger logger, String[] agents) {
+        this.logger = logger;
         initializeCards();
-        initializePlayers();
+        initializePlayers(agents);
         board = new Board(players, boardGUI);
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
@@ -191,7 +192,7 @@ public class Cluedo {
         return hands;
     }
 
-    private void initializePlayers() {
+    private void initializePlayers(String[] agents) {
         Card[][] cards = dealCards();
         if(hasHumanPlayer)
             players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
@@ -208,10 +209,6 @@ public class Cluedo {
         deck = Card.shuffle(deck);
         faceUpCards = new Card[]{deck[0], deck[1]};
         deck = Arrays.copyOfRange(deck,2,deck.length);
-    }
-
-    public static void main(String[] args) {
-        Cluedo game = new Cluedo();
     }
 
     public void doneUpdating() {

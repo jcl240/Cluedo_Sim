@@ -1,6 +1,8 @@
-package main;
+package simulation;
 
 import com.mongodb.*;
+
+import java.util.LinkedList;
 
 public class Logger {
 
@@ -27,11 +29,21 @@ public class Logger {
         }));
     }
 
-    private void storeSimulation(BasicDBObject simulation){
+    private void storeSimulation(LinkedList<String[]> log){
+        BasicDBObject simulation = createDBObject(log);
         simulationCollection.insert(simulation);
     }
 
-    private void storeGame(BasicDBObject game){
+    private BasicDBObject createDBObject(LinkedList<String[]> log) {
+        BasicDBObject document = new BasicDBObject();
+        for(String[] fieldValue: log){
+            document.put(fieldValue[0], fieldValue[1]);
+        }
+        return document;
+    }
+
+    private void storeGame(LinkedList<String[]> log){
+        BasicDBObject game = createDBObject(log);
         simulationCollection.insert(game);
     }
 
