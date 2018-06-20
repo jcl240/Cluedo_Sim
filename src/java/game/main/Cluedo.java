@@ -3,6 +3,7 @@ package main;
 import GUI.BoardGUI;
 import agents.*;
 import agents.Action;
+import simulation.Gamelog;
 import simulation.Logger;
 
 import javax.swing.*;
@@ -26,12 +27,12 @@ public class Cluedo {
     private Player[] players;
     private int playerTurnIndex = 0;
     public static Random rand = new SecureRandom();
-    public Logger logger;
+    public Gamelog gamelog;
 
     public Cluedo(Logger logger, String[] agents) {
-        this.logger = logger;
         initializeCards();
         initializePlayers(agents);
+        gamelog = new Gamelog((Agent[])players,envelope,faceUpCards);
         board = new Board(players, boardGUI);
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
@@ -46,7 +47,7 @@ public class Cluedo {
             Player currentPlayer = players[playerTurnIndex];
             boolean actionSuccessful;
             if(((Agent)currentPlayer).accused){
-                playerTurnIndex = (playerTurnIndex+1)%4;
+                nextTurn();
                 continue;
             }
 
@@ -64,9 +65,14 @@ public class Cluedo {
                 doAction(actionTaken, currentPlayer);
             }
 
-            playerTurnIndex = (playerTurnIndex+1)%4;
+            nextTurn();
             currentPlayer.endTurn();
         }
+    }
+
+    private void nextTurn() {
+        playerTurnIndex = (playerTurnIndex+1)%4;
+        gamelog.nextTurn();
     }
 
     private boolean doAction(Action actionTaken, Player currentPlayer) {
@@ -234,6 +240,10 @@ public class Cluedo {
             i++;
         }
         return faceUpStrings;
+    }
+
+    public static void main(String[] args){
+
     }
 
 }

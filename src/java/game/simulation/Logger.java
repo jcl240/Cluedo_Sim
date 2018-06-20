@@ -29,8 +29,9 @@ public class Logger {
         }));
     }
 
-    private void storeSimulation(LinkedList<String[]> log){
-        BasicDBObject simulation = createDBObject(log);
+    private void storeSimulation(Simulationlog simlog){
+        LinkedList<String[]> fullSimlog = simlog.batchLog();
+        BasicDBObject simulation = createDBObject(fullSimlog);
         simulationCollection.insert(simulation);
     }
 
@@ -42,8 +43,9 @@ public class Logger {
         return document;
     }
 
-    private void storeGame(LinkedList<String[]> log){
-        BasicDBObject game = createDBObject(log);
+    private void storeGame(Gamelog gamelog){
+        LinkedList<String[]> fullGamelog = gamelog.batchLog();
+        BasicDBObject game = createDBObject(fullGamelog);
         simulationCollection.insert(game);
     }
 
