@@ -2,7 +2,7 @@ package simulation;
 
 import java.util.LinkedList;
 
-public class Simulationlog {
+public class Simlog {
     public LinkedList<String[]> batchLog() {
 
         return new LinkedList<>();

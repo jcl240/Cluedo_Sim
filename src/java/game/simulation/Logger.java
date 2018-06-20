@@ -39,7 +39,7 @@ public class Logger {
 
     }
 
-    private void storeSimulation(Simulationlog simlog){
+    private void storeSimulation(Simlog simlog){
         LinkedList<String[]> fullSimlog = simlog.batchLog();
         BasicDBObject simulation = createDBObject(fullSimlog);
         simulationCollection.insert(simulation);
