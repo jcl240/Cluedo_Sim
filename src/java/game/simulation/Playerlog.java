@@ -8,7 +8,7 @@ import java.util.LinkedList;
 public class Playerlog {
 
     private int playerIndex;
-    String[] hand = new String[6];
+    LinkedList<String> hand = new LinkedList<>();
     int numRoomsVisited = 0;
     int numSuggestions = 0;
 
@@ -18,11 +18,11 @@ public class Playerlog {
     }
 
     private void setHand(Agent agent) {
-        hand[0] = "player"+playerIndex+"Hand";
-        hand[1] = "String[]";
+        hand.add("player"+playerIndex+"Hand");
+        hand.add("String[]");
         int i = 2;
         for(String card: agent.getHand()){
-            hand[i] = card;
+            hand.add(card);
             i++;
         }
     }

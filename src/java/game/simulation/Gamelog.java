@@ -7,9 +7,9 @@ import java.util.LinkedList;
 
 public class Gamelog {
 
-    private LinkedList<String[]> actionLog = new LinkedList<>();
+    private LinkedList<LinkedList<String>> actionLog = new LinkedList<>();
     private LinkedList<Playerlog> playerLogs = new LinkedList<>();
-    private LinkedList<String[]> startState = new LinkedList<>();
+    private LinkedList<LinkedList<String>> startState = new LinkedList<>();
     private int turnsTaken = 0;
 
     public Gamelog(Agent[] playerList, Card[] envelope,Card[] faceUpCards){
@@ -28,14 +28,14 @@ public class Gamelog {
         startState.add(getCardNames("faceUpCards",faceUpCards));
     }
 
-    private String[] getCardNames(String fieldName, Card[] cards){
+    private LinkedList<String> getCardNames(String fieldName, Card[] cards){
         LinkedList<String> cardNames = new LinkedList<>();
         cardNames.add(fieldName);
-        cardNames.add("String[]");
+        cardNames.add("LinkedList<String>");
         for(Card card: cards){
             cardNames.add(card.cardName);
         }
-        return (String[])cardNames.toArray();
+        return cardNames;
     }
 
     public void logAction(){
@@ -46,7 +46,7 @@ public class Gamelog {
         turnsTaken++;
     }
 
-    public LinkedList<String[]> batchLog() {
+    public LinkedList<LinkedList<String>> batchLog() {
 
         return new LinkedList<>();
     }

@@ -2,7 +2,9 @@ package simulation;
 
 import com.mongodb.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class Logger {
 
@@ -40,21 +42,43 @@ public class Logger {
     }
 
     private void storeSimulation(Simlog simlog){
-        LinkedList<String[]> fullSimlog = simlog.batchLog();
+        LinkedList<LinkedList<String>> fullSimlog = simlog.batchLog();
         BasicDBObject simulation = createDBObject(fullSimlog);
         simulationCollection.insert(simulation);
     }
 
-    private BasicDBObject createDBObject(LinkedList<String[]> log) {
+    private BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
         BasicDBObject document = new BasicDBObject();
-        for(String[] fieldValue: log){
-            document.put(fieldValue[0], fieldValue[1]);
+        for(LinkedList<String> fieldList: log){
+            String fieldName = fieldList.removeFirst();
+            String fieldType = fieldList.removeFirst();
+            switch (fieldType) {
+                case "LinkedList<String>":
+                    document.put(fieldName, getDBArray(fieldList));
+                    break;
+                case "int": {
+                    int fieldValue = Integer.getInteger(fieldList.removeFirst());
+                    document.put(fieldName, fieldValue);
+                    break;
+                }
+                case "String": {
+                    String fieldValue = fieldList.removeFirst();
+                    document.put(fieldName, fieldValue);
+                    break;
+                }
+            }
         }
         return document;
     }
 
+    private List<DBObject> getDBArray(LinkedList<String> log) {
+        List<DBObject> dbArray = new ArrayList<DBObject>();
+
+        return dbArray;
+    }
+
     private void storeGame(Gamelog gamelog){
-        LinkedList<String[]> fullGamelog = gamelog.batchLog();
+        LinkedList<LinkedList<String>> fullGamelog = gamelog.batchLog();
         BasicDBObject game = createDBObject(fullGamelog);
         simulationCollection.insert(game);
     }
