@@ -15,17 +15,16 @@ import java.util.Random;
 public class Cluedo {
 
     public boolean hasHumanPlayer = false;
+    private boolean stillUpdating = false;
+    private boolean gameFinished = false;
+    private boolean useGUI = false;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
-    private boolean useGUI = false;
     private BoardGUI boardGUI;
     public Board board;
     private Player[] players;
-    private boolean gameFinished = false;
     private int playerTurnIndex = 0;
-    private boolean stillUpdating = false;
-    private int turnsTaken = 0;
     public static Random rand = new SecureRandom();
     public Logger logger;
 
@@ -66,7 +65,6 @@ public class Cluedo {
             }
 
             playerTurnIndex = (playerTurnIndex+1)%4;
-            turnsTaken++;
             currentPlayer.endTurn();
         }
     }
