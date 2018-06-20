@@ -20,6 +20,7 @@ public class Logger {
         database = mongoClient.getDB("testdb");
         simulationCollection = database.getCollection("simulationCollection");
         gameCollection = database.getCollection("gameCollection");
+        clearCollections();
 
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
@@ -27,6 +28,15 @@ public class Logger {
                 mongoClient.close();
             }
         }));
+    }
+
+    private void clearCollections() {
+        BasicDBObject document = new BasicDBObject();
+
+        // Delete All documents from collection Using blank BasicDBObject
+        simulationCollection.remove(document);
+        gameCollection.remove(document);
+
     }
 
     private void storeSimulation(Simulationlog simlog){
