@@ -1,13 +1,14 @@
 package simulation;
 
 import agents.Agent;
+import com.mongodb.BasicDBObject;
 import main.Card;
 
 import java.util.LinkedList;
 
 public class Playerlog {
 
-    private int playerIndex;
+    public int playerIndex;
     LinkedList<String> hand = new LinkedList<>();
     LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
     int numRoomsVisited = 0;
@@ -36,4 +37,7 @@ public class Playerlog {
         numSuggestions++;
     }
 
+    public BasicDBObject makeLog() {
+
+    }
 }

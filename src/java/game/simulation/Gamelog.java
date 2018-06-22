@@ -1,6 +1,9 @@
 package simulation;
 
+import agents.Action;
 import agents.Agent;
+import agents.Player;
+import com.mongodb.BasicDBObject;
 import main.Card;
 
 import java.util.LinkedList;
@@ -38,7 +41,7 @@ public class Gamelog {
         return cardNames;
     }
 
-    public void logAction(){
+    public void logAction(Action action, Player player){
 
     }
 
@@ -46,8 +49,34 @@ public class Gamelog {
         turnsTaken++;
     }
 
-    public LinkedList<LinkedList<String>> batchLog() {
+    public BasicDBObject batchLog() {
+        BasicDBObject startStateLog = getStartStateLog();
+        BasicDBObject actionLog = getActionLog();
+        BasicDBObject[] playerLogList = getPlayerLogs();
+        BasicDBObject document = new BasicDBObject();
+        document.put("Start_State", startStateLog);
+        document.put("Action_Log", actionLog);
+        int i = 0;
+        for(BasicDBObject playerLog: playerLogList) {
+            document.put("Player_Log"+i, playerLog);
+            i++;
+        }
+        return document;
+    }
 
-        return new LinkedList<>();
+    private BasicDBObject[] getPlayerLogs() {
+        BasicDBObject[] playerLogList = new BasicDBObject[4];
+        for(Playerlog playerLog: playerLogs){
+            playerLogList[playerLog.playerIndex-1] = playerLog.makeLog();
+        }
+        return playerLogList;
+    }
+
+    private BasicDBObject getActionLog() {
+        return Logger.createDBObject(actionLog);
+    }
+
+    private BasicDBObject getStartStateLog() {
+        return Logger.createDBObject(startState);
     }
 }

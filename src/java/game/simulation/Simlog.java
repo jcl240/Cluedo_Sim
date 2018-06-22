@@ -1,9 +1,11 @@
 package simulation;
 
+import com.mongodb.BasicDBObject;
+
 import java.util.LinkedList;
 
 public class Simlog {
-    public LinkedList<LinkedList<String>> batchLog() {
+    public BasicDBObject batchLog() {
 
         return new LinkedList<>();
     }

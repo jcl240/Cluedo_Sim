@@ -42,12 +42,13 @@ public class Logger {
     }
 
     private void storeSimulation(Simlog simlog){
-        LinkedList<LinkedList<String>> fullSimlog = simlog.batchLog();
-        BasicDBObject simulation = createDBObject(fullSimlog);
-        simulationCollection.insert(simulation);
+        BasicDBObject simDoc = simlog.batchLog();
+        BasicDBObject document = new BasicDBObject();
+        document.put("Simlog",simDoc);
+        simulationCollection.insert(document);
     }
 
-    private BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
+    public static BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
         BasicDBObject document = new BasicDBObject();
         for(LinkedList<String> fieldList: log){
             String fieldName = fieldList.removeFirst();
@@ -71,16 +72,17 @@ public class Logger {
         return document;
     }
 
-    private List<DBObject> getDBArray(LinkedList<String> log) {
+    private static List<DBObject> getDBArray(LinkedList<String> log) {
         List<DBObject> dbArray = new ArrayList<DBObject>();
 
         return dbArray;
     }
 
     private void storeGame(Gamelog gamelog){
-        LinkedList<LinkedList<String>> fullGamelog = gamelog.batchLog();
-        BasicDBObject game = createDBObject(fullGamelog);
-        simulationCollection.insert(game);
+        BasicDBObject gameDoc = gamelog.batchLog();
+        BasicDBObject document = new BasicDBObject();
+        document.put("Gamelog",gameDoc);
+        gameCollection.insert(document);
     }
 
 }
