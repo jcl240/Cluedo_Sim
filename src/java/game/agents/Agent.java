@@ -1,11 +1,13 @@
 package agents;
 import main.Card;
+import simulation.Playerlog;
 
 public class Agent {
 
     public boolean justMoved = false;
     public int playerIndex;
     public boolean hasSuggested = false;
+    protected Playerlog playerLog;
 
     protected Card[] hand;
     protected Notebook notebook;
@@ -30,4 +32,7 @@ public class Agent {
         return stringHand;
     }
 
+    public void setLog(Playerlog playerlog) {
+        this.playerLog = playerlog;
+    }
 }

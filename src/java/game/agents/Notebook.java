@@ -79,4 +79,12 @@ public class Notebook {
         }
         return roomlist;
     }
+
+    public String knowCard(Card card) {
+        int index = notebook.indexOf(new Tuple<>(card,false));
+        if(index != -1)
+            return "false";
+        else
+            return "true";
+    }
 }

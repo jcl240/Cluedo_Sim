@@ -9,11 +9,13 @@ public class Playerlog {
 
     private int playerIndex;
     LinkedList<String> hand = new LinkedList<>();
+    LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
     int numRoomsVisited = 0;
-    int numSuggestions = 0;
+    int numSuggestions = 1;
 
     public Playerlog(Agent agent){
         playerIndex = agent.playerIndex;
+        agent.setLog(this);
         setHand(agent);
     }
 
@@ -25,6 +27,13 @@ public class Playerlog {
             hand.add(card);
             i++;
         }
+    }
+
+    public void logSuggestion(int numKnown, LinkedList<String> suggestionList){
+        suggestionList.addFirst("LinkedList<String>");
+        suggestionList.addFirst("Suggestion"+numSuggestions);
+        suggestions.add(suggestionList);
+        numSuggestions++;
     }
 
 }

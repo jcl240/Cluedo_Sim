@@ -5,7 +5,7 @@ public class Simulator {
     public Logger logger = new Logger();
 
     public Simulator(){
-        //Cluedo game = new Cluedo(logger, null);
+        //Cluedo game = new Cluedo(null);
     }
 
     public static void main(String[] args) {

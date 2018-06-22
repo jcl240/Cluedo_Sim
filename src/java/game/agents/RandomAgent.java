@@ -53,6 +53,7 @@ public class RandomAgent extends  Agent implements Player {
         }
         else if(actionTaken.actionType.equals("suggest")){
             actionTaken.suggestion = notebook.getRandomSuggestion(actionTaken.currentRoom);
+            logSuggestion(actionTaken.suggestion);
         }
         return actionTaken;
     }
@@ -83,6 +84,15 @@ public class RandomAgent extends  Agent implements Player {
             movementGoal = null;
     }
 
+    private void logSuggestion(Card[] suggestion){
+        int numKnown = 1;
+        LinkedList<String> suggestionList = new LinkedList<>();
+        for(Card card: suggestion){
+            suggestionList.add(card.cardName);
+            suggestionList.add(notebook.knowCard(card));
+        }
+        playerLog.logSuggestion(numKnown, suggestionList);
+    }
 
     public LinkedList<Card> getUnknownRooms() {
         return notebook.getUnknownRooms();

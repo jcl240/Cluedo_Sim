@@ -29,10 +29,10 @@ public class Cluedo {
     public static Random rand = new SecureRandom();
     public Gamelog gamelog;
 
-    public Cluedo(Logger logger, String[] agents) {
+    public Cluedo(String[] agents) {
         initializeCards();
         initializePlayers(agents);
-        gamelog = new Gamelog((Agent[])players,envelope,faceUpCards);
+        gamelog = new Gamelog(getAgentArray(),envelope,faceUpCards);
         board = new Board(players, boardGUI);
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
@@ -40,6 +40,10 @@ public class Cluedo {
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
         play();
+    }
+
+    private Agent[] getAgentArray() {
+        return new Agent[]{(Agent)players[0],(Agent)players[1],(Agent)players[2],(Agent)players[3]};
     }
 
     private void play() {
@@ -243,7 +247,7 @@ public class Cluedo {
     }
 
     public static void main(String[] args){
-
+        Cluedo game = new Cluedo(null);
     }
 
 }
