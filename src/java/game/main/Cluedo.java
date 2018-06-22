@@ -80,14 +80,14 @@ public class Cluedo {
     }
 
     private boolean doAction(Action actionTaken, Player currentPlayer) {
-        Boolean successful;
         switch (actionTaken.actionType) {
             case "move":
-                successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
+                Boolean successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
                 if(successful) {
                     ((Agent) currentPlayer).justMoved = true;
                     ((Agent)currentPlayer).hasSuggested = false;
                     updateGUI(actionTaken, currentPlayer);
+                    gamelog.logAction(actionTaken, currentPlayer);
                 }
                 else
                     return false;
@@ -96,16 +96,19 @@ public class Cluedo {
                 updateGUI(actionTaken, currentPlayer);
                 suggest(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).hasSuggested = true;
+                gamelog.logAction(actionTaken, currentPlayer);
                 break;
             case "accuse":
                 accuse(actionTaken, currentPlayer);
                 updateGUI(actionTaken, currentPlayer);
+                gamelog.logAction(actionTaken, currentPlayer);
                 break;
             case "useSecretPassage":
                 board.useSecretPassage(actionTaken, currentPlayer, useGUI);
                 ((Agent)currentPlayer).justMoved = true;
                 ((Agent)currentPlayer).hasSuggested = false;
                 updateGUI(actionTaken, currentPlayer);
+                gamelog.logAction(actionTaken, currentPlayer);
                 break;
             case "doNothing":
                 ((Agent)currentPlayer).justMoved = true;
