@@ -14,10 +14,10 @@ public class Logger {
     DB database;
     private DBCollection simulationCollection;
     private DBCollection gameCollection;
-    private String simulationName;
+    public Simlog simlog;
 
     public Logger(String simulationName){
-        this.simulationName = simulationName;
+        simlog = new Simlog(simulationName);
         initializeMongo();
     }
 
@@ -45,11 +45,11 @@ public class Logger {
 
     }
 
-    private void storeSimulation(Simlog simlog){
+    public void storeSimulation(){
         BasicDBObject simDoc = simlog.batchLog();
         BasicDBObject document = new BasicDBObject();
-        document.put("Simlog",simDoc);
-        simulationCollection.insert(document);
+        document.put(simlog.simName ,simDoc);
+        //simulationCollection.insert(document);
     }
 
     public static BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
@@ -82,8 +82,8 @@ public class Logger {
         BasicDBObject document = new BasicDBObject();
         document.put("Gamelog",gameDoc);
         document.put("Game_ID", uniqueID.toString());
-        storeSimulation(new Simlog(uniqueID.toString(),winner));
-        gameCollection.insert(document);
+        simlog.addGameResults(uniqueID.toString(),winner);
+        //gameCollection.insert(document);
     }
 
 }

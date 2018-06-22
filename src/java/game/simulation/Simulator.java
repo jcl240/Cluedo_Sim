@@ -6,11 +6,15 @@ import main.Cluedo;
 public class Simulator {
 
     public Logger logger;
+    public int numGames = 100;
 
     public Simulator(){
         logger = new Logger("Agent1vsAgent2");
-        Cluedo game = new Cluedo(null);
-        logger.storeGame(game.gamelog, game.winner);
+        while(logger.simlog.i < numGames) {
+            Cluedo game = new Cluedo(null);
+            logger.storeGame(game.gamelog, game.winner);
+        }
+        logger.storeSimulation();
     }
 
     public static void main(String[] args) {

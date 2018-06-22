@@ -15,7 +15,7 @@ public class RandomAgent extends  Agent implements Player {
     private int actionFailCount = 0;
 
     public RandomAgent(Card[] hand, Card[] faceUp, int index) {
-        super(hand, faceUp, index);
+        super(hand, faceUp, index,"Random");
     }
 
     @Override

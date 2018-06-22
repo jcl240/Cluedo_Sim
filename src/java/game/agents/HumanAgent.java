@@ -14,13 +14,9 @@ public class HumanAgent extends  Agent implements Player{
     private Card falsifiedCard;
 
     public HumanAgent(Card[] hand, Card[] faceUp, int index) {
-        super(hand, faceUp, index);
+        super(hand, faceUp, index,"Human");
     }
 
-    public HumanAgent(Card[] hand, BoardGUI gui, Card[] faceUp, int index) {
-        super(hand, faceUp, index);
-        this.boardGUI = gui;
-    }
 
     @Override
     public void endTurn(){
