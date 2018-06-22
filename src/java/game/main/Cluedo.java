@@ -28,6 +28,7 @@ public class Cluedo {
     private int playerTurnIndex = 0;
     public static Random rand = new SecureRandom();
     public Gamelog gamelog;
+    public Agent winner;
 
     public Cluedo(String[] agents) {
         initializeCards();
@@ -129,7 +130,7 @@ public class Cluedo {
         boolean accusationCorrect = checkAccusation(actionTaken);
         ((Agent)currentPlayer).accused = true;
         if(accusationCorrect)
-            finishGame();
+            finishGame(currentPlayer);
     }
 
     private boolean checkAccusation(Action actionTaken) {
@@ -145,14 +146,14 @@ public class Cluedo {
         return (numberCorrect == 3);
     }
 
-    private void finishGame() {
-        gamelog.batchLog();
+    private void finishGame(Player player) {
+        winner = (Agent)player;
         gameFinished = true;
     }
 
     private void suggest(Action actionTaken, Player currentPlayer) {
         Card cardToShow;
-        moveSugestee();
+        moveSuggestee();
         for(int i = 1; i < 4; i++) {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(currentPlayer, actionTaken.suggestion);
             if (!(cardToShow == null)){
@@ -164,7 +165,7 @@ public class Cluedo {
         }
     }
 
-    private void moveSugestee() {
+    private void moveSuggestee() {
     }
 
     private synchronized void updateGUI(Action actionTaken, Player currentPlayer) {
@@ -259,10 +260,6 @@ public class Cluedo {
             i++;
         }
         return faceUpStrings;
-    }
-
-    public static void main(String[] args){
-        Cluedo game = new Cluedo(null);
     }
 
 }

@@ -1,16 +1,21 @@
 package simulation;
 
+import com.mongodb.BasicDBObject;
+import main.Cluedo;
+
 public class Simulator {
 
-    public Logger logger = new Logger();
+    public Logger logger;
 
     public Simulator(){
-        //Cluedo game = new Cluedo(null);
+        logger = new Logger("Agent1vsAgent2");
+        Cluedo game = new Cluedo(null);
+        logger.storeGame(game.gamelog, game.winner);
     }
 
     public static void main(String[] args) {
         Simulator simulator = new Simulator();
-        if(args.length != 4){
+        /*if(args.length != 4){
             System.out.println("Need 4 params: #games, agent1, agent2, useLogger");
             return;
         }
@@ -22,7 +27,7 @@ public class Simulator {
         }
         catch(IllegalArgumentException e){
             System.out.println("Something was wrong with the parameters provided.");
-        }
+        }*/
     }
 
 

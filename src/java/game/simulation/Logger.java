@@ -1,10 +1,12 @@
 package simulation;
 
+import agents.Agent;
 import com.mongodb.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 
 public class Logger {
 
@@ -12,8 +14,10 @@ public class Logger {
     DB database;
     private DBCollection simulationCollection;
     private DBCollection gameCollection;
+    private String simulationName;
 
-    public Logger(){
+    public Logger(String simulationName){
+        this.simulationName = simulationName;
         initializeMongo();
     }
 
@@ -72,10 +76,13 @@ public class Logger {
         return document;
     }
 
-    private void storeGame(Gamelog gamelog){
+    public void storeGame(Gamelog gamelog, Agent winner){
         BasicDBObject gameDoc = gamelog.batchLog();
+        UUID uniqueID = UUID.randomUUID();
         BasicDBObject document = new BasicDBObject();
         document.put("Gamelog",gameDoc);
+        document.put("Game_ID", uniqueID.toString());
+        storeSimulation(new Simlog(uniqueID.toString(),winner));
         gameCollection.insert(document);
     }
 
