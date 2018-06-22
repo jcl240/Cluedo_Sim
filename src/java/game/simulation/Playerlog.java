@@ -11,7 +11,7 @@ public class Playerlog {
     public int playerIndex;
     LinkedList<String> hand = new LinkedList<>();
     LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
-    int numRoomsVisited = 0;
+    public int numRoomsVisited = 0;
     int numSuggestions = 1;
 
     public Playerlog(Agent agent){

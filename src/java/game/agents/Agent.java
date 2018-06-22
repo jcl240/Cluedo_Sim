@@ -7,7 +7,7 @@ public class Agent {
     public boolean justMoved = false;
     public int playerIndex;
     public boolean hasSuggested = false;
-    protected Playerlog playerLog;
+    public Playerlog playerLog;
 
     protected Card[] hand;
     protected Notebook notebook;

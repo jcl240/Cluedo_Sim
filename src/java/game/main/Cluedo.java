@@ -88,28 +88,36 @@ public class Cluedo {
                     ((Agent)currentPlayer).hasSuggested = false;
                     updateGUI(actionTaken, currentPlayer);
                     gamelog.logAction(actionTaken, currentPlayer);
+                    if(board.inRoom(currentPlayer)){
+                        ((Agent) currentPlayer).playerLog.numRoomsVisited++;
+                    }
                 }
                 else
                     return false;
                 break;
+
             case "suggest":
-                updateGUI(actionTaken, currentPlayer);
                 suggest(actionTaken, currentPlayer);
+                updateGUI(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).hasSuggested = true;
                 gamelog.logAction(actionTaken, currentPlayer);
                 break;
+
             case "accuse":
                 gamelog.logAction(actionTaken, currentPlayer);
                 accuse(actionTaken, currentPlayer);
                 updateGUI(actionTaken, currentPlayer);
                 break;
+
             case "useSecretPassage":
                 board.useSecretPassage(actionTaken, currentPlayer, useGUI);
                 ((Agent)currentPlayer).justMoved = true;
                 ((Agent)currentPlayer).hasSuggested = false;
                 updateGUI(actionTaken, currentPlayer);
                 gamelog.logAction(actionTaken, currentPlayer);
+                ((Agent) currentPlayer).playerLog.numRoomsVisited++;
                 break;
+
             case "doNothing":
                 ((Agent)currentPlayer).justMoved = true;
                 break;
@@ -144,7 +152,7 @@ public class Cluedo {
 
     private void suggest(Action actionTaken, Player currentPlayer) {
         Card cardToShow;
-        LinkedList<Card> unknownRooms = ((RandomAgent)currentPlayer).getUnknownRooms();
+        moveSugestee();
         for(int i = 1; i < 4; i++) {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(currentPlayer, actionTaken.suggestion);
             if (!(cardToShow == null)){
@@ -154,6 +162,9 @@ public class Cluedo {
                 break;
             }
         }
+    }
+
+    private void moveSugestee() {
     }
 
     private synchronized void updateGUI(Action actionTaken, Player currentPlayer) {
