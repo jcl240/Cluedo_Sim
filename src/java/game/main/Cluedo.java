@@ -99,9 +99,9 @@ public class Cluedo {
                 gamelog.logAction(actionTaken, currentPlayer);
                 break;
             case "accuse":
+                gamelog.logAction(actionTaken, currentPlayer);
                 accuse(actionTaken, currentPlayer);
                 updateGUI(actionTaken, currentPlayer);
-                gamelog.logAction(actionTaken, currentPlayer);
                 break;
             case "useSecretPassage":
                 board.useSecretPassage(actionTaken, currentPlayer, useGUI);
@@ -138,6 +138,7 @@ public class Cluedo {
     }
 
     private void finishGame() {
+        gamelog.batchLog();
         gameFinished = true;
     }
 

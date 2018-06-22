@@ -42,7 +42,12 @@ public class Gamelog {
     }
 
     public void logAction(Action action, Player player){
-
+        LinkedList<String> actionList = new LinkedList<>();
+        actionList.add("Turn"+turnsTaken);
+        actionList.add("LinkedList<String>");
+        actionList.add("Player"+((Agent)player).playerIndex);
+        actionList.add(action.actionType);
+        actionLog.add(actionList);
     }
 
     public void nextTurn(){

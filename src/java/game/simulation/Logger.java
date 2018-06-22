@@ -55,7 +55,7 @@ public class Logger {
             String fieldType = fieldList.removeFirst();
             switch (fieldType) {
                 case "LinkedList<String>":
-                    document.put(fieldName, getDBArray(fieldList));
+                    document.put(fieldName, fieldList);
                     break;
                 case "int": {
                     int fieldValue = Integer.getInteger(fieldList.removeFirst());
@@ -70,12 +70,6 @@ public class Logger {
             }
         }
         return document;
-    }
-
-    private static List<DBObject> getDBArray(LinkedList<String> log) {
-        List<DBObject> dbArray = new ArrayList<DBObject>();
-
-        return dbArray;
     }
 
     private void storeGame(Gamelog gamelog){
