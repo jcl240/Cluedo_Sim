@@ -21,8 +21,6 @@ public class Playerlog {
     }
 
     private void setHand(Agent agent) {
-        hand.add("player"+playerIndex+"Hand");
-        hand.add("String[]");
         int i = 2;
         for(String card: agent.getHand()){
             hand.add(card);
@@ -38,6 +36,10 @@ public class Playerlog {
     }
 
     public BasicDBObject makeLog() {
-        return new BasicDBObject();
+        BasicDBObject doc = new BasicDBObject();
+        doc.put("Player"+playerIndex+"_Hand", hand);
+        doc.put("Suggestions", Logger.createDBObject(suggestions));
+        doc.put("Rooms_Visited", numRoomsVisited);
+        return doc;
     }
 }
