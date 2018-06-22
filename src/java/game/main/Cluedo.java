@@ -153,7 +153,7 @@ public class Cluedo {
 
     private void suggest(Action actionTaken, Player currentPlayer) {
         Card cardToShow;
-        moveSuggestee();
+        moveSuggestee(currentPlayer,actionTaken);
         for(int i = 1; i < 4; i++) {
             cardToShow = players[(playerTurnIndex + i) % 4].falsifySuggestion(currentPlayer, actionTaken.suggestion);
             if (!(cardToShow == null)){
@@ -165,7 +165,27 @@ public class Cluedo {
         }
     }
 
-    private void moveSuggestee() {
+    private void moveSuggestee(Player suggester, Action action) {
+        String suggestee = action.suggestion[2].cardName;
+        Room room = board.getRoom(suggester);
+        switch (suggestee){
+            case "peacock":
+                board.movePiece(players[0], room.entranceTiles[0]);
+                ((Agent)players[0]).playerLog.numRoomsVisited++;
+                break;
+            case "green":
+                board.movePiece(players[1], room.entranceTiles[0]);
+                ((Agent)players[1]).playerLog.numRoomsVisited++;
+                break;
+            case "scarlet":
+                board.movePiece(players[2], room.entranceTiles[0]);
+                ((Agent)players[2]).playerLog.numRoomsVisited++;
+                break;
+            case "mustard":
+                board.movePiece(players[3], room.entranceTiles[0]);
+                ((Agent)players[3]).playerLog.numRoomsVisited++;
+                break;
+        }
     }
 
     private synchronized void updateGUI(Action actionTaken, Player currentPlayer) {

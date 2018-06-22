@@ -110,7 +110,7 @@ public class Board {
         return successful;
     }
 
-    private void movePiece(Player currentPlayer, int[] newLocation) {
+    public void movePiece(Player currentPlayer, int[] newLocation) {
         for(Tuple<Player, Gamepiece> tuple: playerPieceTuples) {
             if(tuple.x.equals(currentPlayer)) tuple.y.setCurrentLocation(newLocation);
         }
