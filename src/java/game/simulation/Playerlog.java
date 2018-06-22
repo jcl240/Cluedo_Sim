@@ -38,6 +38,6 @@ public class Playerlog {
     }
 
     public BasicDBObject makeLog() {
-
+        return new BasicDBObject();
     }
 }

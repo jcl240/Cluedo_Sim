@@ -58,7 +58,7 @@ public class Gamelog {
         document.put("Action_Log", actionLog);
         int i = 0;
         for(BasicDBObject playerLog: playerLogList) {
-            document.put("Player_Log"+i, playerLog);
+            //document.put("Player_Log"+i, playerLog);
             i++;
         }
         return document;

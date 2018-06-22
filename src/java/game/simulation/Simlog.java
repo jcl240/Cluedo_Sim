@@ -7,6 +7,6 @@ import java.util.LinkedList;
 public class Simlog {
     public BasicDBObject batchLog() {
 
-        return new LinkedList<>();
+        return new BasicDBObject();
     }
 }
