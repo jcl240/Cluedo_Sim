@@ -49,7 +49,7 @@ public class Logger {
         BasicDBObject simDoc = simlog.batchLog();
         BasicDBObject document = new BasicDBObject();
         document.put(simlog.simName ,simDoc);
-        //simulationCollection.insert(document);
+        simulationCollection.insert(document);
     }
 
     public static BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
@@ -83,7 +83,7 @@ public class Logger {
         document.put("Gamelog",gameDoc);
         document.put("Game_ID", uniqueID.toString());
         simlog.addGameResults(uniqueID.toString(),winner);
-        //gameCollection.insert(document);
+        gameCollection.insert(document);
     }
 
 }

@@ -10,7 +10,7 @@ public class Simulator {
 
     public Simulator(){
         logger = new Logger("Agent1vsAgent2");
-        while(logger.simlog.i < numGames) {
+        while(logger.simlog.i <= numGames) {
             Cluedo game = new Cluedo(null);
             logger.storeGame(game.gamelog, game.winner);
         }
