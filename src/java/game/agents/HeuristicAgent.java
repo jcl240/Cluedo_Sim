@@ -15,7 +15,7 @@ public class HeuristicAgent extends Agent implements Player{
     private int actionFailCount = 0;
 
     public HeuristicAgent(Card[] hand, Card[] faceUp, int index) {
-        super(hand, faceUp, index,"Random");
+        super(hand, faceUp, index,"Heuristic");
     }
 
     @Override
@@ -82,6 +82,11 @@ public class HeuristicAgent extends Agent implements Player{
         actionFailCount++;
         if(actionTaken.actionType.equals("move"))
             movementGoal = null;
+    }
+
+    @Override
+    public void noCardToShow(Action actionTaken, Player player) {
+
     }
 
     private void logSuggestion(Card[] suggestion){

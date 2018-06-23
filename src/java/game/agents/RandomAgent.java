@@ -84,6 +84,11 @@ public class RandomAgent extends  Agent implements Player {
             movementGoal = null;
     }
 
+    @Override
+    public void noCardToShow(Action actionTaken, Player player) {
+
+    }
+
     private void logSuggestion(Card[] suggestion){
         int numKnown = 1;
         LinkedList<String> suggestionList = new LinkedList<>();

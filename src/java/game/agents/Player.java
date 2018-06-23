@@ -18,4 +18,6 @@ public interface Player {
     String[] getHand();
 
     void actionFailed(Action actionTaken);
+
+    void noCardToShow(Action actionTaken, Player player);
 }

@@ -120,6 +120,7 @@ public class Cluedo {
                 break;
 
             case "doNothing":
+                gamelog.logAction(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).justMoved = true;
                 break;
         }
@@ -161,6 +162,9 @@ public class Cluedo {
                 if(useGUI)
                     updateGUI(new Action("showCard", cardToShow, currentPlayer), players[(playerTurnIndex + i) % 4]);
                 break;
+            }
+            else{
+                currentPlayer.noCardToShow(actionTaken,players[(playerTurnIndex + i) % 4]);
             }
         }
     }

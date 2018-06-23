@@ -128,4 +128,9 @@ public class HumanAgent extends  Agent implements Player{
     public void actionFailed(Action actionTaken) {
 
     }
+
+    @Override
+    public void noCardToShow(Action actionTaken, Player player) {
+
+    }
 }
