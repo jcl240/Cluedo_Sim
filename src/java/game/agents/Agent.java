@@ -23,6 +23,13 @@ public class Agent {
         this.playerType = type;
     }
 
+    public Agent(Card[] hand, int index, String type) {
+        this.hand = hand;
+        this.notebook = new Notebook(hand);
+        this.playerIndex = index+1;
+        this.playerType = type;
+    }
+
     public String[] getHand() {
         String[] stringHand = new String[4];
         int i = 0;

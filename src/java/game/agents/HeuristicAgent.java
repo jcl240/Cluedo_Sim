@@ -13,9 +13,14 @@ public class HeuristicAgent extends Agent implements Player{
 
     private int[] movementGoal;
     private int actionFailCount = 0;
+    private HeuristicNotebook notebook;
 
     public HeuristicAgent(Card[] hand, Card[] faceUp, int index) {
-        super(hand, faceUp, index,"Heuristic");
+        super(hand, index,"Heuristic");
+        notebook = new HeuristicNotebook(hand, playerIndex);
+        for(Card card: faceUp) {
+            notebook.checkOffCard(card, -1);
+        }
     }
 
     @Override
@@ -52,7 +57,7 @@ public class HeuristicAgent extends Agent implements Player{
             }
         }
         else if(actionTaken.actionType.equals("suggest")){
-            actionTaken.suggestion = notebook.getRandomSuggestion(actionTaken.currentRoom);
+            actionTaken.suggestion = notebook.getInformedSuggestion(actionTaken.currentRoom);
             logSuggestion(actionTaken.suggestion);
         }
         return actionTaken;
@@ -74,7 +79,8 @@ public class HeuristicAgent extends Agent implements Player{
     @Override
     public void showCard(Player player, Card cardToShow) {
         LinkedList<Card> ukr = getUnknownRooms();
-        notebook.checkOffCard(cardToShow);
+        int playerIndex = ((Agent)player).playerIndex;
+        notebook.checkOffCard(cardToShow, playerIndex);
     }
 
     @Override
@@ -86,7 +92,9 @@ public class HeuristicAgent extends Agent implements Player{
 
     @Override
     public void noCardToShow(Action actionTaken, Player player) {
-
+        for(Card card:actionTaken.suggestion){
+            notebook.setProbabilityZero(card, ((Agent)player).playerIndex);
+        }
     }
 
     private void logSuggestion(Card[] suggestion){

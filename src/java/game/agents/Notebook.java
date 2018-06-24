@@ -20,7 +20,11 @@ public class Notebook {
         }
     }
 
-    private void initializeNotebook() {
+    public Notebook(){
+        initializeNotebook();
+    }
+
+    protected void initializeNotebook() {
         Card[] deck = Card.makeCards();
         for(Card card:deck){
             notebook.add(new Tuple<>(card, false));
@@ -67,7 +71,6 @@ public class Notebook {
                 i++;
             }
         }
-        LinkedList<Card> ukr = getUnknownRooms();
         return accusation;
     }
 
