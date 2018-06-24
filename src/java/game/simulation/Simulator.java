@@ -1,17 +1,27 @@
 package simulation;
 
+import agents.HeuristicAgent;
+import agents.Player;
+import agents.RandomAgent;
 import com.mongodb.BasicDBObject;
 import main.Cluedo;
+
+import java.util.LinkedList;
 
 public class Simulator {
 
     public Logger logger;
-    public int numGames = 100;
+    public int numGames = 2000;
 
     public Simulator(){
-        logger = new Logger("Agent1vsAgent2");
+        String playerTwoType = "Random";
+        String playerOneType = "Heuristic";
+        String simName = playerOneType+"Vs"+playerTwoType;
+        logger = new Logger(simName,playerOneType,playerTwoType);
         while(logger.simlog.i <= numGames) {
-            Cluedo game = new Cluedo(null);
+            LinkedList<String> agents = new LinkedList<>();
+            agents.add(playerOneType);agents.add(playerTwoType);agents.add(playerTwoType);agents.add(playerTwoType);
+            Cluedo game = new Cluedo(agents);
             logger.storeGame(game.gamelog, game.winner);
         }
         logger.storeSimulation();

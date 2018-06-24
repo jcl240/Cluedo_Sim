@@ -16,8 +16,8 @@ public class Logger {
     private DBCollection gameCollection;
     public Simlog simlog;
 
-    public Logger(String simulationName){
-        simlog = new Simlog(simulationName);
+    public Logger(String simulationName, String playerOneType, String playerTwoType){
+        simlog = new Simlog(simulationName,playerOneType,playerTwoType);
         initializeMongo();
     }
 
@@ -26,7 +26,7 @@ public class Logger {
         database = mongoClient.getDB("testdb");
         simulationCollection = database.getCollection("simulationCollection");
         gameCollection = database.getCollection("gameCollection");
-        clearCollections();
+        //clearCollections();
 
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {

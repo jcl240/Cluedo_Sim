@@ -30,7 +30,7 @@ public class Cluedo {
     public Gamelog gamelog;
     public Agent winner;
 
-    public Cluedo(String[] agents) {
+    public Cluedo(LinkedList<String> agents) {
         initializeCards();
         initializePlayers(agents);
         gamelog = new Gamelog(getAgentArray(),envelope,faceUpCards);
@@ -98,8 +98,8 @@ public class Cluedo {
                 break;
 
             case "suggest":
-                suggest(actionTaken, currentPlayer);
                 updateGUI(actionTaken, currentPlayer);
+                suggest(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).hasSuggested = true;
                 gamelog.logAction(actionTaken, currentPlayer);
                 break;
@@ -240,14 +240,32 @@ public class Cluedo {
         return hands;
     }
 
-    private void initializePlayers(String[] agents) {
+    private void initializePlayers(LinkedList<String> agents) {
         Card[][] cards = dealCards();
         if(hasHumanPlayer)
             players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
                 new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
-        else
-            players = new Player[]{new RandomAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
-                    new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
+        players = new Player[4];
+        for(int i = 0; i < 4; i++){
+            int randIdx;
+            if(i == 3)
+                randIdx = 0;
+            else
+                randIdx = rand.nextInt(agents.size());
+            String agentType = agents.remove(randIdx);
+            addPlayer(agentType, i, cards);
+        }
+    }
+
+    private void addPlayer(String agentType, int i, Card[][] cards) {
+        switch (agentType){
+            case "Heuristic":
+                players[i] = new HeuristicAgent(cards[i], faceUpCards, i);
+                break;
+            case "Random":
+                players[i] = new RandomAgent(cards[i], faceUpCards, i);
+                break;
+        }
     }
 
     public void initializeCards(){
