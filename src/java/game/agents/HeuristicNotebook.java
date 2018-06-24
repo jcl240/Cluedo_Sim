@@ -111,4 +111,20 @@ public class HeuristicNotebook extends Notebook{
         else
             return null;
     }
+
+    public String getHighestEntropyRoom() {
+        Card room = notebook.get(0).x;
+        int i = 1;
+        double maxEntropy = -10;
+        for(int j = 0; j < notebook.size(); j++){
+            Tuple<Card,Boolean> tuple = notebook.get(j);
+            String cardType = tuple.x.cardType;
+            double entropy = getEntropy(probabilities[j]);
+            if(!tuple.y && tuple.x.cardType.equals("room") && entropy > maxEntropy) {
+                room = tuple.x;
+                maxEntropy = entropy;
+            }
+        }
+        return room.cardName;
+    }
 }

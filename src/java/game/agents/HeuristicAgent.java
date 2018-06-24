@@ -51,10 +51,9 @@ public class HeuristicAgent extends Agent implements Player{
             if(movementGoal != null)
                 actionTaken.towards = movementGoal;
             else {
-                Room[] rooms = Room.makeRooms();
-                Room randRoom = rooms[Cluedo.rand.nextInt(rooms.length)];
-                LinkedList<Card> ukr = getUnknownRooms();
-                actionTaken.towards = movementGoal =randRoom.entranceTiles[0];
+                String roomName = notebook.getHighestEntropyRoom();
+                Room room = getRoomByName(roomName);
+                actionTaken.towards = movementGoal = room.entranceTiles[0];
             }
         }
         else if(actionTaken.actionType.equals("suggest")){
@@ -62,6 +61,15 @@ public class HeuristicAgent extends Agent implements Player{
             logSuggestion(actionTaken.suggestion);
         }
         return actionTaken;
+    }
+
+    private Room getRoomByName(String roomName) {
+        Room[] rooms = Room.makeRooms();
+        for(Room room: rooms){
+            if(room.roomName.equals(roomName))
+                return room;
+        }
+        return null;
     }
 
     @Override

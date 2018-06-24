@@ -161,12 +161,20 @@ public class Cluedo {
                 currentPlayer.showCard(players[(playerTurnIndex + i) % 4], cardToShow);
                 if(useGUI)
                     updateGUI(new Action("showCard", cardToShow, currentPlayer), players[(playerTurnIndex + i) % 4]);
+                broadCastCardShown(actionTaken, players[(playerTurnIndex + i) % 4]);
                 break;
             }
             else{
                 currentPlayer.noCardToShow(actionTaken,players[(playerTurnIndex + i) % 4]);
+                broadCastNoCardShown();
             }
         }
+    }
+
+    private void broadCastCardShown(Action actionTaken, Player player) {
+    }
+
+    private void broadCastNoCardShown() {
     }
 
     private void moveSuggestee(Player suggester, Action action) {
