@@ -31,13 +31,14 @@ public class HeuristicAgent extends Agent implements Player{
 
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation){
         Action actionTaken;
+        Card[] solution = notebook.checkForSolution();
         if(actionFailCount == 10){
             return(new Action("doNothing"));
         }
         if(Arrays.equals(currentLocation,movementGoal))
             movementGoal = null;
-        if(possibleActions.contains(new Action("accuse")) && notebook.unknownCardCount() == 3)
-            return(new Action("accuse", notebook.getAccusation()));
+        if(possibleActions.contains(new Action("accuse")) && (solution != null))
+            return(new Action("accuse", solution));
         else {
             possibleActions.remove(new Action("accuse"));
             actionTaken = possibleActions.get(Cluedo.rand.nextInt(possibleActions.size()));

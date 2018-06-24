@@ -63,23 +63,52 @@ public class HeuristicNotebook extends Notebook{
     }
 
     public Card[] getInformedSuggestion(Room currentRoom) {
-        Card[] accusation = new Card[3];
-        accusation[0] = new Card("room",currentRoom.roomName);
+        Card[] suggestion = new Card[3];
+        suggestion[0] = new Card("room",currentRoom.roomName);
         String[] types = {"weapon", "suspect"};
         int i = 1;
-        double minProb = 10;
+        double maxEntropy = -10;
         for(int j = 0; j < notebook.size(); j++){
             Tuple<Card,Boolean> tuple = notebook.get(j);
             String cardType = tuple.x.cardType;
             if(!cardType.equals(types[i-1]) && !cardType.equals("room")){
                 i++;
-                minProb = 10;
+                maxEntropy = -10;
             }
-            if(!tuple.y && tuple.x.cardType.equals(types[i-1]) && probabilities[j][0] < minProb) {
-                accusation[i] = tuple.x;
-                minProb = probabilities[j][0];
+            double entropy = getEntropy(probabilities[j]);
+            if(!tuple.y && tuple.x.cardType.equals(types[i-1]) && entropy > maxEntropy) {
+                suggestion[i] = tuple.x;
+                maxEntropy = entropy;
             }
         }
-        return accusation;
+        return suggestion;
+    }
+
+    public double getEntropy(double[] probs){
+        double sum = 0;
+        for(double prob: probs){
+            if(prob == 0)
+                continue;
+            sum -= prob*Math.log(prob)/Math.log(2);
+        }
+        return sum;
+    }
+
+    public Card[] checkForSolution(){
+        Card[] solution = new Card[3];
+        int j = 0;
+        int i = 0;
+        for(double[] prob: probabilities){
+            if(prob[0] == 1){
+                solution[i] = notebook.get(j).x;
+                i++;
+            }
+            j++;
+        }
+        if(i == 3){
+            return solution;
+        }
+        else
+            return null;
     }
 }

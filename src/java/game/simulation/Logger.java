@@ -26,7 +26,7 @@ public class Logger {
         database = mongoClient.getDB("testdb");
         simulationCollection = database.getCollection("simulationCollection");
         gameCollection = database.getCollection("gameCollection");
-        //clearCollections();
+        clearCollections();
 
 
         Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
