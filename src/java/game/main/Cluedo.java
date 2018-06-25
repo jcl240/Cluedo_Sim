@@ -165,10 +165,7 @@ public class Cluedo {
                 break;
             }
             else{
-                currentPlayer.noCardToShow(actionTaken,players[(playerTurnIndex + i) % 4]);
-                if(i==3){
-                    broadCastNoCardShown(actionTaken, currentPlayer);
-                }
+                broadCastNoCardShown(actionTaken, players[(playerTurnIndex + i) % 4]);
             }
         }
     }
@@ -177,12 +174,11 @@ public class Cluedo {
 
     }
 
-    private void broadCastNoCardShown(Action action, Player suggester) {
+    private void broadCastNoCardShown(Action action, Player noCardPlayer) {
         for(Player player: players){
-            if(!player.equals(suggester)){
-                player.noCardsShown(action, suggester, players);
+            if(!player.equals(noCardPlayer))
+                player.noCardToShow(action, noCardPlayer);
             }
-        }
     }
 
     private void moveSuggestee(Player suggester, Action action) {
