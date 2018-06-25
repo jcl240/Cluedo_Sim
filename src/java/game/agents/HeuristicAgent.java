@@ -106,6 +106,16 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
+    @Override
+    public void noCardsShown(Action action, Player suggester, Player[] players) {
+        for(Card card: action.suggestion) {
+            for(Player player: players) {
+                if(!player.equals(suggester))
+                    notebook.setProbabilityZero(card, ((Agent)player).playerIndex);
+            }
+        }
+    }
+
     private void logSuggestion(Card[] suggestion){
         int numKnown = 1;
         LinkedList<String> suggestionList = new LinkedList<>();

@@ -113,18 +113,31 @@ public class HeuristicNotebook extends Notebook{
     }
 
     public String getHighestEntropyRoom() {
-        Card room = notebook.get(0).x;
-        int i = 1;
+        LinkedList<Card> roomsWithMaxEntropy = new LinkedList<>();
         double maxEntropy = -10;
         for(int j = 0; j < notebook.size(); j++){
             Tuple<Card,Boolean> tuple = notebook.get(j);
             String cardType = tuple.x.cardType;
             double entropy = getEntropy(probabilities[j]);
             if(!tuple.y && tuple.x.cardType.equals("room") && entropy > maxEntropy) {
-                room = tuple.x;
                 maxEntropy = entropy;
+                removeAll(roomsWithMaxEntropy);
+                roomsWithMaxEntropy.add(tuple.x);
             }
+            else if(!tuple.y && tuple.x.cardType.equals("room") && entropy == maxEntropy){
+                roomsWithMaxEntropy.add(tuple.x);
+            }
+
         }
-        return room.cardName;
+
+        Card randMaxRoom = roomsWithMaxEntropy.get(Cluedo.rand.nextInt(roomsWithMaxEntropy.size()));
+
+        return randMaxRoom.cardName;
+    }
+
+    private void removeAll(LinkedList<Card> list) {
+        while(list.size() > 0){
+            list.removeFirst();
+        }
     }
 }
