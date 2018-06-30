@@ -140,4 +140,41 @@ public class HeuristicNotebook extends Notebook{
             list.removeFirst();
         }
     }
+
+
+
+    public void updateProbabilities(Card[] suggestion, Player player){
+        int playerIndex = ((Agent)player).playerIndex;
+        LinkedList<Card> cardsPossible = getCardsWithNonZeroProbability(suggestion, playerIndex);
+        double probOfObservation = (3.0/15.0);
+        double probOfObservationGivenCard = (1.0/cardsPossible.size());
+        double update = (probOfObservationGivenCard / probOfObservation);
+
+        for(Card card: cardsPossible) {
+            int index = notebook.indexOf(new Tuple<>(card, false));
+            if (index == -1)
+                index = notebook.indexOf(new Tuple<>(card, true));
+
+            probabilities[index][playerIndex] *= update;
+            normalizeProbabilities(index);
+
+        }
+
+    }
+
+    private LinkedList<Card> getCardsWithNonZeroProbability(Card[] suggestion, int playerIndex) {
+        LinkedList<Card> nonZeroCards = new LinkedList<>();
+        for(Card card: suggestion){
+            int index = notebook.indexOf(new Tuple<>(card,false));
+            if(index == -1)
+                index = notebook.indexOf(new Tuple<>(card,true));
+
+            if(probabilities[index][playerIndex]!=0){
+                nonZeroCards.add(notebook.get(index).x);
+            }
+
+        }
+        return nonZeroCards;
+    }
+
 }

@@ -82,7 +82,7 @@ public class Logger {
         BasicDBObject document = new BasicDBObject();
         document.put("Gamelog",gameDoc);
         document.put("Game_ID", uniqueID.toString());
-        simlog.addGameResults(uniqueID.toString(),winner);
+        simlog.addGameResults(gamelog.getTurnsTaken(),winner);
         gameCollection.insert(document);
     }
 

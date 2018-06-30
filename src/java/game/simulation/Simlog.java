@@ -8,6 +8,7 @@ import java.util.LinkedList;
 public class Simlog {
 
     public String simName;
+    private int totalTurns = 0;
     public int i = 1;
     public String playerOneType;
     public String playerTwoType;
@@ -26,11 +27,13 @@ public class Simlog {
         doc.put("Game_results",Logger.createDBObject(gameResults));
         doc.put(playerOneType+"_Wins", playerOneWinCount);
         doc.put(playerTwoType+"_Wins", playerTwoWinCount);
+        doc.put("Average_turns", totalTurns/(i-1));
         return doc;
     }
 
-    public void addGameResults(String s, Agent winner){
+    public void addGameResults(int turns, Agent winner){
         LinkedList<String> result = new LinkedList<>();
+        totalTurns += turns;
         result.add("Game"+i);
         result.add("String");
         result.add(winner.playerType);

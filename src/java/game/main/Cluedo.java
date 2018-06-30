@@ -161,7 +161,7 @@ public class Cluedo {
                 currentPlayer.showCard(players[(playerTurnIndex + i) % 4], cardToShow);
                 if(useGUI)
                     updateGUI(new Action("showCard", cardToShow, currentPlayer), players[(playerTurnIndex + i) % 4]);
-                broadCastCardShown(actionTaken, players[(playerTurnIndex + i) % 4]);
+                broadCastCardShown(actionTaken, currentPlayer, players[(playerTurnIndex + i) % 4]);
                 break;
             }
             else{
@@ -170,8 +170,11 @@ public class Cluedo {
         }
     }
 
-    private void broadCastCardShown(Action actionTaken, Player player) {
-
+    private void broadCastCardShown(Action action, Player currentPlayer, Player cardPlayer) {
+        for(Player player: players){
+            if(!player.equals(currentPlayer) && !player.equals(cardPlayer))
+                player.cardShown(action, cardPlayer);
+        }
     }
 
     private void broadCastNoCardShown(Action action, Player noCardPlayer) {
@@ -254,18 +257,21 @@ public class Cluedo {
 
     private void initializePlayers(LinkedList<String> agents) {
         Card[][] cards = dealCards();
-        if(hasHumanPlayer)
-            players = new Player[]{new HumanAgent(cards[0], faceUpCards,0),new RandomAgent(cards[1], faceUpCards,1),
-                new RandomAgent(cards[2], faceUpCards,2), new RandomAgent(cards[3], faceUpCards,3)};
         players = new Player[4];
-        for(int i = 0; i < 4; i++){
-            int randIdx;
-            if(i == 3)
-                randIdx = 0;
-            else
-                randIdx = rand.nextInt(agents.size());
-            String agentType = agents.remove(randIdx);
-            addPlayer(agentType, i, cards);
+        if(hasHumanPlayer) {
+            players = new Player[]{new HumanAgent(cards[0], faceUpCards, 0), new RandomAgent(cards[1], faceUpCards, 1),
+                    new RandomAgent(cards[2], faceUpCards, 2), new RandomAgent(cards[3], faceUpCards, 3)};
+        }
+        else {
+            for (int i = 0; i < 4; i++) {
+                int randIdx;
+                if (i == 3)
+                    randIdx = 0;
+                else
+                    randIdx = rand.nextInt(agents.size());
+                String agentType = agents.remove(randIdx);
+                addPlayer(agentType, i, cards);
+            }
         }
     }
 

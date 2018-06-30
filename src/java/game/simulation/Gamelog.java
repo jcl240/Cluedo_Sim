@@ -85,4 +85,8 @@ public class Gamelog {
     private BasicDBObject getStartStateLog() {
         return Logger.createDBObject(startState);
     }
+
+    public int getTurnsTaken() {
+        return turnsTaken;
+    }
 }

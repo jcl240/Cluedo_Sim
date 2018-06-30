@@ -19,4 +19,6 @@ public interface Player {
     void actionFailed(Action actionTaken);
 
     void noCardToShow(Action actionTaken, Player player);
+
+    void cardShown(Action action, Player cardPlayer);
 }
