@@ -13,6 +13,7 @@ public class Action {
     public Room currentRoom;
     public Card cardShown;
     public Player shownTo;
+    public boolean accusationRight = false;
 
     public Action(String actionType) {
         this.actionType = actionType;

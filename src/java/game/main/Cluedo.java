@@ -131,8 +131,11 @@ public class Cluedo {
     private void accuse(Action actionTaken, Player currentPlayer) {
         boolean accusationCorrect = checkAccusation(actionTaken);
         ((Agent)currentPlayer).accused = true;
-        if(accusationCorrect)
+        if(accusationCorrect) {
             finishGame(currentPlayer);
+            actionTaken.accusationRight = true;
+        }
+        updateGUI(actionTaken,currentPlayer);
     }
 
     private boolean checkAccusation(Action actionTaken) {
@@ -232,6 +235,14 @@ public class Cluedo {
         }
     }
 
+    public void doneUpdating() {
+        synchronized(this){
+            this.stillUpdating = false;
+            notifyAll();
+        }
+    }
+
+
     public int roll() {
         return 1 + rand.nextInt(6);
     }
@@ -298,13 +309,6 @@ public class Cluedo {
         deck = Card.shuffle(deck);
         faceUpCards = new Card[]{deck[0], deck[1]};
         deck = Arrays.copyOfRange(deck,2,deck.length);
-    }
-
-    public void doneUpdating() {
-        synchronized(this){
-            this.stillUpdating = false;
-            notifyAll();
-        }
     }
 
     public String[][] getPlayerHands() {

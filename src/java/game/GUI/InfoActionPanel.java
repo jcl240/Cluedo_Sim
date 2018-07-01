@@ -100,6 +100,7 @@ public class InfoActionPanel extends JPanel {
 
     public void updateInfo(Action actionTaken, Player currentPlayer) {
         String playerIndex = Integer.toString(((Agent) currentPlayer).playerIndex);
+        String accusationText = actionTaken.accusationRight ? "correct":"wrong";
         if(actionTaken.actionType.equals("move"))
             setInfoText("Player " + playerIndex + " moved");
         else if(actionTaken.actionType.equals("useSecretPassage"))
@@ -113,7 +114,8 @@ public class InfoActionPanel extends JPanel {
             setInfoText("Player " + playerIndex + " accused " +
                     actionTaken.accusation[0].cardName + ", " +
                     actionTaken.accusation[1].cardName + ", " +
-                    actionTaken.accusation[2].cardName);
+                    actionTaken.accusation[2].cardName +
+                    " and was " + accusationText);
         else if(actionTaken.actionType.equals("showCard"))
             setInfoText("Player " + playerIndex + " showed Player " +
                     ((Agent)actionTaken.shownTo).playerIndex + " " + actionTaken.cardShown.cardName);

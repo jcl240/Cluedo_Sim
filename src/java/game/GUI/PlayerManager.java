@@ -102,7 +102,7 @@ public class PlayerManager {
             if(actionTaken.shownTo.equals(humanPlayer))
                 humanShownCard =true;
         }
-        if(isHumanActing || humanShownCard)
+        if(!actionTaken.actionType.equals("accuse") && (isHumanActing || humanShownCard))
             next();
         else{
             playerPanel.passAction(actionTaken, currentPlayer);
