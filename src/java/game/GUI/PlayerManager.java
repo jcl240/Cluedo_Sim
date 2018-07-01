@@ -17,12 +17,17 @@ public class PlayerManager {
     Cluedo game;
     PlayerPanel playerPanel;
     private LinkedList<Action> currentPossibleActions;
+    LinkedList<int[]> secretPassageTiles = new LinkedList<>();
 
     public PlayerManager(Player humanPlayer, Cluedo game, PlayerPanel playerPanel){
         this.humanPlayer = (HumanAgent)humanPlayer;
         this.game = game;
         this.playerPanel = playerPanel;
 
+        secretPassageTiles.add(new int[]{0,3});
+        secretPassageTiles.add(new int[]{23,5});
+        secretPassageTiles.add(new int[]{1,19});
+        secretPassageTiles.add(new int[]{18,23});
     }
 
     public PlayerManager(Cluedo game, PlayerPanel playerPanel){
@@ -58,11 +63,24 @@ public class PlayerManager {
     }
 
     public void clickedTile(int x, int y){
-        if(takingTurn && canMove){
+        if(takingTurn && canMove && isSecretPassage(x,y) && currentPossibleActions.contains(new Action("useSecretPassage"))){
+            Action secretAction = getAction("useSeretPassage");
+            humanPlayer.setChosenAction(secretAction);
+        }
+        else if(takingTurn && canMove){
             Action moveAction = getAction("move");
             moveAction.towards= new int[]{x,y};
             humanPlayer.setChosenAction(moveAction);
         }
+    }
+
+    private boolean isSecretPassage(int x, int y) {
+        for(int[] coord: secretPassageTiles){
+            if(x == coord[0] && y == coord[1]){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void next() {

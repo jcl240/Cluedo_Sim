@@ -19,9 +19,9 @@ public class BoardGUI {
     private PlayerPanel playerPanel = new PlayerPanel(this);
     private MainPanel mainPanel = new MainPanel(this);
     private GridBagConstraints c = new GridBagConstraints();
-    private static String[] weapons = {"Knife","Candlestick","Lead pipe","Wrench","Revolver","Rope"};
-    private static String[] suspects = {"Colonel Mustard", "Mrs. White", "Miss Scarlet", "Mrs. Peacock", "Professor Plum", "Mr. Green"};
-    private static String[] rooms = {"Kitchen", "Lounge", "Ballroom", "Billiard room", "Dining main.Room", "Conservatory", "Library","Hall","Study"};
+    private static String[] weapons = {"candlestick","knife","leadpipe","revolver","rope","wrench"};
+    private static String[] suspects = {"green","mustard","peacock","plum","scarlet","white"};
+    private static String[] rooms = {"ballroom","billiardroom","conservatory","diningroom","hall","kitchen","library","lounge","study"};
     private Cluedo game;
     private Player humanPlayer;
     public PlayerManager playerManager;
