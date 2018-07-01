@@ -101,6 +101,7 @@ public class Cluedo {
                 updateGUI(actionTaken, currentPlayer);
                 suggest(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).hasSuggested = true;
+                ((Agent) currentPlayer).justMoved = true;
                 gamelog.logAction(actionTaken, currentPlayer);
                 break;
 
@@ -191,18 +192,22 @@ public class Cluedo {
             case "peacock":
                 board.movePiece(players[0], room.entranceTiles[0]);
                 ((Agent)players[0]).playerLog.numRoomsVisited++;
+                ((Agent)players[0]).hasSuggested = false;
                 break;
             case "green":
                 board.movePiece(players[1], room.entranceTiles[0]);
                 ((Agent)players[1]).playerLog.numRoomsVisited++;
+                ((Agent)players[1]).hasSuggested = false;
                 break;
             case "scarlet":
                 board.movePiece(players[2], room.entranceTiles[0]);
                 ((Agent)players[2]).playerLog.numRoomsVisited++;
+                ((Agent)players[2]).hasSuggested = false;
                 break;
             case "mustard":
                 board.movePiece(players[3], room.entranceTiles[0]);
                 ((Agent)players[3]).playerLog.numRoomsVisited++;
+                ((Agent)players[3]).hasSuggested = false;
                 break;
         }
     }
@@ -241,7 +246,7 @@ public class Cluedo {
             if (board.inRoomWithSecretPassage(currentPlayer))
                 possibleActions.add(new Action("useSecretPassage", board.getSecretPassage(currentPlayer)));
         }
-        else if(board.inRoom(currentPlayer) && !((Agent)currentPlayer).hasSuggested)
+        if(board.inRoom(currentPlayer) && !((Agent)currentPlayer).hasSuggested)
             possibleActions.add(new Action("suggest", board.getRoom(currentPlayer)));
         return possibleActions;
     }

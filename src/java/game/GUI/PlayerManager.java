@@ -64,7 +64,7 @@ public class PlayerManager {
 
     public void clickedTile(int x, int y){
         if(takingTurn && canMove && isSecretPassage(x,y) && currentPossibleActions.contains(new Action("useSecretPassage"))){
-            Action secretAction = getAction("useSeretPassage");
+            Action secretAction = getAction("useSecretPassage");
             humanPlayer.setChosenAction(secretAction);
         }
         else if(takingTurn && canMove){
