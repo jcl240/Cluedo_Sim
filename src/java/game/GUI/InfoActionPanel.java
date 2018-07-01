@@ -98,7 +98,7 @@ public class InfoActionPanel extends JPanel {
         GUI.accuseDialog();
     }
 
-    public void updateInfo(Action actionTaken, Player currentPlayer) {
+    public void updateInfo(Action actionTaken, Player currentPlayer, boolean hasHumanPlayer) {
         String playerIndex = Integer.toString(((Agent) currentPlayer).playerIndex);
         String accusationText = actionTaken.accusationRight ? "correct":"wrong";
         if(actionTaken.actionType.equals("move"))
@@ -116,9 +116,21 @@ public class InfoActionPanel extends JPanel {
                     actionTaken.accusation[1].cardName + ", " +
                     actionTaken.accusation[2].cardName +
                     " and was " + accusationText);
-        else if(actionTaken.actionType.equals("showCard"))
-            setInfoText("Player " + playerIndex + " showed Player " +
-                    ((Agent)actionTaken.shownTo).playerIndex + " " + actionTaken.cardShown.cardName);
+        else if(actionTaken.actionType.equals("showCard")) {
+            if(!hasHumanPlayer)
+                if(actionTaken.cardShown == null)
+                    setInfoText("Player " + playerIndex + " did not have a card to show.");
+                else
+                    setInfoText("Player " + playerIndex + " showed Player " +
+                        ((Agent) actionTaken.shownTo).playerIndex + " " + actionTaken.cardShown.cardName);
+            else{
+                if(actionTaken.cardShown == null)
+                    setInfoText("Player " + playerIndex + " did not have a card to show.");
+                else
+                    setInfoText("Player " + playerIndex + " showed Player " +
+                        ((Agent) actionTaken.shownTo).playerIndex + " a card.");
+            }
+        }
         cl.show(this, infoCard);
     }
 

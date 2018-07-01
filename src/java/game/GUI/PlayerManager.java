@@ -5,6 +5,7 @@ import agents.HumanAgent;
 import agents.Player;
 import main.Card;
 import main.Cluedo;
+import main.Room;
 
 import java.awt.event.ActionEvent;
 import java.util.LinkedList;
@@ -67,11 +68,23 @@ public class PlayerManager {
             Action secretAction = getAction("useSecretPassage");
             humanPlayer.setChosenAction(secretAction);
         }
-        else if(takingTurn && canMove){
+        else if(takingTurn && canMove && !isSecretPassage(x,y) && notSameRoom(x,y)){
             Action moveAction = getAction("move");
             moveAction.towards= new int[]{x,y};
             humanPlayer.setChosenAction(moveAction);
         }
+    }
+
+    private boolean notSameRoom(int x, int y) {
+        Room room = game.board.getRoom(humanPlayer);
+        if(room != null) {
+            for (int[] entrance : room.entranceTiles) {
+                if (entrance[0] == x && entrance[1] == y) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     private boolean isSecretPassage(int x, int y) {
@@ -95,17 +108,17 @@ public class PlayerManager {
         humanPlayer.doneViewingCard();
     }
 
-    public void updateInfo(Action actionTaken, Player currentPlayer) {
+    public void updateInfo(Action actionTaken, Player currentPlayer, boolean hasHumanPlayer) {
         boolean humanShownCard = false;
         boolean isHumanActing = currentPlayer.equals(humanPlayer);
-        if(actionTaken.actionType.equals("showCard")) {
+        if(actionTaken.actionType.equals("showCard") && actionTaken.cardShown != null) {
             if(actionTaken.shownTo.equals(humanPlayer))
                 humanShownCard =true;
         }
         if(!actionTaken.actionType.equals("accuse") && (isHumanActing || humanShownCard))
             next();
         else{
-            playerPanel.passAction(actionTaken, currentPlayer);
+            playerPanel.passAction(actionTaken, currentPlayer, hasHumanPlayer);
         }
     }
 

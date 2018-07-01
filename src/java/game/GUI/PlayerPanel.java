@@ -94,7 +94,7 @@ public class PlayerPanel extends JPanel {
         }
     }
 
-    public void passAction(Action actionTaken, Player currentPlayer) {
-        infoActionPanel.updateInfo(actionTaken,currentPlayer);
+    public void passAction(Action actionTaken, Player currentPlayer, boolean hasHumanPlayer) {
+        infoActionPanel.updateInfo(actionTaken,currentPlayer, hasHumanPlayer);
     }
 }

@@ -170,6 +170,8 @@ public class Cluedo {
             }
             else{
                 broadCastNoCardShown(actionTaken, players[(playerTurnIndex + i) % 4]);
+                if(useGUI)
+                    updateGUI(new Action("showCard", null, currentPlayer), players[(playerTurnIndex + i) % 4]);
             }
         }
     }
@@ -222,7 +224,7 @@ public class Cluedo {
                 @Override
                 public void run() {
                     boardGUI.movePiece(board.getPlayerLocations());
-                    boardGUI.playerManager.updateInfo(actionTaken, currentPlayer);
+                    boardGUI.playerManager.updateInfo(actionTaken, currentPlayer, hasHumanPlayer);
                 }
             });
             try {
@@ -276,6 +278,10 @@ public class Cluedo {
         players = new Player[4];
         if(hasHumanPlayer) {
             players = new Player[]{new HumanAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+                    new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
+        }
+        else if(useGUI){
+            players = new Player[]{new HeuristicAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else {
