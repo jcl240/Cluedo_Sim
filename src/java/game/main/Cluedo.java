@@ -15,10 +15,10 @@ import java.util.Random;
 
 public class Cluedo {
 
-    public boolean hasHumanPlayer = false;
+    public boolean hasHumanPlayer = true;
     private boolean stillUpdating = false;
     private boolean gameFinished = false;
-    private boolean useGUI = false;
+    private boolean useGUI = true;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -259,8 +259,8 @@ public class Cluedo {
         Card[][] cards = dealCards();
         players = new Player[4];
         if(hasHumanPlayer) {
-            players = new Player[]{new HumanAgent(cards[0], faceUpCards, 0), new RandomAgent(cards[1], faceUpCards, 1),
-                    new RandomAgent(cards[2], faceUpCards, 2), new RandomAgent(cards[3], faceUpCards, 3)};
+            players = new Player[]{new HumanAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+                    new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else {
             for (int i = 0; i < 4; i++) {
@@ -320,6 +320,10 @@ public class Cluedo {
             i++;
         }
         return faceUpStrings;
+    }
+
+    public static void main(String args[]){
+        Cluedo game = new Cluedo(null);
     }
 
 }
