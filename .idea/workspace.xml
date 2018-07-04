@@ -1,0 +1,1542 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="Cluedo_Sim:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/src/java/game/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <ignored path="$PROJECT_DIR$/cluedo_gradle/.gradle/" />
+    <ignored path="$PROJECT_DIR$/cluedo_gradle/build/" />
+    <ignored path="$PROJECT_DIR$/cluedo_gradle/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Cluedo_Sim$Simulator.ic" NAME="Simulator Coverage Results" MODIFIED="1529678075576" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Cluedo_Sim$Board.ic" NAME="Board Coverage Results" MODIFIED="1527858293856" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/cluedo_gradle">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="844">
+              <caret line="37" column="11" lean-forward="true" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cluedo.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="322">
+              <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#9265#9266#0" expanded="true" />
+                <element signature="e#9307#9308#0" expanded="true" />
+                <element signature="e#12614#12615#0" expanded="true" />
+                <element signature="e#12660#12661#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="326">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>setPr</find>
+      <find>c.</find>
+      <find>player</find>
+      <find>ju</find>
+      <find>j</find>
+      <find>just</find>
+      <find>useGUI</find>
+      <find>hasHuma</find>
+      <find>human</find>
+      <find>humanPlayer</find>
+      <find>Random</find>
+      <find>Card</find>
+      <find>random</find>
+      <find>rand</find>
+      <find>movementGoal</find>
+      <find>diningRoom</find>
+      <find>args</find>
+      <find>logger</find>
+      <find>hasSuggested</find>
+      <find>justMoved</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>log</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="myGradleHomes">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle" value="C:\gradle\gradle-4.8" />
+      </map>
+    </option>
+    <option name="myGradleVersions">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle" value="4.8" />
+      </map>
+    </option>
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="cluedo_gradle" />
+              <option name="path" value="$PROJECT_DIR$/cluedo_gradle" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="cluedo_gradle" />
+                <option name="path" value="$PROJECT_DIR$/cluedo_gradle" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="availableTasks">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle">
+          <value>
+            <list>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the components produced by root project 'cluedo_gradle'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="components" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects that depend on it." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="buildDependents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the sub-projects of root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="projects" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="classes" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the dependent components of components in root project 'cluedo_gradle'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="dependentComponents" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all buildscript dependencies declared in root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="buildEnvironment" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Gradle wrapper files." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="wrapper" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles test classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="testClasses" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Generates Javadoc API documentation for the main source code." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="javadoc" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles a jar archive containing the main classes." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="jar" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the configuration model of root project 'cluedo_gradle'. [incubating]" />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="model" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes main resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="processResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the tasks runnable from root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="tasks" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Initializes a new Gradle build." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="init" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs the unit tests." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="test" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles main Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="compileJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the insight into a specific dependency in root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="dependencyInsight" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Runs all checks." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="check" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles the outputs of this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="assemble" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Deletes the build directory." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="clean" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Compiles test Java source." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="compileTestJava" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays all dependencies declared in root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="dependencies" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Processes test resources." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="processTestResources" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays a help message." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="help" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="build" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Assembles and tests this project and all projects it depends on." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="buildNeeded" />
+              </ExternalTaskPojo>
+              <ExternalTaskPojo>
+                <option name="description" value="Displays the properties of root project 'cluedo_gradle'." />
+                <option name="linkedExternalProjectPath" value="$PROJECT_DIR$/cluedo_gradle" />
+                <option name="name" value="properties" />
+              </ExternalTaskPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle" value="4588222059255" />
+        <entry key="$PROJECT_DIR$/cluedo_gradle/.gradle" value="0" />
+        <entry key="$PROJECT_DIR$/cluedo_gradle/build.gradle" value="3982586933" />
+        <entry key="$PROJECT_DIR$/cluedo_gradle/settings.gradle" value="835257399" />
+      </map>
+    </option>
+    <option name="projectBuildClasspath">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle">
+          <value>
+            <ExternalProjectBuildClasspathPojo>
+              <option name="modulesBuildClasspath">
+                <map>
+                  <entry key="$PROJECT_DIR$/cluedo_gradle">
+                    <value>
+                      <ExternalModuleBuildClasspathPojo>
+                        <option name="path" value="$PROJECT_DIR$/cluedo_gradle" />
+                      </ExternalModuleBuildClasspathPojo>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="name" value="cluedo_gradle" />
+              <option name="projectBuildClasspath">
+                <list>
+                  <option value="C:/gradle/gradle-4.8/lib/ant-1.9.11.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/ant-launcher-1.9.11.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-base-services-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-base-services-groovy-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-build-cache-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-build-option-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-cli-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-core-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-core-api-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-docs-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-installation-beacon-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-jvm-services-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-kotlin-dsl-0.17.5.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-kotlin-dsl-provider-plugins-0.17.5.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-kotlin-dsl-provider-spi-0.17.5.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-kotlin-dsl-tooling-builders-0.17.5.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-kotlin-dsl-tooling-models-0.17.5.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-launcher-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-logging-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-messaging-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-model-core-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-model-groovy-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-native-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-persistent-cache-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-process-services-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-resources-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-runtime-api-info-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-tooling-api-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/gradle-wrapper-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/groovy-all-2.4.12.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-announce-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-antlr-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-build-cache-http-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-build-comparison-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-build-init-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-code-quality-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-composite-builds-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-dependency-management-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-diagnostics-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-ear-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-ide-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-ide-native-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-ide-play-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-ivy-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-jacoco-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-javascript-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-language-groovy-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-language-java-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-language-jvm-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-language-native-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-language-scala-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-maven-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-osgi-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-platform-base-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-platform-jvm-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-platform-native-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-platform-play-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-plugin-development-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-plugin-use-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-plugins-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-publish-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-reporting-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-resources-gcs-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-resources-http-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-resources-s3-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-resources-sftp-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-scala-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-signing-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-test-kit-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-testing-base-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-testing-junit-platform-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-testing-jvm-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-testing-native-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-tooling-api-builders-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-version-control-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/gradle-workers-4.8.jar" />
+                  <option value="C:/gradle/gradle-4.8/lib/plugins/ivy-2.2.0.jar" />
+                  <option value="$PROJECT_DIR$/cluedo_gradle/buildSrc/src/main/java" />
+                  <option value="$PROJECT_DIR$/cluedo_gradle/buildSrc/src/main/groovy" />
+                </list>
+              </option>
+            </ExternalProjectBuildClasspathPojo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/cluedo_gradle" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/java/game/GUI/BoardGUI.java" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/java/game/AStar.java" />
+        <option value="$PROJECT_DIR$/src/java/game/search/Node.java" />
+        <option value="$PROJECT_DIR$/src/java/game/search/NodeComparator.java" />
+        <option value="$PROJECT_DIR$/src/java/game/gameGUI.form" />
+        <option value="$PROJECT_DIR$/src/java/game/Gamepiece.java" />
+        <option value="$PROJECT_DIR$/src/java/game/boardGUI.form" />
+        <option value="$PROJECT_DIR$/src/java/game/ActionPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/NextButton.java" />
+        <option value="$PROJECT_DIR$/src/java/game/TransparentButton.java" />
+        <option value="$PROJECT_DIR$/src/java/game/MainPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/InfoActionPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/Room.java" />
+        <option value="$PROJECT_DIR$/src/java/game/Board.java" />
+        <option value="$PROJECT_DIR$/src/java/game/Card.java" />
+        <option value="$PROJECT_DIR$/src/java/game/PlayerPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/Player.java" />
+        <option value="$PROJECT_DIR$/src/java/game/boardGUI.java" />
+        <option value="$PROJECT_DIR$/src/java/game/Cluedo.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/PlayerPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/MainPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Tuple.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Gamepiece.java" />
+        <option value="$PROJECT_DIR$/src/java/game/search/AStar.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/JToolTipWithIcon.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/MainPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/StaticRandom.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Card.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Room.java" />
+        <option value="$PROJECT_DIR$/cluedo_gradle/build.gradle" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Logger.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Simulationlog.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Playerlog.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/Agent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/Notebook.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/Player.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/RandomAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/HumanAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Logger.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Gamelog.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Simlog.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Board.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/BoardGUI.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/Action.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/PlayerPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/PlayerManager.java" />
+        <option value="$PROJECT_DIR$/src/java/game/GUI/InfoActionPanel.java" />
+        <option value="$PROJECT_DIR$/src/java/game/main/Cluedo.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="-15" />
+    <option name="width" value="1950" />
+    <option name="height" value="2075" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="agents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file://C:/Users/Jo$eph/Desktop/Dissertation/Cluedo_Sim/src/java/game/InfoActionPanel.java" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="GUI" />
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="agents" />
+      <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java\game\GUI" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.RandomVsHeuristic">
+    <configuration name="Cluedo" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="main.Cluedo" />
+      <module name="Cluedo_Sim" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="HeuristicVsHeuristic" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="simulation.Simulator" />
+      <module name="Cluedo_Sim" />
+      <option name="PROGRAM_PARAMETERS" value="10000 Heuristic Heuristic" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="HeuristicVsRandom" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="simulation.Simulator" />
+      <module name="Cluedo_Sim" />
+      <option name="PROGRAM_PARAMETERS" value="10000 Heuristic Random" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="RandomVsHeuristic" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="simulation.Simulator" />
+      <module name="Cluedo_Sim" />
+      <option name="PROGRAM_PARAMETERS" value="10000 Random Heuristic" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
+    <list>
+      <item itemvalue="Application.HeuristicVsRandom" />
+      <item itemvalue="Application.HeuristicVsHeuristic" />
+      <item itemvalue="Application.Cluedo" />
+      <item itemvalue="Application.RandomVsHeuristic" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.RandomVsHeuristic" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="" />
+      <created>1527778656653</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1527778656653</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Get secret passage method in board so player doesnt have to set it&#10;&#10;Added player index for gui purposes">
+      <created>1528885181523</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1528885181523</updated>
+    </task>
+    <task id="LOCAL-00061" summary="NEXT BUTTON WORKING!!">
+      <created>1528885206515</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1528885206515</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Correctly set action info text">
+      <created>1528886615697</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1528886615697</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Fixed secret passage by adding new method instead of using movePlayer">
+      <created>1528886947190</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1528886947190</updated>
+    </task>
+    <task id="LOCAL-00064" summary="-Set GUI accordingly if there is a human player or not&#10;-Tooltip for increasing card size">
+      <created>1528891315992</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1528891315992</updated>
+    </task>
+    <task id="LOCAL-00065" summary="-Working on human agent">
+      <created>1528899924079</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1528899924079</updated>
+    </task>
+    <task id="LOCAL-00066" summary="-Created player manager class to clear up boardGUI class&#10;-Any interactions directly with the human player should come through this class">
+      <created>1528910430389</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1528910430389</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Suggestion action work">
+      <created>1528969051359</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1528969051359</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Human player basically complete&#10;-Extensive testing still needed">
+      <created>1528973226593</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1528973226594</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Control whether game has human or not (and effectively the GUI as well) by setting hasHumanPlayer in Cluedo.java">
+      <created>1528993759822</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1528993759823</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Set player index 1 higher in GUI">
+      <created>1529053127649</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1529053127649</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Added face up cards to GUI">
+      <created>1529245157679</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1529245157681</updated>
+    </task>
+    <task id="LOCAL-00072" summary="-Players can't move through eachother&#10;-Players can't suggest in the same room unless they leave it first">
+      <created>1529324149725</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1529324149726</updated>
+    </task>
+    <task id="LOCAL-00073" summary="FINALLY FIXED NON TERMINATING GAME ERROR&#10;&#10;problem ended up being &quot;diningRoom&quot; vs &quot;diningroom&quot; in definition of cards and rooms&#10;&#10;WATCH CASE">
+      <created>1529331160836</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1529331160837</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Added gradle builder to incorporate mongoDB">
+      <created>1529407724626</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1529407724626</updated>
+    </task>
+    <task id="LOCAL-00075" summary="MongoDB working in java Cluedo code &lt;3">
+      <created>1529409395371</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1529409395371</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Created logger class as a wrapper for storing and getting mongodb info">
+      <created>1529412709253</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1529412709253</updated>
+    </task>
+    <task id="LOCAL-00077" summary="add logger field to cluedo">
+      <created>1529417734074</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1529417734074</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Work on simulator">
+      <created>1529422767951</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1529422767951</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Gamelog class">
+      <created>1529493961123</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1529493961123</updated>
+    </task>
+    <task id="LOCAL-00080" summary="-Gamelog, Playerlog, Simulationlog">
+      <created>1529497161488</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1529497161489</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Clear collections">
+      <created>1529510413469</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1529510413469</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Rename Simulationlog to Simlog">
+      <created>1529510483229</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1529510483229</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Add field from log based on type">
+      <created>1529511718743</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1529511718744</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Log suggestions">
+      <created>1529662007568</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1529662007569</updated>
+    </task>
+    <task id="LOCAL-00085" summary="checkpoint, working on logger">
+      <created>1529664004631</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1529664004632</updated>
+    </task>
+    <task id="LOCAL-00086" summary="error fix">
+      <created>1529666116425</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1529666116425</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Log every action except do nothing">
+      <created>1529666309812</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1529666309812</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Game log is actually working lol">
+      <created>1529667465599</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1529667465599</updated>
+    </task>
+    <task id="LOCAL-00089" summary="PlayerLog &lt;3">
+      <created>1529668842653</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1529668842654</updated>
+    </task>
+    <task id="LOCAL-00090" summary="room count for player log">
+      <created>1529669167762</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1529669167762</updated>
+    </task>
+    <task id="LOCAL-00091" summary="Store game log then sim log">
+      <created>1529673360767</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1529673360767</updated>
+    </task>
+    <task id="LOCAL-00092" summary="Store simulation">
+      <created>1529676937249</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1529676937249</updated>
+    </task>
+    <task id="LOCAL-00093" summary="Move player when their piece is suggested">
+      <created>1529678237005</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1529678237005</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Logger up and working">
+      <created>1529742385242</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1529742385243</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Heuristic Agent class&#10;-Just a copy of random agent into heuristic agent TO BE CHANGED">
+      <created>1529742633002</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1529742633003</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Log action 'do nothing'&#10;Added method to interface player for when another player has no card to show for the current suggestion (observation)">
+      <created>1529744811339</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1529744811339</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Huge commits incoming&#10;&#10;-Heuristic Agent and heuristic notebook&#10;-Only difference so far is that heuristic agent suggests the cards with min prob of being in envelope">
+      <created>1529839641296</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1529839641298</updated>
+    </task>
+    <task id="LOCAL-00098" summary="-Added field to sim log to auto count the wins for me&#10;-Cluedo gets passed the agent types and then randomly places them">
+      <created>1529839695150</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1529839695154</updated>
+    </task>
+    <task id="LOCAL-00099" summary="Suggest cards with highest entropy">
+      <created>1529850012724</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1529850012724</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Always move to room with highest entropy">
+      <created>1529850727300</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1529850727301</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Select room with highest entropy (random if more than 1)&#10;Take note of when no one proves a suggestion false">
+      <created>1529923217214</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1529923217214</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Take note of when no one proves a suggestion false (do this everytime and not just when everyone fails to prove it false)">
+      <created>1529931850968</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1529931850969</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Update probabilities">
+      <created>1530364064451</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1530364064452</updated>
+    </task>
+    <task id="LOCAL-00104" summary="For human play add secret passageways">
+      <created>1530440713113</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1530440713113</updated>
+    </task>
+    <task id="LOCAL-00105" summary="BoardGUI must use same card name strings as all other classes">
+      <created>1530442199167</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1530442199167</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Player should be able to suggest after being moved to a room">
+      <created>1530443124806</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1530443124807</updated>
+    </task>
+    <task id="LOCAL-00107" summary="Show result of accusation">
+      <created>1530444699342</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1530444699342</updated>
+    </task>
+    <task id="LOCAL-00108" summary="Show if a player does not have a card to show in GUI">
+      <created>1530448742653</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1530448742653</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-6" y="-6" width="1549" height="837" extended-state="7" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" weight="0.32633054" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
+      <window_info anchor="right" id="Maven Projects" order="3" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23669468" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="right" id="Mongo Explorer" order="4" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Designer" order="2" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15159401" />
+      <window_info anchor="right" id="Gradle" order="4" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" weight="0.41456583" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.18412492" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.3292011" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Mongo Explorer" order="6" />
+      <window_info anchor="right" id="Gradle" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" visible="true" weight="0.23669468" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18477553" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49967468" weight="0.32633054" />
+      <window_info id="Designer" order="2" />
+      <window_info id="UI Designer" order="3" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5126051" />
+      <window_info anchor="right" id="Palette&#9;" order="4" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.18412492" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.49056605" side_tool="true" weight="0.23769338" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Build" order="11" weight="0.3292011" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info id="Favorites" order="4" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Log suggestions" />
+    <MESSAGE value="checkpoint, working on logger" />
+    <MESSAGE value="error fix" />
+    <MESSAGE value="Log every action except do nothing" />
+    <MESSAGE value="Game log is actually working lol" />
+    <MESSAGE value="PlayerLog &lt;3" />
+    <MESSAGE value="room count for player log" />
+    <MESSAGE value="Store game log then sim log" />
+    <MESSAGE value="Store simulation" />
+    <MESSAGE value="Move player when their piece is suggested" />
+    <MESSAGE value="Logger up and working" />
+    <MESSAGE value="Heuristic Agent class&#10;-Just a copy of random agent into heuristic agent TO BE CHANGED" />
+    <MESSAGE value="Log action 'do nothing'&#10;Added method to interface player for when another player has no card to show for the current suggestion (observation)" />
+    <MESSAGE value="Huge commits incoming&#10;&#10;-Heuristic Agent and heuristic notebook&#10;-Only difference so far is that heuristic agent suggests the cards with min prob of being in envelope" />
+    <MESSAGE value="-Added field to sim log to auto count the wins for me&#10;-Cluedo gets passed the agent types and then randomly places them" />
+    <MESSAGE value="Suggest cards with highest entropy" />
+    <MESSAGE value="Always move to room with highest entropy" />
+    <MESSAGE value="Select room with highest entropy (random if more than 1)&#10;Take note of when no one proves a suggestion false" />
+    <MESSAGE value="Take note of when no one proves a suggestion false (do this everytime and not just when everyone fails to prove it false)" />
+    <MESSAGE value="Update probabilities" />
+    <MESSAGE value="For human play add secret passageways" />
+    <MESSAGE value="BoardGUI must use same card name strings as all other classes" />
+    <MESSAGE value="Player should be able to suggest after being moved to a room" />
+    <MESSAGE value="Show result of accusation" />
+    <MESSAGE value="Show if a player does not have a card to show in GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Show if a player does not have a card to show in GUI" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="268" />
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="gamelog.turnsTaken" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="watch">
+      <expression>
+        <expression-string>playerLocation</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="47" column="33" selection-start-line="47" selection-start-column="33" selection-end-line="47" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/NodeComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="18" column="17" lean-forward="true" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/AStar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cluedo_Sim.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/Envelope.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/Game.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/RoomCard.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/SuspectCard.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/WeaponCard.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="620">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/NodeComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="6" column="74" selection-start-line="6" selection-start-column="74" selection-end-line="6" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/gameGUI.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/gameGUI.form" />
+    <entry file="file://$PROJECT_DIR$/src/java/res/clue_board_v2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/boardGUI.form" />
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="216" selection-start-line="216" selection-end-line="216" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Tuple.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/search/AStar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/java/awt/Component.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="1440" column="19" selection-start-line="1440" selection-start-column="19" selection-end-line="1440" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/TransparentButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/JToolTipWithIcon.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/StaticRandom.java" />
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Room.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluedo_gradle/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cluedo_gradle/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Playerlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Gamepiece.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/Arrays.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="3636" selection-start-line="3636" selection-end-line="3636" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="28" column="35" selection-start-line="28" selection-start-column="35" selection-end-line="28" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Notebook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="72" column="9" selection-start-line="72" selection-start-column="9" selection-end-line="72" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="22" column="8" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/Random.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="387" selection-start-line="387" selection-end-line="387" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Gamelog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="622">
+          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2850#2851#0" expanded="true" />
+            <element signature="e#2883#2884#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/MainPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1474">
+          <caret line="91" column="7" lean-forward="true" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/BoardGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-690">
+          <caret line="23" column="97" lean-forward="true" selection-start-line="23" selection-start-column="97" selection-end-line="23" selection-end-column="97" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Card.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="35" column="92" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HumanAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+          <folding>
+            <element signature="e#743#744#0" expanded="true" />
+            <element signature="e#840#841#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="24" column="37" selection-start-line="24" selection-start-column="37" selection-end-line="24" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="54" column="52" lean-forward="true" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/RandomAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="16">
+          <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#356#357#0" expanded="true" />
+            <element signature="e#407#408#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
+          <folding>
+            <element signature="method#initializeTiles#0;class#Board#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/PlayerPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="97" column="76" selection-start-line="97" selection-start-column="76" selection-end-line="97" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/PlayerManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="113" column="79" selection-start-line="113" selection-start-column="79" selection-end-line="113" selection-end-column="79" />
+          <folding>
+            <element signature="e#2990#2991#0" expanded="true" />
+            <element signature="e#3025#3026#0" expanded="true" />
+            <element signature="e#3131#3132#0" expanded="true" />
+            <element signature="e#3176#3177#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/InfoActionPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="125" column="17" lean-forward="true" selection-start-line="125" selection-start-column="17" selection-end-line="125" selection-end-column="17" />
+          <folding>
+            <element signature="e#4890#4891#0" expanded="true" />
+            <element signature="e#4931#4932#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="37" column="11" lean-forward="true" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="322">
+          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#9265#9266#0" expanded="true" />
+            <element signature="e#9307#9308#0" expanded="true" />
+            <element signature="e#12614#12615#0" expanded="true" />
+            <element signature="e#12660#12661#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Cluedo_Sim:jar</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>10</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Cluedo_Sim</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Gradle: junit:junit:4.12</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Cluedo_Sim.iml" filepath="$PROJECT_DIR$/Cluedo_Sim.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cluedo_gradle.iml" filepath="$PROJECT_DIR$/.idea/modules/cluedo_gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cluedo_gradle_main.iml" filepath="$PROJECT_DIR$/.idea/modules/cluedo_gradle_main.iml" group="cluedo_gradle" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/cluedo_gradle_test.iml" filepath="$PROJECT_DIR$/.idea/modules/cluedo_gradle_test.iml" group="cluedo_gradle" />
+    </modules>
+  </component>
+</project>

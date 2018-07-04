@@ -15,10 +15,10 @@ import java.util.Random;
 
 public class Cluedo {
 
-    public boolean hasHumanPlayer = true;
+    public boolean hasHumanPlayer = false;
     private boolean stillUpdating = false;
     private boolean gameFinished = false;
-    private boolean useGUI = true;
+    private boolean useGUI = false;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -195,24 +195,32 @@ public class Cluedo {
         Room room = board.getRoom(suggester);
         switch (suggestee){
             case "peacock":
-                board.movePiece(players[0], room.entranceTiles[0]);
-                ((Agent)players[0]).playerLog.numRoomsVisited++;
-                ((Agent)players[0]).hasSuggested = false;
+                if(((Agent)suggester).playerIndex != 1) {
+                    board.movePiece(players[0], room.entranceTiles[0]);
+                    ((Agent) players[0]).playerLog.numRoomsVisited++;
+                    ((Agent) players[0]).hasSuggested = false;
+                }
                 break;
             case "green":
-                board.movePiece(players[1], room.entranceTiles[0]);
-                ((Agent)players[1]).playerLog.numRoomsVisited++;
-                ((Agent)players[1]).hasSuggested = false;
+                if(((Agent)suggester).playerIndex != 2) {
+                    board.movePiece(players[1], room.entranceTiles[0]);
+                    ((Agent) players[1]).playerLog.numRoomsVisited++;
+                    ((Agent) players[1]).hasSuggested = false;
+                }
                 break;
             case "scarlet":
-                board.movePiece(players[2], room.entranceTiles[0]);
-                ((Agent)players[2]).playerLog.numRoomsVisited++;
-                ((Agent)players[2]).hasSuggested = false;
+                if(((Agent)suggester).playerIndex != 3) {
+                    board.movePiece(players[2], room.entranceTiles[0]);
+                    ((Agent) players[2]).playerLog.numRoomsVisited++;
+                    ((Agent) players[2]).hasSuggested = false;
+                }
                 break;
             case "mustard":
-                board.movePiece(players[3], room.entranceTiles[0]);
-                ((Agent)players[3]).playerLog.numRoomsVisited++;
-                ((Agent)players[3]).hasSuggested = false;
+                if(((Agent)suggester).playerIndex != 4) {
+                    board.movePiece(players[3], room.entranceTiles[0]);
+                    ((Agent) players[3]).playerLog.numRoomsVisited++;
+                    ((Agent) players[3]).hasSuggested = false;
+                }
                 break;
         }
     }
