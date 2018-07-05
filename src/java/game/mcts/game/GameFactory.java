@@ -16,6 +16,7 @@ import mcts.game.tictactoe.TicTacToe;
 public class GameFactory {
 	public static final int TICTACTOE = 0;
 	public static final int CATAN = 1;
+	public static final int CLUEDO = 2;
 	
 	private GameConfig gameConfig;
 	private Belief belief;
