@@ -4,17 +4,19 @@ import main.Card;
 import mcts.game.GameFactory;
 import mcts.game.catan.Catan;
 import mcts.game.catan.CatanConfig;
+import mcts.game.cluedo.Cluedo;
+import mcts.game.cluedo.CluedoConfig;
 
 import java.util.LinkedList;
 
 public class BMCTSAgent extends Agent implements Player {
-    Catan boardlayout;
+    Cluedo game;
     GameFactory gameFactory;
 
     public BMCTSAgent(Card[] hand, Card[] faceUp, int index, String type) {
         super(hand, faceUp, index, type);
-        gameFactory = new GameFactory(new CatanConfig(), null);
-        boardlayout = (Catan) gameFactory.getNewGame();
+        gameFactory = new GameFactory(new CluedoConfig(), null);
+        game = (Cluedo) gameFactory.getNewGame();
     }
 
     @Override

@@ -5,6 +5,20 @@ import mcts.tree.node.TreeNode;
 import mcts.utils.Options;
 
 public class Cluedo implements Game {
+
+    private int[] state = new int[11];
+
+    public Cluedo(int[] state) {
+        this.state = state;
+    }
+
+    public Cluedo() {
+        initGame();
+    }
+
+    private void initGame() {
+    }
+
     @Override
     public int[] getState() {
         return new int[0];
