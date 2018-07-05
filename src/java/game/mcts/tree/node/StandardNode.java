@@ -1,11 +1,10 @@
 package mcts.tree.node;
 
+import com.google.common.util.concurrent.AtomicDoubleArray;
+import mcts.game.GameFactory;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.google.common.util.concurrent.AtomicDoubleArray;
-
-import mcts.game.GameFactory;
 
 /**
  * Standard non-chance node that can be expanded normally and the tree policy can be deterministic.
