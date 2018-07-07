@@ -47,6 +47,20 @@ public interface GameStateConstants extends HexTypeConstants {
     int LEAD_PIPE = 5;
     int WRENCH = 6;
 
+
+    /* 0: Playing or winner's index, 1: current player's index
+       2: current player accused, 3: current player justMoved
+       4: current player hasSuggested, 5: current player's room
+       6: current roll
+    */
+    int GAME_STATE = 0;
+    int CURRENT_PLAYER = 1;
+    int HAS_ACCUSED = 2;
+    int JUST_MOVED = 3;
+    int HAS_SUGGESTED = 4;
+    int CURRENT_ROOM = 5;
+    int CURRENT_ROLL = 6;
+
     public final static Color[] playerColor = 
     {
         Color.BLUE,

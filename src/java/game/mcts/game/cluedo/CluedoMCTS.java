@@ -47,14 +47,14 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public boolean isTerminal() {
-        if(state[0] == PLAYING)
+        if(state[GAME_STATE] == PLAYING)
             return false;
         return true;
     }
 
     @Override
     public int getCurrentPlayer() {
-        return state[1];
+        return state[CURRENT_PLAYER];
     }
 
     @Override
@@ -78,16 +78,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
-        if(state[2] != 0)
+        if(state[HAS_ACCUSED] != 0)
             return options;
-        if(state[3] == 0) {
-            listMovePossibilities(options, state[6]);
+        if(state[JUST_MOVED] == 0) {
+            listMovePossibilities(options, state[CURRENT_ROLL]);
             listAccusePossibilities(options);
-            if (inRoomWithSecretPassage(state[5]))
+            if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
                 listSecretPassagePossibility(options);
         }
-        if(state[5] != 0 && state[4] == 0)
-            listSuggestionPossibilities(options, state[5]);
+        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
+            listSuggestionPossibilities(options, state[CURRENT_ROOM]);
         return options;
     }
 
