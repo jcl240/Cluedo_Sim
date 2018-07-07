@@ -7,10 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/report/latex/~$rdVersion.docx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/cluedo_gradle/.gradle/" />
@@ -41,23 +43,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MCTS.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AppFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/display/AppFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="184">
-              <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+            <state relative-caret-position="168">
+              <caret line="362" column="36" selection-start-line="362" selection-start-column="36" selection-end-line="362" selection-end-column="36" />
               <folding>
                 <element signature="e#1743#1832#0" expanded="true" />
                 <element signature="method#initComponents#0;class#AppFrame#0" />
@@ -71,32 +61,10 @@
       <file leaf-file-name="BMCTSAgent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
+            <state relative-caret-position="736">
+              <caret line="33" column="36" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#224#225#0" expanded="true" />
-                <element signature="e#251#252#0" expanded="true" />
-                <element signature="e#386#387#0" expanded="true" />
-                <element signature="e#413#414#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GameFactory.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1821#1822#0" expanded="true" />
-                <element signature="e#1845#1846#0" expanded="true" />
-                <element signature="e#1876#1877#0" expanded="true" />
-                <element signature="e#1896#1897#0" expanded="true" />
-                <element signature="e#2155#2156#0" expanded="true" />
-                <element signature="e#2170#2171#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -105,41 +73,72 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="23">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Cluedo.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java">
+      <file leaf-file-name="Cluedo.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+            <state relative-caret-position="276">
+              <caret line="260" column="8" lean-forward="true" selection-start-line="260" selection-start-column="8" selection-end-line="271" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#180#181#0" expanded="true" />
-                <element signature="e#214#215#0" expanded="true" />
-                <element signature="e#277#278#0" expanded="true" />
-                <element signature="e#303#304#0" expanded="true" />
-                <element signature="e#190#191#0" expanded="true" />
-                <element signature="e#223#224#0" expanded="true" />
-                <element signature="e#267#268#0" expanded="true" />
-                <element signature="e#291#292#0" expanded="true" />
-                <element signature="e#340#341#0" expanded="true" />
-                <element signature="e#368#369#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
-                <element signature="e#443#444#0" expanded="true" />
-                <element signature="e#591#592#0" expanded="true" />
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#658#659#0" expanded="true" />
-                <element signature="e#685#686#0" expanded="true" />
-                <element signature="e#738#739#0" expanded="true" />
-                <element signature="e#771#772#0" expanded="true" />
-                <element signature="e#827#828#0" expanded="true" />
-                <element signature="e#851#852#0" expanded="true" />
-                <element signature="e#903#904#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="460">
+              <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#468#469#0" expanded="true" />
+                <element signature="e#502#503#0" expanded="true" />
+                <element signature="e#529#530#0" expanded="true" />
+                <element signature="e#555#556#0" expanded="true" />
+                <element signature="e#637#638#0" expanded="true" />
+                <element signature="e#670#671#0" expanded="true" />
+                <element signature="e#714#715#0" expanded="true" />
+                <element signature="e#745#746#0" expanded="true" />
                 <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#961#962#0" expanded="true" />
+                <element signature="e#1457#1458#0" expanded="true" />
+                <element signature="e#1484#1485#0" expanded="true" />
+                <element signature="e#1537#1538#0" expanded="true" />
+                <element signature="e#1570#1571#0" expanded="true" />
+                <element signature="e#1626#1627#0" expanded="true" />
+                <element signature="e#1650#1651#0" expanded="true" />
+                <element signature="e#1702#1703#0" expanded="true" />
+                <element signature="e#1729#1730#0" expanded="true" />
+                <element signature="e#1821#1822#0" expanded="true" />
+                <element signature="e#1855#1856#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CatanWithBelief.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/CatanWithBelief.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="263">
+              <caret line="988" column="8" selection-start-line="988" selection-start-column="8" selection-end-line="988" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Catan.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/Catan.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="483">
+              <caret line="519" column="50" lean-forward="true" selection-start-line="519" selection-start-column="8" selection-end-line="519" selection-end-column="50" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,8 +147,17 @@
       <file leaf-file-name="TicTacToe.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/tictactoe/TicTacToe.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="19" />
+            <state relative-caret-position="207">
+              <caret line="99" column="21" lean-forward="true" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="GameStateConstants.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -186,6 +194,9 @@
       <find>logger</find>
       <find>hasSuggested</find>
       <find>justMoved</find>
+      <find>breadth</find>
+      <find>MCTS</find>
+      <find>listPoss</find>
     </findStrings>
     <replaceStrings>
       <replace>log</replace>
@@ -495,9 +506,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/java/game/boardGUI.form" />
-        <option value="$PROJECT_DIR$/src/java/game/ActionPanel.java" />
-        <option value="$PROJECT_DIR$/src/java/game/NextButton.java" />
         <option value="$PROJECT_DIR$/src/java/game/TransparentButton.java" />
         <option value="$PROJECT_DIR$/src/java/game/MainPanel.java" />
         <option value="$PROJECT_DIR$/src/java/game/InfoActionPanel.java" />
@@ -543,15 +551,18 @@
         <option value="$PROJECT_DIR$/src/java/game/mcts/MCTS.java" />
         <option value="$PROJECT_DIR$/cluedo_gradle/build.gradle" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoConfig.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/Game.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-15" />
-    <option name="width" value="1950" />
+    <option name="width" value="1948" />
     <option name="height" value="2075" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -614,7 +625,7 @@
               <item name="game" type="462c0819:PsiDirectoryNode" />
               <item name="mcts" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="tictactoe" type="462c0819:PsiDirectoryNode" />
+              <item name="catan" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -632,12 +643,8 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\lib" />
-      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java" />
-      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim" />
-      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src" />
-      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java\game\GUI" />
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="mcts.game.cluedo" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="GUI" />
@@ -646,6 +653,13 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="agents" />
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\lib" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src" />
+      <recent name="C:\Users\Jo$eph\Desktop\Dissertation\Cluedo_Sim\src\java\game\GUI" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -750,13 +764,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
-    </task>
-    <task id="LOCAL-00062" summary="Correctly set action info text">
-      <created>1528886615697</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1528886615697</updated>
     </task>
     <task id="LOCAL-00063" summary="Fixed secret passage by adding new method instead of using movePlayer">
       <created>1528886947190</created>
@@ -1094,7 +1101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1530793313509</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="Add Cluedo to GameFactory">
+      <created>1530793853154</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1530793853154</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1103,53 +1117,53 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" weight="0.32633054" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23669468" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="right" id="Mongo Explorer" order="4" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.21795706" />
-      <window_info anchor="bottom" id="Build" order="8" weight="0.3292011" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16720885" />
       <window_info anchor="right" id="Gradle" order="4" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" weight="0.41456583" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.18412492" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" weight="0.32633054" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.3292011" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.18412492" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Mongo Explorer" order="6" />
       <window_info anchor="right" id="Gradle" order="7" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18477553" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16720885" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" visible="true" weight="0.23669468" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23669468" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3277311" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5126051" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" weight="0.41456583" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.49056605" side_tool="true" weight="0.23769338" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" id="Coverage" order="8" side_tool="true" weight="0.18412492" />
       <window_info anchor="bottom" id="Build" order="11" weight="0.3292011" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49967468" weight="0.32633054" />
@@ -1161,7 +1175,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="error fix" />
     <MESSAGE value="Log every action except do nothing" />
     <MESSAGE value="Game log is actually working lol" />
     <MESSAGE value="PlayerLog &lt;3" />
@@ -1186,7 +1199,8 @@
     <MESSAGE value="Show if a player does not have a card to show in GUI" />
     <MESSAGE value="MCTS dependencies" />
     <MESSAGE value="Adding cluedo files in MCTS" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding cluedo files in MCTS" />
+    <MESSAGE value="Add Cluedo to GameFactory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Cluedo to GameFactory" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1208,38 +1222,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/res/clue_board_v2.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/boardGUI.form" />
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/javax/swing/ImageIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="216" selection-start-line="216" selection-end-line="216" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Tuple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/search/AStar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="136" selection-start-line="136" selection-end-line="136" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.desktop/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="1440" column="19" selection-start-line="1440" selection-start-column="19" selection-end-line="1440" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/GUI/TransparentButton.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="336">
@@ -1321,13 +1303,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/MainPanel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1474">
-          <caret line="91" column="7" lean-forward="true" selection-start-line="91" selection-start-column="7" selection-end-line="91" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/GUI/BoardGUI.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-690">
@@ -1384,13 +1359,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="111" lean-forward="true" selection-start-line="111" selection-end-line="111" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/GUI/PlayerPanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="292">
@@ -1416,19 +1384,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="37" column="11" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="207">
-          <caret line="20" column="35" selection-start-line="20" selection-start-column="35" selection-end-line="20" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1436,9 +1391,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
           <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1456,9 +1408,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
           <caret line="21" column="42" selection-start-line="21" selection-start-column="42" selection-end-line="21" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1469,41 +1418,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1264" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTS.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="48" column="30" lean-forward="true" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/display/AppFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="36" column="28" lean-forward="true" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-          <folding>
-            <element signature="e#1743#1832#0" expanded="true" />
-            <element signature="method#initComponents#0;class#AppFrame#0" />
-            <element signature="e#17892#17893#0" expanded="true" />
-            <element signature="e#17955#17956#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/CatanWithBelief.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2860">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/pom.xml" />
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameConfig.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -1525,11 +1440,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#177#178#0" expanded="true" />
-            <element signature="e#204#205#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1540,78 +1450,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
+    <entry file="jar://C:/Program Files/Java/jdk-10.0.1/lib/src.zip!/java.base/java/util/function/Consumer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="18" column="49" lean-forward="true" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#224#225#0" expanded="true" />
-            <element signature="e#251#252#0" expanded="true" />
-            <element signature="e#386#387#0" expanded="true" />
-            <element signature="e#413#414#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/Game.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        <state relative-caret-position="153">
+          <caret line="45" column="6" lean-forward="true" selection-start-line="45" selection-start-column="6" selection-end-line="45" selection-end-column="6" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="30" selection-end-line="43" selection-end-column="30" />
+        <state relative-caret-position="43">
+          <caret line="21" column="4" lean-forward="true" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1821#1822#0" expanded="true" />
-            <element signature="e#1845#1846#0" expanded="true" />
-            <element signature="e#1876#1877#0" expanded="true" />
-            <element signature="e#1896#1897#0" expanded="true" />
-            <element signature="e#2155#2156#0" expanded="true" />
-            <element signature="e#2170#2171#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2460">
+          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/MainPanel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="16" column="41" lean-forward="true" selection-start-line="16" selection-start-column="41" selection-end-line="16" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="174" column="15" selection-start-line="174" selection-start-column="15" selection-end-line="174" selection-end-column="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#5796#5797#0" expanded="true" />
+            <element signature="e#5855#5856#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/display/AppFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="362" column="36" selection-start-line="362" selection-start-column="36" selection-end-line="362" selection-end-column="36" />
+          <folding>
+            <element signature="e#1743#1832#0" expanded="true" />
+            <element signature="method#initComponents#0;class#AppFrame#0" />
+            <element signature="e#17892#17893#0" expanded="true" />
+            <element signature="e#17955#17956#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/GameStateConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-759">
+          <caret line="93" column="8" selection-start-line="93" selection-start-column="8" selection-end-line="93" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="33" column="36" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="260" column="8" lean-forward="true" selection-start-line="260" selection-start-column="8" selection-end-line="271" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/tictactoe/TicTacToe.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="19" />
+        <state relative-caret-position="207">
+          <caret line="99" column="21" lean-forward="true" selection-start-line="99" selection-start-column="21" selection-end-line="99" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/Cluedo.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/utils/Options.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+        <state relative-caret-position="-620">
+          <caret line="33" column="18" lean-forward="true" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/Catan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="519" column="50" lean-forward="true" selection-start-line="519" selection-start-column="8" selection-end-line="519" selection-end-column="50" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#180#181#0" expanded="true" />
-            <element signature="e#214#215#0" expanded="true" />
-            <element signature="e#277#278#0" expanded="true" />
-            <element signature="e#303#304#0" expanded="true" />
-            <element signature="e#190#191#0" expanded="true" />
-            <element signature="e#223#224#0" expanded="true" />
-            <element signature="e#267#268#0" expanded="true" />
-            <element signature="e#291#292#0" expanded="true" />
-            <element signature="e#340#341#0" expanded="true" />
-            <element signature="e#368#369#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
-            <element signature="e#443#444#0" expanded="true" />
-            <element signature="e#591#592#0" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#658#659#0" expanded="true" />
-            <element signature="e#685#686#0" expanded="true" />
-            <element signature="e#738#739#0" expanded="true" />
-            <element signature="e#771#772#0" expanded="true" />
-            <element signature="e#827#828#0" expanded="true" />
-            <element signature="e#851#852#0" expanded="true" />
-            <element signature="e#903#904#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/CatanWithBelief.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="988" column="8" selection-start-line="988" selection-start-column="8" selection-end-line="988" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="103" column="21" selection-start-line="103" selection-start-column="21" selection-end-line="103" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#468#469#0" expanded="true" />
+            <element signature="e#502#503#0" expanded="true" />
+            <element signature="e#529#530#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#637#638#0" expanded="true" />
+            <element signature="e#670#671#0" expanded="true" />
+            <element signature="e#714#715#0" expanded="true" />
+            <element signature="e#745#746#0" expanded="true" />
             <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#961#962#0" expanded="true" />
+            <element signature="e#1457#1458#0" expanded="true" />
+            <element signature="e#1484#1485#0" expanded="true" />
+            <element signature="e#1537#1538#0" expanded="true" />
+            <element signature="e#1570#1571#0" expanded="true" />
+            <element signature="e#1626#1627#0" expanded="true" />
+            <element signature="e#1650#1651#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1729#1730#0" expanded="true" />
+            <element signature="e#1821#1822#0" expanded="true" />
+            <element signature="e#1855#1856#0" expanded="true" />
           </folding>
         </state>
       </provider>

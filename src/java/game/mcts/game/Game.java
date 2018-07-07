@@ -68,8 +68,7 @@ public interface Game {
 
 	/**
 	 * Executes one random action.
-	 * 
-	 * @param belief
+	 *
 	 */
 	public void gameTick();
 }
