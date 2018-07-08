@@ -29,7 +29,7 @@ public class Cluedo {
     public static Random rand = new SecureRandom();
     public Gamelog gamelog;
     public Agent winner;
-    private int current_roll;
+    private int current_roll = roll();
 
     public Cluedo(LinkedList<String> agents) {
         initializeCards();
@@ -41,7 +41,6 @@ public class Cluedo {
         if(hasHumanPlayer){
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
-        current_roll = roll();
         play();
     }
 

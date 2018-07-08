@@ -23,6 +23,7 @@ public interface GameStateConstants extends HexTypeConstants {
     int FALSIFY = 4;
     int ACCUSE = 5;
 
+    int NO_ROOM = 0;
     int HALL = 1;
     int LOUNGE = 2;
     int DINING_ROOM = 3;

@@ -1,5 +1,6 @@
 package mcts.game.cluedo;
 
+import agents.Action;
 import main.Board;
 import mcts.game.Game;
 import mcts.tree.node.TreeNode;
@@ -81,7 +82,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(state[HAS_ACCUSED] != 0)
             return options;
         if(state[JUST_MOVED] == 0) {
-            listMovePossibilities(options, state[CURRENT_ROLL]);
+            listMovePossibilities(options);
             listAccusePossibilities(options);
             if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
                 listSecretPassagePossibility(options);
@@ -91,24 +92,42 @@ public class CluedoMCTS implements Game, GameStateConstants {
         return options;
     }
 
-    private void listMovePossibilities(Options options, int i) {
-
+    private void listMovePossibilities(Options options) {
+        for(int i = 1; i < 10; i++) {
+            if(state[CURRENT_ROOM] != i) {
+                options.put(new int[]{MOVE, i, state[CURRENT_ROLL]}, 1.0);
+            }
+        }
     }
 
     private void listAccusePossibilities(Options options) {
-
+        for(int room = 1; room < 10; room++){
+            for(int suspect = 1; suspect < 7; suspect++){
+                for(int weapon = 1; weapon < 7; weapon++){
+                    options.put(new int[]{ACCUSE, room, suspect, weapon}, 1.0);
+                }
+            }
+        }
     }
 
     private boolean inRoomWithSecretPassage(int i) {
-
-        return false;
+        if(i == STUDY || i == LOUNGE || i == KITCHEN || i == CONSERVATORY){
+            return true;
+        }
+        else
+            return false;
     }
 
     private void listSecretPassagePossibility(Options options) {
-
+        options.put(new int[]{SECRET_PASSAGE, state[CURRENT_ROOM]}, 1.0);
     }
 
     private void listSuggestionPossibilities(Options options, int i) {
+        for(int suspect = 1; suspect < 7; suspect++){
+            for(int weapon = 1; weapon < 7; weapon++){
+                options.put(new int[]{SUGGEST, state[CURRENT_ROOM], suspect, weapon}, 1.0);
+            }
+        }
     }
 
     @Override
