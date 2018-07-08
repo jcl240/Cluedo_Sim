@@ -156,6 +156,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public void setBoard(Board board) {
-        this.board = board;
+        this.board = new Board(board);
     }
 }

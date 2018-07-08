@@ -29,6 +29,12 @@ public class Board {
         this.boardGUI = boardGUI;
     }
 
+    public Board(Board board) {
+        initializeTiles();
+        initializeRooms();
+        this.playerPieceTuples = (LinkedList)board.playerPieceTuples.clone();
+    }
+
     private void initializePieces(Player[] players) {
         int i = 0;
         for(Player player: players){
