@@ -14,11 +14,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     /* 0: Playing or winner's index, 1: current player's index
        2: current player accused, 3: current player justMoved
        4: current player hasSuggested, 5: current player's room
-       6: current roll
+       6: current roll, 7: current player is falsifying card
     */
     private int[] state;
 
-
+    private CluedoBelief belief;
     public static long breadth = 0;
     public static long depth = 0;
     private Board board;

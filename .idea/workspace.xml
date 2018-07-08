@@ -7,8 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" afterDir="false" />
     </list>
@@ -68,15 +69,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Game.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="GameFactory.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -89,11 +81,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+            <state relative-caret-position="322">
+              <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#3078#3079#0" expanded="true" />
@@ -106,6 +98,22 @@
                 <element signature="e#3350#3351#0" expanded="true" />
                 <element signature="e#3442#3443#0" expanded="true" />
                 <element signature="e#3476#3477#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CluedoBelief.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="104" column="36" lean-forward="true" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#138#139#0" expanded="true" />
+                <element signature="e#165#166#0" expanded="true" />
+                <element signature="e#219#220#0" expanded="true" />
+                <element signature="e#252#253#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -126,8 +134,8 @@
       <file leaf-file-name="CatanWithBelief.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/CatanWithBelief.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5030">
-              <caret line="1794" column="21" lean-forward="true" selection-start-line="1794" selection-start-column="21" selection-end-line="1794" selection-end-column="21" />
+            <state relative-caret-position="-41">
+              <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -135,8 +143,8 @@
       <file leaf-file-name="GameStateConstants.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
-              <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+            <state relative-caret-position="131">
+              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -495,7 +503,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/java/game/TransparentButton.java" />
         <option value="$PROJECT_DIR$/src/java/game/MainPanel.java" />
         <option value="$PROJECT_DIR$/src/java/game/InfoActionPanel.java" />
         <option value="$PROJECT_DIR$/src/java/game/Room.java" />
@@ -544,8 +551,9 @@
         <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java" />
         <option value="$PROJECT_DIR$/src/java/game/main/Cluedo.java" />
-        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java" />
       </list>
     </option>
   </component>
@@ -594,6 +602,25 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
               <item name="mcts" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="mcts" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="mcts" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+              <item name="cluedo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
@@ -743,13 +770,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
-    </task>
-    <task id="LOCAL-00066" summary="-Created player manager class to clear up boardGUI class&#10;-Any interactions directly with the human player should come through this class">
-      <created>1528910430389</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1528910430389</updated>
     </task>
     <task id="LOCAL-00067" summary="Suggestion action work">
       <created>1528969051359</created>
@@ -1087,7 +1107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531044230885</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="working with cluedo MCTS">
+      <created>1531045819817</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1531045819817</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1154,7 +1181,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="room count for player log" />
     <MESSAGE value="Store game log then sim log" />
     <MESSAGE value="Store simulation" />
     <MESSAGE value="Move player when their piece is suggested" />
@@ -1179,7 +1205,8 @@
     <MESSAGE value="work with CluedoMCTS (renamed from Cluedo for confusion with main cluedo class)" />
     <MESSAGE value="more work with CluedoMCTS" />
     <MESSAGE value="fixed roll always changing problem" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed roll always changing problem" />
+    <MESSAGE value="working with cluedo MCTS" />
+    <option name="LAST_COMMIT_MESSAGE" value="working with cluedo MCTS" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1201,20 +1228,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/TransparentButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/GUI/JToolTipWithIcon.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/main/StaticRandom.java" />
     <entry file="file://$PROJECT_DIR$/src/java/game/main/Room.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1293,13 +1306,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="209">
           <caret line="35" column="92" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="62" column="5" lean-forward="true" selection-start-line="62" selection-start-column="5" selection-end-line="62" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1516,26 +1522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/Catan.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-8073">
-          <caret line="524" column="36" lean-forward="true" selection-start-line="524" selection-start-column="36" selection-end-line="524" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/tictactoe/TicTacToe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
@@ -1550,24 +1536,58 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/Catan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8073">
+          <caret line="524" column="36" lean-forward="true" selection-start-line="524" selection-start-column="36" selection-end-line="524" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1012">
+          <caret line="44" column="9" lean-forward="true" selection-start-line="44" selection-start-column="9" selection-end-line="44" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/catan/CatanWithBelief.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5030">
-          <caret line="1794" column="21" lean-forward="true" selection-start-line="1794" selection-start-column="21" selection-end-line="1794" selection-end-column="21" />
+        <state relative-caret-position="-41">
+          <caret line="79" column="7" lean-forward="true" selection-start-line="79" selection-start-column="7" selection-end-line="79" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/Belief.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="184">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="25" column="20" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="20" />
+        <state relative-caret-position="131">
+          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="407">
+          <caret line="112" column="5" lean-forward="true" selection-start-line="96" selection-start-column="4" selection-end-line="112" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="131" lean-forward="true" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="322">
+          <caret line="14" column="61" lean-forward="true" selection-start-line="14" selection-start-column="61" selection-end-line="14" selection-end-column="61" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#3078#3079#0" expanded="true" />
@@ -1580,6 +1600,20 @@
             <element signature="e#3350#3351#0" expanded="true" />
             <element signature="e#3442#3443#0" expanded="true" />
             <element signature="e#3476#3477#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="104" column="36" lean-forward="true" selection-start-line="104" selection-start-column="36" selection-end-line="104" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#138#139#0" expanded="true" />
+            <element signature="e#165#166#0" expanded="true" />
+            <element signature="e#219#220#0" expanded="true" />
+            <element signature="e#252#253#0" expanded="true" />
           </folding>
         </state>
       </provider>

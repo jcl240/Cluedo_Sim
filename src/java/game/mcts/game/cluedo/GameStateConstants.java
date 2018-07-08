@@ -17,6 +17,10 @@ public interface GameStateConstants extends HexTypeConstants {
 
     int NPLAYERS = 4;
 
+    int ROOM = 1;
+    int SUSPECT = 2;
+    int WEAPON = 3;
+
     int MOVE = 1;
     int SECRET_PASSAGE = 2;
     int SUGGEST = 3;
