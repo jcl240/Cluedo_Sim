@@ -18,7 +18,7 @@ public class Cluedo {
     public boolean hasHumanPlayer = false;
     private boolean stillUpdating = false;
     private boolean gameFinished = false;
-    private boolean useGUI = false;
+    private boolean useGUI = true;
     private Card[] deck;
     private Card[] envelope;
     private Card[] faceUpCards;
@@ -29,6 +29,7 @@ public class Cluedo {
     public static Random rand = new SecureRandom();
     public Gamelog gamelog;
     public Agent winner;
+    private int current_roll;
 
     public Cluedo(LinkedList<String> agents) {
         initializeCards();
@@ -40,6 +41,7 @@ public class Cluedo {
         if(hasHumanPlayer){
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
+        current_roll = roll();
         play();
     }
 
@@ -76,6 +78,7 @@ public class Cluedo {
     }
 
     private void nextTurn() {
+        current_roll = roll();
         playerTurnIndex = (playerTurnIndex+1)%4;
         gamelog.nextTurn();
     }
@@ -262,7 +265,7 @@ public class Cluedo {
         if(((Agent)currentPlayer).accused)
             return possibleActions;
         if(!((Agent)currentPlayer).justMoved) {
-            possibleActions.add(new Action("move", roll()));
+            possibleActions.add(new Action("move", current_roll));
             possibleActions.add(new Action("accuse"));
             if (board.inRoomWithSecretPassage(currentPlayer))
                 possibleActions.add(new Action("useSecretPassage", board.getSecretPassage(currentPlayer)));
