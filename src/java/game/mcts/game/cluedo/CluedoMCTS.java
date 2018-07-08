@@ -22,18 +22,17 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public static long breadth = 0;
     public static long depth = 0;
     private Board board;
+    private CluedoConfig config;
 
     public static final int PLAYING = 0;
 
-    public CluedoMCTS(int[] state) {
+    public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief) {
         this.state = state;
+        this.belief = belief;
+        this.config = config;
     }
 
     public CluedoMCTS() {
-        initGame();
-    }
-
-    private void initGame() {
     }
 
     @Override
@@ -132,7 +131,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public Game copy() {
-        return null;
+        CluedoBelief bel = null;
+        if(belief != null)
+            bel = (CluedoBelief)belief.copy();
+        CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel);
+        return ret;
     }
 
     @Override
@@ -152,7 +155,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public void gameTick() {
-
+        int[] action = sampleNextAction();
+        performAction(action, true);
     }
 
     public void setBoard(Board board) {

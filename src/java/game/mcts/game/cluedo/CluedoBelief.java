@@ -9,9 +9,15 @@ public class CluedoBelief implements Belief, GameStateConstants {
     private double[][] probabilities = new double[21][5];
     private int myIndex;
 
+    CluedoBelief(){}
+
+    CluedoBelief(CluedoBelief old){
+
+    }
+
     @Override
     public Belief copy() {
-        return null;
+        return new CluedoBelief(this);
     }
 
     @Override
