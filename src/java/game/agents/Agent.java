@@ -1,4 +1,5 @@
 package agents;
+import main.Board;
 import main.Card;
 import simulation.Playerlog;
 
@@ -30,6 +31,16 @@ public class Agent {
         this.playerType = type;
     }
 
+    public Agent(Agent x) {
+        this.playerIndex = x.playerIndex;
+        this.hasSuggested = x.hasSuggested;
+        this.hand = x.hand.clone();
+        this.playerType = x.playerType;
+        this.notebook = x.notebook;
+        this.justMoved = x.justMoved;
+        this.accused = x.accused;
+    }
+
     public String[] getHand() {
         String[] stringHand = new String[4];
         int i = 0;
@@ -43,4 +54,6 @@ public class Agent {
     public void setLog(Playerlog playerlog) {
         this.playerLog = playerlog;
     }
+
+    public void setBoard(Board board){};
 }

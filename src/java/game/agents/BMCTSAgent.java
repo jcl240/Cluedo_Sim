@@ -7,6 +7,7 @@ import mcts.MCTSConfig;
 import mcts.game.GameFactory;
 import mcts.game.catan.Catan;
 import mcts.game.catan.CatanConfig;
+import mcts.game.cluedo.CluedoBelief;
 import mcts.game.cluedo.CluedoMCTS;
 import mcts.game.cluedo.CluedoConfig;
 import mcts.listeners.SearchListener;
@@ -18,11 +19,10 @@ public class BMCTSAgent extends Agent implements Player {
     CluedoMCTS gameSim;
     GameFactory gameFactory;
 
-    public BMCTSAgent(Card[] hand, Card[] faceUp, int index, String type, Board board) {
-        super(hand, faceUp, index, type);
-        gameFactory = new GameFactory(new CluedoConfig(), null);
+    public BMCTSAgent(Card[] hand, Card[] faceUp, int index) {
+        super(hand, faceUp, index, "MCTS");
+        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief());
         gameSim = (CluedoMCTS) gameFactory.getNewGame();
-        gameSim.setBoard(board);
     }
 
     @Override
@@ -33,7 +33,6 @@ public class BMCTSAgent extends Agent implements Player {
         listener.waitForFinish();
         int idx = mcts.getNextActionIndex();
         Options options = gameSim.listPossiblities(false);
-
 
         return null;
     }
@@ -66,5 +65,10 @@ public class BMCTSAgent extends Agent implements Player {
     @Override
     public void cardShown(Action action, Player cardPlayer) {
 
+    }
+
+    @Override
+    public void setBoard(Board board){
+        gameSim.setBoard(board);
     }
 }

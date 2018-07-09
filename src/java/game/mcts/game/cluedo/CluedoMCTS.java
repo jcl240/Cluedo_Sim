@@ -3,10 +3,12 @@ package mcts.game.cluedo;
 import agents.Action;
 import main.Board;
 import mcts.game.Game;
+import mcts.tree.node.StandardNode;
 import mcts.tree.node.TreeNode;
 import mcts.utils.Options;
 
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class CluedoMCTS implements Game, GameStateConstants {
@@ -33,6 +35,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public CluedoMCTS() {
+    }
+
+    public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
+        this.config = gameConfig;
+        this.belief = belief;
+        state = new int[]{0,1,0,0,0,0,2,0};
     }
 
     @Override
@@ -140,17 +148,21 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public int[] sampleNextAction() {
-        return new int[0];
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        Options options = listPossiblities(true);
+        return options.getOptions().get(rnd.nextInt(options.size()));
     }
 
     @Override
     public int sampleNextActionIndex() {
-        return 0;
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        Options options = listPossiblities(true);
+        return rnd.nextInt(options.size());
     }
 
     @Override
     public TreeNode generateNode() {
-        return null;
+        return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
     }
 
     @Override

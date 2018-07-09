@@ -32,7 +32,17 @@ public class Board {
     public Board(Board board) {
         initializeTiles();
         initializeRooms();
-        this.playerPieceTuples = (LinkedList)board.playerPieceTuples.clone();
+        this.playerPieceTuples = getTuples();
+    }
+
+    private LinkedList<Tuple<Player,Gamepiece>> getTuples() {
+        LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
+        for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
+            Player player = (Player)(new Agent((Agent)tuple.x));
+            Gamepiece piece = new Gamepiece(tuple.y);
+            newList.add(new Tuple<>(player,piece));
+        }
+        return newList;
     }
 
     private void initializePieces(Player[] players) {

@@ -8,6 +8,10 @@ public class Gamepiece {
         currentLocation = location;
     }
 
+    public Gamepiece(Gamepiece y) {
+        this.currentLocation = y.currentLocation.clone();
+    }
+
     public int[] getCurrentLocation(){
         return currentLocation;
     }

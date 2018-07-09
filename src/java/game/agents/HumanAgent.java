@@ -1,6 +1,7 @@
 package agents;
 
 import GUI.BoardGUI;
+import main.Board;
 import main.Card;
 
 import javax.swing.*;
@@ -136,6 +137,11 @@ public class HumanAgent extends  Agent implements Player{
 
     @Override
     public void cardShown(Action action, Player cardPlayer) {
+
+    }
+
+    @Override
+    public void setBoard(Board board) {
 
     }
 }

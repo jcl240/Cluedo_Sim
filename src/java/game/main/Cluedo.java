@@ -36,12 +36,19 @@ public class Cluedo {
         initializePlayers(agents);
         gamelog = new Gamelog(getAgentArray(),envelope,faceUpCards);
         board = new Board(players, boardGUI);
+        setBoard();
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
         if(hasHumanPlayer){
             ((HumanAgent)players[0]).setBoardGUI(boardGUI);
         }
         play();
+    }
+
+    private void setBoard() {
+        for(Player player: players){
+            ((Agent)player).setBoard(board);
+        }
     }
 
     private Agent[] getAgentArray() {
@@ -291,7 +298,7 @@ public class Cluedo {
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else if(useGUI){
-            players = new Player[]{new HeuristicAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+            players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else {

@@ -2,16 +2,18 @@ package mcts.game.cluedo;
 
 import mcts.game.Belief;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 
 public class CluedoBelief implements Belief, GameStateConstants {
     private double[][] probabilities = new double[21][5];
     private int myIndex;
 
-    CluedoBelief(){}
+    public CluedoBelief(){}
 
-    CluedoBelief(CluedoBelief old){
+    public CluedoBelief(CluedoBelief old){
 
     }
 
@@ -22,7 +24,27 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     @Override
     public int[] getRepresentation() {
-        return new int[0];
+        return convertProbs(probabilities);
+    }
+
+    public int[] convertProbs(double[][] arr) {
+        List<Integer> list = new ArrayList<Integer>();
+        for (int i = 0; i < arr.length; i++) {
+            // tiny change 1: proper dimensions
+            for (int j = 0; j < arr[i].length; j++) {
+                // tiny change 2: actually store the values
+                list.add((int)(arr[i][j]*100));
+            }
+        }
+
+        // now you need to find a mode in the list.
+
+        // tiny change 3, if you definitely need an array
+        int[] vector = new int[list.size()];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = list.get(i);
+        }
+        return vector;
     }
 
     public void normalizeProbabilities(int index){

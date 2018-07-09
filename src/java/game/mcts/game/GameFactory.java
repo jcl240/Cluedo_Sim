@@ -5,6 +5,7 @@ import mcts.game.catan.CatanConfig;
 import mcts.game.catan.CatanWithBelief;
 import mcts.game.catan.belief.CatanDeterminizationSampler;
 import mcts.game.catan.belief.CatanFactoredBelief;
+import mcts.game.cluedo.CluedoBelief;
 import mcts.game.cluedo.CluedoMCTS;
 import mcts.game.cluedo.CluedoConfig;
 import mcts.game.tictactoe.TicTacToe;
@@ -41,7 +42,7 @@ public class GameFactory {
 			}
 		}
 		else if(gameConfig.id == CLUEDO){
-			return new CluedoMCTS();
+			return new CluedoMCTS((CluedoConfig)gameConfig,(CluedoBelief)belief);
 		}
 		else
 			return new TicTacToe();
@@ -55,7 +56,7 @@ public class GameFactory {
 				return new Catan(state, ((CatanConfig) gameConfig));
 		}
 		else if(gameConfig.id == CLUEDO){
-			return new CluedoMCTS(state);
+			return new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief));
 		}
 		else
 			return new TicTacToe(state);
