@@ -4,6 +4,7 @@ import GUI.BoardGUI;
 import agents.Action;
 import agents.Agent;
 import agents.Player;
+import agents.RandomAgent;
 import mcts.game.cluedo.GameStateConstants;
 import search.AStar;
 
@@ -19,29 +20,34 @@ public class Board implements GameStateConstants {
     private LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples = new LinkedList<>();
     private int[][] startingLocations = new int[][]{{0,5},{9,24},{23,7},{16,0}};
     private BoardGUI boardGUI;
+    public Card[] faceUp;
 
     /**
      * Constructor for main.Board
      */
-    public Board(Player[] players, BoardGUI boardGUI) {
+    public Board(Player[] players, BoardGUI boardGUI, Card[] faceUp) {
         initializeTiles();
         initializeRooms();
         initializePieces(players);
         this.boardGUI = boardGUI;
+        this.faceUp = faceUp;
     }
+    public Board(){}
 
     public Board(Board board) {
         initializeTiles();
         initializeRooms();
-        this.playerPieceTuples = getTuples();
+        this.playerPieceTuples = board.getTuples();
+        this.faceUp = board.faceUp;
     }
 
     private LinkedList<Tuple<Player,Gamepiece>> getTuples() {
         LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
         for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
-            Player player = (Player)(new Agent((Agent)tuple.x));
+            Agent agent = (Agent)tuple.x;
+            Player player = new RandomAgent(agent.getHandArray().clone(),faceUp.clone(),agent.playerIndex-1);
             Gamepiece piece = new Gamepiece(tuple.y);
-            newList.add(new Tuple<>(player,piece));
+            newList.add(new Tuple<Player,Gamepiece>(player,piece));
         }
         return newList;
     }

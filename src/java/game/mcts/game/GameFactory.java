@@ -1,5 +1,6 @@
 package mcts.game;
 
+import main.Board;
 import mcts.game.catan.Catan;
 import mcts.game.catan.CatanConfig;
 import mcts.game.catan.CatanWithBelief;
@@ -23,10 +24,15 @@ public class GameFactory {
 	
 	private GameConfig gameConfig;
 	private Belief belief;
+	private Board board;
 	
 	public GameFactory(GameConfig gameConfig, Belief belief) {
 		this.gameConfig = gameConfig;
 		this.belief = belief;
+	}
+
+	public void setBoard(Board board){
+		this.board = board;
 	}
 	
 	public Game getNewGame(){
@@ -42,7 +48,9 @@ public class GameFactory {
 			}
 		}
 		else if(gameConfig.id == CLUEDO){
-			return new CluedoMCTS((CluedoConfig)gameConfig,(CluedoBelief)belief);
+			CluedoMCTS game = new CluedoMCTS((CluedoConfig)gameConfig,(CluedoBelief)belief);
+			game.setBoard(board);
+			return game;
 		}
 		else
 			return new TicTacToe();
@@ -56,11 +64,14 @@ public class GameFactory {
 				return new Catan(state, ((CatanConfig) gameConfig));
 		}
 		else if(gameConfig.id == CLUEDO){
-			return new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief));
+			CluedoMCTS game = new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief));
+			game.setBoard(board);
+			return game;
 		}
 		else
 			return new TicTacToe(state);
-	} 
+	}
+
 
 	public GameConfig getConfig(){
 		return gameConfig;
@@ -88,6 +99,7 @@ public class GameFactory {
 		if(belief != null)
 			 clone = belief.copy();
 		GameFactory factory = new GameFactory(gameConfig.copy(), clone);
+		factory.setBoard(board);
 		return factory;
 	}
 	

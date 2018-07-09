@@ -56,4 +56,8 @@ public class Agent {
     }
 
     public void setBoard(Board board){};
+
+    public Card[] getHandArray() {
+        return hand;
+    }
 }

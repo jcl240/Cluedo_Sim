@@ -35,7 +35,7 @@ public class Cluedo {
         initializeCards();
         initializePlayers(agents);
         gamelog = new Gamelog(getAgentArray(),envelope,faceUpCards);
-        board = new Board(players, boardGUI);
+        board = new Board(players, boardGUI, faceUpCards);
         setBoard();
         if(useGUI)
             boardGUI = new BoardGUI(board.getTiles(), this, players[0], hasHumanPlayer);
@@ -47,7 +47,8 @@ public class Cluedo {
 
     private void setBoard() {
         for(Player player: players){
-            ((Agent)player).setBoard(board);
+            if(((Agent)player).playerType.equals("MCTS"))
+                ((BMCTSAgent)player).setBoard(board);
         }
     }
 

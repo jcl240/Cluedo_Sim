@@ -16,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JScrollBar;
 
+import main.Board;
 import mcts.MCTS;
 import mcts.MCTSConfig;
 import mcts.game.GameFactory;

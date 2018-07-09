@@ -22,7 +22,6 @@ public class BMCTSAgent extends Agent implements Player {
     public BMCTSAgent(Card[] hand, Card[] faceUp, int index) {
         super(hand, faceUp, index, "MCTS");
         gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief());
-        gameSim = (CluedoMCTS) gameFactory.getNewGame();
     }
 
     @Override
@@ -39,7 +38,7 @@ public class BMCTSAgent extends Agent implements Player {
     }
 
     private void setState() {
-        gameSim.setState(new int[]{0,1,0,0,0,0,2,0});
+        gameSim.setState(new int[]{0,0,0,0,0,0,2,0});
     }
 
     @Override
@@ -74,6 +73,7 @@ public class BMCTSAgent extends Agent implements Player {
 
     @Override
     public void setBoard(Board board){
-        gameSim.setBoard(board);
+        gameFactory.setBoard(board);
+        gameSim = (CluedoMCTS) gameFactory.getNewGame();
     }
 }

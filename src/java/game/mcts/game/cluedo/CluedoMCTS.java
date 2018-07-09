@@ -34,9 +34,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
         this.config = config;
     }
 
-    public CluedoMCTS() {
-    }
-
     public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
         this.config = gameConfig;
         this.belief = belief;
@@ -72,7 +69,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public void performAction(int[] a, boolean sample) {
         switch(a[0]){
             case MOVE:
-                board.movePlayer(a,state[1]);
+                board.movePlayer(a,state[1]+1);
                 break;
             case SECRET_PASSAGE:
                 break;
