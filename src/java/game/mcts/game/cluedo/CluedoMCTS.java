@@ -40,7 +40,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
         this.config = gameConfig;
         this.belief = belief;
-        state = new int[]{0,1,0,0,0,0,2,0};
+    }
+
+    public void setState(int[] newState){
+        state = newState;
     }
 
     @Override
@@ -67,17 +70,19 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public void performAction(int[] a, boolean sample) {
-
         switch(a[0]){
             case MOVE:
+                board.movePlayer(a,state[1]);
                 break;
             case SECRET_PASSAGE:
                 break;
             case SUGGEST:
+                state[1] = (state[1]+1)%4;
                 break;
             case FALSIFY:
                 break;
             case ACCUSE:
+                state[1] = (state[1]+1)%4;
                 break;
         }
 
@@ -143,6 +148,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(belief != null)
             bel = (CluedoBelief)belief.copy();
         CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel);
+        ret.setBoard(board);
         return ret;
     }
 

@@ -13,6 +13,7 @@ public class Room {
         this.roomName = roomName;
     }
 
+
     public void setSecretPassageway(Room secretPassage) {
         this.secretPassage = secretPassage;
         if(secretPassage.secretPassage != this) secretPassage.setSecretPassageway(this);

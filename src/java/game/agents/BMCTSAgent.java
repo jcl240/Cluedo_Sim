@@ -27,6 +27,7 @@ public class BMCTSAgent extends Agent implements Player {
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
+        setState();
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
         SearchListener listener = mcts.search();
@@ -35,6 +36,10 @@ public class BMCTSAgent extends Agent implements Player {
         Options options = gameSim.listPossiblities(false);
 
         return null;
+    }
+
+    private void setState() {
+        gameSim.setState(new int[]{0,1,0,0,0,0,2,0});
     }
 
     @Override

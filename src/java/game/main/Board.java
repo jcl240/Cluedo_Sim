@@ -4,13 +4,14 @@ import GUI.BoardGUI;
 import agents.Action;
 import agents.Agent;
 import agents.Player;
+import mcts.game.cluedo.GameStateConstants;
 import search.AStar;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class Board {
+public class Board implements GameStateConstants {
 
 
     private final boolean[][] tiles = new boolean[24][25];
@@ -125,6 +126,77 @@ public class Board {
         }
         return successful;
     }
+
+    public Boolean movePlayer(int[] action, int playerIndex) {
+        Player currentPlayer = getPlayer(playerIndex);
+        int[] start = getPlayerLocation(currentPlayer);
+        int[] end = getRoomByAction(action);
+        AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
+        Boolean successful = astar.search();
+        int[][] path = astar.getFinalPath();
+        if(successful) {
+            if (path.length > action[2])
+                movePiece(currentPlayer, path[action[2]]);
+            else
+                movePiece(currentPlayer, path[path.length-1]);
+        }
+        return successful;
+    }
+
+    private Player getPlayer(int playerIndex) {
+        for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
+            if(((Agent)tuple.x).playerIndex == playerIndex){
+                return tuple.x;
+            }
+        }
+        return null;
+    }
+
+    private int[] getRoomByAction(int[] action) {
+        int[] location;
+        location = getRoomEntrance(action[1]);
+        return location;
+    }
+
+    private int[] getRoomEntrance(int i) {
+        String roomName = "";
+        switch(i){
+            case STUDY:
+                roomName = "study";
+                break;
+            case LOUNGE:
+                roomName = "lounge";
+                break;
+            case KITCHEN:
+                roomName = "kitchen";
+                break;
+            case BILLIARD_ROOM:
+                roomName = "billiardroom";
+                break;
+            case BALL_ROOM:
+                roomName = "ballroom";
+                break;
+            case CONSERVATORY:
+                roomName = "conservatory";
+                break;
+            case LIBRARY:
+                roomName = "library";
+                break;
+            case HALL:
+                roomName = "hall";
+                break;
+            case DINING_ROOM:
+                roomName = "diningroom";
+                break;
+        }
+        for(Room room: rooms){
+            if(room.roomName.equals(roomName)){
+                return room.entranceTiles[Cluedo.rand.nextInt(room.entranceTiles.length)];
+            }
+        }
+        return new int[]{};
+    }
+
 
     public void movePiece(Player currentPlayer, int[] newLocation) {
         for(Tuple<Player, Gamepiece> tuple: playerPieceTuples) {
