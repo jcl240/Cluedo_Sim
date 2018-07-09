@@ -67,11 +67,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public void performAction(int[] a, boolean sample) {
+        int playerIndex = state[1]+1;
         switch(a[0]){
             case MOVE:
-                board.movePlayer(a,state[1]+1);
+                board.movePlayer(a,playerIndex);
+                state[3] = 1;
+                if(board.inRoom(playerIndex))
+                    state[5] = board.getRoom(playerIndex);
                 break;
             case SECRET_PASSAGE:
+                board.useSecretPassage(a,playerIndex);
                 break;
             case SUGGEST:
                 state[1] = (state[1]+1)%4;
@@ -88,6 +93,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
+        refreshState();
         if(state[HAS_ACCUSED] != 0)
             return options;
         if(state[JUST_MOVED] == 0) {
@@ -99,6 +105,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
             listSuggestionPossibilities(options, state[CURRENT_ROOM]);
         return options;
+    }
+
+    private void refreshState() {
     }
 
     private void listMovePossibilities(Options options) {

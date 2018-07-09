@@ -292,6 +292,56 @@ public class Board implements GameStateConstants {
     public void useSecretPassage(Action actionTaken, Player currentPlayer, boolean useGUI) {
         movePiece(currentPlayer, actionTaken.towards);
     }
+
+    public void useSecretPassage(int[] a, int i) {
+        movePiece(getPlayer(i), getSecretPassageByAction(a));
+    }
+
+    private int[] getSecretPassageByAction(int[] a) {
+        int[] room = getRoomByAction(a);
+        Room nextRoom = getRoomByLocation(room).getSecretPassage();
+        return nextRoom.entranceTiles[Cluedo.rand.nextInt(nextRoom.entranceTiles.length)];
+    }
+
+    public boolean inRoom(int playerIndex) {
+        Player player = getPlayer(playerIndex);
+        return inRoom(player);
+    }
+
+    public int getRoom(int playerIndex) {
+        Room room = getRoom(getPlayer(playerIndex));
+        int roomIdx = 0;
+        switch(room.roomName){
+            case "study":
+                roomIdx = STUDY;
+                break;
+            case "lounge":
+                roomIdx = LOUNGE;
+                break;
+            case "kitchen":
+                roomIdx = KITCHEN;
+                break;
+            case "billiardroom":
+                roomIdx = BILLIARD_ROOM;
+                break;
+            case "ballroom":
+                roomIdx = BALL_ROOM;
+                break;
+            case "conservatory":
+                roomIdx = CONSERVATORY;
+                break;
+            case "library":
+                roomIdx = LIBRARY;
+                break;
+            case "hall":
+                roomIdx = HALL;
+                break;
+            case "diningroom":
+                roomIdx = DINING_ROOM;
+                break;
+        }
+        return roomIdx;
+    }
 }
 
 
