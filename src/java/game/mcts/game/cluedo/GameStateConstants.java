@@ -26,6 +26,7 @@ public interface GameStateConstants extends HexTypeConstants {
     int SUGGEST = 3;
     int FALSIFY = 4;
     int ACCUSE = 5;
+    int NO_FALSIFY = 6;
 
     int NO_ROOM = 0;
     int HALL = 1;

@@ -45,7 +45,7 @@ public class Board implements GameStateConstants {
         LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
         for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
             Agent agent = (Agent)tuple.x;
-            Player player = new RandomAgent(agent.getHandArray().clone(),faceUp.clone(),agent.playerIndex-1);
+            Player player = new RandomAgent(agent.getHandArray().clone(),faceUp.clone(),agent.playerIndex-1,agent);
             Gamepiece piece = new Gamepiece(tuple.y);
             newList.add(new Tuple<Player,Gamepiece>(player,piece));
         }

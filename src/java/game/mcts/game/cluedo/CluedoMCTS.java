@@ -16,7 +16,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
     /* 0: Playing or winner's index, 1: current player's index
        2: current player accused, 3: current player justMoved
        4: current player hasSuggested, 5: current player's room
-       6: current roll, 7: current player is falsifying card
+       6: current roll, 7: current player is falsifying card,
+       8: current suggested room, 9: current suggested suspect,
+       10: current suggested weapon, 11: suggester index
     */
     private int[] state;
 
@@ -79,11 +81,17 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 board.useSecretPassage(a,playerIndex);
                 break;
             case SUGGEST:
+
                 state[1] = (state[1]+1)%4;
                 break;
             case FALSIFY:
+
+                break;
+            case NO_FALSIFY:
+
                 break;
             case ACCUSE:
+
                 state[1] = (state[1]+1)%4;
                 break;
         }
@@ -94,7 +102,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
         refreshState();
-        if(state[HAS_ACCUSED] != 0)
+        if(state[FALSIFY] == 1){
+            listFalsifyPossibilities(options);
+            return options;
+        }
+        if(state[HAS_ACCUSED] == 1)
             return options;
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
@@ -102,9 +114,24 @@ public class CluedoMCTS implements Game, GameStateConstants {
             if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
                 listSecretPassagePossibility(options);
         }
-        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
+        if(state[CURRENT_ROOM] == 1 && state[HAS_SUGGESTED] == 0)
             listSuggestionPossibilities(options, state[CURRENT_ROOM]);
         return options;
+    }
+
+    private void listFalsifyPossibilities(Options options) {
+        //1 room, 2 suspect, 3 weapon
+        int[] cardTypes = new int[]{ROOM,SUSPECT,WEAPON};
+        int i = 0;
+        for(int idx = 8; idx < 11; idx++){
+            int cardType = cardTypes[i];
+            double prob = belief.getCardProb(cardType, state[idx], state[11]);
+            double sample = Math.random();
+            if(prob <= sample){
+             options.put(new int[]{FALSIFY,state[idx],cardType}, 1.0);
+            }
+            i++;
+        }
     }
 
     private void refreshState() {

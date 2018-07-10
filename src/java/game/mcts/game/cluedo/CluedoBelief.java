@@ -146,4 +146,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
         else
             return null;
     }
+
+    public double getCardProb(int cardType, int i, int playerIdx) {
+        int offset = getOffset(cardType);
+        return probabilities[i+offset][playerIdx];
+    }
 }

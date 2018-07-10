@@ -18,6 +18,13 @@ public class RandomAgent extends  Agent implements Player {
         super(hand, faceUp, index,"Random");
     }
 
+    public RandomAgent(Card[] hand, Card[] faceUp, int index, Agent agent) {
+        super(hand, faceUp, index,"Random");
+        this.justMoved = agent.justMoved;
+        this.hasSuggested = agent.hasSuggested;
+        this.accused = agent.accused;
+    }
+
     @Override
     public void endTurn(){
         this.justMoved = false;
