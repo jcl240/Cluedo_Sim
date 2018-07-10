@@ -54,18 +54,29 @@ public interface GameStateConstants extends HexTypeConstants {
     int WRENCH = 6;
 
 
-    /* 0: Playing or winner's index, 1: current player's index
-       2: current player accused, 3: current player justMoved
-       4: current player hasSuggested, 5: current player's room
-       6: current roll
-    */
+    /* 0: Playing or winner's index, 1: current player's index,
+    2: current player justMoved, 3: current player's room,
+    4: current roll, 5: current player is falsifying card,
+   6: current suggested room, 7: current suggested suspect,
+   8: current suggested weapon, 9: suggester index,
+   10: player one accused, 11: player two accused,
+   12: player three accused, 13: player four accused
+*/
     int GAME_STATE = 0;
     int CURRENT_PLAYER = 1;
-    int HAS_ACCUSED = 2;
-    int JUST_MOVED = 3;
-    int HAS_SUGGESTED = 4;
-    int CURRENT_ROOM = 5;
-    int CURRENT_ROLL = 6;
+    int JUST_MOVED = 2;
+    int CURRENT_ROOM = 3;
+    int CURRENT_ROLL = 4;
+    int FALSIFYING = 5;
+    int HAS_SUGGESTED = 6;
+    int SUGGESTED_ROOM = 7;
+    int SUGGESTED_SUSPECT = 8;
+    int SUGGESTED_WEAPON = 9;
+    int SUGGESTER_IDX = 10;
+    int PLAYER_ONE_ACCUSED = 11;
+    int PLAYER_TWO_ACCUSED = 12;
+    int PLAYER_THREE_ACCUSED = 13;
+    int PLAYER_FOUR_ACCUSED = 14;
 
     public final static Color[] playerColor = 
     {

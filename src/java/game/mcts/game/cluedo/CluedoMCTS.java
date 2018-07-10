@@ -13,12 +13,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class CluedoMCTS implements Game, GameStateConstants {
 
-    /* 0: Playing or winner's index, 1: current player's index
-       2: current player accused, 3: current player justMoved
-       4: current player hasSuggested, 5: current player's room
-       6: current roll, 7: current player is falsifying card,
-       8: current suggested room, 9: current suggested suspect,
-       10: current suggested weapon, 11: suggester index
+    /* 0: Playing or winner's index, 1: current player's index,
+        2: current player justMoved, 3: current player's room,
+        4: current roll, 5: current player is falsifying card,
+       6: current suggested room, 7: current suggested suspect,
+       8: current suggested weapon, 9: suggester index,
+       10: player one accused, 11: player two accused,
+       12: player three accused, 13: player four accused
     */
     private int[] state;
 
@@ -69,33 +70,73 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public void performAction(int[] a, boolean sample) {
-        int playerIndex = state[1]+1;
+        int playerIndex = state[CURRENT_PLAYER]+1;
         switch(a[0]){
             case MOVE:
                 board.movePlayer(a,playerIndex);
-                state[3] = 1;
+                state[JUST_MOVED] = 1;
                 if(board.inRoom(playerIndex))
-                    state[5] = board.getRoom(playerIndex);
+                    state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SECRET_PASSAGE:
                 board.useSecretPassage(a,playerIndex);
+                state[JUST_MOVED] = 1;
+                state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SUGGEST:
-
-                state[1] = (state[1]+1)%4;
+                setFalsifyState(a);
+                state[HAS_SUGGESTED] = 1;
+                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
                 break;
             case FALSIFY:
-
+                doFalsification(a);
+                state[CURRENT_PLAYER] = (state[SUGGESTER_IDX]+1)%4;
+                resetStateFromFalsification();
                 break;
             case NO_FALSIFY:
-
+                noCardToShow(a);
+                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
+                if(state[CURRENT_PLAYER]==state[SUGGESTER_IDX]) {
+                    state[CURRENT_PLAYER] = (state[SUGGESTER_IDX]+1)%4;
+                    resetStateFromFalsification();
+                }
                 break;
             case ACCUSE:
-
-                state[1] = (state[1]+1)%4;
+                setAccused();
+                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
                 break;
         }
 
+    }
+
+    private void resetStateFromFalsification() {
+
+    }
+
+    private void setAccused() {
+        state[state[CURRENT_PLAYER] + 12] = 1;
+    }
+
+    private int getAccused(){
+        return state[state[CURRENT_PLAYER]+12];
+    }
+
+    private void noCardToShow(int[] a) {
+    }
+
+    private void doFalsification(int[] a) {
+        
+    }
+
+    private void setFalsifyState(int[] a) {
+        /* 5: current player is falsifying card,
+   6: current suggested room, 7: current suggested suspect,
+   8: current suggested weapon, 9: suggester index,*/
+        state[FALSIFYING] = 1;
+        state[SUGGESTED_ROOM] = a[1];
+        state[SUGGESTED_SUSPECT] = a[2];
+        state[SUGGESTED_WEAPON] = a[3];
+        state[SUGGESTER_IDX] = state[CURRENT_PLAYER];
     }
 
     @Override
@@ -106,7 +147,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             listFalsifyPossibilities(options);
             return options;
         }
-        if(state[HAS_ACCUSED] == 1)
+        if(getAccused() == 1)
             return options;
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
@@ -131,6 +172,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
              options.put(new int[]{FALSIFY,state[idx],cardType}, 1.0);
             }
             i++;
+        }
+        if(options.isEmpty()){
+            options.put(new int[]{NO_FALSIFY},1.0);
         }
     }
 
