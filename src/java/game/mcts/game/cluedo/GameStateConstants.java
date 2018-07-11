@@ -79,6 +79,14 @@ public interface GameStateConstants extends HexTypeConstants {
     int PLAYER_TWO_ACCUSED = 12;
     int PLAYER_THREE_ACCUSED = 13;
     int PLAYER_FOUR_ACCUSED = 14;
+    int PLAYER_ONE_X_COORD = 15;
+    int PLAYER_ONE_Y_COORD = 16;
+    int PLAYER_TWO_X_COORD = 17;
+    int PLAYER_TWO_Y_COORD = 18;
+    int PLAYER_THREE_X_COORD = 19;
+    int PLAYER_THREE_Y_COORD = 20;
+    int PLAYER_FOUR_X_COORD = 21;
+    int PLAYER_FOUR_Y_COORD = 22;
     int ACCUSED_OFFSET = 10;
 
     public final static Color[] playerColor = 
