@@ -10,12 +10,13 @@ import mcts.game.catan.CatanConfig;
 import mcts.game.cluedo.CluedoBelief;
 import mcts.game.cluedo.CluedoMCTS;
 import mcts.game.cluedo.CluedoConfig;
+import mcts.game.cluedo.GameStateConstants;
 import mcts.listeners.SearchListener;
 import mcts.utils.Options;
 
 import java.util.LinkedList;
 
-public class BMCTSAgent extends Agent implements Player {
+public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     CluedoMCTS gameSim;
     GameFactory gameFactory;
 
@@ -26,7 +27,8 @@ public class BMCTSAgent extends Agent implements Player {
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
-        setState();
+        int roll = getRoll(possibleActions);
+        setState(roll);
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
         SearchListener listener = mcts.search();
@@ -37,8 +39,16 @@ public class BMCTSAgent extends Agent implements Player {
         return null;
     }
 
-    private void setState() {
-        gameSim.setState(new int[]{1,0,0,0,0,0,2,0,0,0,0,0,0,0,0});
+    private int getRoll(LinkedList<Action> possibleActions) {
+        for(Action action: possibleActions){
+            if(action.actionType.equals("move"))
+                return action.roll;
+        }
+        return -1;
+    }
+
+    private void setState(int roll) {
+        gameSim.setState(new int[]{1,0,0,0,roll,0,2,0,0,0,0,0,0,0,0});
     }
 
     @Override
