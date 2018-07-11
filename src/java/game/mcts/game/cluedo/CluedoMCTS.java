@@ -3,6 +3,7 @@ package mcts.game.cluedo;
 import agents.Action;
 import main.Board;
 import mcts.game.Game;
+import mcts.game.catan.Actions;
 import mcts.tree.node.StandardNode;
 import mcts.tree.node.TreeNode;
 import mcts.utils.Options;
@@ -103,9 +104,14 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case ACCUSE:
                 setAccused();
+                checkAccusation(a);
                 state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
                 break;
         }
+
+    }
+
+    private void checkAccusation(int[] a) {
 
     }
 
@@ -114,11 +120,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void setAccused() {
-        state[state[CURRENT_PLAYER] + 12] = 1;
+        state[state[CURRENT_PLAYER] + ACCUSED_OFFSET] = 1;
     }
 
     private int getAccused(){
-        return state[state[CURRENT_PLAYER]+12];
+        return state[state[CURRENT_PLAYER]+ACCUSED_OFFSET];
     }
 
     private void noCardToShow(int[] a) {
@@ -149,6 +155,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(getAccused() == 1)
             return options;
+        if(state[CURRENT_ROLL] == -1) {
+            listDiceResultPossibilities(options);
+            return options;
+        }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
             listAccusePossibilities(options);
@@ -160,6 +170,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
         return options;
     }
 
+    private void listDiceResultPossibilities(Options options){
+        for(int i = 1; i <= 6; i++){
+            options.put(Actions.newAction(CHOOSE_DICE, i),1.0);
+        }
+    }
+
     private void listFalsifyPossibilities(Options options) {
         //1 room, 2 suspect, 3 weapon
         int[] cardTypes = new int[]{ROOM,SUSPECT,WEAPON};
@@ -169,12 +185,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
             double prob = belief.getCardProb(cardType, state[idx], state[11]);
             double sample = Math.random();
             if(prob <= sample){
-             options.put(new int[]{FALSIFY,state[idx],cardType}, 1.0);
+             options.put(Actions.newAction(FALSIFY,state[idx],cardType), 1.0);
             }
             i++;
         }
         if(options.isEmpty()){
-            options.put(new int[]{NO_FALSIFY},1.0);
+            options.put(Actions.newAction(NO_FALSIFY),1.0);
         }
     }
 
@@ -184,7 +200,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private void listMovePossibilities(Options options) {
         for(int i = 1; i < 10; i++) {
             if(state[CURRENT_ROOM] != i) {
-                options.put(new int[]{MOVE, i, state[CURRENT_ROLL]}, 1.0);
+                options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
             }
         }
     }
@@ -193,7 +209,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         for(int room = 1; room < 10; room++){
             for(int suspect = 1; suspect < 7; suspect++){
                 for(int weapon = 1; weapon < 7; weapon++){
-                    options.put(new int[]{ACCUSE, room, suspect, weapon}, 1.0);
+                    options.put(Actions.newAction(ACCUSE, room, suspect, weapon), 1.0);
                 }
             }
         }
@@ -208,13 +224,13 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void listSecretPassagePossibility(Options options) {
-        options.put(new int[]{SECRET_PASSAGE, state[CURRENT_ROOM]}, 1.0);
+        options.put(Actions.newAction(SECRET_PASSAGE, state[CURRENT_ROOM]), 1.0);
     }
 
     private void listSuggestionPossibilities(Options options, int i) {
         for(int suspect = 1; suspect < 7; suspect++){
             for(int weapon = 1; weapon < 7; weapon++){
-                options.put(new int[]{SUGGEST, state[CURRENT_ROOM], suspect, weapon}, 1.0);
+                options.put(Actions.newAction(SUGGEST, state[CURRENT_ROOM], suspect, weapon), 1.0);
             }
         }
     }

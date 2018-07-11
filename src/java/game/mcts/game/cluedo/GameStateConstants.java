@@ -21,6 +21,7 @@ public interface GameStateConstants extends HexTypeConstants {
     int SUSPECT = 2;
     int WEAPON = 3;
 
+    int CHOOSE_DICE = 0;
     int MOVE = 1;
     int SECRET_PASSAGE = 2;
     int SUGGEST = 3;
@@ -77,6 +78,7 @@ public interface GameStateConstants extends HexTypeConstants {
     int PLAYER_TWO_ACCUSED = 12;
     int PLAYER_THREE_ACCUSED = 13;
     int PLAYER_FOUR_ACCUSED = 14;
+    int ACCUSED_OFFSET = 10;
 
     public final static Color[] playerColor = 
     {
