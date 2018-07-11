@@ -13,6 +13,10 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     public CluedoBelief(){}
 
+    public CluedoBelief(double[][] arr){
+        this.probabilities = arr.clone();
+    }
+
     public CluedoBelief(CluedoBelief old){
 
     }

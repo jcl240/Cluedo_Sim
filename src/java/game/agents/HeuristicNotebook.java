@@ -177,4 +177,7 @@ public class HeuristicNotebook extends Notebook{
         return nonZeroCards;
     }
 
+    public double[][] getProbabilities() {
+        return probabilities;
+    }
 }

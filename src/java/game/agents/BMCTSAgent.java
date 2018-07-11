@@ -33,11 +33,13 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         for(Card card: faceUp) {
             notebook.checkOffCard(card, -1);
         }
-        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief());
     }
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
+        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
+        gameFactory.setBoard(board);
+        gameSim = (CluedoMCTS) gameFactory.getNewGame();
         int roll = getRoll(possibleActions);
         setState(roll);
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
@@ -177,8 +179,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     @Override
     public void setBoard(Board board){
         this.board = board;
-        gameFactory.setBoard(board);
-        gameSim = (CluedoMCTS) gameFactory.getNewGame();
     }
 
     private void logSuggestion(Card[] suggestion){
