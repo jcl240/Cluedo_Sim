@@ -16,6 +16,7 @@ import java.awt.*;
 public interface GameStateConstants extends HexTypeConstants {
 
     int NPLAYERS = 4;
+    int PLAYING = 1;
 
     int ROOM = 1;
     int SUSPECT = 2;

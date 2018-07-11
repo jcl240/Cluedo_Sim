@@ -86,9 +86,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
     private int getOffset(int cardType) {
         switch (cardType){
             case WEAPON:
-                return 15;
+                return 14;
             case SUSPECT:
-                return 9;
+                return 8;
             case ROOM:
                 return 0;
         }

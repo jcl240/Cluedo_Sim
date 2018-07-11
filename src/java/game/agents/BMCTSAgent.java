@@ -38,7 +38,7 @@ public class BMCTSAgent extends Agent implements Player {
     }
 
     private void setState() {
-        gameSim.setState(new int[]{0,0,0,0,0,0,2,0,0,0,0,0,0,0,0});
+        gameSim.setState(new int[]{1,0,0,0,0,0,2,0,0,0,0,0,0,0,0});
     }
 
     @Override

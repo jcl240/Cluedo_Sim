@@ -30,8 +30,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private Board board;
     private CluedoConfig config;
 
-    public static final int PLAYING = 0;
-
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief) {
         this.state = state;
         this.belief = belief;
@@ -107,11 +105,22 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 checkAccusation(a);
                 state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
                 break;
+            case CHOOSE_DICE:
+                state[CURRENT_ROLL] = a[1];
+                break;
         }
 
     }
 
     private void checkAccusation(int[] a) {
+        double roomProb = belief.getCardProb(ROOM,a[1],0);
+        double suspectProb = belief.getCardProb(SUSPECT,a[2],0);
+        double weaponProb = belief.getCardProb(WEAPON,a[3],0);
+        double jointProb = roomProb*suspectProb*weaponProb;
+        double sample = Math.random();
+        if(jointProb <= sample){
+            state[GAME_STATE] = state[CURRENT_PLAYER];
+        }
 
     }
 
@@ -148,7 +157,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
-        refreshState();
         if(state[FALSIFY] == 1){
             listFalsifyPossibilities(options);
             return options;
@@ -192,9 +200,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(options.isEmpty()){
             options.put(Actions.newAction(NO_FALSIFY),1.0);
         }
-    }
-
-    private void refreshState() {
     }
 
     private void listMovePossibilities(Options options) {
