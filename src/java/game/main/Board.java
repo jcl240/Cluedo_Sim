@@ -164,7 +164,7 @@ public class Board implements GameStateConstants {
         return location;
     }
 
-    private int[] getRoomEntrance(int i) {
+    public int[] getRoomEntrance(int i) {
         String roomName = "";
         switch(i){
             case STUDY:

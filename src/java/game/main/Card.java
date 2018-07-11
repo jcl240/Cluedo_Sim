@@ -1,8 +1,10 @@
 package main;
 
+import mcts.game.cluedo.GameStateConstants;
+
 import java.util.*;
 
-public class Card {
+public class Card implements GameStateConstants {
 
     public String cardType;
     public String cardName;
@@ -70,6 +72,24 @@ public class Card {
             if(x.cardName.equals(card.cardName)) return true;
         }
         return false;
+    }
+
+    public static Card getCardFromIndex(int cardType, int cardIndex) {
+        Card[] cards = Card.makeCards();
+        int offset = getOffset(cardType);
+        return cards[cardIndex+offset];
+    }
+
+    private static int getOffset(int cardType) {
+        switch (cardType){
+            case WEAPON:
+                return 14;
+            case SUSPECT:
+                return 8;
+            case ROOM:
+                return 0;
+        }
+        return 0;
     }
 
 

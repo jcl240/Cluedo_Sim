@@ -87,7 +87,6 @@ public class HeuristicAgent extends Agent implements Player{
 
     @Override
     public void showCard(Player player, Card cardToShow) {
-        LinkedList<Card> ukr = getUnknownRooms();
         int playerIndex = ((Agent)player).playerIndex;
         notebook.checkOffCard(cardToShow, playerIndex);
     }
@@ -119,10 +118,6 @@ public class HeuristicAgent extends Agent implements Player{
             suggestionList.add(notebook.knowCard(card));
         }
         playerLog.logSuggestion(numKnown, suggestionList);
-    }
-
-    public LinkedList<Card> getUnknownRooms() {
-        return notebook.getUnknownRooms();
     }
 }
 
