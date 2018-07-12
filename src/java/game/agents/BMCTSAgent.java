@@ -47,7 +47,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         SearchListener listener = mcts.search();
         listener.waitForFinish();
         int idx = mcts.getNextActionIndex();
-        Options options = gameSim.listPossiblities(false);
+        Options options = gameSim.listPossiblities(true);
         Action actionToTake = getAction(options,idx,possibleActions);
         return actionToTake;
     }
@@ -140,7 +140,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 */
         int moved = justMoved ? 1 : 0;
         int suggested = hasSuggested? 1:0;
-        gameSim.setState(new int[]{PLAYING,playerIndex,moved,board.getRoom(playerIndex),roll,0,suggested,0,0,0,0,0,0,0,0});
+        gameSim.setState(new int[]{PLAYING,playerIndex-1,moved,board.getRoom(playerIndex),roll,0,suggested,0,0,0,0,0,0,0,0});
     }
 
     @Override

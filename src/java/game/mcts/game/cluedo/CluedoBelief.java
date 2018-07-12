@@ -67,7 +67,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     public void setProbabilityZero(int card, int cardType, int playerIndex) {
         int offset = getOffset(cardType);
-
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
     }
@@ -153,6 +152,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
     }
 
     public double getCardProb(int cardType, int i, int playerIdx) {
+        playerIdx++;
         int offset = getOffset(cardType);
         return probabilities[i+offset][playerIdx];
     }

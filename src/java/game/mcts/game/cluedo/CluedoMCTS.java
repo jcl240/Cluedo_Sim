@@ -181,7 +181,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void noCardToShow(int[] a) {
         for(int i = 1; i < 4; i++){
-            belief.setProbabilityZero(a[i],i, getCurrentPlayer());
+            belief.setProbabilityZero(a[i],i, getCurrentPlayer()+1);
         }
     }
 
@@ -190,7 +190,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             double cardProb = belief.getCardProb(i,a[i],getCurrentPlayer());
             double sample = Math.random();
             if(cardProb >= sample){
-                belief.checkOffCard(a[i],i,a[CURRENT_PLAYER]);
+                belief.checkOffCard(a[i],i,getCurrentPlayer()+1);
             }
         }
     }
