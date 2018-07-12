@@ -16,7 +16,7 @@ import java.awt.*;
 public interface GameStateConstants extends HexTypeConstants {
 
     int NPLAYERS = 4;
-    int PLAYING = 1;
+    int PLAYING = -1;
 
     int ROOM = 1;
     int SUSPECT = 2;
@@ -59,10 +59,11 @@ public interface GameStateConstants extends HexTypeConstants {
     /* 0: Playing or winner's index, 1: current player's index,
     2: current player justMoved, 3: current player's room,
     4: current roll, 5: current player is falsifying card,
-   6: current suggested room, 7: current suggested suspect,
-   8: current suggested weapon, 9: suggester index,
-   10: player one accused, 11: player two accused,
-   12: player three accused, 13: player four accused
+    6: has suggested
+   7: current suggested room, 8: current suggested suspect,
+   9: current suggested weapon, 10: suggester index,
+   11: player one accused, 12: player two accused,
+   13: player three accused, 14: player four accused
 */
     int GAME_STATE = 0;
     int CURRENT_PLAYER = 1;

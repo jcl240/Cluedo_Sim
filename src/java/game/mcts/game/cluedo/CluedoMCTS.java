@@ -2,6 +2,7 @@ package mcts.game.cluedo;
 
 import agents.Action;
 import main.Board;
+import main.Card;
 import mcts.game.Game;
 import mcts.game.catan.Actions;
 import mcts.tree.node.StandardNode;
@@ -9,6 +10,8 @@ import mcts.tree.node.TreeNode;
 import mcts.utils.Options;
 
 import java.util.ArrayList;
+import java.util.Currency;
+import java.util.LinkedList;
 import java.util.concurrent.ThreadLocalRandom;
 
 
@@ -29,9 +32,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public static long depth = 0;
     private Board board;
     private CluedoConfig config;
+    private int[] actionTaken;
 
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief) {
-        this.state = state;
+        this.state = state.clone();
         this.belief = belief;
         this.config = config;
     }
@@ -42,17 +46,17 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public void setState(int[] newState){
-        state = newState;
+        state = newState.clone();
     }
 
     @Override
     public int[] getState() {
-        return this.state;
+        return this.state.clone();
     }
 
     @Override
     public int getWinner() {
-        return state[0];
+        return state[GAME_STATE];
     }
 
     @Override
@@ -69,13 +73,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public void performAction(int[] a, boolean sample) {
-        int playerIndex = state[CURRENT_PLAYER]+1;
+        int playerIndex = getCurrentPlayer()+1;
+        actionTaken = a.clone();
         switch(a[0]){
             case MOVE:
                 board.movePlayer(a,playerIndex);
                 state[JUST_MOVED] = 1;
                 if(board.inRoom(playerIndex))
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
+                else
+                    getNextPlayer();
                 break;
             case SECRET_PASSAGE:
                 board.useSecretPassage(a,playerIndex);
@@ -85,25 +92,27 @@ public class CluedoMCTS implements Game, GameStateConstants {
             case SUGGEST:
                 setFalsifyState(a);
                 state[HAS_SUGGESTED] = 1;
-                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
+                getNextPlayer();
                 break;
             case FALSIFY:
                 doFalsification(a);
-                state[CURRENT_PLAYER] = (state[SUGGESTER_IDX]+1)%4;
+                getNextPlayer();
                 resetStateFromFalsification();
                 break;
             case NO_FALSIFY:
                 noCardToShow(a);
-                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
-                if(state[CURRENT_PLAYER]==state[SUGGESTER_IDX]) {
-                    state[CURRENT_PLAYER] = (state[SUGGESTER_IDX]+1)%4;
+                getNextPlayer();
+                if(getCurrentPlayer()==state[SUGGESTER_IDX]) {
+                    getNextPlayer();
                     resetStateFromFalsification();
                 }
                 break;
             case ACCUSE:
                 setAccused();
-                checkAccusation(a);
-                state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
+                boolean gameOver = checkAccusation(a);
+                getNextPlayer();
+                if(!gameOver)
+                    resetStateFromAccusation();
                 break;
             case CHOOSE_DICE:
                 state[CURRENT_ROLL] = a[1];
@@ -112,35 +121,78 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     }
 
-    private void checkAccusation(int[] a) {
+    private void getNextPlayer() {
+        state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
+        state[CURRENT_ROLL] = -1;
+        state[HAS_SUGGESTED] = 0;
+        state[JUST_MOVED] = 0;
+        state[CURRENT_ROOM] = board.getRoom(getCurrentPlayer());
+        if(getAccused() == 1 && state[FALSIFYING] == 0 && !isTerminal())
+            getNextPlayer();
+    }
+
+    private void resetStateFromAccusation() {
+        int i = 0;
+    }
+
+    private void resetStateFromFalsification() {
+        state[FALSIFYING] = 0;
+        for(int i = 7; i <= 10; i++) {
+            state[i] = 0;
+        }
+    }
+
+    private boolean checkAccusation(int[] a) {
         double roomProb = belief.getCardProb(ROOM,a[1],0);
         double suspectProb = belief.getCardProb(SUSPECT,a[2],0);
         double weaponProb = belief.getCardProb(WEAPON,a[3],0);
         double jointProb = roomProb*suspectProb*weaponProb;
         double sample = Math.random();
-        if(jointProb <= sample){
-            state[GAME_STATE] = state[CURRENT_PLAYER];
+        if(jointProb >= sample){
+            state[GAME_STATE] = getCurrentPlayer();
+            return true;
         }
-
+        return false;
     }
 
-    private void resetStateFromFalsification() {
-
-    }
 
     private void setAccused() {
-        state[state[CURRENT_PLAYER] + ACCUSED_OFFSET] = 1;
+        state[getCurrentPlayer() + ACCUSED_OFFSET] = 1;
+        checkAccusedCount();
+    }
+
+    private void checkAccusedCount() {
+        LinkedList<Integer> accused = new LinkedList<>();
+        for(int i = PLAYER_ONE_ACCUSED; i <= PLAYER_FOUR_ACCUSED; i++){
+            if(state[i] == 1)
+                accused.add(i-ACCUSED_OFFSET);
+        }
+        if(accused.size() == 3){
+            for(int i = 1; i <= 4; i++){
+                if(!accused.contains(i))
+                    state[GAME_STATE] = i-1;
+            }
+        }
     }
 
     private int getAccused(){
-        return state[state[CURRENT_PLAYER]+ACCUSED_OFFSET];
+        return state[getCurrentPlayer()+ACCUSED_OFFSET];
     }
 
     private void noCardToShow(int[] a) {
+        for(int i = 1; i < 4; i++){
+            belief.setProbabilityZero(a[i],i, getCurrentPlayer());
+        }
     }
 
     private void doFalsification(int[] a) {
-        
+        for(int i = 1; i < 4; i++){
+            double cardProb = belief.getCardProb(i,a[i],getCurrentPlayer());
+            double sample = Math.random();
+            if(cardProb >= sample){
+                belief.checkOffCard(a[i],i,a[CURRENT_PLAYER]);
+            }
+        }
     }
 
     private void setFalsifyState(int[] a) {
@@ -151,18 +203,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
         state[SUGGESTED_ROOM] = a[1];
         state[SUGGESTED_SUSPECT] = a[2];
         state[SUGGESTED_WEAPON] = a[3];
-        state[SUGGESTER_IDX] = state[CURRENT_PLAYER];
+        state[SUGGESTER_IDX] = getCurrentPlayer();
     }
 
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
-        if(state[FALSIFY] == 1){
+        if(state[FALSIFYING] == 1){
             listFalsifyPossibilities(options);
             return options;
         }
-        if(getAccused() == 1)
-            return options;
         if(state[CURRENT_ROLL] == -1) {
             listDiceResultPossibilities(options);
             return options;
@@ -173,7 +223,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
                 listSecretPassagePossibility(options);
         }
-        if(state[CURRENT_ROOM] == 1 && state[HAS_SUGGESTED] == 0)
+        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
             listSuggestionPossibilities(options, state[CURRENT_ROOM]);
         return options;
     }
@@ -192,7 +242,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             int cardType = cardTypes[i];
             double prob = belief.getCardProb(cardType, state[idx], state[11]);
             double sample = Math.random();
-            if(prob <= sample){
+            if(prob >= sample){
              options.put(Actions.newAction(FALSIFY,state[idx],cardType), 1.0);
             }
             i++;
@@ -247,6 +297,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             bel = (CluedoBelief)belief.copy();
         CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel);
         ret.setBoard(board);
+        int i;
         return ret;
     }
 
@@ -254,6 +305,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public int[] sampleNextAction() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Options options = listPossiblities(true);
+        int j = 0;
+        if(options.size() == 0)
+           j = 0;
         return options.getOptions().get(rnd.nextInt(options.size()));
     }
 

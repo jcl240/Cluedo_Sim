@@ -15,10 +15,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     public CluedoBelief(double[][] arr){
         this.probabilities = arr.clone();
+        int i = 0;
     }
 
     public CluedoBelief(CluedoBelief old){
-
+        this.probabilities = old.probabilities.clone();
     }
 
     @Override

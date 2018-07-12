@@ -129,7 +129,18 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     }
 
     private void setState(int roll) {
-        gameSim.setState(new int[]{1,playerIndex,0,0,roll,0,2,0,0,0,0,0,0,0,0});
+        /* 0: Playing or winner's index, 1: current player's index,
+    2: current player justMoved, 3: current player's room,
+    4: current roll, 5: current player is falsifying card,
+    6: has suggested
+   7: current suggested room, 8: current suggested suspect,
+   9: current suggested weapon, 10: suggester index,
+   11: player one accused, 12: player two accused,
+   13: player three accused, 14: player four accused
+*/
+        int moved = justMoved ? 1 : 0;
+        int suggested = hasSuggested? 1:0;
+        gameSim.setState(new int[]{PLAYING,playerIndex,moved,board.getRoom(playerIndex),roll,0,suggested,0,0,0,0,0,0,0,0});
     }
 
     @Override
