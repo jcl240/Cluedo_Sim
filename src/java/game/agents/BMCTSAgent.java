@@ -48,7 +48,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         listener.waitForFinish();
         int idx = mcts.getNextActionIndex();
         int j = mcts.tree.getTreeSize();
-        Options options = gameSim.listPossiblities(true);
+        Options options = gameSim.listPossiblities(false);
         Action actionToTake = getAction(options,idx,possibleActions);
         return actionToTake;
     }

@@ -6,7 +6,7 @@ class Node {
     double distanceToGoal;
     int x;
     int y;
-    static Node Goal = null;
+    Node Goal = null;
 
     /**
      *
@@ -14,7 +14,11 @@ class Node {
      * @param x
      * @param y
      */
-    Node(int currentCost, int x, int y) {
+    Node(int currentCost, int x, int y, Node goal) {
+        if(goal == null)
+            this.Goal = this;
+        else
+            this.Goal = goal;
         this.currentCost = currentCost;
         this.x = x;
         this.y = y;

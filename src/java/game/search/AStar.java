@@ -21,8 +21,8 @@ public class AStar {
         //Reset Goal node
         //Set map, start and goal node then add start node to openQueue
         this.map = map;
-        this.goalNode = new Node(1000, end[0], end[1]);
-        this.startNode = new Node(0, start[0], start[1]);
+        this.goalNode = new Node(1000, end[0], end[1], null);
+        this.startNode = new Node(0, start[0], start[1],goalNode);
         openQueue.add(startNode);
         closed.add(goalNode);
     }
@@ -76,7 +76,7 @@ public class AStar {
         for(int[] coord: successor_coordinates){
             Node successor = findNode(coord);
             if(successor == null && isValid(coord)){
-                successor = new Node(1000,coord[0],coord[1]);
+                successor = new Node(1000,coord[0],coord[1], goalNode);
             }
             if(successor != null) successors.add(successor);
         }

@@ -80,7 +80,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public void performAction(int[] a, boolean sample) {
         int playerIndex = getCurrentPlayer()+1;
-        actionTaken = a.clone();
         switch(a[0]){
             case MOVE:
                 board.movePlayer(a,playerIndex);
@@ -120,7 +119,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 boolean gameOver = checkAccusation(a);
                 if(!gameOver) {
                     getNextPlayer();
-                    resetStateFromAccusation();
                 }
                 break;
             case CHOOSE_DICE:
@@ -128,8 +126,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
         }
         state[ENTROPY] = belief.getCurrentEntropy();
-        if(a[0] != CHOOSE_DICE)
-            state[TURN]++;
+        state[TURN]++;
     }
 
     private void updatePlayerLocation() {
@@ -155,25 +152,18 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void getNextPlayer() {
-        int i;
-        if(state[CURRENT_PLAYER] > 1 && getAccused() == 0)
-            i = 1;
         state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
         state[CURRENT_ROLL] = -1;
         state[HAS_SUGGESTED] = 0;
         state[JUST_MOVED] = 0;
-        state[CURRENT_ROOM] = board.getRoom(getCurrentPlayer());
+        state[CURRENT_ROOM] = board.getRoom(getCurrentPlayer()+1);
         if(getAccused() == 1 && state[FALSIFYING] == 0 && !isTerminal())
             getNextPlayer();
     }
 
-    private void resetStateFromAccusation() {
-        int i = 0;
-    }
-
     private void resetStateFromFalsification() {
         state[FALSIFYING] = 0;
-        for(int i = 7; i <= 10; i++) {
+        for(int i = SUGGESTED_ROOM; i <= SUGGESTER_IDX; i++) {
             state[i] = 0;
         }
     }
@@ -184,7 +174,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double weaponProb = belief.getCardProb(WEAPON,a[3],0);
         double jointProb = roomProb*suspectProb*weaponProb;
         double sample = Math.random();
-        if(jointProb >= sample){
+        if(jointProb >= 1.0){
             state[WINNER] = getCurrentPlayer();
             state[GAME_STATE] = 0;
             return true;
