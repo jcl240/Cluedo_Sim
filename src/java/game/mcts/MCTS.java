@@ -43,7 +43,7 @@ import mcts.utils.Timer;
 public class MCTS {
 
 	private ExecutorService execService;
-	private Tree tree;
+	public Tree tree;
 	private SearchListener listener;
 	private GameFactory gameFactory;
 	private MCTSConfig config;

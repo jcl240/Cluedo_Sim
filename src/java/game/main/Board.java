@@ -118,10 +118,10 @@ public class Board implements GameStateConstants {
         return tiles;
     }
 
-    public Boolean movePlayer(Action actionTaken, Player currentPlayer, boolean useGUI) {
+    public Boolean movePlayer(Action actionTaken, Player currentPlayer) {
         int[] start = getPlayerLocation(currentPlayer);
         int[] end = actionTaken.towards;
-        AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
+        AStar astar = new AStar(start,end,tiles);
         Boolean successful = astar.search();
         int[][] path = astar.getFinalPath();
         if(successful) {
@@ -135,18 +135,9 @@ public class Board implements GameStateConstants {
 
     public Boolean movePlayer(int[] action, int playerIndex) {
         Player currentPlayer = getPlayer(playerIndex);
-        int[] start = getPlayerLocation(currentPlayer);
-        int[] end = getRoomByAction(action);
-        AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
-        Boolean successful = astar.search();
-        int[][] path = astar.getFinalPath();
-        if(successful) {
-            if (path.length > action[2])
-                movePiece(currentPlayer, path[action[2]]);
-            else
-                movePiece(currentPlayer, path[path.length-1]);
-        }
-        return successful;
+        Action act = new Action("move",action[2]);
+        act.towards = getRoomByAction(action);
+        return movePlayer(act, (Player)currentPlayer);
     }
 
     private Player getPlayer(int playerIndex) {
@@ -345,8 +336,12 @@ public class Board implements GameStateConstants {
         return roomIdx;
     }
 
-    public void setTuples(LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples) {
-        this.playerPieceTuples = playerPieceTuples;
+    public void setTuples(int[] locations) {
+        int i = 0;
+        for(Tuple<Player, Gamepiece> tuple: playerPieceTuples){
+            tuple.y.setCurrentLocation(new int[]{locations[i*2],locations[i*2+1]});
+            i++;
+        }
     }
 }
 

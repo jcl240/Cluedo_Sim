@@ -81,9 +81,18 @@ public interface GameStateConstants extends HexTypeConstants {
     int PLAYER_THREE_ACCUSED = 13;
     int PLAYER_FOUR_ACCUSED = 14;
     int ENTROPY = 15;
-    int TURN = 16;
-    int WINNER =17;
+    int WINNER =16;
+    int PLAYER_ONE_X = 17;
+    int PLAYER_ONE_Y = 18;
+    int PLAYER_TWO_X = 19;
+    int PLAYER_TWO_Y = 20;
+    int PLAYER_THREE_X = 21;
+    int PLAYER_THREE_Y = 22;
+    int PLAYER_FOUR_X = 23;
+    int PLAYER_FOUR_Y = 24;
+    int TURN = 25;
     int ACCUSED_OFFSET = 11;
+    int LOCATION_OFFSSET = 17;
 
     public final static Color[] playerColor = 
     {

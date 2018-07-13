@@ -84,6 +84,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         switch(a[0]){
             case MOVE:
                 board.movePlayer(a,playerIndex);
+                updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 if(board.inRoom(playerIndex))
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
@@ -92,6 +93,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case SECRET_PASSAGE:
                 board.useSecretPassage(a,playerIndex);
+                updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
@@ -126,7 +128,30 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
         }
         state[ENTROPY] = belief.getCurrentEntropy();
-        state[TURN]++;
+        if(a[0] != CHOOSE_DICE)
+            state[TURN]++;
+    }
+
+    private void updatePlayerLocation() {
+        int[][] playerLocations = board.getPlayerLocations();
+        switch(getCurrentPlayer()){
+            case 0:
+                state[PLAYER_ONE_X] = playerLocations[0][0];
+                state[PLAYER_ONE_Y] = playerLocations[0][1];
+                break;
+            case 1:
+                state[PLAYER_TWO_X] = playerLocations[1][0];
+                state[PLAYER_TWO_Y] = playerLocations[1][1];
+                break;
+            case 2:
+                state[PLAYER_THREE_X] = playerLocations[2][0];
+                state[PLAYER_THREE_Y] = playerLocations[2][1];
+                break;
+            case 3:
+                state[PLAYER_FOUR_X] = playerLocations[3][0];
+                state[PLAYER_FOUR_Y] = playerLocations[3][1];
+                break;
+        }
     }
 
     private void getNextPlayer() {
@@ -331,8 +356,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public TreeNode generateNode() {
-        this.node = new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
-        return node;
+        return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
     }
 
     @Override
@@ -343,9 +367,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     public void setBoard(Board board) {
         this.board = new Board(board);
+        if(state != null) {
+            board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
+                    state[PLAYER_TWO_X], state[PLAYER_TWO_Y],
+                    state[PLAYER_THREE_X], state[PLAYER_THREE_Y],
+                    state[PLAYER_FOUR_X], state[PLAYER_FOUR_Y],});
+        }
     }
 
-    public void setTuples(LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples) {
-        board.setTuples(playerPieceTuples);
-    }
 }

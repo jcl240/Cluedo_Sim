@@ -141,7 +141,16 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 */
         int moved = justMoved ? 1 : 0;
         int suggested = hasSuggested? 1:0;
-        gameSim.setState(new int[]{PLAYING,playerIndex-1,moved,board.getRoom(playerIndex),roll,0,suggested,0,0,0,0,0,0,0,0,0,0,-1});
+        int[][] playerLocations = board.getPlayerLocations();
+        gameSim.setState(
+                new int[]
+                        {PLAYING,playerIndex-1,moved,board.getRoom(playerIndex),roll,0,suggested,
+                                0,0,0,0,0,0,0,0,0,-1,
+                                playerLocations[0][0],playerLocations[0][1],playerLocations[1][0],playerLocations[1][1],
+                                playerLocations[2][0],playerLocations[2][1],playerLocations[3][0],playerLocations[3][1],
+                                0
+                        }
+                );
     }
 
     @Override

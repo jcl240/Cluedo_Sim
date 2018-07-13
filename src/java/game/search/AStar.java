@@ -19,14 +19,12 @@ public class AStar {
      */
     public AStar(int[] start, int[] end, boolean[][] map) {
         //Reset Goal node
-        Node.Goal = null;
         //Set map, start and goal node then add start node to openQueue
         this.map = map;
         this.goalNode = new Node(1000, end[0], end[1]);
-        Node.Goal = goalNode;
         this.startNode = new Node(0, start[0], start[1]);
         openQueue.add(startNode);
-        closed.add(Node.Goal);
+        closed.add(goalNode);
     }
 
     /**
@@ -38,7 +36,7 @@ public class AStar {
         while(!openQueue.isEmpty()){
             Node expanded = openQueue.poll();
             //if this is goal node finish search and break loop
-            if(expanded == Node.Goal){ finishSearch(); break;}
+            if(expanded == goalNode){ finishSearch(); break;}
 
             LinkedList<Node> successors = expandNode(expanded);
             for(Node successor : successors){
@@ -95,6 +93,8 @@ public class AStar {
         int y = coord[1];
         if(x < 0 || x > map.length-1
                 || y < 0 || y > map[0].length-1) return false;
+        if(map[x][y] == false)
+            x = x;
         return map[x][y];
     }
 
@@ -121,7 +121,7 @@ public class AStar {
      * Traverse the parents and add them to the final path
      */
     private void finishSearch() {
-        Node parent = Node.Goal;
+        Node parent = goalNode;
         while(parent != null){
             finalPath.add(parent);
             parent = parent.parent;

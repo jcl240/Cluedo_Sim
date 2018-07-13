@@ -93,7 +93,7 @@ public class Cluedo {
     private boolean doAction(Action actionTaken, Player currentPlayer) {
         switch (actionTaken.actionType) {
             case "move":
-                Boolean successful = board.movePlayer(actionTaken, currentPlayer, useGUI);
+                Boolean successful = board.movePlayer(actionTaken, currentPlayer);
                 if(successful) {
                     ((Agent) currentPlayer).justMoved = true;
                     ((Agent)currentPlayer).hasSuggested = false;
