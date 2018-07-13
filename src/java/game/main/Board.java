@@ -41,7 +41,7 @@ public class Board implements GameStateConstants {
         this.faceUp = board.faceUp;
     }
 
-    private LinkedList<Tuple<Player,Gamepiece>> getTuples() {
+    public LinkedList<Tuple<Player,Gamepiece>> getTuples() {
         LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
         for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
             Agent agent = (Agent)tuple.x;
@@ -343,6 +343,10 @@ public class Board implements GameStateConstants {
                 break;
         }
         return roomIdx;
+    }
+
+    public void setTuples(LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples) {
+        this.playerPieceTuples = playerPieceTuples;
     }
 }
 

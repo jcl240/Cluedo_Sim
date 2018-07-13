@@ -16,7 +16,7 @@ import java.awt.*;
 public interface GameStateConstants extends HexTypeConstants {
 
     int NPLAYERS = 4;
-    int PLAYING = -1;
+    int PLAYING = 1;
 
     int ROOM = 1;
     int SUSPECT = 2;
@@ -80,6 +80,9 @@ public interface GameStateConstants extends HexTypeConstants {
     int PLAYER_TWO_ACCUSED = 12;
     int PLAYER_THREE_ACCUSED = 13;
     int PLAYER_FOUR_ACCUSED = 14;
+    int ENTROPY = 15;
+    int TURN = 16;
+    int WINNER =17;
     int ACCUSED_OFFSET = 11;
 
     public final static Color[] playerColor = 

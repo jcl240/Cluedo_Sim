@@ -3,7 +3,7 @@
   "nThreads" : 4,
   "timeLimit" : 0,
   "treeSize" : 500000,
-  "maxTreeDepth" : 50,
+  "maxTreeDepth" : 200,
   "afterstates" : true,
   "observableRollouts" : false,
   "nRolloutsPerIteration" : 1,

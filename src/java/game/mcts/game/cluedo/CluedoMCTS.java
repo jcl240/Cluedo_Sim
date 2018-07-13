@@ -1,8 +1,11 @@
 package mcts.game.cluedo;
 
 import agents.Action;
+import agents.Player;
 import main.Board;
 import main.Card;
+import main.Gamepiece;
+import main.Tuple;
 import mcts.game.Game;
 import mcts.game.catan.Actions;
 import mcts.tree.node.StandardNode;
@@ -33,11 +36,13 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private Board board;
     private CluedoConfig config;
     private int[] actionTaken;
+    private StandardNode node;
 
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief) {
         this.state = state.clone();
         this.belief = belief;
         this.config = config;
+        state[ENTROPY] = belief.getCurrentEntropy();
     }
 
     public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
@@ -47,6 +52,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     public void setState(int[] newState){
         state = newState.clone();
+        state[ENTROPY] = belief.getCurrentEntropy();
     }
 
     @Override
@@ -56,7 +62,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public int getWinner() {
-        return state[GAME_STATE];
+        return state[WINNER];
     }
 
     @Override
@@ -110,18 +116,23 @@ public class CluedoMCTS implements Game, GameStateConstants {
             case ACCUSE:
                 setAccused();
                 boolean gameOver = checkAccusation(a);
-                getNextPlayer();
-                if(!gameOver)
+                if(!gameOver) {
+                    getNextPlayer();
                     resetStateFromAccusation();
+                }
                 break;
             case CHOOSE_DICE:
                 state[CURRENT_ROLL] = a[1];
                 break;
         }
-
+        state[ENTROPY] = belief.getCurrentEntropy();
+        state[TURN]++;
     }
 
     private void getNextPlayer() {
+        int i;
+        if(state[CURRENT_PLAYER] > 1 && getAccused() == 0)
+            i = 1;
         state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
         state[CURRENT_ROLL] = -1;
         state[HAS_SUGGESTED] = 0;
@@ -149,7 +160,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double jointProb = roomProb*suspectProb*weaponProb;
         double sample = Math.random();
         if(jointProb >= sample){
-            state[GAME_STATE] = getCurrentPlayer();
+            state[WINNER] = getCurrentPlayer();
+            state[GAME_STATE] = 0;
             return true;
         }
         return false;
@@ -169,8 +181,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(accused.size() == 3){
             for(int i = 1; i <= 4; i++){
-                if(!accused.contains(i))
-                    state[GAME_STATE] = i-1;
+                if(!accused.contains(i)) {
+                    state[WINNER] = i - 1;
+                    state[GAME_STATE] = 0;
+                }
             }
         }
     }
@@ -187,7 +201,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void doFalsification(int[] a) {
         for(int i = 1; i < 4; i++){
-            double cardProb = belief.getCardProb(i,a[i],getCurrentPlayer());
+            double cardProb = belief.getCardProb(i,a[i],getCurrentPlayer()+1);
             double sample = Math.random();
             if(cardProb >= sample){
                 belief.checkOffCard(a[i],i,getCurrentPlayer()+1);
@@ -240,7 +254,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         int i = 0;
         for(int idx = 8; idx < 11; idx++){
             int cardType = cardTypes[i];
-            double prob = belief.getCardProb(cardType, state[idx], state[11]);
+            double prob = belief.getCardProb(cardType, state[idx], state[SUGGESTER_IDX]+1);
             double sample = Math.random();
             if(prob >= sample){
              options.put(Actions.newAction(FALSIFY,state[idx],cardType), 1.0);
@@ -305,9 +319,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public int[] sampleNextAction() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Options options = listPossiblities(true);
-        int j = 0;
-        if(options.size() == 0)
-           j = 0;
         return options.getOptions().get(rnd.nextInt(options.size()));
     }
 
@@ -320,7 +331,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public TreeNode generateNode() {
-        return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
+        this.node = new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
+        return node;
     }
 
     @Override
@@ -331,5 +343,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     public void setBoard(Board board) {
         this.board = new Board(board);
+    }
+
+    public void setTuples(LinkedList<Tuple<Player,Gamepiece>> playerPieceTuples) {
+        board.setTuples(playerPieceTuples);
     }
 }

@@ -152,8 +152,15 @@ public class CluedoBelief implements Belief, GameStateConstants {
     }
 
     public double getCardProb(int cardType, int i, int playerIdx) {
-        playerIdx++;
         int offset = getOffset(cardType);
         return probabilities[i+offset][playerIdx];
+    }
+
+    public int getCurrentEntropy() {
+        double entropySum = 0;
+        for(int i = 0; i < probabilities.length; i++){
+            entropySum += getEntropy(probabilities[i]);
+        }
+        return (int)entropySum;
     }
 }
