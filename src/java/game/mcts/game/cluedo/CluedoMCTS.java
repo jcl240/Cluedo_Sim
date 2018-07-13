@@ -116,13 +116,25 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case ACCUSE:
                 setAccused();
-                boolean gameOver = checkAccusation(a);
-                if(!gameOver) {
-                    getNextPlayer();
-                }
+                state[ACCUSED_ROOM] = a[1];
+                state[ACCUSED_SUSPECT] = a[2];
+                state[ACCUSED_WEAPON] = a[3];
+                state[CHECKING_WIN_POSSIBILITY] = 1;
                 break;
             case CHOOSE_DICE:
                 state[CURRENT_ROLL] = a[1];
+                break;
+            case CONTINUE_GAME:
+                state[CHECKING_WIN_POSSIBILITY] = 0;
+                state[ACCUSED_ROOM] = 0;
+                state[ACCUSED_SUSPECT] = 0;
+                state[ACCUSED_WEAPON] = 0;
+                getNextPlayer();
+                break;
+            case GAME_WON:
+                state[CHECKING_WIN_POSSIBILITY] = 0;
+                state[WINNER] = getCurrentPlayer();
+                state[GAME_STATE] = 0;
                 break;
         }
         state[ENTROPY] = belief.getCurrentEntropy();
@@ -166,20 +178,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
         for(int i = SUGGESTED_ROOM; i <= SUGGESTER_IDX; i++) {
             state[i] = 0;
         }
-    }
-
-    private boolean checkAccusation(int[] a) {
-        double roomProb = belief.getCardProb(ROOM,a[1],0);
-        double suspectProb = belief.getCardProb(SUSPECT,a[2],0);
-        double weaponProb = belief.getCardProb(WEAPON,a[3],0);
-        double jointProb = roomProb*suspectProb*weaponProb;
-        double sample = Math.random();
-        if(jointProb >= 1.0){
-            state[WINNER] = getCurrentPlayer();
-            state[GAME_STATE] = 0;
-            return true;
-        }
-        return false;
     }
 
 
@@ -238,6 +236,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
+        if(state[CHECKING_WIN_POSSIBILITY] == 1) {
+            listWinGamePossibility(options);
+            return options;
+        }
         if(state[FALSIFYING] == 1){
             listFalsifyPossibilities(options);
             return options;
@@ -257,6 +259,15 @@ public class CluedoMCTS implements Game, GameStateConstants {
         return options;
     }
 
+    private void listWinGamePossibility(Options options) {
+        double roomProb = belief.getCardProb(ROOM,state[ACCUSED_ROOM],0);
+        double suspectProb = belief.getCardProb(SUSPECT,state[ACCUSED_SUSPECT],0);
+        double weaponProb = belief.getCardProb(WEAPON,state[ACCUSED_WEAPON],0);
+        double jointProb = roomProb*suspectProb*weaponProb;
+        options.put(Actions.newAction(GAME_WON),jointProb);
+        options.put(Actions.newAction(CONTINUE_GAME),1-jointProb);
+    }
+
     private void listDiceResultPossibilities(Options options){
         for(int i = 1; i <= 6; i++){
             options.put(Actions.newAction(CHOOSE_DICE, i),1.0);
@@ -267,17 +278,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
         //1 room, 2 suspect, 3 weapon
         int[] cardTypes = new int[]{ROOM,SUSPECT,WEAPON};
         int i = 0;
+        double jointProb = 0.0;
         for(int idx = 8; idx < 11; idx++){
             int cardType = cardTypes[i];
             double prob = belief.getCardProb(cardType, state[idx], state[SUGGESTER_IDX]+1);
-            double sample = Math.random();
-            if(prob >= sample){
-             options.put(Actions.newAction(FALSIFY,state[idx],cardType), 1.0);
-            }
+            jointProb *= prob;
+            options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
             i++;
         }
         if(options.isEmpty()){
-            options.put(Actions.newAction(NO_FALSIFY),1.0);
+            options.put(Actions.newAction(NO_FALSIFY),1-jointProb);
         }
     }
 

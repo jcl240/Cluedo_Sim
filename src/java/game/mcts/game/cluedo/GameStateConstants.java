@@ -29,6 +29,8 @@ public interface GameStateConstants extends HexTypeConstants {
     int FALSIFY = 4;
     int ACCUSE = 5;
     int NO_FALSIFY = 6;
+    int CONTINUE_GAME = 7;
+    int GAME_WON = 8;
 
     int NO_ROOM = 0;
     int HALL = 1;
@@ -91,6 +93,10 @@ public interface GameStateConstants extends HexTypeConstants {
     int PLAYER_FOUR_X = 23;
     int PLAYER_FOUR_Y = 24;
     int TURN = 25;
+    int CHECKING_WIN_POSSIBILITY = 26;
+    int ACCUSED_ROOM = 27;
+    int ACCUSED_SUSPECT = 28;
+    int ACCUSED_WEAPON = 29;
     int ACCUSED_OFFSET = 11;
     int LOCATION_OFFSSET = 17;
 
