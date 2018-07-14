@@ -41,12 +41,28 @@ public class Board implements GameStateConstants {
         this.faceUp = board.faceUp;
     }
 
+    public Board(int[][] playerLocations) {
+        initializeTiles();
+        initializeRooms();
+        initializePieces(playerLocations);
+    }
+
+    private void initializePieces(int[][] playerLocations) {
+        int i = 1;
+        for(int[] location: playerLocations){
+            playerPieceTuples.add(new Tuple<>(new RandomAgent(i), new Gamepiece(location)));
+            i++;
+        }
+    }
+
     public LinkedList<Tuple<Player,Gamepiece>> getTuples() {
         LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
         for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
             Agent agent = (Agent)tuple.x;
             Player player = new RandomAgent(agent.getHandArray().clone(),faceUp.clone(),agent.playerIndex-1,agent);
-            Gamepiece piece = new Gamepiece(tuple.y);
+            int x = tuple.y.getCurrentLocation()[0];
+            int y = tuple.y.getCurrentLocation()[1];
+            Gamepiece piece = new Gamepiece(new int[]{x,y});
             newList.add(new Tuple<Player,Gamepiece>(player,piece));
         }
         return newList;
@@ -250,7 +266,7 @@ public class Board implements GameStateConstants {
         return (room != null);
     }
 
-    private Room getRoomByLocation(int[] playerLocation) {
+    public Room getRoomByLocation(int[] playerLocation) {
         for(Room room:rooms){
             for(int[] location:room.entranceTiles){
                 if(Arrays.equals(playerLocation,location)) return room;
@@ -342,6 +358,41 @@ public class Board implements GameStateConstants {
             tuple.y.setCurrentLocation(new int[]{locations[i*2],locations[i*2+1]});
             i++;
         }
+    }
+
+    public int getRoomIndexByLocation(int[] towards) {
+        Room room = getRoomByLocation(towards);
+        int roomIdx = 0;
+        switch(room.roomName){
+            case "study":
+                roomIdx = STUDY;
+                break;
+            case "lounge":
+                roomIdx = LOUNGE;
+                break;
+            case "kitchen":
+                roomIdx = KITCHEN;
+                break;
+            case "billiardroom":
+                roomIdx = BILLIARD_ROOM;
+                break;
+            case "ballroom":
+                roomIdx = BALL_ROOM;
+                break;
+            case "conservatory":
+                roomIdx = CONSERVATORY;
+                break;
+            case "library":
+                roomIdx = LIBRARY;
+                break;
+            case "hall":
+                roomIdx = HALL;
+                break;
+            case "diningroom":
+                roomIdx = DINING_ROOM;
+                break;
+        }
+        return roomIdx;
     }
 }
 

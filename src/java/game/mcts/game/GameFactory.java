@@ -64,8 +64,7 @@ public class GameFactory {
 				return new Catan(state, ((CatanConfig) gameConfig));
 		}
 		else if(gameConfig.id == CLUEDO){
-			CluedoMCTS game = new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief));
-			game.setBoard(board);
+			CluedoMCTS game = new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief),board);
 			return game;
 		}
 		else

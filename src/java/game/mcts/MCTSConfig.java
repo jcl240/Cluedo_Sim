@@ -17,10 +17,10 @@ import mcts.tree.update.UpdatePolicy;
 public class MCTSConfig {
 	//default values and policies
 	public int nIterations = 10000;
-	public int nThreads = 4;
-	public long timeLimit = 0;
+	public int nThreads = 1;
+	public long timeLimit = 10000;
 	public int treeSize = 500000;
-	public int maxTreeDepth = 250;
+	public int maxTreeDepth = 5000;
 	public boolean afterstates = true;
 	public boolean observableRollouts = false;
 	/**Number of rollouts to be performed per iteration from the current leaf node*/

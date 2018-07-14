@@ -41,6 +41,10 @@ public class Agent {
         this.accused = x.accused;
     }
 
+    public Agent(int index) {
+        this.playerIndex = index;
+    }
+
     public String[] getHand() {
         String[] stringHand = new String[4];
         int i = 0;

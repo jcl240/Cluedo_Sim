@@ -38,10 +38,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private int[] actionTaken;
     private StandardNode node;
 
-    public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief) {
+    public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board) {
         this.state = state.clone();
         this.belief = belief;
         this.config = config;
+        setBoard(board);
         state[ENTROPY] = belief.getCurrentEntropy();
     }
 
@@ -83,17 +84,46 @@ public class CluedoMCTS implements Game, GameStateConstants {
         switch(a[0]){
             case MOVE:
                 board.movePlayer(a,playerIndex);
+                break;
+            case SECRET_PASSAGE:
+                board.useSecretPassage(a,playerIndex);
+                break;
+            case SUGGEST:
+                break;
+            case FALSIFY:
+                doFalsification(a);
+                break;
+            case NO_FALSIFY:
+                noCardToShow(a);
+                break;
+            case ACCUSE:
+                break;
+            case CHOOSE_DICE:
+                break;
+            case CONTINUE_GAME:
+                break;
+            case GAME_WON:
+                break;
+        }
+        stateTransition(a);
+    }
+
+    private void stateTransition(int[] a) {
+        int playerIndex = getCurrentPlayer()+1;
+        switch(a[0]){
+            case MOVE:
                 updatePlayerLocation();
-                state[JUST_MOVED] = 1;
-                if(board.inRoom(playerIndex))
+                if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
+                    state[getCurrentPlayer()+MOVEMENT_OFFSET] = 0;
+                }
                 else
                     getNextPlayer();
                 break;
             case SECRET_PASSAGE:
-                board.useSecretPassage(a,playerIndex);
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
+                state[getCurrentPlayer()+MOVEMENT_OFFSET] = -1;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SUGGEST:
@@ -102,12 +132,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 getNextPlayer();
                 break;
             case FALSIFY:
-                doFalsification(a);
+                state[ENTROPY] = belief.getCurrentEntropy();
                 getNextPlayer();
                 resetStateFromFalsification();
                 break;
             case NO_FALSIFY:
-                noCardToShow(a);
+                state[ENTROPY] = belief.getCurrentEntropy();
                 getNextPlayer();
                 if(getCurrentPlayer()==state[SUGGESTER_IDX]) {
                     getNextPlayer();
@@ -207,19 +237,13 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void noCardToShow(int[] a) {
-        for(int i = 1; i < 4; i++){
+        for(int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++){
             belief.setProbabilityZero(a[i],i, getCurrentPlayer()+1);
         }
     }
 
     private void doFalsification(int[] a) {
-        for(int i = 1; i < 4; i++){
-            double cardProb = belief.getCardProb(i,a[i],getCurrentPlayer()+1);
-            double sample = Math.random();
-            if(cardProb >= sample){
-                belief.checkOffCard(a[i],i,getCurrentPlayer()+1);
-            }
-        }
+        belief.checkOffCard(a[1],a[2],getCurrentPlayer()+1);
     }
 
     private void setFalsifyState(int[] a) {
@@ -250,7 +274,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            listAccusePossibilities(options);
+            if(state[ENTROPY] < 10)
+                listAccusePossibilities(options);
             if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
                 listSecretPassagePossibility(options);
         }
@@ -282,19 +307,23 @@ public class CluedoMCTS implements Game, GameStateConstants {
         for(int idx = 8; idx < 11; idx++){
             int cardType = cardTypes[i];
             double prob = belief.getCardProb(cardType, state[idx], state[SUGGESTER_IDX]+1);
-            jointProb *= prob;
+            //add or multiply?????
+            jointProb += prob;
             options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
             i++;
         }
-        if(options.isEmpty()){
-            options.put(Actions.newAction(NO_FALSIFY),1-jointProb);
-        }
+        options.put(Actions.newAction(NO_FALSIFY),1-jointProb);
     }
 
     private void listMovePossibilities(Options options) {
-        for(int i = 1; i < 10; i++) {
-            if(state[CURRENT_ROOM] != i) {
-                options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
+        int movementGoal = state[getCurrentPlayer()+MOVEMENT_OFFSET];
+        if(movementGoal != 0)
+            options.put(Actions.newAction(MOVE, movementGoal, state[CURRENT_ROLL]), 1.0);
+        else {
+            for (int i = 1; i < 10; i++) {
+                if (state[CURRENT_ROOM] != i) {
+                    options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
+                }
             }
         }
     }
@@ -334,9 +363,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         CluedoBelief bel = null;
         if(belief != null)
             bel = (CluedoBelief)belief.copy();
-        CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel);
-        ret.setBoard(board);
-        int i;
+        CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel, board);
         return ret;
     }
 
@@ -366,7 +393,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public void setBoard(Board board) {
-        this.board = new Board(board);
+        this.board = new Board(board.getPlayerLocations());
         if(state != null) {
             board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
                     state[PLAYER_TWO_X], state[PLAYER_TWO_Y],

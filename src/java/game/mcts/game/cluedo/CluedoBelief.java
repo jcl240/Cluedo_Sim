@@ -14,8 +14,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
     public CluedoBelief(){}
 
     public CluedoBelief(double[][] arr){
-        this.probabilities = arr.clone();
-        int i = 0;
+        for(int i = 0; i < arr.length; i++){
+            this.probabilities[i] = arr[i].clone();
+        }
     }
 
     public CluedoBelief(CluedoBelief old){
@@ -84,7 +85,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     private boolean cardUnknown(int i) {
         double entropy = getEntropy(probabilities[i]);
-        return entropy == 0.0;
+        return entropy != 0.0;
     }
 
     private int getOffset(int cardType) {

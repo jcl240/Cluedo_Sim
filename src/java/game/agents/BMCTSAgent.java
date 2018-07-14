@@ -20,11 +20,9 @@ import java.util.LinkedList;
 import static main.Card.shuffle;
 
 public class BMCTSAgent extends Agent implements Player, GameStateConstants {
-    CluedoMCTS gameSim;
-    GameFactory gameFactory;
     private HeuristicNotebook notebook;
     int actionFailCount = 0;
-    private int[] movementGoal;
+    private int movementGoal = 0;
     Board board;
 
     public BMCTSAgent(Card[] hand, Card[] faceUp, int index) {
@@ -37,11 +35,11 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
-        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
+        GameFactory gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
         gameFactory.setBoard(board);
-        gameSim = (CluedoMCTS) gameFactory.getNewGame();
+        CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         int roll = getRoll(possibleActions);
-        setState(roll);
+        setState(roll, gameSim);
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
         SearchListener listener = mcts.search();
@@ -59,9 +57,11 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         switch (actionArray[0]) {
             case MOVE:
                 action = getMoveAction(possibleActions, actionArray);
+                movementGoal = board.getRoomIndexByLocation(action.towards);
                 break;
             case SUGGEST:
                 action = getSuggestAction(possibleActions, actionArray);
+                logSuggestion(action.suggestion);
                 break;
             case SECRET_PASSAGE:
                 action = getSecretPassageAction(possibleActions, actionArray);
@@ -126,10 +126,14 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     private int getRoll(LinkedList<Action> possibleActions) {
         Action action = getActionFromType("move", possibleActions);
+        if(justMoved)
+            return 0;
+        else if(action == null)
+            return -1;
         return action.roll;
     }
 
-    private void setState(int roll) {
+    private void setState(int roll, CluedoMCTS gameSim) {
         /* 0: Playing or winner's index, 1: current player's index,
     2: current player justMoved, 3: current player's room,
     4: current roll, 5: current player is falsifying card,
@@ -145,11 +149,13 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         gameSim.setState(
                 new int[]
                         {PLAYING,playerIndex-1,moved,board.getRoom(playerIndex),roll,0,suggested,
-                                0,0,0,0,0,0,0,0,0,-1,
+                                0,0,0,0,0,0,0,0,
+                                notebook.getCurrentEntropy(),-1,
                                 playerLocations[0][0],playerLocations[0][1],playerLocations[1][0],playerLocations[1][1],
                                 playerLocations[2][0],playerLocations[2][1],playerLocations[3][0],playerLocations[3][1],
                                 0,0,
-                                0,0,0
+                                0,0,0,
+                                movementGoal,0,0,0
                         }
                 );
     }
@@ -183,7 +189,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     public void actionFailed(Action actionTaken) {
         actionFailCount++;
         if(actionTaken.actionType.equals("move"))
-            movementGoal = null;
+            movementGoal = 0;
     }
 
     @Override

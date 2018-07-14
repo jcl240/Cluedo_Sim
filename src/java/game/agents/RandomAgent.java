@@ -25,6 +25,10 @@ public class RandomAgent extends  Agent implements Player {
         this.accused = agent.accused;
     }
 
+    public RandomAgent(int index) {
+        super(index);
+    }
+
     @Override
     public void endTurn(){
         this.justMoved = false;
