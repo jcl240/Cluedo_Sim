@@ -137,6 +137,8 @@ public class Board implements GameStateConstants {
     public Boolean movePlayer(Action actionTaken, Player currentPlayer) {
         int[] start = getPlayerLocation(currentPlayer);
         int[] end = actionTaken.towards;
+        if(end.length == 0)
+            end= end;
         AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
         Boolean successful = astar.search();
         int[][] path = astar.getFinalPath();

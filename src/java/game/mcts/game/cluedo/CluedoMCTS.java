@@ -123,7 +123,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             case SECRET_PASSAGE:
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
-                state[getCurrentPlayer()+MOVEMENT_OFFSET] = -1;
+                state[getCurrentPlayer()+MOVEMENT_OFFSET] = 0;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SUGGEST:
