@@ -39,6 +39,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         gameFactory.setBoard(board);
         CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         int roll = getRoll(possibleActions);
+        checkMovementGoal();
         setState(roll, gameSim);
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
@@ -51,13 +52,19 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         return actionToTake;
     }
 
+    private void checkMovementGoal() {
+        if(board.getRoom(playerIndex) != 0)
+            movementGoal = 0;
+    }
+
     private Action getAction(Options options, int idx, LinkedList<Action> possibleActions) {
         int[] actionArray = options.getOptions().get(idx);
         Action action = new Action("doNothing");
         switch (actionArray[0]) {
             case MOVE:
                 action = getMoveAction(possibleActions, actionArray);
-                movementGoal = board.getRoomIndexByLocation(action.towards);
+                if(movementGoal == 0)
+                    movementGoal = board.getRoomIndexByLocation(action.towards);
                 break;
             case SUGGEST:
                 action = getSuggestAction(possibleActions, actionArray);

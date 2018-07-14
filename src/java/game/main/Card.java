@@ -33,9 +33,9 @@ public class Card implements GameStateConstants {
     }
 
     public static Card[] makeCards(){
-        String[] names = new String[]{"ballroom","billiardroom","conservatory","diningroom","hall","kitchen","library","lounge","study",
-                                        "candlestick","knife","leadpipe","revolver","rope","wrench",
-                                        "green","mustard","peacock","plum","scarlet","white"};
+        String[] names = new String[]{"hall","lounge","diningroom","kitchen","ballroom","conservatory","billiardroom","library","study",
+                "mustard","plum","green","peacock","scarlet","white",
+                "knife","candlestick","revolver","rope","leadpipe","wrench"};
         Card[] deck = new Card[21];
         String type;
         for(int i = 0; i < names.length; i++){
@@ -75,6 +75,7 @@ public class Card implements GameStateConstants {
     }
 
     public static Card getCardFromIndex(int cardType, int cardIndex) {
+        cardIndex--;
         Card[] cards = Card.makeCards();
         int offset = getOffset(cardType);
         return cards[cardIndex+offset];
