@@ -254,6 +254,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(state[SUGGESTER_IDX] == 0) {
             belief.checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
         }
+        else {
+            int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
+            belief.updateProbabilities(suggestion, getCurrentPlayer()+1);
+        }
     }
 
     private void setFalsifyState(int[] a) {
@@ -318,7 +322,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         int[] cardTypes = new int[]{ROOM,SUSPECT,WEAPON};
         int i = 0;
         double jointProb = 1;
-        for(int idx = 7; idx < 10; idx++){
+        for(int idx = SUGGESTED_ROOM; idx <= SUGGESTED_WEAPON; idx++){
             int cardType = cardTypes[i];
             double prob = belief.getCardProb( state[idx],cardType, getCurrentPlayer()+1);
             jointProb *= (1-prob);

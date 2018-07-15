@@ -120,6 +120,8 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
 
     public void updateProbabilities(int[] suggestion, int playerIndex){
+        suggestion[1] += getOffset(2);
+        suggestion[2] += getOffset(3);
         LinkedList<Integer> cardsPossible = getCardsWithNonZeroProbability(suggestion, playerIndex);
         double probOfObservation = (3.0/15.0);
         double probOfObservationGivenCard = (1.0/cardsPossible.size());
