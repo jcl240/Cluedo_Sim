@@ -187,6 +187,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
         for(double[] prob: probabilities){
             totalMass += prob[0];
         }
-        return ((roomProb*suspectProb*weaponProb)/totalMass);
+        return ((roomProb/totalMass)*(suspectProb/totalMass)*(weaponProb/totalMass));
     }
 }

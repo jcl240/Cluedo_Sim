@@ -162,8 +162,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 getNextPlayer();
                 break;
             case GAME_WON:
-                if(state[ENTROPY] < 30)
-                    state[ENTROPY] = state[ENTROPY];
                 state[CHECKING_WIN_POSSIBILITY] = 0;
                 state[WINNER] = getCurrentPlayer();
                 state[GAME_STATE] = 0;
@@ -291,7 +289,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
             actionTypes.add(MOVE);
-            if(state[ENTROPY] < 50) {
+            if(state[ENTROPY] < 2) {
                 listAccusePossibilities(options);
                 actionTypes.add(ACCUSE);
             }
@@ -307,18 +305,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
         return options;
     }
 
-    /**
-     * Chooses uniformly at random the action type to execute next and only
-     * lists the normal possibilities of the chosen type.
-     *
-     * TODO: add option for weights on action types such that some would be executed more
-     * often in the roll-outs (i.e. consider basic player types)
-     */
-    private void listPossAndSampleType(Options options){
-        HashMap<Integer, Double> actionTypes = new HashMap<>();
-        Map<Integer,Double> dist = config.rolloutTypeDist.getDist(new ArrayList(actionTypes.keySet()));
-    }
-
     public ArrayList<Integer> listActionTypes(){
         ArrayList<Integer> actionTypes = new ArrayList<>();
 
@@ -326,7 +312,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void listWinGamePossibility(Options options) {
-        // LOOK INTO WHY PROBABILITIES ARE ZERO???!?!??!?!
         double roomProb = belief.getCardProb(state[ACCUSED_ROOM],ROOM,0);
         double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
         double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
