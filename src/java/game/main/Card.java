@@ -40,8 +40,8 @@ public class Card implements GameStateConstants {
         String type;
         for(int i = 0; i < names.length; i++){
             if(i < 9) type = "room";
-            else if(i <15) type = "weapon";
-            else type = "suspect";
+            else if(i <15) type = "suspect";
+            else type = "weapon";
             deck[i] = new Card(type,names[i]);
         }
         return deck;
@@ -75,7 +75,6 @@ public class Card implements GameStateConstants {
     }
 
     public static Card getCardFromIndex(int cardType, int cardIndex) {
-        cardIndex--;
         Card[] cards = Card.makeCards();
         int offset = getOffset(cardType);
         return cards[cardIndex+offset];
@@ -84,9 +83,9 @@ public class Card implements GameStateConstants {
     private static int getOffset(int cardType) {
         switch (cardType){
             case WEAPON:
-                return 14;
+                return 15;
             case SUSPECT:
-                return 8;
+                return 9;
             case ROOM:
                 return 0;
         }

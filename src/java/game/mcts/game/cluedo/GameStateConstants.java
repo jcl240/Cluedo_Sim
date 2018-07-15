@@ -32,30 +32,30 @@ public interface GameStateConstants extends HexTypeConstants {
     int CONTINUE_GAME = 7;
     int GAME_WON = 8;
 
-    int NO_ROOM = 0;
-    int HALL = 1;
-    int LOUNGE = 2;
-    int DINING_ROOM = 3;
-    int KITCHEN = 4;
-    int BALL_ROOM = 5;
-    int CONSERVATORY = 6;
-    int BILLIARD_ROOM = 7;
-    int LIBRARY = 8;
-    int STUDY = 9;
+    int NO_ROOM = -1;
+    int HALL = 0;
+    int LOUNGE = 1;
+    int DINING_ROOM = 2;
+    int KITCHEN = 3;
+    int BALL_ROOM = 4;
+    int CONSERVATORY = 5;
+    int BILLIARD_ROOM = 6;
+    int LIBRARY = 7;
+    int STUDY = 8;
 
-    int MUSTARD = 1;
-    int PLUM = 2;
-    int GREEN = 3;
-    int PEACOCK = 4;
-    int SCARLET = 5;
-    int WHITE = 6;
+    int MUSTARD = 0;
+    int PLUM = 1;
+    int GREEN = 2;
+    int PEACOCK = 3;
+    int SCARLET = 4;
+    int WHITE = 5;
 
-    int KNIFE = 1;
-    int CANDLESTICK = 2;
-    int REVOLVER = 3;
-    int ROPE = 4;
-    int LEAD_PIPE = 5;
-    int WRENCH = 6;
+    int KNIFE = 0;
+    int CANDLESTICK = 1;
+    int REVOLVER = 2;
+    int ROPE = 3;
+    int LEAD_PIPE = 4;
+    int WRENCH = 5;
 
 
     /* 0: Playing or winner's index, 1: current player's index,

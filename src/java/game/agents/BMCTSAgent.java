@@ -83,7 +83,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     private Action getSecretPassageAction(LinkedList<Action> possibleActions, int[] actionArray) {
         Action action = getActionFromType("useSecretPassage", possibleActions);
         int roomAfterPassage = getRoomFromSecretPassage(actionArray[1]);
-        action.towards = board.getRoomEntrance(roomAfterPassage);
+        action.towards = board.getClosestRoomEntrance(roomAfterPassage, board.getPlayerLocation(this));
         return action;
     }
 
@@ -119,7 +119,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     private Action getMoveAction(LinkedList<Action> possibleActions, int[] actionArray) {
         Action action = getActionFromType("move", possibleActions);
-        action.towards = board.getRoomEntrance(actionArray[1]);
+        action.towards = board.getClosestRoomEntrance(actionArray[1], board.getPlayerLocation(this));
         return action;
     }
 

@@ -65,7 +65,7 @@ public class HeuristicNotebook extends Notebook{
     public Card[] getInformedSuggestion(Room currentRoom) {
         Card[] suggestion = new Card[3];
         suggestion[0] = new Card("room",currentRoom.roomName);
-        String[] types = {"weapon", "suspect"};
+        String[] types = {"suspect", "weapon"};
         int i = 1;
         double maxEntropy = -10;
         for(int j = 0; j < notebook.size(); j++){
@@ -187,5 +187,14 @@ public class HeuristicNotebook extends Notebook{
             entropySum += getEntropy(probabilities[i]);
         }
         return (int)entropySum;
+    }
+
+    public int getNumberOfZeros() {
+        int i = 0;
+        for(double[] prob: probabilities){
+            if(prob[0]+prob[1]+prob[2]+prob[3]+prob[4] == 0)
+                i++;
+        }
+        return i;
     }
 }

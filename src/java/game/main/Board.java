@@ -137,8 +137,6 @@ public class Board implements GameStateConstants {
     public Boolean movePlayer(Action actionTaken, Player currentPlayer) {
         int[] start = getPlayerLocation(currentPlayer);
         int[] end = actionTaken.towards;
-        if(end.length == 0)
-            end= end;
         AStar astar = new AStar(start,end,getCurrentTiles(currentPlayer));
         Boolean successful = astar.search();
         int[][] path = astar.getFinalPath();
@@ -154,7 +152,7 @@ public class Board implements GameStateConstants {
     public Boolean movePlayer(int[] action, int playerIndex) {
         Player currentPlayer = getPlayer(playerIndex);
         Action act = new Action("move",action[2]);
-        act.towards = getRoomByAction(action);
+        act.towards = getRoomByAction(action, playerIndex);
         return movePlayer(act, (Player)currentPlayer);
     }
 
@@ -167,13 +165,14 @@ public class Board implements GameStateConstants {
         return null;
     }
 
-    private int[] getRoomByAction(int[] action) {
+    private int[] getRoomByAction(int[] action, int playerIndex) {
+        int[] playerPosition = getPlayerLocation(getPlayer(playerIndex));
         int[] location;
-        location = getRoomEntrance(action[1]);
+        location = getClosestRoomEntrance(action[1], playerPosition);
         return location;
     }
 
-    public int[] getRoomEntrance(int i) {
+    public int[] getClosestRoomEntrance(int i, int[] playerPosition) {
         String roomName = "";
         switch(i){
             case STUDY:
@@ -206,10 +205,23 @@ public class Board implements GameStateConstants {
         }
         for(Room room: rooms){
             if(room.roomName.equals(roomName)){
-                return room.entranceTiles[Cluedo.rand.nextInt(room.entranceTiles.length)];
+                int[] closest = new int[]{};
+                double closestDistance = 1000;
+                for(int[] entrance: room.entranceTiles){
+                    double distance = getDistance(entrance, playerPosition);
+                    if(distance < closestDistance){
+                        closestDistance = distance;
+                        closest = entrance;
+                    }
+                }
+                return closest;
             }
         }
         return new int[]{};
+    }
+
+    private double getDistance(int[] entrance, int[] playerPosition) {
+        return Math.sqrt(Math.pow(entrance[0]-playerPosition[0],2)+Math.pow(entrance[1]-playerPosition[1],2));
     }
 
 
@@ -303,11 +315,11 @@ public class Board implements GameStateConstants {
     }
 
     public void useSecretPassage(int[] a, int i) {
-        movePiece(getPlayer(i), getSecretPassageByAction(a));
+        movePiece(getPlayer(i), getSecretPassageByAction(a, i));
     }
 
-    private int[] getSecretPassageByAction(int[] a) {
-        int[] room = getRoomByAction(a);
+    private int[] getSecretPassageByAction(int[] a, int playerIndex) {
+        int[] room = getRoomByAction(a, playerIndex);
         Room nextRoom = getRoomByLocation(room).getSecretPassage();
         return nextRoom.entranceTiles[Cluedo.rand.nextInt(nextRoom.entranceTiles.length)];
     }

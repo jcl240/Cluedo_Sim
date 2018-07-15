@@ -9,7 +9,6 @@ import java.util.List;
 
 public class CluedoBelief implements Belief, GameStateConstants {
     private double[][] probabilities = new double[21][5];
-    private int myIndex;
 
     public CluedoBelief(){}
 
@@ -20,7 +19,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
     }
 
     public CluedoBelief(CluedoBelief old){
-        this.probabilities = old.probabilities.clone();
+        for(int i = 0; i < old.probabilities.length; i++){
+            this.probabilities[i] = old.probabilities[i].clone();
+        }
     }
 
     @Override
@@ -68,6 +69,13 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     public void setProbabilityZero(int card, int cardType, int playerIndex) {
         int offset = getOffset(cardType);
+        double fullprob = 0;
+        for(int j = 0; j < 5; j++){
+            if(j != playerIndex)
+                fullprob+=probabilities[card+offset][j];
+        }
+        if(fullprob == 0 && (fullprob + probabilities[card+offset][playerIndex] != 0))
+            fullprob = fullprob;
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
     }
@@ -91,9 +99,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
     private int getOffset(int cardType) {
         switch (cardType){
             case WEAPON:
-                return 14;
+                return 15;
             case SUSPECT:
-                return 8;
+                return 9;
             case ROOM:
                 return 0;
         }
@@ -152,9 +160,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
             return null;
     }
 
-    public double getCardProb(int cardType, int i, int playerIdx) {
+    public double getCardProb(int card, int cardType, int playerIdx) {
         int offset = getOffset(cardType);
-        return probabilities[i+offset][playerIdx];
+        return probabilities[card+offset][playerIdx];
     }
 
     public int getCurrentEntropy() {
@@ -163,5 +171,14 @@ public class CluedoBelief implements Belief, GameStateConstants {
             entropySum += getEntropy(probabilities[i]);
         }
         return (int)entropySum;
+    }
+
+    public int getNumberOfZeros() {
+        int i = 0;
+        for(double[] prob: probabilities){
+            if(prob[0]+prob[1]+prob[2]+prob[3]+prob[4] == 0)
+                i++;
+        }
+        return i;
     }
 }

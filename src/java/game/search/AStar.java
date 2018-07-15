@@ -21,8 +21,6 @@ public class AStar {
         //Reset Goal node
         //Set map, start and goal node then add start node to openQueue
         this.map = map;
-        if(end == null || end.length == 0)
-            end = new int[]{0,5};
         this.goalNode = new Node(1000, end[0], end[1], null);
         this.startNode = new Node(0, start[0], start[1],goalNode);
         openQueue.add(startNode);

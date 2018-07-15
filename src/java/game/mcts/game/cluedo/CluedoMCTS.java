@@ -8,6 +8,7 @@ import main.Gamepiece;
 import main.Tuple;
 import mcts.game.Game;
 import mcts.game.catan.Actions;
+import mcts.tree.node.ChanceNode;
 import mcts.tree.node.StandardNode;
 import mcts.tree.node.TreeNode;
 import mcts.utils.Options;
@@ -37,10 +38,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private CluedoConfig config;
     private int[] actionTaken;
     private StandardNode node;
+    private int myIdx;
 
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board) {
         this.state = state.clone();
-        this.belief = belief;
+        this.belief = (CluedoBelief)belief.copy();
         this.config = config;
         setBoard(board);
         state[ENTROPY] = belief.getCurrentEntropy();
@@ -48,7 +50,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
         this.config = gameConfig;
-        this.belief = belief;
+        this.belief = (CluedoBelief)belief.copy();
     }
 
     public void setState(int[] newState){
@@ -123,6 +125,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             case SECRET_PASSAGE:
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
+                state[HAS_SUGGESTED] = 0;
                 state[getCurrentPlayer()+MOVEMENT_OFFSET] = 0;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
@@ -168,7 +171,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
         }
         state[ENTROPY] = belief.getCurrentEntropy();
-        state[TURN]++;
     }
 
     private void updatePlayerLocation() {
@@ -194,6 +196,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void getNextPlayer() {
+        state[TURN]++;
         state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
         state[CURRENT_ROLL] = -1;
         state[HAS_SUGGESTED] = 0;
@@ -237,13 +240,20 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void noCardToShow(int[] a) {
-        for(int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++){
-            belief.setProbabilityZero(a[i],i, getCurrentPlayer()+1);
+        if(getCurrentPlayer() != 0) {
+            for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
+                double prob = belief.getCardProb( state[i], i-6,getCurrentPlayer() + 1);
+                if(prob == 1)
+                    prob = prob;
+                belief.setProbabilityZero(state[i], i-6, getCurrentPlayer() + 1);
+            }
         }
     }
 
     private void doFalsification(int[] a) {
-        belief.checkOffCard(a[1],a[2],getCurrentPlayer()+1);
+        if(state[SUGGESTER_IDX] == 0) {
+            belief.checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
+        }
     }
 
     private void setFalsifyState(int[] a) {
@@ -280,15 +290,19 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 listSecretPassagePossibility(options);
         }
         if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
-            listSuggestionPossibilities(options, state[CURRENT_ROOM]);
+            listSuggestionPossibilities(options);
         return options;
     }
 
     private void listWinGamePossibility(Options options) {
-        double roomProb = belief.getCardProb(ROOM,state[ACCUSED_ROOM],0);
-        double suspectProb = belief.getCardProb(SUSPECT,state[ACCUSED_SUSPECT],0);
-        double weaponProb = belief.getCardProb(WEAPON,state[ACCUSED_WEAPON],0);
+        // LOOK INTO WHY PROBABILITIES ARE ZERO???!?!??!?!
+        double roomProb = belief.getCardProb(state[ACCUSED_ROOM],ROOM,0);
+        double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
+        double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
         double jointProb = roomProb*suspectProb*weaponProb;
+        int getFullZeros = belief.getNumberOfZeros();
+        if(getFullZeros > 2)
+            getFullZeros = getFullZeros;
         options.put(Actions.newAction(GAME_WON),jointProb);
         options.put(Actions.newAction(CONTINUE_GAME),1-jointProb);
     }
@@ -303,16 +317,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
         //1 room, 2 suspect, 3 weapon
         int[] cardTypes = new int[]{ROOM,SUSPECT,WEAPON};
         int i = 0;
-        double jointProb = 0.0;
-        for(int idx = 8; idx < 11; idx++){
+        double jointProb = 1;
+        for(int idx = 7; idx < 10; idx++){
             int cardType = cardTypes[i];
-            double prob = belief.getCardProb(cardType, state[idx], state[SUGGESTER_IDX]+1);
-            //add or multiply?????
-            jointProb += prob;
+            double prob = belief.getCardProb( state[idx],cardType, getCurrentPlayer()+1);
+            jointProb *= (1-prob);
             options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
             i++;
         }
-        options.put(Actions.newAction(NO_FALSIFY),1-jointProb);
+        if(jointProb > 0)
+            options.put(Actions.newAction(NO_FALSIFY),jointProb);
     }
 
     private void listMovePossibilities(Options options) {
@@ -320,7 +334,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(movementGoal != 0)
             options.put(Actions.newAction(MOVE, movementGoal, state[CURRENT_ROLL]), 1.0);
         else {
-            for (int i = 1; i < 10; i++) {
+            for (int i = 0; i < 9; i++) {
                 if (state[CURRENT_ROOM] != i) {
                     options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
                 }
@@ -329,9 +343,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void listAccusePossibilities(Options options) {
-        for(int room = 1; room < 10; room++){
-            for(int suspect = 1; suspect < 7; suspect++){
-                for(int weapon = 1; weapon < 7; weapon++){
+        for(int room = 0; room < 9; room++){
+            for(int suspect = 0; suspect < 6; suspect++){
+                for(int weapon = 0; weapon < 6; weapon++){
                     options.put(Actions.newAction(ACCUSE, room, suspect, weapon), 1.0);
                 }
             }
@@ -350,9 +364,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
         options.put(Actions.newAction(SECRET_PASSAGE, state[CURRENT_ROOM]), 1.0);
     }
 
-    private void listSuggestionPossibilities(Options options, int i) {
-        for(int suspect = 1; suspect < 7; suspect++){
-            for(int weapon = 1; weapon < 7; weapon++){
+    private void listSuggestionPossibilities(Options options) {
+        for(int suspect = 0; suspect < 6; suspect++){
+            for(int weapon = 0; weapon < 6; weapon++){
                 options.put(Actions.newAction(SUGGEST, state[CURRENT_ROOM], suspect, weapon), 1.0);
             }
         }
@@ -383,7 +397,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public TreeNode generateNode() {
-        return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
+        if(state[CHECKING_WIN_POSSIBILITY] == 0)
+            return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
+        else
+            return new ChanceNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
     }
 
     @Override
