@@ -37,6 +37,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private int[] actionTaken;
     private StandardNode node;
     private int myIdx;
+    private LinkedList<Integer> actionTypes;
 
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board) {
         this.state = state.clone();
@@ -274,8 +275,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public Options listPossiblities(boolean sample) {
         Options options = new Options();
+        actionTypes = new LinkedList<>();
         if(state[CHECKING_WIN_POSSIBILITY] == 1) {
             listWinGamePossibility(options);
+            actionTypes.add(CONTINUE_GAME);
+            actionTypes.add(GAME_WON);
             return options;
         }
         if(state[FALSIFYING] == 1){
@@ -284,17 +288,25 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[CURRENT_ROLL] == -1) {
             listDiceResultPossibilities(options);
+            actionTypes.add(CHOOSE_DICE);
             return options;
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            if(state[ENTROPY] < 1)
+            actionTypes.add(MOVE);
+            if(state[ENTROPY] < 50) {
                 listAccusePossibilities(options);
-            if (inRoomWithSecretPassage(state[CURRENT_ROOM]))
+                actionTypes.add(ACCUSE);
+            }
+            if (inRoomWithSecretPassage(state[CURRENT_ROOM])) {
                 listSecretPassagePossibility(options);
+                actionTypes.add(SECRET_PASSAGE);
+            }
         }
-        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0)
+        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0) {
             listSuggestionPossibilities(options);
+            actionTypes.add(SUGGEST);
+        }
         return options;
     }
 
@@ -305,13 +317,12 @@ public class CluedoMCTS implements Game, GameStateConstants {
      * TODO: add option for weights on action types such that some would be executed more
      * often in the roll-outs (i.e. consider basic player types)
      */
-    private void listNormalPossAndSampleType(Options options){
+    private void listPossAndSampleType(Options options){
         HashMap<Integer, Double> actionTypes = new HashMap<>();
         Map<Integer,Double> dist = config.rolloutTypeDist.getDist(new ArrayList(actionTypes.keySet()));
     }
 
-
-    public ArrayList<Integer> listNormalActionTypes(){
+    public ArrayList<Integer> listActionTypes(){
         ArrayList<Integer> actionTypes = new ArrayList<>();
 
         return actionTypes;
@@ -345,8 +356,13 @@ public class CluedoMCTS implements Game, GameStateConstants {
             options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
             i++;
         }
-        if(jointProb > 0)
-            options.put(Actions.newAction(NO_FALSIFY),jointProb);
+        actionTypes.add(FALSIFY);
+        if(jointProb > 0) {
+            options.put(Actions.newAction(NO_FALSIFY), jointProb);
+
+            actionTypes.add(NO_FALSIFY);
+        }
+
     }
 
     private void listMovePossibilities(Options options) {
@@ -405,14 +421,26 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public int[] sampleNextAction() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Options options = listPossiblities(true);
-        return options.getOptions().get(rnd.nextInt(options.size()));
+        return sampleActionByType(options,rnd);
+    }
+
+    private int[] sampleActionByType(Options options, ThreadLocalRandom rnd) {
+        if(actionTypes.size() == 1)
+            return options.getOptions().get(rnd.nextInt(options.size()));
+        else {
+            int actionType = actionTypes.get(rnd.nextInt(actionTypes.size()));
+            int l = 0;
+            options.removeAllExceptType(actionType);
+            return options.getOptions().get(rnd.nextInt(options.size()));
+        }
     }
 
     @Override
     public int sampleNextActionIndex() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Options options = listPossiblities(true);
-        return rnd.nextInt(options.size());
+        int[] action = sampleActionByType(options,rnd);
+        return options.indexOfAction(action);
     }
 
     @Override

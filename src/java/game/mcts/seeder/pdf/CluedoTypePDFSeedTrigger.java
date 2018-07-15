@@ -15,8 +15,7 @@ import java.util.Map;
 
 /**
  * This uses the typed pdf to seed in the tree without launching new threads.
- * 
- * @author sorinMD
+ *
  *
  */
 public class CluedoTypePDFSeedTrigger extends SeedTrigger implements GameStateConstants {
@@ -34,7 +33,7 @@ public class CluedoTypePDFSeedTrigger extends SeedTrigger implements GameStateCo
 		if(task == -1)
 			return;
 		CluedoMCTS game = (CluedoMCTS) factory.getGame(node.getState());
-		ArrayList<Integer> types = game.listNormalActionTypes();
+		ArrayList<Integer> types = game.listActionTypes();
 		Map<Integer,Double> dist = pdf.getDist(types);
 			
 		ArrayList<int[]> actions = game.listPossiblities(false).getOptions();

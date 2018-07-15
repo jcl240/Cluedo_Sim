@@ -2,6 +2,7 @@ package mcts.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 /**
  * A simple container to store a list of int[] and the probabilities attached to
@@ -110,5 +111,19 @@ public class Options {
 	protected Object clone() throws CloneNotSupportedException {
 		return new Options(this);
 	}
+
+	public void removeAllExceptType(int actionType) {
+		int i = 0;
+		Iterator<Double> probIt = probs.iterator();
+		for(Iterator<int[]> it = options.iterator(); it.hasNext(); ) {
+			int[] option = it.next();
+			double prob = probIt.next();
+			if (option[0] != actionType) {
+				it.remove();
+				probIt.remove();
+			}
+		}
+	}
+
 
 }
