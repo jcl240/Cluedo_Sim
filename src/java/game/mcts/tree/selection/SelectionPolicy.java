@@ -150,8 +150,6 @@ public abstract class SelectionPolicy {
     			v = ((double)root.wins[root.getCurrentPlayer()][k])/root.childVisits[k] + rnd.nextDouble() * eps;
     		else{
 	        	TreeNode n = tree.getNode(root.getChildren().get(k));
-				if(n.getState()[26] == 1)
-					v = 0.0;
 	            v = ((double)n.getWins(root.getCurrentPlayer()))/(n.getnVisits()) + rnd.nextDouble() * eps;
     		}
             

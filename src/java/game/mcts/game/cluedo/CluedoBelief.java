@@ -74,8 +74,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
             if(j != playerIndex)
                 fullprob+=probabilities[card+offset][j];
         }
-        if(fullprob == 0 && (fullprob + probabilities[card+offset][playerIndex] != 0))
-            fullprob = fullprob;
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
     }
@@ -182,5 +180,13 @@ public class CluedoBelief implements Belief, GameStateConstants {
                 i++;
         }
         return i;
+    }
+
+    public double getJointProbabilityInEnvelope(double roomProb, double suspectProb, double weaponProb) {
+        double totalMass = 0;
+        for(double[] prob: probabilities){
+            totalMass += prob[0];
+        }
+        return ((roomProb*suspectProb*weaponProb)/totalMass);
     }
 }
