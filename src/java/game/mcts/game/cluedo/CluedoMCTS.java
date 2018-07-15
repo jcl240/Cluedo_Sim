@@ -116,7 +116,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 updatePlayerLocation();
                 if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
-                    state[getCurrentPlayer()+MOVEMENT_OFFSET] = 0;
                 }
                 else
                     getNextPlayer();
@@ -125,7 +124,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 state[HAS_SUGGESTED] = 0;
-                state[getCurrentPlayer()+MOVEMENT_OFFSET] = 0;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SUGGEST:
@@ -197,7 +195,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void getNextPlayer() {
-        state[TURN]++;
         state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
         state[CURRENT_ROLL] = -1;
         state[HAS_SUGGESTED] = 0;
@@ -366,14 +363,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void listMovePossibilities(Options options) {
-        int movementGoal = state[getCurrentPlayer()+MOVEMENT_OFFSET];
-        if(movementGoal != 0)
-            options.put(Actions.newAction(MOVE, movementGoal, state[CURRENT_ROLL]), 1.0);
-        else {
-            for (int i = 0; i < 9; i++) {
-                if (state[CURRENT_ROOM] != i) {
-                    options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
-                }
+        for (int i = 0; i < 9; i++) {
+            if (state[CURRENT_ROOM] != i) {
+                options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
             }
         }
     }

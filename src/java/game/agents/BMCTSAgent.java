@@ -22,7 +22,6 @@ import static main.Card.shuffle;
 public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     private HeuristicNotebook notebook;
     int actionFailCount = 0;
-    private int movementGoal = 0;
     Board board;
 
     public BMCTSAgent(Card[] hand, Card[] faceUp, int index) {
@@ -39,7 +38,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         gameFactory.setBoard(board);
         CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         int roll = getRoll(possibleActions);
-        checkMovementGoal();
         setState(roll, gameSim);
         MCTS mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
@@ -52,10 +50,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         return actionToTake;
     }
 
-    private void checkMovementGoal() {
-        if(board.getRoom(playerIndex) != 0)
-            movementGoal = 0;
-    }
 
     private Action getAction(Options options, int idx, LinkedList<Action> possibleActions) {
         int[] actionArray = options.getOptions().get(idx);
@@ -63,8 +57,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         switch (actionArray[0]) {
             case MOVE:
                 action = getMoveAction(possibleActions, actionArray);
-                if(movementGoal == 0)
-                    movementGoal = board.getRoomIndexByLocation(action.towards);
                 break;
             case SUGGEST:
                 action = getSuggestAction(possibleActions, actionArray);
@@ -160,9 +152,8 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
                                 notebook.getCurrentEntropy(),-1,
                                 playerLocations[0][0],playerLocations[0][1],playerLocations[1][0],playerLocations[1][1],
                                 playerLocations[2][0],playerLocations[2][1],playerLocations[3][0],playerLocations[3][1],
-                                0,0,
-                                0,0,0,
-                                movementGoal,0,0,0
+                                0,
+                                0,0,0
                         }
                 );
     }
@@ -195,8 +186,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     @Override
     public void actionFailed(Action actionTaken) {
         actionFailCount++;
-        if(actionTaken.actionType.equals("move"))
-            movementGoal = 0;
     }
 
     @Override
