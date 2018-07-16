@@ -24,7 +24,7 @@ public class Simulator {
         //logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
         try {
-            out = new PrintWriter("/Cluedo_Sim/out/artifacts/Simulator/results.txt");
+            out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/results.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
