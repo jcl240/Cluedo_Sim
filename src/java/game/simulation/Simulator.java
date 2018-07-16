@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 20;
+    public static int numGames = 10;
     public static String playerTwoType = "Heuristic";
     public static String playerOneType = "MCTS";
     public int playerOneWins = 0;
@@ -29,7 +29,7 @@ public class Simulator {
             e.printStackTrace();
         }
         int i = 0;
-        while(i <= numGames) {
+        while(i < numGames) {
             LinkedList<String> agents = new LinkedList<>();
             agents.add(playerOneType);agents.add(playerTwoType);agents.add(playerTwoType);agents.add(playerTwoType);
             Cluedo game = new Cluedo(agents);
