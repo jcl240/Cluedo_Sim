@@ -2,7 +2,7 @@
 -Create data folder
 -Create log folder
 -Create db folder inside data
--run command (from bin): mongod --directoryperdb --dbpath C:\MongoDB\data\db --logpath C:\MongoDB\log\mongo.log --logappend --install
+-run command (from bin): mongod --directoryperdb --dbpath  mongodb/data/db
 -Create a database by use 'dbname'
 -Create two collections, one named simulationCollection and other named gameCollection:
 	db.createCollection('');

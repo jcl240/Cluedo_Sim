@@ -305,8 +305,7 @@ public class Cluedo {
         else {
             players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new RandomAgent(cards[1], faceUpCards, 1),
                     new RandomAgent(cards[2], faceUpCards, 2), new RandomAgent(cards[3], faceUpCards, 3)};
-            /*
-            for (int i = 0; i < 4; i++) {
+            /*for (int i = 0; i < 4; i++) {
                 int randIdx;
                 if (i == 3)
                     randIdx = 0;
@@ -326,6 +325,8 @@ public class Cluedo {
             case "Random":
                 players[i] = new RandomAgent(cards[i], faceUpCards, i);
                 break;
+            case "MCTS":
+                players[i] = new BMCTSAgent(cards[i],faceUpCards,i);
         }
     }
 

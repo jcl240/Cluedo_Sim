@@ -408,6 +408,15 @@ public class Board implements GameStateConstants {
         }
         return roomIdx;
     }
+
+    public boolean canMove(int playerIdx, int roomIdx) {
+        Player currentPlayer = getPlayer(playerIdx);
+        int[] start = getPlayerLocation(currentPlayer);
+        int[] entrance = getClosestRoomEntrance(roomIdx, start);
+        AStar astar = new AStar(start,entrance,getCurrentTiles(currentPlayer));
+        Boolean successful = astar.search();
+        return successful;
+    }
 }
 
 

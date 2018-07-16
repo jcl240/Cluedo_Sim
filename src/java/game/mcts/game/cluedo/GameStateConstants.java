@@ -31,6 +31,7 @@ public interface GameStateConstants extends HexTypeConstants {
     int NO_FALSIFY = 6;
     int CONTINUE_GAME = 7;
     int GAME_WON = 8;
+    int DO_NOTHING = 9;
 
     int NO_ROOM = -1;
     int HALL = 0;

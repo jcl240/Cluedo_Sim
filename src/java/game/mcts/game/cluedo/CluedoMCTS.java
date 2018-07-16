@@ -105,6 +105,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case GAME_WON:
                 break;
+            case DO_NOTHING:
+                break;
         }
         stateTransition(a);
     }
@@ -166,6 +168,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 state[WINNER] = getCurrentPlayer();
                 state[GAME_STATE] = 0;
                 break;
+            case DO_NOTHING:
+                getNextPlayer();
         }
         state[ENTROPY] = belief.getCurrentEntropy();
     }
@@ -288,8 +292,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            actionTypes.add(MOVE);
-            if(state[ENTROPY] < 2) {
+            if(state[ENTROPY] < 3) {
                 listAccusePossibilities(options);
                 actionTypes.add(ACCUSE);
             }
@@ -348,10 +351,18 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void listMovePossibilities(Options options) {
+        int j = 0;
         for (int i = 0; i < 9; i++) {
+            //&& board.canMove(getCurrentPlayer()+1, i)
             if (state[CURRENT_ROOM] != i) {
                 options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
+                j++;
+                actionTypes.add(MOVE);
             }
+        }
+        if(j==0){
+            options.put(Actions.newAction(DO_NOTHING),1.0);
+            actionTypes.add(DO_NOTHING);
         }
     }
 
@@ -401,14 +412,14 @@ public class CluedoMCTS implements Game, GameStateConstants {
         return sampleActionByType(options,rnd);
     }
 
-    private int[] sampleActionByType(Options options, ThreadLocalRandom rnd) {
+    private int[] sampleActionByType(Options options, ThreadLocalRandom rnd)  {
+        Options optionsCopy = options.getCopy();
         if(actionTypes.size() == 1)
-            return options.getOptions().get(rnd.nextInt(options.size()));
+            return optionsCopy.getOptions().get(rnd.nextInt(optionsCopy.size()));
         else {
             int actionType = actionTypes.get(rnd.nextInt(actionTypes.size()));
-            int l = 0;
-            options.removeAllExceptType(actionType);
-            return options.getOptions().get(rnd.nextInt(options.size()));
+            optionsCopy.removeAllExceptType(actionType);
+            return optionsCopy.getOptions().get(rnd.nextInt(optionsCopy.size()));
         }
     }
 

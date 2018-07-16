@@ -1,5 +1,6 @@
 package mcts.utils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -44,6 +45,18 @@ public class Options {
 	public Options(Options opt) {
 		options = (ArrayList<int[]>) opt.options.clone();
 		probs = (ArrayList<Double>) opt.probs.clone();
+	}
+
+	public Options getCopy(){
+		ArrayList<int[]> opts = new ArrayList<>();
+		for(int[] a: options){
+			opts.add(a.clone());
+		}
+		ArrayList<Double> pbs = new ArrayList<>();
+		for(double p: probs){
+			pbs.add(p);
+		}
+		return new Options(opts, pbs);
 	}
 
 	public ArrayList<int[]> getOptions() {
