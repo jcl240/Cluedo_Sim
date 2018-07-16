@@ -17,6 +17,7 @@ public class Simulator {
     public static String playerTwoType = "Heuristic";
     public static String playerOneType = "MCTS";
     public int playerOneWins = 0;
+    public int playerTwoWins = 0;
 
     public Simulator(){
         String simName = playerOneType+"Vs"+playerTwoType;
@@ -37,8 +38,11 @@ public class Simulator {
             if(game.winner.playerType.equals(playerOneType)){
                 playerOneWins++;
             }
+            else
+                playerTwoWins++;
         }
         out.println(playerOneWins);
+        out.println(playerTwoWins);
         out.close();
         //logger.storeSimulation();
     }
