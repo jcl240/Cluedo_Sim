@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 10;
+    public static int numGames = 20;
     public static String playerTwoType = "Heuristic";
     public static String playerOneType = "MCTS";
     public int playerOneWins = 0;
@@ -24,7 +24,7 @@ public class Simulator {
         //logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
         try {
-            out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/results10.txt");
+            out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/resultslimit.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
