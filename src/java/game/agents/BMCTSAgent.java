@@ -39,6 +39,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         if(actionFailCount > 3)
             return new Action("doNothing");
         gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
+        gameFactory.setBoard(board);
         CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         setState(possibleActions, gameSim);
         mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
@@ -212,7 +213,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     @Override
     public void setBoard(Board board){
         this.board = board;
-        gameFactory.setBoard(board);
     }
 
     private void logSuggestion(Card[] suggestion){
