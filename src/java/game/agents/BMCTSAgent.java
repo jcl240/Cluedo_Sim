@@ -32,18 +32,15 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         for(Card card: faceUp) {
             notebook.checkOffCard(card, -1);
         }
-
-        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
-        mcts = new MCTS(new MCTSConfig(), gameFactory);
     }
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
         if(actionFailCount > 3)
             return new Action("doNothing");
+        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
         CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         setState(possibleActions, gameSim);
-        //mcts.newTree(gameSim);
         mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
         //TODO: find a better approach to wait for the tree to finish...
         SearchListener listener = mcts.search();
