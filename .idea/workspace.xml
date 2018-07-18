@@ -13,10 +13,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicNotebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicNotebook.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/Notebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/Notebook.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Card.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/cluedo_gradle/.gradle/" />
@@ -107,8 +104,8 @@
       <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="259" column="8" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
+            <state relative-caret-position="369">
+              <caret line="266" column="50" selection-start-line="266" selection-start-column="50" selection-end-line="266" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -717,13 +714,6 @@
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
     </task>
-    <task id="LOCAL-00102" summary="Take note of when no one proves a suggestion false (do this everytime and not just when everyone fails to prove it false)">
-      <created>1529931850968</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1529931850969</updated>
-    </task>
     <task id="LOCAL-00103" summary="Update probabilities">
       <created>1530364064451</created>
       <option name="number" value="00103" />
@@ -1060,7 +1050,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531932669115</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="Hopefully notebooks are passed from node to node correctly">
+      <created>1531932909036</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1531932909036</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1127,7 +1124,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="No errors (still not done)" />
     <MESSAGE value="Set roll in BMCTS agent before MCTS" />
     <MESSAGE value="Work on retrieving action from MCTS" />
     <MESSAGE value="Needed to add coordinates to state to keep track of player positions, otherwise cant know if play is in a room or not" />
@@ -1152,7 +1148,8 @@
     <MESSAGE value="Heading in direction of using HeuristicAgents in rollouts" />
     <MESSAGE value="copy cardList" />
     <MESSAGE value="change method getCardFromIndex" />
-    <option name="LAST_COMMIT_MESSAGE" value="change method getCardFromIndex" />
+    <MESSAGE value="Hopefully notebooks are passed from node to node correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Hopefully notebooks are passed from node to node correctly" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1544,8 +1541,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="259" column="8" selection-start-line="259" selection-start-column="8" selection-end-line="259" selection-end-column="8" />
+        <state relative-caret-position="369">
+          <caret line="266" column="50" selection-start-line="266" selection-start-column="50" selection-end-line="266" selection-end-column="50" />
         </state>
       </provider>
     </entry>

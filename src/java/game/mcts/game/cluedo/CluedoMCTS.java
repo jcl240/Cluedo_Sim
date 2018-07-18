@@ -242,11 +242,14 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private void noCardToShow(int[] a) {
         Player[] players = board.getPlayers();
         for(int idx = 0; idx < 4; idx++){
-            for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
-                if(idx != getCurrentPlayer()) {
-                    if (idx == myIdx) {
+            if(idx != getCurrentPlayer()) {
+                if (idx == myIdx) {
+                    for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
                         belief.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
                     }
+                }
+                else{
+                    //set prob zero for other players
                 }
             }
         }
@@ -254,10 +257,25 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void doFalsification(int[] a) {
         Player[] players = board.getPlayers();
-
         int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
-        belief.updateProbabilities(suggestion, getCurrentPlayer()+1);
-        
+
+        for(int idx = 0; idx < 4; idx++) {
+            if(idx != state[SUGGESTER_IDX] && idx != getCurrentPlayer()) {
+                if (idx == myIdx) {
+                    belief.updateProbabilities(suggestion, getCurrentPlayer() + 1);
+                } else {
+                    //update probabilities for other players
+                }
+            }
+            else{
+                if (idx == myIdx) {
+                    belief.checkOffCard(a[1],a[2], getCurrentPlayer() + 1);
+                } else {
+                    //check off card for suggester
+                }
+            }
+        }
+
 
     }
 
