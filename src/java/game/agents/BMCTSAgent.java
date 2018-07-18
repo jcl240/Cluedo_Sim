@@ -102,16 +102,16 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     private Action getAccuseAction(LinkedList<Action> possibleActions, int[] actionArray) {
         Action action = getActionFromType("accuse", possibleActions);
-        Card[] accusation = new Card[]{Card.getCardFromIndex(ROOM,actionArray[1]),
-                Card.getCardFromIndex(SUSPECT,actionArray[2]),Card.getCardFromIndex(WEAPON,actionArray[3])};
+        Card[] accusation = new Card[]{Card.getCardFromIndex(actionArray[1],ROOM),
+                Card.getCardFromIndex(actionArray[2],SUSPECT),Card.getCardFromIndex(actionArray[3],WEAPON)};
         action.accusation = accusation;
         return action;
     }
 
     private Action getSuggestAction(LinkedList<Action> possibleActions, int[] actionArray) {
         Action action = getActionFromType("suggest", possibleActions);
-        Card[] suggestion = new Card[]{Card.getCardFromIndex(ROOM,actionArray[1]),
-                Card.getCardFromIndex(SUSPECT,actionArray[2]),Card.getCardFromIndex(WEAPON,actionArray[3])};
+        Card[] suggestion = new Card[]{Card.getCardFromIndex(actionArray[1],ROOM),
+                Card.getCardFromIndex(actionArray[2],SUSPECT),Card.getCardFromIndex(actionArray[3],WEAPON)};
         action.suggestion = suggestion;
         return action;
     }

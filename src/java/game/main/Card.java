@@ -74,7 +74,7 @@ public class Card implements GameStateConstants {
         return false;
     }
 
-    public static Card getCardFromIndex(int cardType, int cardIndex) {
+    public static Card getCardFromIndex(int cardIndex, int cardType) {
         Card[] cards = Card.makeCards();
         int offset = getOffset(cardType);
         return cards[cardIndex+offset];
