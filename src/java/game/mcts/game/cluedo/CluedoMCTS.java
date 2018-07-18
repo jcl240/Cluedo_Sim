@@ -434,7 +434,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public void setBoard(Board board) {
-        this.board = new Board(board.getPlayerLocations());
+        this.board = new Board(board.getPlayerLocations(), belief, board.getPlayers());
         if(state != null) {
             board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
                     state[PLAYER_TWO_X], state[PLAYER_TWO_Y],

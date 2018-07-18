@@ -189,4 +189,12 @@ public class CluedoBelief implements Belief, GameStateConstants {
         }
         return ((roomProb/totalMass)*(suspectProb/totalMass)*(weaponProb/totalMass));
     }
+
+    public double[][] getProbabilities() {
+        double[][] probs = new double[21][5];
+        for(int i = 0; i < this.probabilities.length; i++){
+            probs[i] = this.probabilities[i].clone();
+        }
+        return probs;
+    }
 }

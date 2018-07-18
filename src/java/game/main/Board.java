@@ -2,6 +2,7 @@ package main;
 
 import GUI.BoardGUI;
 import agents.*;
+import mcts.game.cluedo.CluedoBelief;
 import mcts.game.cluedo.GameStateConstants;
 import search.AStar;
 
@@ -31,39 +32,21 @@ public class Board implements GameStateConstants {
     }
     public Board(){}
 
-    public Board(Board board) {
+
+    public Board(int[][] playerLocations, CluedoBelief belief, Player[] players) {
         initializeTiles();
         initializeRooms();
-        this.playerPieceTuples = board.getTuples();
-        this.faceUp = board.faceUp;
+        initializePieces(playerLocations, belief, players);
     }
 
-    public Board(int[][] playerLocations) {
-        initializeTiles();
-        initializeRooms();
-        initializePieces(playerLocations);
-    }
-
-    private void initializePieces(int[][] playerLocations) {
+    private void initializePieces(int[][] playerLocations, CluedoBelief belief, Player[] players) {
         int i = 1;
         for(int[] location: playerLocations){
-            playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i), new Gamepiece(location)));
+            playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, belief.getProbabilities()), new Gamepiece(location)));
             i++;
         }
     }
 
-    public LinkedList<Tuple<Player,Gamepiece>> getTuples() {
-        LinkedList<Tuple<Player,Gamepiece>> newList = new LinkedList<>();
-        for(Tuple<Player,Gamepiece> tuple: playerPieceTuples){
-            Agent agent = (Agent)tuple.x;
-            Player player = new RandomAgent(agent.getHandArray().clone(),faceUp.clone(),agent.playerIndex-1,agent);
-            int x = tuple.y.getCurrentLocation()[0];
-            int y = tuple.y.getCurrentLocation()[1];
-            Gamepiece piece = new Gamepiece(new int[]{x,y});
-            newList.add(new Tuple<Player,Gamepiece>(player,piece));
-        }
-        return newList;
-    }
 
     private void initializePieces(Player[] players) {
         int i = 0;
@@ -414,6 +397,17 @@ public class Board implements GameStateConstants {
         Boolean successful = astar.search();
         return successful;
     }
+
+    public Player[] getPlayers() {
+        Player[] players = new Player[4];
+        int j = 0;
+        for(Tuple tuple: playerPieceTuples){
+            players[j] = (Player)tuple.x;
+            j++;
+        }
+        return players;
+    }
+
 }
 
 

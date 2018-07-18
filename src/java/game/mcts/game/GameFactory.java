@@ -40,7 +40,7 @@ public class GameFactory {
 	}
 
 	public void setBoard(Board board){
-		this.board = new Board(board.getPlayerLocations());
+		this.board = new Board(board.getPlayerLocations(), (CluedoBelief)belief, board.getPlayers());
 	}
 	
 	public Game getNewGame(){

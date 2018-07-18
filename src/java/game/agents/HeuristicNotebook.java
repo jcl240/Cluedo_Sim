@@ -25,6 +25,11 @@ public class HeuristicNotebook extends Notebook{
         }
     }
 
+    public HeuristicNotebook(double[][] probabilities, int i) {
+        this.myIndex = i;
+        this.probabilities = probabilities;
+    }
+
 
     public void checkOffCard(Card card, int playerIdx) {
         int index = notebook.indexOf(new Tuple<>(card,false));
@@ -196,5 +201,9 @@ public class HeuristicNotebook extends Notebook{
                 i++;
         }
         return i;
+    }
+
+    public void setProbabilities(double[][] probabilities) {
+        this.probabilities = probabilities;
     }
 }

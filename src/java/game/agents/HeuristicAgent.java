@@ -23,8 +23,9 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
-    public HeuristicAgent(int i) {
+    public HeuristicAgent(int i, double[][] probabilities) {
         super(i);
+        notebook = new HeuristicNotebook(probabilities, i);
     }
 
     @Override
