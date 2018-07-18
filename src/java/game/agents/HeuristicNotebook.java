@@ -31,8 +31,9 @@ public class HeuristicNotebook extends Notebook{
         this.probabilities = oldNotebook.getProbabilities();
     }
 
-    public HeuristicNotebook(int i) {
+    public HeuristicNotebook(double[][] probabilities, int idx) {
         super();
+        this.myIndex = idx;
     }
 
 

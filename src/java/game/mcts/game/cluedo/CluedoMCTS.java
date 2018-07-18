@@ -257,7 +257,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
         int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
         belief.updateProbabilities(suggestion, getCurrentPlayer()+1);
-
+        
 
     }
 
