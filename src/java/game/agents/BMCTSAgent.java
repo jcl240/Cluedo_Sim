@@ -205,7 +205,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     @Override
     public void cardShown(Action action, Player cardPlayer) {
-        notebook.updateProbabilities(action.suggestion, cardPlayer);
+        notebook.updateProbabilities(action.suggestion, ((Agent)cardPlayer).playerIndex);
     }
 
     @Override

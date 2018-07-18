@@ -2,6 +2,7 @@ package mcts.game.cluedo;
 
 import agents.Action;
 import agents.HeuristicAgent;
+import agents.HeuristicNotebook;
 import agents.Player;
 import main.Board;
 import main.Card;
@@ -69,9 +70,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public boolean isTerminal() {
-        if(state[GAME_STATE] == PLAYING)
-            return false;
-        return true;
+        return state[GAME_STATE] != PLAYING;
     }
 
     @Override
@@ -241,6 +240,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void noCardToShow(int[] a) {
         Player[] players = board.getPlayers();
+        int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
         for(int idx = 0; idx < 4; idx++){
             if(idx != getCurrentPlayer()) {
                 if (idx == myIdx) {
@@ -250,6 +250,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 }
                 else{
                     //set prob zero for other players
+                    for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
+                        ((HeuristicAgent)players[idx]).getNotebook().setProbabilityZero(state[i],i-6,getCurrentPlayer()+1);
+                    }
                 }
             }
         }
@@ -265,6 +268,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                     belief.updateProbabilities(suggestion, getCurrentPlayer() + 1);
                 } else {
                     //update probabilities for other players
+                    ((HeuristicAgent)players[idx]).getNotebook().updateProbabilities(suggestion, getCurrentPlayer()+1);
                 }
             }
             else{
@@ -272,6 +276,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                     belief.checkOffCard(a[1],a[2], getCurrentPlayer() + 1);
                 } else {
                     //check off card for suggester
+                    ((HeuristicAgent)players[idx]).getNotebook().checkOffCard(a[1],a[2],getCurrentPlayer()+1);
                 }
             }
         }

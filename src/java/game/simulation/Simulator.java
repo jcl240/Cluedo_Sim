@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 10;
+    public static int numGames = 10000;
     public static String playerOneType = "MCTS";
     public static String playerTwoType = "Random";
     public int playerOneWins = 0;
@@ -23,11 +23,12 @@ public class Simulator {
         String simName = playerOneType+"Vs"+playerTwoType;
         //logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
+        /*
         try {
             out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/resultslimit.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
         int i = 0;
         while(i < numGames) {
             LinkedList<String> agents = new LinkedList<>();
@@ -41,10 +42,13 @@ public class Simulator {
             else {
                 playerTwoWins++;
             }
+            System.gc();
         }
+        /*
         out.println(playerOneWins);
         out.println(playerTwoWins);
         out.close();
+        */
         //logger.storeSimulation();
     }
 

@@ -169,10 +169,9 @@ public class HeuristicNotebook extends Notebook{
 
 
 
-    public void updateProbabilities(Card[] suggestion, Player player){
-        int playerIndex = ((Agent)player).playerIndex;
+    public void updateProbabilities(Card[] suggestion, int playerIndex){
         LinkedList<Card> cardsPossible = getCardsWithNonZeroProbability(suggestion, playerIndex);
-        double probOfObservation = (3.0/15.0);
+        double probOfObservation = (1.0/unknownCount);
         double probOfObservationGivenCard = (1.0/cardsPossible.size());
         double update = (probOfObservationGivenCard / probOfObservation);
 
@@ -226,5 +225,17 @@ public class HeuristicNotebook extends Notebook{
 
     public void setProbabilities(double[][] probabilities) {
         this.probabilities = probabilities;
+    }
+
+    public void setProbabilityZero(int cardIdx, int cardType, int playerIdx) {
+
+    }
+
+    public void updateProbabilities(int[] suggestion, int i) {
+
+    }
+
+    public void checkOffCard(int cardIdx, int cardType, int playerIdx) {
+
     }
 }

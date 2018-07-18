@@ -66,6 +66,11 @@ public class ExpansionPolicy {
 		if(children.size() == 0 || options.getOptions().size() == 0){
 			System.out.println("Children: " + children.size());
 			System.out.println("Options: " + options.getOptions().size());
+			System.out.println("State: " );
+			for(int i : node.getState()){
+				System.out.print(i);
+			}
+			System.out.println();
 		}
 		((StandardNode) node).addChildren(children, options.getOptions(), options.getProbabilities());
 		if(children.size() > 1)// there is nothing to seed if there is a single option.
