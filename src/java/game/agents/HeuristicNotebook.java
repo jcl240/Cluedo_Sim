@@ -34,6 +34,21 @@ public class HeuristicNotebook extends Notebook{
     public HeuristicNotebook(double[][] probabilities, int idx) {
         super();
         this.myIndex = idx;
+        int i = 0;
+        for(Tuple<Card, Boolean> tuple : cardList){
+            if(isZero(probabilities[i]))
+                tuple.y = true;
+            i++;
+        }
+        unknownCount = unknownCardCount();
+    }
+
+    private boolean isZero(double[] probability) {
+        double sum = 0;
+        for(double dob: probability){
+            sum += dob;
+        }
+        return sum==0;
     }
 
 
