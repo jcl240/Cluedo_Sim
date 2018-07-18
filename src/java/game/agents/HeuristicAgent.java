@@ -23,9 +23,15 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
+    public HeuristicAgent(int i, HeuristicNotebook notebook) {
+        super(i);
+        notebook = new HeuristicNotebook(notebook);
+    }
+
     public HeuristicAgent(int i, double[][] probabilities) {
         super(i);
-        notebook = new HeuristicNotebook(probabilities, i);
+        notebook = new HeuristicNotebook(i);
+        notebook.setProbabilities(probabilities);
     }
 
     @Override
@@ -123,6 +129,14 @@ public class HeuristicAgent extends Agent implements Player{
             suggestionList.add(notebook.knowCard(card));
         }
         playerLog.logSuggestion(numKnown, suggestionList);
+    }
+
+    public double[][] getCurrentProbabilities() {
+        return notebook.getProbabilities();
+    }
+
+    public HeuristicNotebook getNotebook() {
+        return this.notebook;
     }
 }
 

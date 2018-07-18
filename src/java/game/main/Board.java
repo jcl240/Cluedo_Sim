@@ -33,16 +33,21 @@ public class Board implements GameStateConstants {
     public Board(){}
 
 
-    public Board(int[][] playerLocations, CluedoBelief belief, Player[] players) {
+    public Board(int[][] playerLocations, CluedoBelief belief, Player[] players, Boolean newGame) {
         initializeTiles();
         initializeRooms();
-        initializePieces(playerLocations, belief, players);
+        initializePieces(playerLocations, belief, players, newGame);
     }
 
-    private void initializePieces(int[][] playerLocations, CluedoBelief belief, Player[] players) {
+    private void initializePieces(int[][] playerLocations, CluedoBelief belief, Player[] players, boolean newGame) {
         int i = 1;
         for(int[] location: playerLocations){
-            playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, belief.getProbabilities()), new Gamepiece(location)));
+            if(newGame)
+                playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, belief.getProbabilities()), new Gamepiece(location)));
+            else {
+                HeuristicAgent agent = ((HeuristicAgent)players[i-1]);
+                playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, agent.getNotebook()), new Gamepiece(location)));
+            }
             i++;
         }
     }

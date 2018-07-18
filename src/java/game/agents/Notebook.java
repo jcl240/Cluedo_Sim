@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class Notebook {
 
-    LinkedList<Tuple<Card, Boolean>> notebook = new LinkedList<>();
+    LinkedList<Tuple<Card, Boolean>> cardList = new LinkedList<>();
     int unknownCount;
 
     public Notebook(Card[] startingHand){
@@ -27,20 +27,20 @@ public class Notebook {
     protected void initializeNotebook() {
         Card[] deck = Card.makeCards();
         for(Card card:deck){
-            notebook.add(new Tuple<>(card, false));
+            cardList.add(new Tuple<>(card, false));
         }
     }
 
     public void checkOffCard(Card card) {
-        int index = notebook.indexOf(new Tuple<>(card,false));
+        int index = cardList.indexOf(new Tuple<>(card,false));
         if(index != -1)
-            notebook.get(index).y = true;
+            cardList.get(index).y = true;
         unknownCount = unknownCardCount();
     }
 
     public int unknownCardCount() {
         int count = 0;
-        for(Tuple<Card, Boolean> tuple: notebook){
+        for(Tuple<Card, Boolean> tuple: cardList){
             if(!tuple.y)
                 count++;
         }
@@ -50,7 +50,7 @@ public class Notebook {
     public Card[] getAccusation() {
         Card[] accusation = new Card[3];
         int i = 0;
-        for(Tuple<Card, Boolean> tuple: notebook){
+        for(Tuple<Card, Boolean> tuple: cardList){
             if(!tuple.y) {
                 accusation[i] = tuple.x;
                 i++;
@@ -65,7 +65,7 @@ public class Notebook {
         String[] types = {"weapon", "suspect"};
         int i = 1;
         while(i < 3){
-            Tuple<Card,Boolean> tuple = notebook.get(Cluedo.rand.nextInt(notebook.size()));
+            Tuple<Card,Boolean> tuple = cardList.get(Cluedo.rand.nextInt(cardList.size()));
             if(!tuple.y && tuple.x.cardType.equals(types[i-1])) {
                 accusation[i] = tuple.x;
                 i++;
@@ -76,7 +76,7 @@ public class Notebook {
 
     public LinkedList<Card> getUnknownRooms() {
         LinkedList<Card> roomlist = new LinkedList<>();
-        for(Tuple<Card,Boolean> tuple: notebook){
+        for(Tuple<Card,Boolean> tuple: cardList){
             if(!tuple.y && tuple.x.cardType.equals("room"))
                 roomlist.add(tuple.x);
         }
@@ -84,7 +84,7 @@ public class Notebook {
     }
 
     public String knowCard(Card card) {
-        int index = notebook.indexOf(new Tuple<>(card,false));
+        int index = cardList.indexOf(new Tuple<>(card,false));
         if(index != -1)
             return "false";
         else

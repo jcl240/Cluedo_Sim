@@ -1,6 +1,7 @@
 package mcts.game.cluedo;
 
 import agents.Action;
+import agents.HeuristicAgent;
 import agents.Player;
 import main.Board;
 import main.Card;
@@ -40,7 +41,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         this.belief = (CluedoBelief)belief.copy();
         this.config = config;
         this.myIdx = playerIdx;
-        setBoard(board);
+        setBoard(board, false);
         state[ENTROPY] = belief.getCurrentEntropy();
     }
 
@@ -48,7 +49,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         this.config = gameConfig;
         this.belief = (CluedoBelief)belief.copy();
         this.myIdx = playerIdx;
-        setBoard(board);
+        setBoard(board, true);
     }
 
     public void setState(int[] newState){
@@ -239,24 +240,25 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void noCardToShow(int[] a) {
-        if(getCurrentPlayer() != myIdx) {
+        Player[] players = board.getPlayers();
+        for(int idx = 0; idx < 4; idx++){
             for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
-                double prob = belief.getCardProb( state[i], i-6,getCurrentPlayer() + 1);
-                if(prob == 1)
-                    prob = prob;
-                belief.setProbabilityZero(state[i], i-6, getCurrentPlayer() + 1);
+                if(idx != getCurrentPlayer()) {
+                    if (idx == myIdx) {
+                        belief.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
+                    }
+                }
             }
         }
     }
 
     private void doFalsification(int[] a) {
-        if(state[SUGGESTER_IDX] == myIdx) {
-            belief.checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
-        }
-        else {
-            int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
-            belief.updateProbabilities(suggestion, getCurrentPlayer()+1);
-        }
+        Player[] players = board.getPlayers();
+
+        int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
+        belief.updateProbabilities(suggestion, getCurrentPlayer()+1);
+
+
     }
 
     private void setFalsifyState(int[] a) {
@@ -433,8 +435,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         performAction(action, true);
     }
 
-    public void setBoard(Board board) {
-        this.board = new Board(board.getPlayerLocations(), belief, board.getPlayers());
+    public void setBoard(Board board, Boolean newGame) {
+        this.board = new Board(board.getPlayerLocations(), belief, board.getPlayers(), newGame);
         if(state != null) {
             board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
                     state[PLAYER_TWO_X], state[PLAYER_TWO_Y],

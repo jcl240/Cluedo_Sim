@@ -25,16 +25,22 @@ public class HeuristicNotebook extends Notebook{
         }
     }
 
-    public HeuristicNotebook(double[][] probabilities, int i) {
-        this.myIndex = i;
-        this.probabilities = probabilities;
+    public HeuristicNotebook(HeuristicNotebook oldNotebook) {
+        super();
+        this.myIndex = oldNotebook.myIndex;
+        this.probabilities = oldNotebook.getProbabilities();
+        //set cardList where cards are checked off here
+    }
+
+    public HeuristicNotebook(int i) {
+        super();
     }
 
 
     public void checkOffCard(Card card, int playerIdx) {
-        int index = notebook.indexOf(new Tuple<>(card,false));
+        int index = cardList.indexOf(new Tuple<>(card,false));
         if(index != -1) {
-            notebook.get(index).y = true;
+            cardList.get(index).y = true;
             for(int i = 0; i < 5; i++){
                 probabilities[index][i] = 0;
             }
@@ -59,9 +65,9 @@ public class HeuristicNotebook extends Notebook{
 
 
     public void setProbabilityZero(Card card, int playerIndex) {
-        int index = notebook.indexOf(new Tuple<>(card,false));
+        int index = cardList.indexOf(new Tuple<>(card,false));
         if(index == -1)
-            index = notebook.indexOf(new Tuple<>(card,true));
+            index = cardList.indexOf(new Tuple<>(card,true));
 
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
@@ -73,8 +79,8 @@ public class HeuristicNotebook extends Notebook{
         String[] types = {"suspect", "weapon"};
         int i = 1;
         double maxEntropy = -10;
-        for(int j = 0; j < notebook.size(); j++){
-            Tuple<Card,Boolean> tuple = notebook.get(j);
+        for(int j = 0; j < cardList.size(); j++){
+            Tuple<Card,Boolean> tuple = cardList.get(j);
             String cardType = tuple.x.cardType;
             if(!cardType.equals(types[i-1]) && !cardType.equals("room")){
                 i++;
@@ -105,7 +111,7 @@ public class HeuristicNotebook extends Notebook{
         int i = 0;
         for(double[] prob: probabilities){
             if(prob[0] == 1){
-                solution[i] = notebook.get(j).x;
+                solution[i] = cardList.get(j).x;
                 i++;
             }
             j++;
@@ -120,8 +126,8 @@ public class HeuristicNotebook extends Notebook{
     public String getHighestEntropyRoom() {
         LinkedList<Card> roomsWithMaxEntropy = new LinkedList<>();
         double maxEntropy = -10;
-        for(int j = 0; j < notebook.size(); j++){
-            Tuple<Card,Boolean> tuple = notebook.get(j);
+        for(int j = 0; j < cardList.size(); j++){
+            Tuple<Card,Boolean> tuple = cardList.get(j);
             String cardType = tuple.x.cardType;
             double entropy = getEntropy(probabilities[j]);
             if(!tuple.y && tuple.x.cardType.equals("room") && entropy > maxEntropy) {
@@ -156,9 +162,9 @@ public class HeuristicNotebook extends Notebook{
         double update = (probOfObservationGivenCard / probOfObservation);
 
         for(Card card: cardsPossible) {
-            int index = notebook.indexOf(new Tuple<>(card, false));
+            int index = cardList.indexOf(new Tuple<>(card, false));
             if (index == -1)
-                index = notebook.indexOf(new Tuple<>(card, true));
+                index = cardList.indexOf(new Tuple<>(card, true));
 
             probabilities[index][playerIndex] *= update;
             normalizeProbabilities(index);
@@ -170,12 +176,12 @@ public class HeuristicNotebook extends Notebook{
     private LinkedList<Card> getCardsWithNonZeroProbability(Card[] suggestion, int playerIndex) {
         LinkedList<Card> nonZeroCards = new LinkedList<>();
         for(Card card: suggestion){
-            int index = notebook.indexOf(new Tuple<>(card,false));
+            int index = cardList.indexOf(new Tuple<>(card,false));
             if(index == -1)
-                index = notebook.indexOf(new Tuple<>(card,true));
+                index = cardList.indexOf(new Tuple<>(card,true));
 
             if(probabilities[index][playerIndex]!=0){
-                nonZeroCards.add(notebook.get(index).x);
+                nonZeroCards.add(cardList.get(index).x);
             }
 
         }
