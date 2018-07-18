@@ -24,6 +24,17 @@ public class Notebook {
         initializeNotebook();
     }
 
+    public Notebook(Notebook oldNotebook){
+        initializeNotebook();
+        this.unknownCount = oldNotebook.unknownCount;
+        int i = 0;
+        for(Tuple<Card, Boolean> oldTuple: oldNotebook.cardList){
+            Tuple<Card, Boolean> tuple = cardList.get(i);
+            tuple.y = oldTuple.y;
+            i++;
+        }
+    }
+
     protected void initializeNotebook() {
         Card[] deck = Card.makeCards();
         for(Card card:deck){

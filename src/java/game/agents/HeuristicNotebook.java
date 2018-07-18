@@ -26,7 +26,7 @@ public class HeuristicNotebook extends Notebook{
     }
 
     public HeuristicNotebook(HeuristicNotebook oldNotebook) {
-        super();
+        super(oldNotebook);
         this.myIndex = oldNotebook.myIndex;
         this.probabilities = oldNotebook.getProbabilities();
         //set cardList where cards are checked off here
