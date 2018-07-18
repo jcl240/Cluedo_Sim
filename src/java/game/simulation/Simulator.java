@@ -13,9 +13,9 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 10;
-    public static String playerTwoType = "Heuristic";
+    public static int numGames = 2;
     public static String playerOneType = "MCTS";
+    public static String playerTwoType = "Random";
     public int playerOneWins = 0;
     public int playerTwoWins = 0;
 

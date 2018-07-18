@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import mcts.MCTS;
 import mcts.game.GameFactory;
 import mcts.seeder.pdf.CatanTypePDFSeedTrigger;
-import mcts.seeder.pdf.CluedoTypePDFSeedTrigger;
 import mcts.tree.node.TreeNode;
 
 /**
@@ -27,8 +26,7 @@ include = JsonTypeInfo.As.PROPERTY,
 property = "type")
 @JsonSubTypes({
 	@Type(value = NullSeedTrigger.class),
-	@Type(value = CatanTypePDFSeedTrigger.class),
-	@Type(value = CluedoTypePDFSeedTrigger.class)
+	@Type(value = CatanTypePDFSeedTrigger.class)
 })
 public abstract class SeedTrigger {
 	@JsonIgnore

@@ -63,6 +63,10 @@ public class ExpansionPolicy {
 				probs.set(i, Math.pow(probs.get(i), 1.0/nRootActLeg));
 			}
 		}
+		if(children.size() == 0 || options.getOptions().size() == 0){
+			System.out.println("Children: " + children.size());
+			System.out.println("Options: " + options.getOptions().size());
+		}
 		((StandardNode) node).addChildren(children, options.getOptions(), options.getProbabilities());
 		if(children.size() > 1)// there is nothing to seed if there is a single option.
 			trigger.addNode(node, gameFactory.copy());

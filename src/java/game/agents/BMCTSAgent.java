@@ -38,8 +38,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
         if(actionFailCount > 3)
             return new Action("doNothing");
-        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()));
-        gameFactory.setBoard(board);
+        gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()), playerIndex-1, board);
         CluedoMCTS gameSim = (CluedoMCTS) gameFactory.getNewGame();
         setState(possibleActions, gameSim);
         mcts = new MCTS(new MCTSConfig(), gameFactory, gameSim.copy());
@@ -47,7 +46,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         SearchListener listener = mcts.search();
         listener.waitForFinish();
         int idx = mcts.getNextActionIndex();
-        int j = mcts.tree.getTreeSize();
         Options options = gameSim.listPossiblities(false);
         Action actionToTake = getAction(options,idx,possibleActions);
         return actionToTake;

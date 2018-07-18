@@ -23,6 +23,10 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
+    public HeuristicAgent(int i) {
+        super(i);
+    }
+
     @Override
     public void endTurn(){
         this.justMoved = false;

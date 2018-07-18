@@ -1,10 +1,7 @@
 package main;
 
 import GUI.BoardGUI;
-import agents.Action;
-import agents.Agent;
-import agents.Player;
-import agents.RandomAgent;
+import agents.*;
 import mcts.game.cluedo.GameStateConstants;
 import search.AStar;
 
@@ -50,7 +47,7 @@ public class Board implements GameStateConstants {
     private void initializePieces(int[][] playerLocations) {
         int i = 1;
         for(int[] location: playerLocations){
-            playerPieceTuples.add(new Tuple<>(new RandomAgent(i), new Gamepiece(location)));
+            playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i), new Gamepiece(location)));
             i++;
         }
     }

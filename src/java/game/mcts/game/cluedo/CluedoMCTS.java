@@ -30,26 +30,25 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private int[] state;
 
     private CluedoBelief belief;
-    public static long breadth = 0;
-    public static long depth = 0;
     private Board board;
     private CluedoConfig config;
-    private int[] actionTaken;
-    private StandardNode node;
     private int myIdx;
     private LinkedList<Integer> actionTypes;
 
-    public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board) {
+    public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board, int playerIdx) {
         this.state = state.clone();
         this.belief = (CluedoBelief)belief.copy();
         this.config = config;
+        this.myIdx = playerIdx;
         setBoard(board);
         state[ENTROPY] = belief.getCurrentEntropy();
     }
 
-    public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief) {
+    public CluedoMCTS(CluedoConfig gameConfig, CluedoBelief belief, Board board, int playerIdx) {
         this.config = gameConfig;
         this.belief = (CluedoBelief)belief.copy();
+        this.myIdx = playerIdx;
+        setBoard(board);
     }
 
     public void setState(int[] newState){
@@ -240,7 +239,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void noCardToShow(int[] a) {
-        if(getCurrentPlayer() != 0) {
+        if(getCurrentPlayer() != myIdx) {
             for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
                 double prob = belief.getCardProb( state[i], i-6,getCurrentPlayer() + 1);
                 if(prob == 1)
@@ -251,7 +250,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void doFalsification(int[] a) {
-        if(state[SUGGESTER_IDX] == 0) {
+        if(state[SUGGESTER_IDX] == myIdx) {
             belief.checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
         }
         else {
@@ -292,7 +291,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            if(state[ENTROPY] < 3) {
+            if(state[ENTROPY] == 0) {
                 listAccusePossibilities(options);
                 actionTypes.add(ACCUSE);
             }
@@ -306,12 +305,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
             actionTypes.add(SUGGEST);
         }
         return options;
-    }
-
-    public ArrayList<Integer> listActionTypes(){
-        ArrayList<Integer> actionTypes = new ArrayList<>();
-
-        return actionTypes;
     }
 
     private void listWinGamePossibility(Options options) {
@@ -353,16 +346,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private void listMovePossibilities(Options options) {
         int j = 0;
         for (int i = 0; i < 9; i++) {
-            //&& board.canMove(getCurrentPlayer()+1, i)
             if (state[CURRENT_ROOM] != i) {
                 options.put(Actions.newAction(MOVE, i, state[CURRENT_ROLL]), 1.0);
                 j++;
                 actionTypes.add(MOVE);
             }
-        }
-        if(j==0){
-            options.put(Actions.newAction(DO_NOTHING),1.0);
-            actionTypes.add(DO_NOTHING);
         }
     }
 
@@ -401,7 +389,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         CluedoBelief bel = null;
         if(belief != null)
             bel = (CluedoBelief)belief.copy();
-        CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel, board);
+        CluedoMCTS ret = new CluedoMCTS(this.getState(), (CluedoConfig) this.config.copy(), bel, board, myIdx);
         return ret;
     }
 

@@ -106,13 +106,13 @@ public class UCT extends SelectionPolicy{
         
         //when game is not observable and we need to update belief; i.e. POMCP and other belief MCTS algorithms
         if(factory.getBelief() != null) {
-            if(actions.size() == 0){
+            /*if(actions.size() == 0){
                 //for loop on state
                 System.out.print("State: ");
                 for(int i: node.getState())
                     System.out.print(i);
                 System.out.println();
-            }
+            }*/
         	int[] action = actions.get(chosenIdx);
         	Game game = factory.getGame(node.getState());
         	game.performAction(action, false);

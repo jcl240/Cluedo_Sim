@@ -25,10 +25,18 @@ public class GameFactory {
 	private GameConfig gameConfig;
 	private Belief belief;
 	private Board board;
+	private int playerIdx;
 	
 	public GameFactory(GameConfig gameConfig, Belief belief) {
 		this.gameConfig = gameConfig;
 		this.belief = belief;
+	}
+
+	public GameFactory(CluedoConfig cluedoConfig, CluedoBelief belief, int i, Board board) {
+		this.gameConfig = cluedoConfig;
+		this.belief = belief;
+		this.playerIdx = i;
+		setBoard(board);
 	}
 
 	public void setBoard(Board board){
@@ -48,8 +56,7 @@ public class GameFactory {
 			}
 		}
 		else if(gameConfig.id == CLUEDO){
-			CluedoMCTS game = new CluedoMCTS((CluedoConfig)gameConfig,(CluedoBelief)belief);
-			game.setBoard(board);
+			CluedoMCTS game = new CluedoMCTS((CluedoConfig)gameConfig,(CluedoBelief)belief, board, playerIdx);
 			return game;
 		}
 		else
@@ -64,7 +71,7 @@ public class GameFactory {
 				return new Catan(state, ((CatanConfig) gameConfig));
 		}
 		else if(gameConfig.id == CLUEDO){
-			CluedoMCTS game = new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief),board);
+			CluedoMCTS game = new CluedoMCTS(state, ((CluedoConfig) gameConfig), ((CluedoBelief) belief), board, playerIdx);
 			return game;
 		}
 		else

@@ -3,8 +3,6 @@ package mcts.game.cluedo;
 import mcts.MCTSConfig;
 import mcts.game.GameConfig;
 import mcts.game.GameFactory;
-import mcts.game.cluedo.typepdf.ActionTypePdf;
-import mcts.game.cluedo.typepdf.UniformActionTypePdf;
 import mcts.seeder.NullSeedTrigger;
 import mcts.seeder.SeedTrigger;
 import mcts.tree.selection.SelectionPolicy;
@@ -19,7 +17,6 @@ public class CluedoConfig extends GameConfig {
     /** Makes all actions equally likely to be legal and it also ignores the type distribution if there is any during belief rollouts. */
     public boolean ENFORCE_UNIFORM_TYPE_DIST_IN_BELIEF_ROLLOUTS = false;
     /** What distribution over action types should be used in rollouts.*/
-    public ActionTypePdf rolloutTypeDist = new UniformActionTypePdf();
 
     public CluedoConfig() {
         id = GameFactory.CLUEDO;
