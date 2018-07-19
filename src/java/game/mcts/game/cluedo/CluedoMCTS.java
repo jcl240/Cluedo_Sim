@@ -114,11 +114,18 @@ public class CluedoMCTS implements Game, GameStateConstants {
         int playerIndex = getCurrentPlayer()+1;
         switch(a[0]){
             case MOVE:
+                int preRoom = board.getRoom(playerIndex);
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 state[CURRENT_ROLL] = 0;
                 if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
+                    if(preRoom == state[CURRENT_ROOM]) {
+                        getNextPlayer();
+                    }
+                    else {
+                        state[HAS_SUGGESTED] = 0;
+                    }
                 }
                 else
                     getNextPlayer();
@@ -132,7 +139,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case SUGGEST:
                 setFalsifyState(a);
-                state[HAS_SUGGESTED] = 1;
                 getNextPlayer();
                 break;
             case FALSIFY:
@@ -204,6 +210,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         state[HAS_SUGGESTED] = 0;
         state[JUST_MOVED] = 0;
         state[CURRENT_ROOM] = board.getRoom(getCurrentPlayer()+1);
+        if(state[CURRENT_ROOM] != -1)
+            state[HAS_SUGGESTED] = 1;
         if(getAccused() == 1 && state[FALSIFYING] == 0 && !isTerminal())
             getNextPlayer();
     }
@@ -328,7 +336,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 actionTypes.add(SECRET_PASSAGE);
             }
         }
-        if(state[CURRENT_ROOM] != 0 && state[HAS_SUGGESTED] == 0) {
+        if(state[CURRENT_ROOM] != -1 && state[HAS_SUGGESTED] == 0) {
             listSuggestionPossibilities(options);
             actionTypes.add(SUGGEST);
         }
@@ -427,6 +435,9 @@ public class CluedoMCTS implements Game, GameStateConstants {
     public int[] sampleNextAction() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         Options options = listPossiblities(true);
+        if(options.size() == 0) {
+            listPossiblities(true);
+        }
         return sampleActionByType(options,rnd);
     }
 

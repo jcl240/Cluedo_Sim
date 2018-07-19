@@ -316,7 +316,7 @@ public class Board implements GameStateConstants {
 
     public int getRoom(int playerIndex) {
         Room room = getRoom(getPlayer(playerIndex));
-        int roomIdx = 0;
+        int roomIdx = -1;
         if(room == null)
             return roomIdx;
         switch(room.roomName){
