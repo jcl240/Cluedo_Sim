@@ -11,7 +11,7 @@ import static main.Card.shuffle;
 
 public class HeuristicAgent extends Agent implements Player{
 
-    private int[] movementGoal;
+    public int[] movementGoal;
     private int actionFailCount = 0;
     private HeuristicNotebook notebook;
 
@@ -23,9 +23,10 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
-    public HeuristicAgent(int i, HeuristicNotebook notebook) {
+    public HeuristicAgent(int i, HeuristicNotebook notebook, int[] movementGoal) {
         super(i);
         this.notebook = new HeuristicNotebook(notebook);
+        this.movementGoal = movementGoal;
     }
 
     public HeuristicAgent(int i, double[][] probabilities) {
@@ -73,7 +74,7 @@ public class HeuristicAgent extends Agent implements Player{
         return actionTaken;
     }
 
-    private Room getRoomByName(String roomName) {
+    public Room getRoomByName(String roomName) {
         Room[] rooms = Room.makeRooms();
         for(Room room: rooms){
             if(room.roomName.equals(roomName))

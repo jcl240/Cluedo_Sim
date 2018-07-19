@@ -8,6 +8,13 @@ public class Card implements GameStateConstants {
 
     public String cardType;
     public String cardName;
+    public int cardIndex;
+
+    public Card(String type, String name, int i) {
+        cardType = type;
+        cardName = name;
+        cardIndex = i;
+    }
 
     public Card(String type, String name) {
         cardType = type;
@@ -39,12 +46,32 @@ public class Card implements GameStateConstants {
         Card[] deck = new Card[21];
         String type;
         for(int i = 0; i < names.length; i++){
-            if(i < 9) type = "room";
-            else if(i <15) type = "suspect";
-            else type = "weapon";
-            deck[i] = new Card(type,names[i]);
+            if(i < 9){
+                type = "room";
+                deck[i] = new Card(type,names[i],i);
+            }
+            else if(i <15){
+                type = "suspect";
+                deck[i] = new Card(type,names[i],i-9);
+            }
+            else{
+                type = "weapon";
+                deck[i] = new Card(type,names[i],i-15);
+            }
+
         }
         return deck;
+    }
+
+    public static int getCardIndex(String cardName){
+        Card[] cards = makeCards();
+        int i = 0;
+        for(Card card: cards){
+            if(card.cardName.equals(cardName))
+                return i;
+            i++;
+        }
+        return -1;
     }
 
     public static  Card[] makeEnvelope(Card[] deck){

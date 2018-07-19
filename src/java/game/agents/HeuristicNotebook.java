@@ -90,7 +90,8 @@ public class HeuristicNotebook extends Notebook{
 
     public Card[] getInformedSuggestion(Room currentRoom) {
         Card[] suggestion = new Card[3];
-        suggestion[0] = new Card("room",currentRoom.roomName);
+        int roomIdx = Card.getCardIndex(currentRoom.roomName);
+        suggestion[0] = Card.getCardFromIndex(roomIdx, 0);
         String[] types = {"suspect", "weapon"};
         int i = 1;
         double maxEntropy = -10;

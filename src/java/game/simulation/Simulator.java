@@ -23,13 +23,11 @@ public class Simulator {
         String simName = playerOneType+"Vs"+playerTwoType;
         //logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
-        /*
         try {
             out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/resultslimit.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        */
         int i = 0;
         while(i < numGames) {
             LinkedList<String> agents = new LinkedList<>();
@@ -45,11 +43,11 @@ public class Simulator {
             }
             System.gc();
         }
-        /*
+
         out.println(playerOneWins);
         out.println(playerTwoWins);
         out.close();
-        */
+
         //logger.storeSimulation();
     }
 

@@ -112,6 +112,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void stateTransition(int[] a) {
         int playerIndex = getCurrentPlayer()+1;
+        HeuristicAgent agent = ((HeuristicAgent)board.getPlayers()[getCurrentPlayer()]);
         switch(a[0]){
             case MOVE:
                 int preRoom = board.getRoom(playerIndex);
@@ -120,6 +121,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 state[CURRENT_ROLL] = 0;
                 if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
+                    agent.movementGoal = null;
                     if(preRoom == state[CURRENT_ROOM]) {
                         getNextPlayer();
                     }
@@ -132,6 +134,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 break;
             case SECRET_PASSAGE:
                 updatePlayerLocation();
+                agent.movementGoal = null;
                 state[JUST_MOVED] = 1;
                 state[HAS_SUGGESTED] = 0;
                 state[CURRENT_ROLL] = 0;
@@ -184,24 +187,17 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void updatePlayerLocation() {
         int[][] playerLocations = board.getPlayerLocations();
-        switch(getCurrentPlayer()){
-            case 0:
-                state[PLAYER_ONE_X] = playerLocations[0][0];
-                state[PLAYER_ONE_Y] = playerLocations[0][1];
-                break;
-            case 1:
-                state[PLAYER_TWO_X] = playerLocations[1][0];
-                state[PLAYER_TWO_Y] = playerLocations[1][1];
-                break;
-            case 2:
-                state[PLAYER_THREE_X] = playerLocations[2][0];
-                state[PLAYER_THREE_Y] = playerLocations[2][1];
-                break;
-            case 3:
-                state[PLAYER_FOUR_X] = playerLocations[3][0];
-                state[PLAYER_FOUR_Y] = playerLocations[3][1];
-                break;
-        }
+        state[PLAYER_ONE_X] = playerLocations[0][0];
+        state[PLAYER_ONE_Y] = playerLocations[0][1];
+
+        state[PLAYER_TWO_X] = playerLocations[1][0];
+        state[PLAYER_TWO_Y] = playerLocations[1][1];
+
+        state[PLAYER_THREE_X] = playerLocations[2][0];
+        state[PLAYER_THREE_Y] = playerLocations[2][1];
+
+        state[PLAYER_FOUR_X] = playerLocations[3][0];
+        state[PLAYER_FOUR_Y] = playerLocations[3][1];
     }
 
     private void getNextPlayer() {
@@ -434,11 +430,32 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public int[] sampleNextAction() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
-        Options options = listPossiblities(true);
-        if(options.size() == 0) {
-            listPossiblities(true);
+        Options options;
+        if(getCurrentPlayer() != myIdx && canUseHeuristicDecision()){
+            HeuristicMCTS decisionMaker = new HeuristicMCTS((HeuristicAgent)board.getPlayers()[getCurrentPlayer()], state);
+            options = decisionMaker.listPossiblities(true);
+            actionTypes = decisionMaker.actionTypes;
+        }
+        else {
+            options = listPossiblities(true);
         }
         return sampleActionByType(options,rnd);
+    }
+
+    private boolean canUseHeuristicDecision() {
+        if(state[CHECKING_WIN_POSSIBILITY] == 0){
+            if(state[FALSIFYING] == 0){
+                if(state[CURRENT_ROLL] != 0) {
+                    if (state[JUST_MOVED] == 0) {
+                        return true;
+                    }
+                }
+                else if(state[HAS_SUGGESTED] == 0 && board.inRoom(getCurrentPlayer()+1)){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     private int[] sampleActionByType(Options options, ThreadLocalRandom rnd)  {
@@ -455,7 +472,15 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public int sampleNextActionIndex() {
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
-        Options options = listPossiblities(true);
+        Options options;
+        if(getCurrentPlayer() != myIdx && canUseHeuristicDecision()){
+            HeuristicMCTS decisionMaker = new HeuristicMCTS((HeuristicAgent)board.getPlayers()[getCurrentPlayer()+1], state);
+            options = decisionMaker.listPossiblities(true);
+            actionTypes = decisionMaker.actionTypes;
+        }
+        else {
+            options = listPossiblities(true);
+        }
         int[] action = sampleActionByType(options,rnd);
         return options.indexOfAction(action);
     }
@@ -474,10 +499,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
         performAction(action, true);
     }
 
-    public void setBoard(Board board, Boolean newGame) {
-        this.board = new Board(board.getPlayerLocations(), belief, board.getPlayers(), newGame);
+    public void setBoard(Board oldBoard, Boolean newGame) {
+        this.board = new Board(oldBoard.getPlayerLocations(), belief, oldBoard.getPlayers(), newGame);
         if(state != null) {
-            board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
+            this.board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
                     state[PLAYER_TWO_X], state[PLAYER_TWO_Y],
                     state[PLAYER_THREE_X], state[PLAYER_THREE_Y],
                     state[PLAYER_FOUR_X], state[PLAYER_FOUR_Y],});
