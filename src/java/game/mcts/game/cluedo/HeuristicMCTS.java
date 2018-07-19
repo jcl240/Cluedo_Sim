@@ -27,7 +27,7 @@ public class HeuristicMCTS implements GameStateConstants{
             options=options;
         if(state[JUST_MOVED] == 0) {
             returnMoveAction(options);
-            if(agent.getNotebook().getCurrentEntropy() == 0) {
+            if(agent.getNotebook().getCurrentEntropy() < 1) {
                 returnAccuseAction(options);
             }
             if (inRoomWithSecretPassage(state[CURRENT_ROOM])) {

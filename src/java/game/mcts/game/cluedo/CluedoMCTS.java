@@ -91,6 +91,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
             case SUGGEST:
                 break;
             case FALSIFY:
+                //IF FALSIFY MUST MAKE OWN PROBABILITY FOR FALSIFIED CARD 1
+                //ALSO MAKE SURE IF I KNOW I HAVE 4 CARDS WITH PROB 1 THEN ALL OTHERS HAVE PROB 0
                 doFalsification(a);
                 break;
             case NO_FALSIFY:
@@ -249,17 +251,15 @@ public class CluedoMCTS implements Game, GameStateConstants {
         Player[] players = board.getPlayers();
         int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
         for(int idx = 0; idx < 4; idx++){
-            if(idx != getCurrentPlayer()) {
-                if (idx == myIdx) {
-                    for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
-                        belief.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
-                    }
+            if (idx == myIdx) {
+                for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
+                    belief.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
                 }
-                else{
-                    //set prob zero for other players
-                    for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
-                        ((HeuristicAgent)players[idx]).getNotebook().setProbabilityZero(state[i],i-6,getCurrentPlayer()+1);
-                    }
+            }
+            else{
+                //set prob zero for other players
+                for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
+                    ((HeuristicAgent)players[idx]).getNotebook().setProbabilityZero(state[i],i-6,getCurrentPlayer()+1);
                 }
             }
         }
@@ -267,10 +267,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void doFalsification(int[] a) {
         Player[] players = board.getPlayers();
-        int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
 
         for(int idx = 0; idx < 4; idx++) {
             if(idx != state[SUGGESTER_IDX] && idx != getCurrentPlayer()) {
+                int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
                 if (idx == myIdx) {
                     belief.updateProbabilities(suggestion, getCurrentPlayer() + 1);
                 } else {
@@ -363,7 +363,13 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double jointProb = 1;
         for(int idx = SUGGESTED_ROOM; idx <= SUGGESTED_WEAPON; idx++){
             int cardType = cardTypes[i];
-            double prob = belief.getCardProb( state[idx],cardType, getCurrentPlayer()+1);
+            double prob;
+            if(myIdx == getCurrentPlayer()) {
+                prob = belief.getCardProb(state[idx], cardType, getCurrentPlayer() + 1);
+            }
+            else{
+                prob = ((HeuristicAgent)board.getPlayers()[getCurrentPlayer()]).getNotebook().getCardProb(state[idx], cardType, getCurrentPlayer()+1);
+            }
             jointProb *= (1-prob);
             options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
             i++;
@@ -500,7 +506,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     public void setBoard(Board oldBoard, Boolean newGame) {
-        this.board = new Board(oldBoard.getPlayerLocations(), belief, oldBoard.getPlayers(), newGame);
+        this.board = new Board(oldBoard.getPlayerLocations(), belief, oldBoard.getPlayers(), newGame, -1);
         if(state != null) {
             this.board.setTuples(new int[]{state[PLAYER_ONE_X], state[PLAYER_ONE_Y],
                     state[PLAYER_TWO_X], state[PLAYER_TWO_Y],

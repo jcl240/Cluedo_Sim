@@ -4,11 +4,12 @@ import main.Card;
 import main.Cluedo;
 import main.Room;
 import main.Tuple;
+import mcts.game.cluedo.GameStateConstants;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 
-public class HeuristicNotebook extends Notebook{
+public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
     private double[][] probabilities = new double[21][5];
     private int myIndex;
@@ -25,15 +26,13 @@ public class HeuristicNotebook extends Notebook{
         }
     }
 
-    public HeuristicNotebook(HeuristicNotebook oldNotebook) {
-        super(oldNotebook);
-        this.myIndex = oldNotebook.myIndex;
-        this.probabilities = oldNotebook.getProbabilities();
-    }
-
-    public HeuristicNotebook(double[][] probabilities, int idx) {
+    public HeuristicNotebook(double[][] probabilities, int idx, int MCTSidx) {
         super();
         this.myIndex = idx;
+        this.probabilities = probabilities;
+        if(MCTSidx != -1 && (MCTSidx+1 != myIndex)){
+            spreadProbabilities(MCTSidx);
+        }
         int i = 0;
         for(Tuple<Card, Boolean> tuple : cardList){
             if(isZero(probabilities[i]))
@@ -41,6 +40,17 @@ public class HeuristicNotebook extends Notebook{
             i++;
         }
         unknownCount = unknownCardCount();
+    }
+
+    private void spreadProbabilities(int MCTSidx) {
+        for(double[] probs: probabilities){
+            if(probs[MCTSidx+1] == 1){
+                for(int i = 0; i < 5; i++){
+                    if(i != myIndex)
+                        probs[i] = .25;
+                }
+            }
+        }
     }
 
     private boolean isZero(double[] probability) {
@@ -103,7 +113,7 @@ public class HeuristicNotebook extends Notebook{
                 maxEntropy = -10;
             }
             double entropy = getEntropy(probabilities[j]);
-            if(!tuple.y && tuple.x.cardType.equals(types[i-1]) && entropy > maxEntropy) {
+            if(tuple.x.cardType.equals(types[i-1]) && entropy > maxEntropy) {
                 suggestion[i] = tuple.x;
                 maxEntropy = entropy;
             }
@@ -228,15 +238,85 @@ public class HeuristicNotebook extends Notebook{
         this.probabilities = probabilities;
     }
 
-    public void setProbabilityZero(int cardIdx, int cardType, int playerIdx) {
-
+    public void setProbabilityZero(int cardIdx, int cardType, int playerIndex) {
+        int index = cardIdx+getOffset(cardType);
+        probabilities[index][playerIndex] = 0;
+        normalizeProbabilities(index);
     }
 
-    public void updateProbabilities(int[] suggestion, int i) {
+    public void updateProbabilities(int[] suggestion, int playerIndex) {
+        int room = suggestion[0];
+        int suspect = suggestion[1]+getOffset(SUSPECT);
+        int weapon = suggestion[2]+getOffset(WEAPON);
+        int[] indices = new int[]{room,suspect,weapon};
+        LinkedList<Integer> cardsPossible = getCardsWithNonZeroProbability(indices, playerIndex);
+        double probOfObservation = (1.0/unknownCount);
+        double probOfObservationGivenCard = (1.0/cardsPossible.size());
+        double update = (probOfObservationGivenCard / probOfObservation);
 
+        for(int index: cardsPossible) {
+            probabilities[index][playerIndex] *= update;
+            normalizeProbabilities(index);
+        }
+    }
+
+    private LinkedList<Integer> getCardsWithNonZeroProbability(int[] suggestion, int playerIndex) {
+        LinkedList<Integer> nonZeroCards = new LinkedList<>();
+        for(int index: suggestion){
+            if(probabilities[index][playerIndex]!=0){
+                nonZeroCards.add(index);
+            }
+        }
+        return nonZeroCards;
     }
 
     public void checkOffCard(int cardIdx, int cardType, int playerIdx) {
+        int offset = getOffset(cardType);
+        int index = cardIdx+offset;
+        cardList.get(index).y = true;
+        for(int i = 0; i < 5; i++){
+            probabilities[index][i] = 0;
+        }
+        if(playerIdx!=-1)
+            probabilities[index][playerIdx] = 1;
+        if(playerIdx == myIndex && knownHandSize() == 4){
+            setAllExceptHandZero();
+        }
+    }
 
+    private void setAllExceptHandZero() {
+        int i = 0;
+        for(double[] prob: probabilities){
+            if(prob[myIndex] != 1) {
+                setProbabilityZero(cardList.get(i).x, myIndex);
+            }
+            i++;
+        }
+    }
+
+    private int knownHandSize() {
+        int numKnown = 0;
+        for(double[] prob: probabilities){
+            if(prob[myIndex] == 1)
+                numKnown++;
+        }
+        return numKnown;
+    }
+
+    private int getOffset(int cardType) {
+        switch (cardType){
+            case WEAPON:
+                return 15;
+            case SUSPECT:
+                return 9;
+            case ROOM:
+                return 0;
+        }
+        return 0;
+    }
+
+    public double getCardProb(int card, int cardType, int playerIdx) {
+        int offset = getOffset(cardType);
+        return probabilities[card+offset][playerIdx];
     }
 }

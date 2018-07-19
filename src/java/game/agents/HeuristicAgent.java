@@ -23,15 +23,10 @@ public class HeuristicAgent extends Agent implements Player{
         }
     }
 
-    public HeuristicAgent(int i, HeuristicNotebook notebook, int[] movementGoal) {
+    public HeuristicAgent(int i, double[][] probabilities, int[] movementGoal, int MCTSidx) {
         super(i);
-        this.notebook = new HeuristicNotebook(notebook);
+        notebook = new HeuristicNotebook(probabilities, i, MCTSidx);
         this.movementGoal = movementGoal;
-    }
-
-    public HeuristicAgent(int i, double[][] probabilities) {
-        super(i);
-        notebook = new HeuristicNotebook(probabilities, i);
     }
 
     @Override
