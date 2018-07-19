@@ -115,6 +115,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         switch(a[0]){
             case MOVE:
                 updatePlayerLocation();
+                state[JUST_MOVED] = 1;
                 state[CURRENT_ROLL] = 0;
                 if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);

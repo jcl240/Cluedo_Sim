@@ -12,11 +12,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/game/cluedo/CluedoMCTS.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/game/cluedo/CluedoMCTS.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/tree/ExpansionPolicy.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/tree/ExpansionPolicy.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Simulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Simulator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/tree/ExpansionPolicy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/tree/ExpansionPolicy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/cluedo_gradle/.gradle/" />
@@ -93,8 +89,8 @@
       <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="301" column="20" selection-start-line="301" selection-start-column="20" selection-end-line="301" selection-end-column="20" />
+            <state relative-caret-position="102">
+              <caret line="119" column="47" lean-forward="true" selection-start-line="119" selection-start-column="47" selection-end-line="119" selection-end-column="47" />
               <folding>
                 <element signature="e#2061#2062#0" expanded="true" />
                 <element signature="e#2112#2113#0" expanded="true" />
@@ -737,13 +733,6 @@
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
     </task>
-    <task id="LOCAL-00106" summary="Player should be able to suggest after being moved to a room">
-      <created>1530443124806</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1530443124807</updated>
-    </task>
     <task id="LOCAL-00107" summary="Show result of accusation">
       <created>1530444699342</created>
       <option name="number" value="00107" />
@@ -1080,7 +1069,14 @@
       <option name="project" value="LOCAL" />
       <updated>1531939081017</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="Problem was with dice rolling. (Sometimes roll was 0 when expected to be -1) so now no -1s only 0s for after moves and when needing to get dice roll">
+      <created>1531992088192</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1531992088192</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1147,7 +1143,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Didnt need coordinates it turns out. Forgot it was already tracked in the board" />
     <MESSAGE value="No errors but not sure what's wrong. Never getting to suggest/falsify states" />
     <MESSAGE value="Suggesting now, still no errors, however agent continues to accuse for some reason" />
     <MESSAGE value="Fixed AStar (using static variable Node.Goal was causing issues)" />
@@ -1172,7 +1167,8 @@
     <MESSAGE value="set up methods for updating probabilities for other players. just need to implement the methods" />
     <MESSAGE value="Update cardList when the game is new to make face up cards known" />
     <MESSAGE value="Debug comment now includes state" />
-    <option name="LAST_COMMIT_MESSAGE" value="Debug comment now includes state" />
+    <MESSAGE value="Problem was with dice rolling. (Sometimes roll was 0 when expected to be -1) so now no -1s only 0s for after moves and when needing to get dice roll" />
+    <option name="LAST_COMMIT_MESSAGE" value="Problem was with dice rolling. (Sometimes roll was 0 when expected to be -1) so now no -1s only 0s for after moves and when needing to get dice roll" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1564,8 +1560,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="301" column="20" selection-start-line="301" selection-start-column="20" selection-end-line="301" selection-end-column="20" />
+        <state relative-caret-position="102">
+          <caret line="119" column="47" lean-forward="true" selection-start-line="119" selection-start-column="47" selection-end-line="119" selection-end-column="47" />
           <folding>
             <element signature="e#2061#2062#0" expanded="true" />
             <element signature="e#2112#2113#0" expanded="true" />
