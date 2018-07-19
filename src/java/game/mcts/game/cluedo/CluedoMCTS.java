@@ -115,6 +115,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         switch(a[0]){
             case MOVE:
                 updatePlayerLocation();
+                state[CURRENT_ROLL] = 0;
                 if(board.inRoom(playerIndex)) {
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 }
@@ -125,6 +126,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 state[HAS_SUGGESTED] = 0;
+                state[CURRENT_ROLL] = 0;
                 state[CURRENT_ROOM] = board.getRoom(playerIndex);
                 break;
             case SUGGEST:
@@ -197,7 +199,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void getNextPlayer() {
         state[CURRENT_PLAYER] = (state[CURRENT_PLAYER]+1)%4;
-        state[CURRENT_ROLL] = -1;
+        state[CURRENT_ROLL] = 0;
         state[HAS_SUGGESTED] = 0;
         state[JUST_MOVED] = 0;
         state[CURRENT_ROOM] = board.getRoom(getCurrentPlayer()+1);
@@ -309,7 +311,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
             listFalsifyPossibilities(options);
             return options;
         }
-        if(state[CURRENT_ROLL] == -1) {
+        if(state[CURRENT_ROLL] == 0 && state[JUST_MOVED] == 0) {
             listDiceResultPossibilities(options);
             actionTypes.add(CHOOSE_DICE);
             return options;
@@ -337,6 +339,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
         double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
         double jointProb = belief.getJointProbabilityInEnvelope(roomProb,suspectProb,weaponProb);
+        if(jointProb > 0)
+            jointProb=jointProb;
         options.put(Actions.newAction(GAME_WON),jointProb);
         options.put(Actions.newAction(CONTINUE_GAME),1-jointProb);
     }
@@ -446,7 +450,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     @Override
     public TreeNode generateNode() {
-        if(state[CHECKING_WIN_POSSIBILITY] == 1 || (state[FALSIFYING] == 0 && state[CURRENT_ROLL] == -1 ))
+        if(state[CHECKING_WIN_POSSIBILITY] == 1 || (state[FALSIFYING] == 0 && state[CURRENT_ROLL] == 0 && state[JUST_MOVED] != 1))
             return new ChanceNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());
         else
             return new StandardNode(getState(), belief.getRepresentation(), isTerminal(), getCurrentPlayer());

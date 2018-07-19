@@ -1,6 +1,7 @@
 package mcts.tree;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -66,11 +67,8 @@ public class ExpansionPolicy {
 		if(children.size() == 0 || options.getOptions().size() == 0){
 			System.out.println("Children: " + children.size());
 			System.out.println("Options: " + options.getOptions().size());
-			System.out.println("State: " );
-			for(int i : node.getState()){
-				System.out.print(i);
-			}
-			System.out.println();
+			System.out.print("State: " + Arrays.toString(node.getState()));
+			System.out.println("Break");
 		}
 		((StandardNode) node).addChildren(children, options.getOptions(), options.getProbabilities());
 		if(children.size() > 1)// there is nothing to seed if there is a single option.

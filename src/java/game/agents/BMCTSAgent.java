@@ -132,10 +132,8 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     private int getRoll(LinkedList<Action> possibleActions) {
         Action action = getActionFromType("move", possibleActions);
-        if(justMoved)
+        if(justMoved || action == null)
             return 0;
-        else if(action == null)
-            return -1;
         return action.roll;
     }
 
