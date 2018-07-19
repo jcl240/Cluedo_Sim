@@ -104,6 +104,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         Action action = getActionFromType("accuse", possibleActions);
         Card[] accusation = new Card[]{Card.getCardFromIndex(actionArray[1],ROOM),
                 Card.getCardFromIndex(actionArray[2],SUSPECT),Card.getCardFromIndex(actionArray[3],WEAPON)};
+        accusation = notebook.getMostLikelySolution();
         action.accusation = accusation;
         return action;
     }
@@ -165,6 +166,11 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     }
 
     @Override
+    public void setBoard(Board board){
+        this.board = board;
+    }
+
+    @Override
     public void endTurn() {
         this.justMoved = false;
         actionFailCount = 0;
@@ -204,11 +210,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     @Override
     public void cardShown(Action action, Player cardPlayer) {
         notebook.updateProbabilities(action.suggestion, ((Agent)cardPlayer).playerIndex);
-    }
-
-    @Override
-    public void setBoard(Board board){
-        this.board = board;
     }
 
     private void logSuggestion(Card[] suggestion){

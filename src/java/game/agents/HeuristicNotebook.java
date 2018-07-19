@@ -149,6 +149,26 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             return null;
     }
 
+    public Card[] getMostLikelySolution() {
+        Card[] solution = new Card[3];
+        String[] types = new String[]{"room","suspect","weapon"};
+        int j = 0;
+        int i = 0;
+        double maxProb = -1;
+        for(double[] prob: probabilities){
+            if(!cardList.get(i).x.cardType.equals(types[j])) {
+                j++;
+                maxProb = -1;
+            }
+            if(prob[0] > maxProb && cardList.get(i).x.cardType.equals(types[j])){
+                solution[j] = cardList.get(i).x;
+                maxProb = prob[0];
+            }
+            i++;
+        }
+        return solution;
+    }
+
     public String getHighestEntropyRoom() {
         LinkedList<Card> roomsWithMaxEntropy = new LinkedList<>();
         double maxEntropy = -10;

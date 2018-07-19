@@ -323,7 +323,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            if(state[ENTROPY] == 0) {
+            if(belief.getCurrentEntropy() == 0) {
                 listAccusePossibilities(options);
                 actionTypes.add(ACCUSE);
             }
@@ -344,7 +344,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
         double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
         double jointProb = belief.getJointProbabilityInEnvelope(roomProb,suspectProb,weaponProb);
-        if(jointProb > 0)
+        if(jointProb > .5)
             jointProb=jointProb;
         options.put(Actions.newAction(GAME_WON),jointProb);
         options.put(Actions.newAction(CONTINUE_GAME),1-jointProb);
@@ -471,6 +471,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         else {
             int actionType = actionTypes.get(rnd.nextInt(actionTypes.size()));
             optionsCopy.removeAllExceptType(actionType);
+            if(optionsCopy.size() == 0)
+                options=options;
             return optionsCopy.getOptions().get(rnd.nextInt(optionsCopy.size()));
         }
     }
