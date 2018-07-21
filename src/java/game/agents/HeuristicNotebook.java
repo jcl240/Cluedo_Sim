@@ -278,8 +278,11 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0 && numZeros!=numZeros2){
             probabilities=probabilities;
         }
-        if(knownHandSize(playerIndex) == 4){
+        /*if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
     }
 
@@ -300,8 +303,11 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                 probabilities = probabilities;
             }
         }
-        if(knownHandSize(playerIndex) == 4){
+        /*if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
     }
 
@@ -319,13 +325,17 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         int offset = getOffset(cardType);
         int index = cardIdx+offset;
         cardList.get(index).y = true;
+        double[][] probCopy = getProbCopy();
         for(int i = 0; i < 5; i++){
             probabilities[index][i] = 0;
         }
         if(playerIdx!=-1)
             probabilities[index][playerIdx] = 1;
-        if(knownHandSize(playerIdx) == 4){
+        /*if(knownHandSize(playerIdx) == 4){
             setAllExceptHandZero(playerIdx);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
 
     }

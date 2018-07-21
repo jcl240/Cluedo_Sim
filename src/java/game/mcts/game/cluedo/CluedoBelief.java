@@ -76,8 +76,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
         }
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
-        if(knownHandSize(playerIndex) == 4){
+        /*if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
     }
 
@@ -100,8 +103,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
             if(playerIdx!=-1)
                 probabilities[card+offset][playerIdx] = 1;
         }
-        if(knownHandSize(playerIdx) == 4) {
+        /*if(knownHandSize(playerIdx) == 4) {
             setAllExceptHandZero(playerIdx);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
     }
 
@@ -145,10 +151,12 @@ public class CluedoBelief implements Belief, GameStateConstants {
             probabilities[card][playerIndex] *= update;
             normalizeProbabilities(card);
         }
-        if(knownHandSize(playerIndex) == 4){
+        /*if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
+        }*/
+        if(knowEnvelope()){
+            setAllZeroEnvelope();
         }
-
     }
 
     private LinkedList<Integer> getCardsWithNonZeroProbability(int[] suggestion, int playerIndex) {

@@ -15,7 +15,7 @@ public class Simulator {
     public Logger logger;
     public static int numGames = 10;
     public static String playerOneType = "MCTS";
-    public static String playerTwoType = "Random";
+    public static String playerTwoType = "Heuristic";
     public int playerOneWins = 0;
     public int playerTwoWins = 0;
 
