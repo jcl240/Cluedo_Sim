@@ -43,7 +43,7 @@ public class Board implements GameStateConstants {
         int i = 1;
         for(int[] location: playerLocations){
             if(newGame)
-                playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, belief.getProbabilities(), null, MCTSidx), new Gamepiece(location)));
+                playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, belief.getProbabilities(), null, MCTSidx+1), new Gamepiece(location)));
             else {
                 HeuristicAgent agent = ((HeuristicAgent)players[i-1]);
                 playerPieceTuples.add(new Tuple<>(new HeuristicAgent(i, agent.getNotebook().getProbabilities(), agent.movementGoal, -1), new Gamepiece(location)));

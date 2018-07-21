@@ -36,6 +36,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private CluedoConfig config;
     private int myIdx;
     private LinkedList<Integer> actionTypes;
+    private int[] actionTaken;
 
     public CluedoMCTS(int[] state, CluedoConfig config, CluedoBelief belief, Board board, int playerIdx) {
         this.state = state.clone();
@@ -117,11 +118,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
         HeuristicAgent agent = ((HeuristicAgent)board.getPlayers()[getCurrentPlayer()]);
         switch(a[0]){
             case MOVE:
-                int preRoom = board.getRoom(playerIndex);
                 updatePlayerLocation();
                 state[JUST_MOVED] = 1;
                 state[CURRENT_ROLL] = 0;
                 if(board.inRoom(playerIndex)) {
+                    int preRoom = state[CURRENT_ROOM];
                     state[CURRENT_ROOM] = board.getRoom(playerIndex);
                     agent.movementGoal = null;
                     if(preRoom == state[CURRENT_ROOM]) {
@@ -259,7 +260,10 @@ public class CluedoMCTS implements Game, GameStateConstants {
             else{
                 //set prob zero for other players
                 for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
+                    double[][] probsCopy = ((HeuristicAgent)players[idx]).getNotebook().getProbCopy();
                     ((HeuristicAgent)players[idx]).getNotebook().setProbabilityZero(state[i],i-6,getCurrentPlayer()+1);
+                    double[][] probsCopy2 = ((HeuristicAgent)players[idx]).getNotebook().getProbabilities();
+                    int abc = 1;
                 }
             }
         }
@@ -276,6 +280,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 } else {
                     //update probabilities for other players
                     ((HeuristicAgent)players[idx]).getNotebook().updateProbabilities(suggestion, getCurrentPlayer()+1);
+                    ((HeuristicAgent)players[idx]).getNotebook().setProbabilityZero(a[1],a[2],idx+1);
                 }
             }
             else{
@@ -308,8 +313,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
         actionTypes = new LinkedList<>();
         if(state[CHECKING_WIN_POSSIBILITY] == 1) {
             listWinGamePossibility(options);
-            actionTypes.add(CONTINUE_GAME);
-            actionTypes.add(GAME_WON);
             return options;
         }
         if(state[FALSIFYING] == 1){
@@ -323,7 +326,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         }
         if(state[JUST_MOVED] == 0) {
             listMovePossibilities(options);
-            if(belief.getCurrentEntropy() == 0) {
+            if(belief.knowEnvelope()) {
                 listAccusePossibilities(options);
                 actionTypes.add(ACCUSE);
             }
@@ -344,10 +347,18 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
         double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
         double jointProb = belief.getJointProbabilityInEnvelope(roomProb,suspectProb,weaponProb);
-        if(jointProb > .5)
-            jointProb=jointProb;
-        options.put(Actions.newAction(GAME_WON),jointProb);
-        options.put(Actions.newAction(CONTINUE_GAME),1-jointProb);
+        if(jointProb>0) {
+            options.put(Actions.newAction(GAME_WON), jointProb);
+            if(!actionTypes.contains(GAME_WON)){
+                actionTypes.add(GAME_WON);
+            }
+        }
+        if(1-jointProb > 0) {
+            options.put(Actions.newAction(CONTINUE_GAME), 1 - jointProb);
+            if(!actionTypes.contains(CONTINUE_GAME)){
+                actionTypes.add(CONTINUE_GAME);
+            }
+        }
     }
 
     private void listDiceResultPossibilities(Options options){
@@ -371,14 +382,19 @@ public class CluedoMCTS implements Game, GameStateConstants {
                 prob = ((HeuristicAgent)board.getPlayers()[getCurrentPlayer()]).getNotebook().getCardProb(state[idx], cardType, getCurrentPlayer()+1);
             }
             jointProb *= (1-prob);
-            options.put(Actions.newAction(FALSIFY,state[idx],cardType), prob);
+            if(prob!=0) {
+                options.put(Actions.newAction(FALSIFY, state[idx], cardType), prob);
+                if(!actionTypes.contains(FALSIFY)){
+                    actionTypes.add(FALSIFY);
+                }
+            }
             i++;
         }
-        actionTypes.add(FALSIFY);
         if(jointProb > 0) {
             options.put(Actions.newAction(NO_FALSIFY), jointProb);
-
-            actionTypes.add(NO_FALSIFY);
+            if(!actionTypes.contains(NO_FALSIFY)) {
+                actionTypes.add(NO_FALSIFY);
+            }
         }
 
     }
@@ -419,7 +435,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
     private void listSuggestionPossibilities(Options options) {
         for(int suspect = 0; suspect < 6; suspect++){
             for(int weapon = 0; weapon < 6; weapon++){
-                options.put(Actions.newAction(SUGGEST, state[CURRENT_ROOM], suspect, weapon), 1.0);
+                if(!belief.isFaceUp(suspect,SUSPECT) && !belief.isFaceUp(weapon,WEAPON))
+                    options.put(Actions.newAction(SUGGEST, state[CURRENT_ROOM], suspect, weapon), 1.0);
             }
         }
     }
@@ -471,7 +488,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         else {
             int actionType = actionTypes.get(rnd.nextInt(actionTypes.size()));
             optionsCopy.removeAllExceptType(actionType);
-            if(optionsCopy.size() == 0)
+            if(optionsCopy.getOptions().size() == 0)
                 options=options;
             return optionsCopy.getOptions().get(rnd.nextInt(optionsCopy.size()));
         }
@@ -504,6 +521,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     @Override
     public void gameTick() {
         int[] action = sampleNextAction();
+        actionTaken = action.clone();
         performAction(action, true);
     }
 
@@ -515,6 +533,36 @@ public class CluedoMCTS implements Game, GameStateConstants {
                     state[PLAYER_THREE_X], state[PLAYER_THREE_Y],
                     state[PLAYER_FOUR_X], state[PLAYER_FOUR_Y],});
         }
+    }
+
+    public int[][] getActionAndState(){
+        return new int[][]{actionTaken,state};
+    }
+
+    public String getActionString(){
+        switch(actionTaken[0]){
+            case CHOOSE_DICE:
+                return "DICE";
+            case MOVE:
+                return "MOVE";
+            case SECRET_PASSAGE:
+                return "SECRET";
+            case SUGGEST:
+                return "SUGGEST";
+            case FALSIFY:
+                return "FALSIFY";
+            case ACCUSE:
+                return "ACCUSE";
+            case NO_FALSIFY:
+                return "NO_FALSIFY";
+            case CONTINUE_GAME:
+                return "CONTINUE";
+            case GAME_WON:
+                return "GAME_WON";
+            case DO_NOTHING:
+                return "NOTHING";
+        }
+        return "";
     }
 
 }

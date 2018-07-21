@@ -30,7 +30,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         super();
         this.myIndex = idx;
         this.probabilities = probabilities;
-        if(MCTSidx != -1 && (MCTSidx+1 != myIndex)){
+        if(MCTSidx != -1 && (MCTSidx != myIndex)){
             spreadProbabilities(MCTSidx);
         }
         int i = 0;
@@ -44,7 +44,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
     private void spreadProbabilities(int MCTSidx) {
         for(double[] probs: probabilities){
-            if(probs[MCTSidx+1] == 1){
+            if(probs[MCTSidx] == 1){
                 for(int i = 0; i < 5; i++){
                     if(i != myIndex)
                         probs[i] = .25;
@@ -73,6 +73,9 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                 probabilities[index][playerIdx] = 1;
         }
         unknownCount = unknownCardCount();
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
+        }
     }
 
     public void normalizeProbabilities(int index){
@@ -96,6 +99,9 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
+        }
     }
 
     public Card[] getInformedSuggestion(Room currentRoom) {
@@ -176,12 +182,12 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             Tuple<Card,Boolean> tuple = cardList.get(j);
             String cardType = tuple.x.cardType;
             double entropy = getEntropy(probabilities[j]);
-            if(!tuple.y && tuple.x.cardType.equals("room") && entropy > maxEntropy) {
+            if(tuple.x.cardType.equals("room") && entropy > maxEntropy) {
                 maxEntropy = entropy;
                 removeAll(roomsWithMaxEntropy);
                 roomsWithMaxEntropy.add(tuple.x);
             }
-            else if(!tuple.y && tuple.x.cardType.equals("room") && entropy == maxEntropy){
+            else if(tuple.x.cardType.equals("room") && entropy == maxEntropy){
                 roomsWithMaxEntropy.add(tuple.x);
             }
 
@@ -216,6 +222,9 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
         }
 
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
+        }
     }
 
     private LinkedList<Card> getCardsWithNonZeroProbability(Card[] suggestion, int playerIndex) {
@@ -235,6 +244,16 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
     public double[][] getProbabilities() {
         return probabilities;
+    }
+
+    public double[][] getProbCopy(){
+        double[][] copy = new double[21][5];
+        int i = 0;
+        for(double[] row : probabilities){
+            copy[i] = row.clone();
+            i++;
+        }
+        return copy;
     }
 
     public int getCurrentEntropy() {
@@ -260,8 +279,20 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
     public void setProbabilityZero(int cardIdx, int cardType, int playerIndex) {
         int index = cardIdx+getOffset(cardType);
+        double[] probCopy = probabilities[index].clone();
+        int numZeros = getNumberOfZeros();
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
+        int numZeros2 = getNumberOfZeros();
+        if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0 && numZeros!=numZeros2){
+            probabilities=probabilities;
+        }
+        if(knownHandSize(playerIndex) == 4){
+            setAllExceptHandZero(playerIndex);
+        }
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
+        }
     }
 
     public void updateProbabilities(int[] suggestion, int playerIndex) {
@@ -277,6 +308,15 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         for(int index: cardsPossible) {
             probabilities[index][playerIndex] *= update;
             normalizeProbabilities(index);
+            if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0){
+                probabilities=probabilities;
+            }
+        }
+        if(knownHandSize(playerIndex) == 4){
+            setAllExceptHandZero(playerIndex);
+        }
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
         }
     }
 
@@ -299,25 +339,33 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         }
         if(playerIdx!=-1)
             probabilities[index][playerIdx] = 1;
-        if(playerIdx == myIndex && knownHandSize() == 4){
-            setAllExceptHandZero();
+        if(knownHandSize(playerIdx) == 4){
+            setAllExceptHandZero(playerIdx);
+        }
+
+        if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0){
+            probabilities=probabilities;
+        }
+        if(knowEnvelope()) {
+            setAllZeroEnvelope();
         }
     }
 
-    private void setAllExceptHandZero() {
+    private void setAllExceptHandZero(int playerIdx) {
         int i = 0;
         for(double[] prob: probabilities){
-            if(prob[myIndex] != 1) {
-                setProbabilityZero(cardList.get(i).x, myIndex);
+            if(prob[playerIdx] != 1) {
+                probabilities[i][playerIdx] = 0;
+                normalizeProbabilities(i);
             }
             i++;
         }
     }
 
-    private int knownHandSize() {
+    private int knownHandSize(int playerIdx) {
         int numKnown = 0;
         for(double[] prob: probabilities){
-            if(prob[myIndex] == 1)
+            if(prob[playerIdx] == 1)
                 numKnown++;
         }
         return numKnown;
@@ -338,5 +386,26 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
     public double getCardProb(int card, int cardType, int playerIdx) {
         int offset = getOffset(cardType);
         return probabilities[card+offset][playerIdx];
+    }
+
+    private void setAllZeroEnvelope() {
+        int i = 0;
+        for(double[] row: probabilities){
+            if(row[0] != 1)
+                row[0] = 0;
+            normalizeProbabilities(i);
+            i++;
+        }
+    }
+
+    public boolean knowEnvelope() {
+        int i = 0;
+        for(double[] row: probabilities){
+            if(row[0] == 1)
+                i++;
+        }
+        if(i>3)
+            i=i;
+        return (i==3);
     }
 }

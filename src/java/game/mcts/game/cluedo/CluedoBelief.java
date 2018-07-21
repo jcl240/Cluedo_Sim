@@ -76,6 +76,21 @@ public class CluedoBelief implements Belief, GameStateConstants {
         }
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
+        if(knownHandSize(playerIndex) == 4){
+            setAllExceptHandZero(playerIndex);
+        }
+        if(knowEnvelope())
+            setAllZeroEnvelope();
+    }
+
+    private void setAllZeroEnvelope() {
+        int i = 0;
+        for(double[] row: probabilities){
+            if(row[0] != 1)
+                row[0] = 0;
+            normalizeProbabilities(i);
+            i++;
+        }
     }
 
     public void checkOffCard(int card, int cardType, int playerIdx) {
@@ -87,6 +102,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
             if(playerIdx!=-1)
                 probabilities[card+offset][playerIdx] = 1;
         }
+        if(knownHandSize(playerIdx) == 4){
+            setAllExceptHandZero(playerIdx);
+        }
+        if(knowEnvelope())
+            setAllZeroEnvelope();
     }
 
     private boolean cardUnknown(int i) {
@@ -129,6 +149,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
             probabilities[card][playerIndex] *= update;
             normalizeProbabilities(card);
         }
+        if(knownHandSize(playerIndex) == 4){
+            setAllExceptHandZero(playerIndex);
+        }
+        if(knowEnvelope())
+            setAllZeroEnvelope();
 
     }
 
@@ -196,5 +221,42 @@ public class CluedoBelief implements Belief, GameStateConstants {
             probs[i] = this.probabilities[i].clone();
         }
         return probs;
+    }
+
+    public boolean isFaceUp(int cardIdx, int cardType) {
+        int offset = getOffset(cardType);
+        int index = cardIdx+offset;
+        return (probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0);
+    }
+
+    public boolean knowEnvelope() {
+        int i = 0;
+        for(double[] row: probabilities){
+            if(row[0] == 1)
+                i++;
+        }
+        if(i>3)
+            i=i;
+        return (i==3);
+    }
+
+    private void setAllExceptHandZero(int playerIdx) {
+        int i = 0;
+        for(double[] prob: probabilities){
+            if(prob[playerIdx] != 1) {
+                probabilities[i][playerIdx] = 0;
+                normalizeProbabilities(i);
+            }
+            i++;
+        }
+    }
+
+    private int knownHandSize(int playerIdx) {
+        int numKnown = 0;
+        for(double[] prob: probabilities){
+            if(prob[playerIdx] == 1)
+                numKnown++;
+        }
+        return numKnown;
     }
 }
