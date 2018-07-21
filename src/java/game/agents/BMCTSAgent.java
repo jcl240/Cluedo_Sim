@@ -160,7 +160,8 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
                                 playerLocations[0][0],playerLocations[0][1],playerLocations[1][0],playerLocations[1][1],
                                 playerLocations[2][0],playerLocations[2][1],playerLocations[3][0],playerLocations[3][1],
                                 0,
-                                0,0,0
+                                0,0,0,
+                                -1,-1,-1
                         }
                 );
     }

@@ -73,9 +73,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                 probabilities[index][playerIdx] = 1;
         }
         unknownCount = unknownCardCount();
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
-        }
     }
 
     public void normalizeProbabilities(int index){
@@ -99,9 +96,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
-        }
     }
 
     public Card[] getInformedSuggestion(Room currentRoom) {
@@ -222,9 +216,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
         }
 
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
-        }
     }
 
     private LinkedList<Card> getCardsWithNonZeroProbability(Card[] suggestion, int playerIndex) {
@@ -290,9 +281,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
         }
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
-        }
     }
 
     public void updateProbabilities(int[] suggestion, int playerIndex) {
@@ -308,15 +296,12 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         for(int index: cardsPossible) {
             probabilities[index][playerIndex] *= update;
             normalizeProbabilities(index);
-            if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0){
-                probabilities=probabilities;
+            if (probabilities[index][0] + probabilities[index][1] + probabilities[index][2] + probabilities[index][3] + probabilities[index][4] == 0) {
+                probabilities = probabilities;
             }
         }
         if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
-        }
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
         }
     }
 
@@ -343,12 +328,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             setAllExceptHandZero(playerIdx);
         }
 
-        if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0){
-            probabilities=probabilities;
-        }
-        if(knowEnvelope()) {
-            setAllZeroEnvelope();
-        }
     }
 
     private void setAllExceptHandZero(int playerIdx) {
@@ -388,7 +367,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         return probabilities[card+offset][playerIdx];
     }
 
-    private void setAllZeroEnvelope() {
+    public void setAllZeroEnvelope() {
         int i = 0;
         for(double[] row: probabilities){
             if(row[0] != 1)
@@ -407,5 +386,40 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         if(i>3)
             i=i;
         return (i==3);
+    }
+
+    public boolean know(int card, int cardType) {
+        int offset = getOffset(cardType);
+        for(int i = 0; i < 5; i++){
+            if(probabilities[card+offset][i] == 1)
+                return true;
+        }
+        return false;
+    }
+
+    public int getPlayerIdxWithCard(int card, int cardType) {
+        int offset = getOffset(cardType);
+        for(int i = 0; i < 5; i++){
+            if(probabilities[card+offset][i] == 1)
+                return i;
+        }
+        return -1;
+    }
+
+    public int[] getEnvelopeContents() {
+        int[] envelope = new int[]{-1,-1,-1};;
+        int count = 0;
+        int i = 0;
+        for(double[] row: probabilities){
+            if(i==9 || i==15){
+                count++;
+            }
+            if(row[0] == 1){
+                int offset = getOffset(count+1);
+                envelope[count]=i-offset;
+            }
+            i++;
+        }
+        return envelope;
     }
 }

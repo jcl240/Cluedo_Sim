@@ -79,11 +79,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
         if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
         }
-        if(knowEnvelope())
-            setAllZeroEnvelope();
     }
 
-    private void setAllZeroEnvelope() {
+    public void setAllZeroEnvelope() {
         int i = 0;
         for(double[] row: probabilities){
             if(row[0] != 1)
@@ -102,11 +100,9 @@ public class CluedoBelief implements Belief, GameStateConstants {
             if(playerIdx!=-1)
                 probabilities[card+offset][playerIdx] = 1;
         }
-        if(knownHandSize(playerIdx) == 4){
+        if(knownHandSize(playerIdx) == 4) {
             setAllExceptHandZero(playerIdx);
         }
-        if(knowEnvelope())
-            setAllZeroEnvelope();
     }
 
     private boolean cardUnknown(int i) {
@@ -152,8 +148,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
         if(knownHandSize(playerIndex) == 4){
             setAllExceptHandZero(playerIndex);
         }
-        if(knowEnvelope())
-            setAllZeroEnvelope();
 
     }
 
@@ -258,5 +252,50 @@ public class CluedoBelief implements Belief, GameStateConstants {
                 numKnown++;
         }
         return numKnown;
+    }
+
+    public boolean know(int card, int cardType) {
+        int offset = getOffset(cardType);
+        for(int i = 0; i < 5; i++){
+            if(probabilities[card+offset][i] == 1)
+                return true;
+        }
+        return false;
+    }
+
+    public int getPlayerIdxWithCard(int card, int cardType) {
+        int offset = getOffset(cardType);
+        for(int i = 0; i < 5; i++){
+            if(probabilities[card+offset][i] == 1)
+                return i;
+        }
+        return -1;
+    }
+
+    public int[] getEnvelopeContents() {
+        int[] envelope = new int[]{-1,-1,-1};;
+        int count = 0;
+        int i = 0;
+        for(double[] row: probabilities){
+            if(i==9 || i==15){
+                count++;
+            }
+            if(row[0] == 1){
+                int offset = getOffset(count+1);
+                envelope[count]=i-offset;
+            }
+            i++;
+        }
+        return envelope;
+    }
+
+    public double[][] getProbCopy(){
+        double[][] copy = new double[21][5];
+        int i = 0;
+        for(double[] row : probabilities){
+            copy[i] = row.clone();
+            i++;
+        }
+        return copy;
     }
 }

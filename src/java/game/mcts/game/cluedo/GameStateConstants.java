@@ -97,6 +97,10 @@ public interface GameStateConstants extends HexTypeConstants {
     int ACCUSED_ROOM = 26;
     int ACCUSED_SUSPECT = 27;
     int ACCUSED_WEAPON = 28;
+    int ENVELOPE_ROOM = 29;
+    int ENVELOPE_SUSPECT = 30;
+    int ENVELOPE_WEAPON = 31;
+    int ENVELOPE_OFFSET = 29;
     int ACCUSED_OFFSET = 11;
     int LOCATION_OFFSSET = 17;
 
