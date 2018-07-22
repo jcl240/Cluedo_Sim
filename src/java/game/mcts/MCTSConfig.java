@@ -18,7 +18,7 @@ public class MCTSConfig {
 	//default values and policies
 	public int nIterations = 20000;
 	public int nThreads = 4;
-	public long timeLimit = 5000;
+	public long timeLimit = 2500;
 	public int treeSize = 500000;
 	public int maxTreeDepth = 500;
 	public boolean afterstates = true;

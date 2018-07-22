@@ -14,27 +14,22 @@ public class Simulator {
 
     public Logger logger;
     public static int numGames = 10;
-    public static String playerOneType = "MCTS";
-    public static String playerTwoType = "Heuristic";
+    public static String playerOneType = "Heuristic";
+    public static String playerTwoType = "MCTS";
     public int playerOneWins = 0;
     public int playerTwoWins = 0;
 
     public Simulator(){
         String simName = playerOneType+"Vs"+playerTwoType;
-        //logger = new Logger(simName,playerOneType,playerTwoType);
+        logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
-        try {
-            out = new PrintWriter("Cluedo_Sim/out/artifacts/Simulator/resultslimit.txt");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
         int i = 0;
         while(i < numGames) {
             LinkedList<String> agents = new LinkedList<>();
             agents.add(playerOneType);agents.add(playerTwoType);agents.add(playerTwoType);agents.add(playerTwoType);
             Cluedo game = new Cluedo(agents);
             i++;
-            //logger.storeGame(game.gamelog, game.winner);
+            logger.storeGame(game.gamelog, game.winner);
             if(game.winner.playerType.equals(playerOneType)){
                 playerOneWins++;
             }
@@ -44,11 +39,7 @@ public class Simulator {
             System.gc();
         }
 
-        out.println(playerOneWins);
-        out.println(playerTwoWins);
-        out.close();
-
-        //logger.storeSimulation();
+        logger.storeSimulation();
     }
 
     public static void main(String[] args) {

@@ -2,7 +2,12 @@ package simulation;
 
 import agents.Agent;
 import com.mongodb.*;
+import org.bson.json.JsonMode;
+import org.bson.json.JsonWriterSettings;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +23,7 @@ public class Logger {
 
     public Logger(String simulationName, String playerOneType, String playerTwoType){
         simlog = new Simlog(simulationName,playerOneType,playerTwoType);
-        initializeMongo();
+        //initializeMongo();
     }
 
     private void initializeMongo() {
@@ -49,7 +54,17 @@ public class Logger {
         BasicDBObject simDoc = simlog.batchLog();
         BasicDBObject document = new BasicDBObject();
         document.put(simlog.simName ,simDoc);
-        simulationCollection.insert(document);
+        JsonWriterSettings settings = JsonWriterSettings.builder().outputMode(JsonMode.EXTENDED).indent(true).build();
+        String docString = document.toJson(settings);
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/simlogs/simlog");
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(docString);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //simulationCollection.insert(document);
     }
 
     public static BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
@@ -83,7 +98,17 @@ public class Logger {
         document.put("Gamelog",gameDoc);
         document.put("Game_ID", uniqueID.toString());
         simlog.addGameResults(gamelog.getTurnsTaken(),winner);
-        gameCollection.insert(document);
+        JsonWriterSettings settings = JsonWriterSettings.builder().outputMode(JsonMode.EXTENDED).indent(true).build();
+        String docString = document.toJson(settings);
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/gamelogs/gamelog"+simlog.i);
+        try {
+            FileWriter fileWriter = new FileWriter(file);
+            fileWriter.write(docString);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //gameCollection.insert(document);
     }
 
 }

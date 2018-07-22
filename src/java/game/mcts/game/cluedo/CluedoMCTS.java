@@ -272,8 +272,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                     }
                 }
             }
-            checkForEnvelope();
-            int ugh = 0;
         }
     }
 
@@ -281,15 +279,16 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(playerWithCard == 0 || playerWithCard == -1) {
             return;
         }
-        else if(playerWithCard-1 == myIdx) {
-            belief.checkOffCard(card, cardType, playerWithCard);
-        }
-        else {
+        else if(playerWithCard-1 != myIdx) {
             HeuristicAgent agent = ((HeuristicAgent) board.getPlayers()[playerWithCard - 1]);
             agent.getNotebook().checkOffCard(card, cardType, playerWithCard);
+            for(int i = 0; i <4; i++){
+                if(i!=myIdx){
+                    HeuristicAgent other = ((HeuristicAgent) board.getPlayers()[i]);
+                    other.getNotebook().setProbabilityZero(card,cardType,i+1);
+                }
+            }
         }
-        checkForEnvelope();
-        int ugh = 0;
     }
 
     private void doFalsification(int[] a) {
@@ -314,8 +313,6 @@ public class CluedoMCTS implements Game, GameStateConstants {
                     ((HeuristicAgent) players[idx]).getNotebook().checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
                 }
             }
-            checkForEnvelope();
-            int ugh = 0;
         }
 
 
@@ -551,32 +548,26 @@ public class CluedoMCTS implements Game, GameStateConstants {
         int[] action = sampleNextAction();
         actionTaken = action.clone();
         performAction(action, true);
+        if(action[0] == FALSIFY || action[0] == NO_FALSIFY) {
+            checkForEnvelope();
+        }
     }
 
     private void checkForEnvelope() {
         Player[] players = board.getPlayers();
-        if(!knowEnvelope()) {
-            for (int i = 0; i < 4; i++) {
-                if (i == myIdx) {
-                    if (belief.knowEnvelope()) {
-                        int[] envelopeContents = belief.getEnvelopeContents();
-                        setEnvelopeState(envelopeContents);
-                        break;
-                    }
-                } else {
-                    if (((HeuristicAgent) players[i]).getNotebook().knowEnvelope()) {
-                        int[] envelopeContents = ((HeuristicAgent) players[i]).getNotebook().getEnvelopeContents();
-                        setEnvelopeState(envelopeContents);
-                        break;
-                    }
+
+        for (int i = 0; i < 4; i++) {
+            if (i != myIdx) {
+                if (((HeuristicAgent) players[i]).getNotebook().knowEnvelope()) {
+                    state[WINNER] = i;
+                    state[GAME_STATE] = 0;
+                    break;
                 }
             }
         }
+
     }
 
-    private boolean knowEnvelope() {
-        return (state[ENVELOPE_ROOM]!=-1 && state[ENVELOPE_SUSPECT]!=-1 && state[ENVELOPE_WEAPON]!=-1);
-    }
 
     private void setEnvelopeState(int[] envelopeContents) {
         int i = 0;
