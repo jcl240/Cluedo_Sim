@@ -1,6 +1,7 @@
 package mcts.game.cluedo;
 
 import main.Card;
+import main.Cluedo;
 import main.Room;
 import main.Tuple;
 import mcts.game.Belief;
@@ -401,5 +402,35 @@ public class CluedoBelief implements Belief, GameStateConstants {
             j++;
         }
         return solution;
+    }
+
+    public int getHighestEntropyRoom() {
+        LinkedList<Integer> roomsWithMaxEntropy = new LinkedList<>();
+        double maxEntropy = -10;
+        int j = 0;
+        for(double[] prob: probabilities){
+            double entropy = getEntropy(probabilities[j]);
+            if(j == 9)
+                break;
+            if(entropy > maxEntropy) {
+                maxEntropy = entropy;
+                removeAll(roomsWithMaxEntropy);
+                roomsWithMaxEntropy.add(j);
+            }
+            else if(entropy == maxEntropy){
+                roomsWithMaxEntropy.add(j);
+            }
+            j++;
+        }
+
+        int randMaxRoom = roomsWithMaxEntropy.get(Cluedo.rand.nextInt(roomsWithMaxEntropy.size()));
+
+        return randMaxRoom;
+    }
+
+    private void removeAll(LinkedList<Integer> list) {
+        while(list.size() > 0){
+            list.removeFirst();
+        }
     }
 }

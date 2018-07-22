@@ -348,26 +348,15 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double jointProb = 1;
         for(int idx = SUGGESTED_ROOM; idx <= SUGGESTED_WEAPON; idx++){
             int cardType = cardTypes[i];
-            double prob;
             int[] envelopeContent = belief.getDeterminizedEnvelope();
             if(state[idx] == envelopeContent[i]){
                 i++;
                 continue;
             }
-            if(myIdx == getCurrentPlayer()) {
-                prob = belief.getCardProb(state[idx], cardType, getCurrentPlayer() + 1);
-                if(belief.knownHandSize(myIdx+1) >= 4 && prob != 1){
-                    i++;
-                    continue;
-                }
-            }
-            else{
-                HeuristicNotebook notebook = ((HeuristicAgent)board.getPlayers()[getCurrentPlayer()]).getNotebook();
-                prob = notebook.getCardProb(state[idx], cardType, getCurrentPlayer()+1);
-                if(notebook.knownHandSize(getCurrentPlayer()+1) >= 4 && prob != 1){
-                    i++;
-                    continue;
-                }
+            double prob = belief.getCardProb(state[idx], cardType, getCurrentPlayer() + 1);
+            if(belief.knownHandSize(myIdx+1) >= 4 && prob != 1){
+                i++;
+                continue;
             }
             jointProb *= (1-prob);
             if(prob!=0) {

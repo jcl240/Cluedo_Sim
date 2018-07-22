@@ -30,7 +30,7 @@ public class HeuristicMCTS implements GameStateConstants{
             options=options;
         if(state[JUST_MOVED] == 0) {
             returnMoveAction(options);
-            if(agent.getNotebook().knowEnvelope()) {
+            if(belief.knowEnvelope()) {
                 returnAccuseAction(options);
             }
             if (inRoomWithSecretPassage(state[CURRENT_ROOM])) {
@@ -72,8 +72,7 @@ public class HeuristicMCTS implements GameStateConstants{
             roomIdx = agent.movementGoal[0];
         }
         else {
-            String roomName = agent.getNotebook().getHighestEntropyRoom();
-            roomIdx = getRoomIndex(roomName);
+            roomIdx = belief.getHighestEntropyRoom();
         }
         agent.movementGoal = new int[]{roomIdx};
         options.put(Actions.newAction(MOVE,roomIdx,state[CURRENT_ROLL]),1.0);
