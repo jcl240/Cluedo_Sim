@@ -180,8 +180,11 @@ public class CluedoBelief implements Belief, GameStateConstants {
         double update = (probOfObservationGivenCard / probOfObservation);
 
         for(int card: cardsPossible) {
-            probabilities[card][playerIndex] *= update;
-            normalizeProbabilities(card);
+            double newProb = probabilities[card][playerIndex] * update;
+            if(newProb < .90 && newProb >.10) {
+                probabilities[card][playerIndex] *= update;
+                normalizeProbabilities(card);
+            }
         }
     }
 
@@ -263,9 +266,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
             if(row[0] == 1)
                 i++;
         }
-        if(i>3)
-            i=i;
-        return (i==3);
+        return (i>=3);
     }
 
     private void setAllExceptHandZero(int playerIdx) {
@@ -344,5 +345,10 @@ public class CluedoBelief implements Belief, GameStateConstants {
 
     public int[] getDeterminizedEnvelope() {
         return this.envelopeContents.clone();
+    }
+
+    public double[] getProbRow(int card, int cardType){
+        int offset = getOffset(cardType);
+        return probabilities[card+offset];
     }
 }

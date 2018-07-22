@@ -13,7 +13,7 @@ import java.util.LinkedList;
  *
  */
 public class SimulationPolicy {
-	private static int maxDepth = 50000;
+	private static int maxDepth = 10000;
 	/**
 	 * Run the rollout policy to the end of the game
 	 * @param state
@@ -31,9 +31,9 @@ public class SimulationPolicy {
 			if(depth == 300)
 				depth=depth;
 			if(game.isTerminal())
-				System.out.println("FINISHED");*/
+				System.out.println(depth);
 			if(depth==5000)
-				depth=depth;
+				depth=depth;*/
 			if(depth > maxDepth){
 				System.err.println("WARNING: rollout reached max depth!!!");
 				break;

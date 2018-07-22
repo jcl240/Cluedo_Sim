@@ -275,21 +275,14 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         this.probabilities = probabilities;
     }
 
-    public void setProbabilityZero(int cardIdx, int cardType, int playerIndex, int[] envelope) {
+    public void setProbabilityZero(int cardIdx, int cardType, int playerIndex) {
         int index = cardIdx+getOffset(cardType);
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
-        diagnoseEnvelope(envelope);
     }
 
-    private void diagnoseEnvelope(int[] envelope) {
-        if(probabilities[envelope[0]][0] == 0 || probabilities[envelope[1]+9][0] == 0 ||
-                probabilities[envelope[2]+15][0] == 0){
-            probabilities = probabilities;
-        }
-    }
 
-    public void updateProbabilities(int[] suggestion, int playerIndex, int[] envelope) {
+    public void updateProbabilities(int[] suggestion, int playerIndex) {
         int room = suggestion[0];
         int suspect = suggestion[1]+getOffset(SUSPECT);
         int weapon = suggestion[2]+getOffset(WEAPON);
@@ -300,12 +293,12 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         double update = (probOfObservationGivenCard / probOfObservation);
 
         for(int index: cardsPossible) {
-            if(probabilities[index][playerIndex] < .95) {
+            double newProb = probabilities[index][playerIndex] * update;
+            if(newProb < .90 && newProb >.10) {
                 probabilities[index][playerIndex] *= update;
                 normalizeProbabilities(index);
             }
         }
-        diagnoseEnvelope(envelope);
     }
 
     private LinkedList<Integer> getCardsWithNonZeroProbability(int[] suggestion, int playerIndex) {
@@ -318,7 +311,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         return nonZeroCards;
     }
 
-    public void checkOffCard(int cardIdx, int cardType, int playerIdx, int[] envelope) {
+    public void checkOffCard(int cardIdx, int cardType, int playerIdx) {
         int offset = getOffset(cardType);
         int index = cardIdx+offset;
         cardList.get(index).y = true;
@@ -327,7 +320,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         }
         if(playerIdx!=-1)
             probabilities[index][playerIdx] = 1;
-        diagnoseEnvelope(envelope);
 
     }
 
@@ -394,7 +386,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             if(row[0] == 1)
                 i++;
         }
-        return (i==3);
+        return (i>=3);
     }
 
     public boolean tooManyEnvelope(){
@@ -439,5 +431,10 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             i++;
         }
         return envelope;
+    }
+
+    public double[] getProbRow(int card, int cardType){
+        int offset = getOffset(cardType);
+        return probabilities[card+offset];
     }
 }
