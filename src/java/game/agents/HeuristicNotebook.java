@@ -340,10 +340,11 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
 
     }
 
-    private void setAllExceptHandZero(int playerIdx) {
+    public void setAllExceptHandZero(int playerIdx) {
         int i = 0;
         for(double[] prob: probabilities){
             if(prob[playerIdx] != 1) {
+                preventViolation(playerIdx,i);
                 probabilities[i][playerIdx] = 0;
                 normalizeProbabilities(i);
             }
@@ -351,7 +352,16 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         }
     }
 
-    private int knownHandSize(int playerIdx) {
+    private void preventViolation(int playerIdx, int row) {
+        if(probabilities[row][0]+probabilities[row][playerIdx] == 1){
+            double probabilityToSpread = probabilities[row][playerIdx];
+            for(int i = 1; i <= 4; i++){
+                probabilities[row][i] = probabilityToSpread/3;
+            }
+        }
+    }
+
+    public int knownHandSize(int playerIdx) {
         int numKnown = 0;
         for(double[] prob: probabilities){
             if(prob[playerIdx] == 1)
@@ -393,9 +403,16 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             if(row[0] == 1)
                 i++;
         }
-        if(i>3)
-            i=i;
         return (i==3);
+    }
+
+    public boolean tooManyEnvelope(){
+        int i = 0;
+        for(double[] row: probabilities){
+            if(row[0] == 1)
+                i++;
+        }
+        return (i>3);
     }
 
     public boolean know(int card, int cardType) {

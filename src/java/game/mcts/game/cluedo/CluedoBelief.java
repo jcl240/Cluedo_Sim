@@ -1,27 +1,70 @@
 package mcts.game.cluedo;
 
+import main.Card;
+import main.Tuple;
 import mcts.game.Belief;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class CluedoBelief implements Belief, GameStateConstants {
     private double[][] probabilities = new double[21][5];
-
-    public CluedoBelief(){}
+    private int unknownCount;
+    private int[] envelopeContents;
 
     public CluedoBelief(double[][] arr){
         for(int i = 0; i < arr.length; i++){
             this.probabilities[i] = arr[i].clone();
         }
+        determinizeEnvelope();
+        unknownCount = unknownCardCount();
     }
 
     public CluedoBelief(CluedoBelief old){
         for(int i = 0; i < old.probabilities.length; i++){
             this.probabilities[i] = old.probabilities[i].clone();
         }
+        this.envelopeContents = old.envelopeContents.clone();
+        unknownCount = unknownCardCount();
+    }
+
+    private void determinizeEnvelope() {
+        ThreadLocalRandom rnd = ThreadLocalRandom.current();
+        int[] envelope = new int[]{-1,-1,-1};;
+        int count = 0;
+        double[][] probCopy = getProbCopy();
+        while(count < 3){
+            int sampleIndex = rnd.nextInt(probCopy.length);
+            double[] prob = probCopy[sampleIndex];
+            switch(count){
+                case 0:
+                    if(prob[0] > 0 && sampleIndex < 9 && prob[0]+prob[1]+prob[2]+prob[3]+prob[4] != 0){
+                        envelope[count] = sampleIndex;
+                        count++;
+                    }
+                    break;
+                case 1:
+                    if(prob[0] > 0 && sampleIndex < 15 && sampleIndex >= 9  && prob[0]+prob[1]+prob[2]+prob[3]+prob[4] != 0){
+                        envelope[count] = sampleIndex-9;
+                        count++;
+                    }
+                    break;
+                case 2:
+                    if(prob[0] > 0 && sampleIndex >= 15  && prob[0]+prob[1]+prob[2]+prob[3]+prob[4] != 0){
+                        envelope[count] = sampleIndex-15;
+                        count++;
+                    }
+                    break;
+            }
+        }
+        setEnvelopeContents(envelope);
+    }
+
+    public void setEnvelopeContents(int[] envelopeContents) {
+        this.envelopeContents = envelopeContents.clone();
     }
 
     @Override
@@ -109,6 +152,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
         if(knowEnvelope()){
             setAllZeroEnvelope();
         }
+        unknownCount = unknownCardCount();
     }
 
     private boolean cardUnknown(int i) {
@@ -143,7 +187,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
         suggestion[1] += getOffset(2);
         suggestion[2] += getOffset(3);
         LinkedList<Integer> cardsPossible = getCardsWithNonZeroProbability(suggestion, playerIndex);
-        double probOfObservation = (3.0/15.0);
+        double probOfObservation = (3.0/unknownCount);
         double probOfObservationGivenCard = (1.0/cardsPossible.size());
         double update = (probOfObservationGivenCard / probOfObservation);
 
@@ -253,7 +297,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
         }
     }
 
-    private int knownHandSize(int playerIdx) {
+    public int knownHandSize(int playerIdx) {
         int numKnown = 0;
         for(double[] prob: probabilities){
             if(prob[playerIdx] == 1)
@@ -305,5 +349,18 @@ public class CluedoBelief implements Belief, GameStateConstants {
             i++;
         }
         return copy;
+    }
+
+    public int unknownCardCount() {
+        int count = 0;
+        for(double[] prob: probabilities){
+            if(prob[0] != 1 && prob[1]!= 1 && prob[2]!= 1 && prob[3]!= 1 && prob[4]!= 1 )
+                count++;
+        }
+        return count;
+    }
+
+    public int[] getDeterminizedEnvelope() {
+        return this.envelopeContents.clone();
     }
 }

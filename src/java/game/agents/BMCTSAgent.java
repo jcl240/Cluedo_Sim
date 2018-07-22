@@ -48,6 +48,8 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
         int idx = mcts.getNextActionIndex();
         Options options = gameSim.listPossiblities(false);
         Action actionToTake = getAction(options,idx,possibleActions);
+        if(notebook.knowEnvelope())
+            notebook=notebook;
         return actionToTake;
     }
 
