@@ -43,6 +43,7 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
     }
 
     private void spreadProbabilities(int MCTSidx) {
+        int index = 0;
         for(double[] probs: probabilities){
             if(probs[MCTSidx] == 1){
                 for(int i = 0; i < 5; i++){
@@ -50,7 +51,13 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                         probs[i] = .25;
                 }
             }
+            else{
+                for(int i = 0; i < 5; i++){
+                    probs[i] = .20;
+                }
+            }
         }
+        index++;
     }
 
     private boolean isZero(double[] probability) {
@@ -268,25 +275,21 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         this.probabilities = probabilities;
     }
 
-    public void setProbabilityZero(int cardIdx, int cardType, int playerIndex) {
+    public void setProbabilityZero(int cardIdx, int cardType, int playerIndex, int[] envelope) {
         int index = cardIdx+getOffset(cardType);
-        double[] probCopy = probabilities[index].clone();
-        int numZeros = getNumberOfZeros();
         probabilities[index][playerIndex] = 0;
         normalizeProbabilities(index);
-        int numZeros2 = getNumberOfZeros();
-        if(probabilities[index][0]+probabilities[index][1]+probabilities[index][2]+probabilities[index][3]+probabilities[index][4] == 0 && numZeros!=numZeros2){
-            probabilities=probabilities;
-        }
-        /*if(knownHandSize(playerIndex) == 4){
-            setAllExceptHandZero(playerIndex);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
+        diagnoseEnvelope(envelope);
+    }
+
+    private void diagnoseEnvelope(int[] envelope) {
+        if(probabilities[envelope[0]][0] == 0 || probabilities[envelope[1]+9][0] == 0 ||
+                probabilities[envelope[2]+15][0] == 0){
+            probabilities = probabilities;
         }
     }
 
-    public void updateProbabilities(int[] suggestion, int playerIndex) {
+    public void updateProbabilities(int[] suggestion, int playerIndex, int[] envelope) {
         int room = suggestion[0];
         int suspect = suggestion[1]+getOffset(SUSPECT);
         int weapon = suggestion[2]+getOffset(WEAPON);
@@ -297,18 +300,12 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         double update = (probOfObservationGivenCard / probOfObservation);
 
         for(int index: cardsPossible) {
-            probabilities[index][playerIndex] *= update;
-            normalizeProbabilities(index);
-            if (probabilities[index][0] + probabilities[index][1] + probabilities[index][2] + probabilities[index][3] + probabilities[index][4] == 0) {
-                probabilities = probabilities;
+            if(probabilities[index][playerIndex] < .95) {
+                probabilities[index][playerIndex] *= update;
+                normalizeProbabilities(index);
             }
         }
-        /*if(knownHandSize(playerIndex) == 4){
-            setAllExceptHandZero(playerIndex);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
-        }
+        diagnoseEnvelope(envelope);
     }
 
     private LinkedList<Integer> getCardsWithNonZeroProbability(int[] suggestion, int playerIndex) {
@@ -321,22 +318,16 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         return nonZeroCards;
     }
 
-    public void checkOffCard(int cardIdx, int cardType, int playerIdx) {
+    public void checkOffCard(int cardIdx, int cardType, int playerIdx, int[] envelope) {
         int offset = getOffset(cardType);
         int index = cardIdx+offset;
         cardList.get(index).y = true;
-        double[][] probCopy = getProbCopy();
         for(int i = 0; i < 5; i++){
             probabilities[index][i] = 0;
         }
         if(playerIdx!=-1)
             probabilities[index][playerIdx] = 1;
-        /*if(knownHandSize(playerIdx) == 4){
-            setAllExceptHandZero(playerIdx);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
-        }
+        diagnoseEnvelope(envelope);
 
     }
 

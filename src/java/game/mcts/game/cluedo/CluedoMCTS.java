@@ -60,7 +60,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         Player[] players = board.getPlayers();
         for(int i = 0; i < 4; i++){
             for(int j = 0; j < 3; j++) {
-                ((HeuristicAgent)players[i]).getNotebook().setProbabilityZero(envelope[j], j+1, i+1);
+                ((HeuristicAgent)players[i]).getNotebook().setProbabilityZero(envelope[j], j+1, i+1, envelope);
             }
         }
     }
@@ -261,45 +261,51 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void noCardToShow(int[] a) {
         Player[] players = board.getPlayers();
+        int[] envelope = belief.getDeterminizedEnvelope();
         for(int idx = 0; idx < 4; idx++){
             if (idx == myIdx) {
                 for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
                     belief.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
+
                     //IF THIS CAUSED PLAYER TO KNOW CARD, MUST MAKE SURE OTHER PLAYER W/ PROB 1 KNOWS THIS
                     if (belief.know(state[i], i - 6)) {
                         int playerWithCard = belief.getPlayerIdxWithCard(state[i], i - 6);
                         notifyPlayerHasCard(state[i], i - 6, playerWithCard);
                     }
+
                 }
             }
             else{
                 //set prob zero for other players
+                HeuristicNotebook notebook = ((HeuristicAgent) players[idx]).getNotebook();
                 for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
-                    ((HeuristicAgent) players[idx]).getNotebook().setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1);
+                    notebook.setProbabilityZero(state[i], i - 6, getCurrentPlayer() + 1,envelope);
+
                     //IF THIS CAUSED PLAYER TO KNOW CARD, MUST MAKE SURE OTHER PLAYER W/ PROB 1 KNOWS THIS
-                    if (((HeuristicAgent) players[idx]).getNotebook().know(state[i], i - 6)) {
-                        int playerWithCard = ((HeuristicAgent) players[idx]).getNotebook().getPlayerIdxWithCard(state[i], i - 6);
+                    if (notebook.know(state[i], i - 6)) {
+                        int playerWithCard = notebook.getPlayerIdxWithCard(state[i], i - 6);
                         notifyPlayerHasCard(state[i], i - 6, playerWithCard);
                     }
+
                 }
             }
         }
-        int abcheck = 1;
     }
 
     private void notifyPlayerHasCard(int card, int cardType, int playerWithCard) {
+        int[] envelope = belief.getDeterminizedEnvelope();
         if(playerWithCard == -1) {
             return;
         }
         else if(playerWithCard-1 != myIdx) {
             if(playerWithCard != 0) {
                 HeuristicAgent agent = ((HeuristicAgent) board.getPlayers()[playerWithCard - 1]);
-                agent.getNotebook().checkOffCard(card, cardType, playerWithCard);
+                agent.getNotebook().checkOffCard(card, cardType, playerWithCard,envelope);
             }
             for(int i = 0; i <4; i++){
                 if(i!=myIdx && i!=playerWithCard-1){
                     HeuristicAgent other = ((HeuristicAgent) board.getPlayers()[i]);
-                    other.getNotebook().setProbabilityZero(card,cardType,i+1);
+                    other.getNotebook().setProbabilityZero(card,cardType,i+1,envelope);
                 }
             }
         }
@@ -307,34 +313,38 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     private void doFalsification(int[] a) {
         Player[] players = board.getPlayers();
+        int[] envelope = belief.getDeterminizedEnvelope();
 
         for(int idx = 0; idx < 4; idx++) {
             int[] suggestion = new int[]{state[SUGGESTED_ROOM], state[SUGGESTED_SUSPECT], state[SUGGESTED_WEAPON]};
+
             if(idx != state[SUGGESTER_IDX] && idx != getCurrentPlayer()) {
                 if (idx == myIdx) {
                     belief.updateProbabilities(suggestion, getCurrentPlayer() + 1);
-                } else {
+                }
+                else {
+                    HeuristicNotebook notebook = ((HeuristicAgent) players[idx]).getNotebook();
                     //update probabilities for other players
-                    ((HeuristicAgent) players[idx]).getNotebook().setProbabilityZero(a[1], a[2], idx + 1);
+                    notebook.setProbabilityZero(a[1], a[2], idx + 1, envelope);
                     //IF THIS CAUSED PLAYER TO KNOW CARD, MUST MAKE SURE OTHER PLAYER W/ PROB 1 KNOWS THIS
-                    if (((HeuristicAgent) players[idx]).getNotebook().know(a[1], a[2])) {
-                        int playerWithCard = ((HeuristicAgent) players[idx]).getNotebook().getPlayerIdxWithCard(a[1], a[2]);
+                    if (notebook.know(a[1], a[2])) {
+                        int playerWithCard = notebook.getPlayerIdxWithCard(a[1], a[2]);
                         notifyPlayerHasCard(a[1], a[2], playerWithCard);
                     }
-                    ((HeuristicAgent) players[idx]).getNotebook().updateProbabilities(suggestion, getCurrentPlayer() + 1);
+                    notebook.updateProbabilities(suggestion, getCurrentPlayer() + 1, envelope);
                 }
             }
+
             else{
                 if (idx == myIdx) {
                     belief.checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
                 } else {
                     //check off card for suggester
-                    ((HeuristicAgent) players[idx]).getNotebook().checkOffCard(a[1], a[2], getCurrentPlayer() + 1);
+                    ((HeuristicAgent) players[idx]).getNotebook().checkOffCard(a[1], a[2], getCurrentPlayer() + 1, envelope);
                 }
             }
-        }
-        int abcheck = 1;
 
+        }
     }
 
     private void setFalsifyState(int[] a) {
@@ -581,7 +591,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         if(action[0] == FALSIFY || action[0] == NO_FALSIFY) {
             checkForEnvelope();
         }
-        checkEnvelopeProbs(actionTaken);
+        //checkEnvelopeProbs(actionTaken);
     }
 
     private void checkEnvelopeProbs(int[] actionTaken) {
@@ -630,14 +640,14 @@ public class CluedoMCTS implements Game, GameStateConstants {
 
     }
 
-    private void notifyAllCardInEnvelope(int card, int cardType) {
+    /*private void notifyAllCardInEnvelope(int card, int cardType) {
         Player[] players = board.getPlayers();
         for(int i = 0; i < 4; i++){
             if(i!=myIdx){
                 ((HeuristicAgent) players[i]).getNotebook().setProbabilityZero(card,cardType,i+1);
             }
         }
-    }
+    }*/
 
 
     public void setBoard(Board oldBoard, Boolean newGame) {

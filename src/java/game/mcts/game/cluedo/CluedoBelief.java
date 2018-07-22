@@ -119,12 +119,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
         }
         probabilities[card+offset][playerIndex] = 0;
         normalizeProbabilities(card+offset);
-        /*if(knownHandSize(playerIndex) == 4){
-            setAllExceptHandZero(playerIndex);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
-        }
     }
 
     public void setAllZeroEnvelope() {
@@ -145,12 +139,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
             }
             if(playerIdx!=-1)
                 probabilities[card+offset][playerIdx] = 1;
-        }
-        /*if(knownHandSize(playerIdx) == 4) {
-            setAllExceptHandZero(playerIdx);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
         }
         unknownCount = unknownCardCount();
     }
@@ -194,12 +182,6 @@ public class CluedoBelief implements Belief, GameStateConstants {
         for(int card: cardsPossible) {
             probabilities[card][playerIndex] *= update;
             normalizeProbabilities(card);
-        }
-        /*if(knownHandSize(playerIndex) == 4){
-            setAllExceptHandZero(playerIndex);
-        }*/
-        if(knowEnvelope()){
-            setAllZeroEnvelope();
         }
     }
 
