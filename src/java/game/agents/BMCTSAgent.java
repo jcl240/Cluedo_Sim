@@ -55,8 +55,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
 
     private Action getAction(Options options, int idx, LinkedList<Action> possibleActions) {
-        if(idx >= options.getOptions().size())
-            idx = idx;
         int[] actionArray = options.getOptions().get(idx);
         Action action = new Action("doNothing");
         switch (actionArray[0]) {

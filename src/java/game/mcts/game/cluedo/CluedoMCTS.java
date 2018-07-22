@@ -52,18 +52,8 @@ public class CluedoMCTS implements Game, GameStateConstants {
         this.belief = (CluedoBelief)belief.copy();
         this.myIdx = playerIdx;
         setBoard(board, false);
-        determinizeEnvelope();
     }
 
-    private void determinizeEnvelope() {
-        int[] envelope = belief.getDeterminizedEnvelope();
-        Player[] players = board.getPlayers();
-        for(int i = 0; i < 4; i++){
-            for(int j = 0; j < 3; j++) {
-                ((HeuristicAgent)players[i]).getNotebook().setProbabilityZero(envelope[j], j+1, i+1);
-            }
-        }
-    }
 
     public void setState(int[] newState){
         state = newState.clone();
@@ -260,8 +250,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
     }
 
     private void noCardToShow(int[] a) {
-        Player[] players = board.getPlayers();
-        int[] envelope = belief.getDeterminizedEnvelope();
+
 
         for (int i = SUGGESTED_ROOM; i <= SUGGESTED_WEAPON; i++) {
             int cardType = i-6;
