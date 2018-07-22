@@ -13,9 +13,9 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 10;
-    public static String playerOneType = "Heuristic";
-    public static String playerTwoType = "MCTS";
+    public static int numGames = 100;
+    public static String playerOneType = "MCTS";
+    public static String playerTwoType = "Heuristic";
     public int playerOneWins = 0;
     public int playerTwoWins = 0;
 
@@ -39,6 +39,8 @@ public class Simulator {
             System.out.println("Game " + i +" over, winner: "+ game.winner.playerType);
             System.gc();
         }
+        System.out.println(playerOneType + " wins: "+ playerOneWins);
+        System.out.println(playerOneType + " wins: "+ playerTwoWins);
 
         logger.storeSimulation();
     }
