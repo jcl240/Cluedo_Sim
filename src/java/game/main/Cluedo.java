@@ -303,9 +303,9 @@ public class Cluedo {
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else {
-            players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
-                    new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
-            /*
+            /*players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+                    new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};*/
+
             for (int i = 0; i < 4; i++) {
                 int randIdx;
                 if (i == 3)
@@ -314,7 +314,7 @@ public class Cluedo {
                     randIdx = rand.nextInt(agents.size());
                 String agentType = agents.remove(randIdx);
                 addPlayer(agentType, i, cards);
-            }*/
+            }
         }
     }
 

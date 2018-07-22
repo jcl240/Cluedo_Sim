@@ -28,12 +28,8 @@ public class SimulationPolicy {
 			game.gameTick();
 			/*actionsAndStates.add(((CluedoMCTS)game).getActionAndState());
 			actionStrings.add(((CluedoMCTS)game).getActionString());
-			if(depth == 300)
-				depth=depth;
 			if(game.isTerminal())
 				System.out.println("FINISHED");*/
-			if(depth==5000)
-				depth=depth;
 			if(depth > maxDepth){
 				System.err.println("WARNING: rollout reached max depth!!!");
 				break;
