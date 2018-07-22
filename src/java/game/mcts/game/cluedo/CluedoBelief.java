@@ -1,6 +1,7 @@
 package mcts.game.cluedo;
 
 import main.Card;
+import main.Room;
 import main.Tuple;
 import mcts.game.Belief;
 
@@ -350,5 +351,55 @@ public class CluedoBelief implements Belief, GameStateConstants {
     public double[] getProbRow(int card, int cardType){
         int offset = getOffset(cardType);
         return probabilities[card+offset];
+    }
+
+    public int[] getInformedSuggestion(int currentRoom) {
+        int[] suggestion = new int[3];
+        suggestion[0] = currentRoom;
+        int i = 0;
+        int j = 0;
+        double maxEntropy = -10;
+        for(double[] prob: probabilities){
+            if(j == 9 || j==15){
+                i++;
+                maxEntropy = -10;
+            }
+            double entropy = getEntropy(probabilities[j]);
+            if(entropy > maxEntropy) {
+                if(j >= 15)
+                    suggestion[i] = j-15;
+                else if(j>=9)
+                    suggestion[i] = j-9;
+                else
+                    suggestion[i] = j;
+                maxEntropy = entropy;
+            }
+            j++;
+        }
+        return suggestion;
+    }
+
+    public int[] getMostLikelySolution() {
+        int[] solution = new int[3];
+        int j = 0;
+        int i = 0;
+        double maxProb = -1;
+        for(double[] prob: probabilities){
+            if(j == 9 || j==15) {
+                i++;
+                maxProb = -1;
+            }
+            if(prob[0] > maxProb){
+                if(j >= 15)
+                    solution[i] = j-15;
+                else if(j>=9)
+                    solution[i] = j-9;
+                else
+                    solution[i] = j;
+                maxProb = prob[0];
+            }
+            j++;
+        }
+        return solution;
     }
 }

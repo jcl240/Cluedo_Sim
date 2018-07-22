@@ -13,7 +13,7 @@ import java.util.LinkedList;
  *
  */
 public class SimulationPolicy {
-	private static int maxDepth = 10000;
+	private static int maxDepth = 100000;
 	/**
 	 * Run the rollout policy to the end of the game
 	 * @param state

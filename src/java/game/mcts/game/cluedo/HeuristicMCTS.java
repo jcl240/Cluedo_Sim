@@ -2,6 +2,7 @@ package mcts.game.cluedo;
 
 import agents.Action;
 import agents.HeuristicAgent;
+import main.Board;
 import main.Card;
 import main.Room;
 import mcts.game.catan.Actions;
@@ -14,11 +15,13 @@ public class HeuristicMCTS implements GameStateConstants{
     private HeuristicAgent agent;
     int[] state;
     public LinkedList<Integer> actionTypes;
+    private CluedoBelief belief;
 
-    public HeuristicMCTS(HeuristicAgent agent, int[] state){
+    public HeuristicMCTS(HeuristicAgent agent, int[] state, CluedoBelief belief){
         this.agent = agent;
         this.state = state.clone();
         actionTypes = new LinkedList<>();
+        this.belief = belief;
     }
 
     public Options listPossiblities(boolean sample) {
@@ -41,12 +44,9 @@ public class HeuristicMCTS implements GameStateConstants{
     }
 
     private void returnSuggestionAction(Options options) {
-        String roomName = agent.getNotebook().getHighestEntropyRoom();
-        Room room = agent.getRoomByName(roomName);
-        Card[] cardSuggestion = agent.getNotebook().getInformedSuggestion(room);
-        Card[] cards = Card.makeCards();
-        int suspect = cards[cardSuggestion[1].cardIndex].cardIndex;
-        int weapon = cards[cardSuggestion[2].cardIndex].cardIndex;
+        int[] cardSuggestion = belief.getInformedSuggestion(state[CURRENT_ROOM]);
+        int suspect = cardSuggestion[1];
+        int weapon = cardSuggestion[2];
         options.put(Actions.newAction(SUGGEST, state[CURRENT_ROOM], suspect, weapon), 1.0);
         actionTypes.add(SUGGEST);
     }
@@ -61,8 +61,8 @@ public class HeuristicMCTS implements GameStateConstants{
             actionTypes.remove();
         }
         options.removeAllExceptType(ACCUSE);
-        Card[] accusation = agent.getNotebook().getMostLikelySolution();
-        options.put(Actions.newAction(ACCUSE, accusation[0].cardIndex, accusation[1].cardIndex, accusation[2].cardIndex), 1.0);
+        int[] accusation = belief.getMostLikelySolution();
+        options.put(Actions.newAction(ACCUSE, accusation[0], accusation[1], accusation[2]), 1.0);
         actionTypes.add(ACCUSE);
     }
 
