@@ -13,11 +13,15 @@ public class Playerlog {
     LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
     public int numRoomsVisited = 0;
     int numSuggestions = 0;
+    double averageEntropyDecrease = 0;
+    double entropyBefore;
+    private Agent myAgent;
 
     public Playerlog(Agent agent){
         playerIndex = agent.playerIndex;
         agent.setLog(this);
         setHand(agent);
+        this.myAgent = agent;
     }
 
     private void setHand(Agent agent) {
@@ -33,6 +37,16 @@ public class Playerlog {
         suggestionList.addFirst("Suggestion"+numSuggestions+1);
         suggestions.add(suggestionList);
         numSuggestions++;
+    }
+
+    public void entropyBefore(double currentEntropy){
+        entropyBefore=currentEntropy;
+    }
+
+    public void entropyAfter(double currentEntropy){
+        double diff = entropyBefore - currentEntropy;
+        averageEntropyDecrease = averageEntropyDecrease + ((diff-averageEntropyDecrease)/numSuggestions);
+        entropyBefore = 0;
     }
 
     public BasicDBObject makeLog() {

@@ -64,4 +64,5 @@ public class Agent {
     public Card[] getHandArray() {
         return hand;
     }
+
 }

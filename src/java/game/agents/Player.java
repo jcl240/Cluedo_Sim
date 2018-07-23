@@ -21,4 +21,6 @@ public interface Player {
     void noCardToShow(Action actionTaken, Player player);
 
     void cardShown(Action action, Player cardPlayer);
+
+    void recordChangeInEntropy();
 }

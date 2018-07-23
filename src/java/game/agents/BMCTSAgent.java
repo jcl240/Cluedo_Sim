@@ -66,6 +66,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
             case SUGGEST:
                 action = getSuggestAction(possibleActions, actionArray);
                 logSuggestion(action.suggestion);
+                playerLog.entropyBefore(notebook.getCurrentEntropy());
                 break;
             case SECRET_PASSAGE:
                 action = getSecretPassageAction(possibleActions, actionArray);
@@ -158,7 +159,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
                 new int[]
                         {PLAYING,playerIndex-1,moved,board.getRoom(playerIndex),roll,0,suggested,
                                 0,0,0,0,0,0,0,0,
-                                notebook.getCurrentEntropy(),-1,
+                                (int)notebook.getCurrentEntropy(),-1,
                                 playerLocations[0][0],playerLocations[0][1],playerLocations[1][0],playerLocations[1][1],
                                 playerLocations[2][0],playerLocations[2][1],playerLocations[3][0],playerLocations[3][1],
                                 0,
@@ -213,6 +214,11 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     @Override
     public void cardShown(Action action, Player cardPlayer) {
         notebook.updateProbabilities(action.suggestion, ((Agent)cardPlayer).playerIndex);
+    }
+
+    @Override
+    public void recordChangeInEntropy() {
+        playerLog.entropyAfter(notebook.getCurrentEntropy());
     }
 
     private void logSuggestion(Card[] suggestion){

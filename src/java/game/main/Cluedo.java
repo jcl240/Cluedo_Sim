@@ -112,6 +112,7 @@ public class Cluedo {
                 suggest(actionTaken, currentPlayer);
                 ((Agent)currentPlayer).hasSuggested = true;
                 ((Agent) currentPlayer).justMoved = true;
+                currentPlayer.recordChangeInEntropy();
                 gamelog.logAction(actionTaken, currentPlayer);
                 break;
 

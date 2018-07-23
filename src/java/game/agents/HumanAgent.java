@@ -141,6 +141,11 @@ public class HumanAgent extends  Agent implements Player{
     }
 
     @Override
+    public void recordChangeInEntropy() {
+
+    }
+
+    @Override
     public void setBoard(Board board) {
 
     }

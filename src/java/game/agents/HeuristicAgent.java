@@ -65,6 +65,7 @@ public class HeuristicAgent extends Agent implements Player{
         else if(actionTaken.actionType.equals("suggest")){
             actionTaken.suggestion = notebook.getInformedSuggestion(actionTaken.currentRoom);
             logSuggestion(actionTaken.suggestion);
+            playerLog.entropyBefore(notebook.getCurrentEntropy());
         }
         return actionTaken;
     }
@@ -114,6 +115,11 @@ public class HeuristicAgent extends Agent implements Player{
     @Override
     public void cardShown(Action action, Player cardPlayer) {
         notebook.updateProbabilities(action.suggestion, ((Agent)cardPlayer).playerIndex);
+    }
+
+    @Override
+    public void recordChangeInEntropy() {
+        playerLog.entropyAfter(notebook.getCurrentEntropy());
     }
 
     private void logSuggestion(Card[] suggestion){

@@ -254,12 +254,12 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         return copy;
     }
 
-    public int getCurrentEntropy() {
+    public double getCurrentEntropy() {
         double entropySum = 0;
         for(int i = 0; i < probabilities.length; i++){
             entropySum += getEntropy(probabilities[i]);
         }
-        return (int)entropySum;
+        return entropySum;
     }
 
     public int getNumberOfZeros() {
