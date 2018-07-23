@@ -12,7 +12,7 @@ public class Playerlog {
     LinkedList<String> hand = new LinkedList<>();
     LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
     public int numRoomsVisited = 0;
-    int numSuggestions = 1;
+    int numSuggestions = 0;
 
     public Playerlog(Agent agent){
         playerIndex = agent.playerIndex;
@@ -30,7 +30,7 @@ public class Playerlog {
 
     public void logSuggestion(int numKnown, LinkedList<String> suggestionList){
         suggestionList.addFirst("LinkedList<String>");
-        suggestionList.addFirst("Suggestion"+numSuggestions);
+        suggestionList.addFirst("Suggestion"+numSuggestions+1);
         suggestions.add(suggestionList);
         numSuggestions++;
     }
