@@ -37,10 +37,15 @@ public class Simulator {
                 playerTwoWins++;
             }
             System.out.println("Game " + i +" over, winner: "+ game.winner.playerType);
+
+            if(i%100==0){
+                System.out.println(playerOneType + " wins: "+ playerOneWins);
+                System.out.println(playerTwoType + " wins: "+ playerTwoWins);
+            }
+
             System.gc();
         }
-        System.out.println(playerOneType + " wins: "+ playerOneWins);
-        System.out.println(playerOneType + " wins: "+ playerTwoWins);
+
 
         logger.storeSimulation();
     }

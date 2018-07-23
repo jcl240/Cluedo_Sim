@@ -27,7 +27,7 @@ public class HeuristicMCTS implements GameStateConstants{
             options=options;
         if(state[JUST_MOVED] == 0) {
             returnMoveAction(options);
-            if(agent.getNotebook().getCurrentEntropy() < 2) {
+            if(agent.getNotebook().getCurrentEntropy() < 4) {
                 returnAccuseAction(options);
             }
             if (inRoomWithSecretPassage(state[CURRENT_ROOM])) {
@@ -57,10 +57,12 @@ public class HeuristicMCTS implements GameStateConstants{
     }
 
     private void returnAccuseAction(Options options) {
+        /*
         while(actionTypes.size()>0) {
             actionTypes.remove();
         }
         options.removeAllExceptType(ACCUSE);
+        */
         Card[] accusation = agent.getNotebook().getMostLikelySolution();
         options.put(Actions.newAction(ACCUSE, accusation[0].cardIndex, accusation[1].cardIndex, accusation[2].cardIndex), 1.0);
         actionTypes.add(ACCUSE);

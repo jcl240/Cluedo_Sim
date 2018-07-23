@@ -8,10 +8,13 @@
   <component name="ChangeListManager">
     <list default="true" id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Simulator/results.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Simulator/results10.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/Simulator/resultslimit.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/MCTSConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/MCTSConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/mcts.json" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/mcts/mcts.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Simulator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Simulator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,20 +47,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+            <state relative-caret-position="92">
+              <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Logger.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
+            <state relative-caret-position="378">
+              <caret line="101" column="51" lean-forward="true" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
               <folding>
                 <element signature="method#createDBObject#0;class#Logger#0" />
               </folding>
@@ -68,17 +71,8 @@
       <file leaf-file-name="Cluedo.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
+            <state relative-caret-position="759">
               <caret line="302" column="60" selection-start-line="302" selection-start-column="60" selection-end-line="302" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeuristicMCTS.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
-              <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
             </state>
           </provider>
         </entry>
@@ -86,7 +80,7 @@
       <file leaf-file-name="CluedoMCTS.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
+            <state relative-caret-position="322">
               <caret line="385" column="48" lean-forward="true" selection-start-line="385" selection-start-column="48" selection-end-line="385" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -101,11 +95,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="HeuristicMCTS.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="HeuristicNotebook.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="321" column="41" selection-start-line="321" selection-start-column="41" selection-end-line="321" selection-end-column="41" />
+            <state relative-caret-position="130">
+              <caret line="156" column="5" lean-forward="true" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -134,8 +137,8 @@
       <file leaf-file-name="MCTSConfig.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
-              <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+            <state relative-caret-position="322">
+              <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -161,7 +164,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getCardProb</find>
       <find>Win</find>
       <find>falsify</find>
       <find>Falsify</find>
@@ -191,6 +193,7 @@
       <find>set</find>
       <find>setAllZero</find>
       <find>diag</find>
+      <find>simName</find>
     </findStrings>
     <replaceStrings>
       <replace>log</replace>
@@ -550,15 +553,15 @@
         <option value="$PROJECT_DIR$/src/java/game/main/Board.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/GameStateConstants.java" />
         <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
-        <option value="$PROJECT_DIR$/src/java/game/simulation/Logger.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java" />
         <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" />
         <option value="$PROJECT_DIR$/src/java/game/main/Cluedo.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/tree/SimulationPolicy.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" />
-        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" />
         <option value="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Logger.java" />
       </list>
     </option>
   </component>
@@ -774,13 +777,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
-    </task>
-    <task id="LOCAL-00117" summary="Clone board in MCTS instead of just assigning same reference&#10;&#10;THIS MAY NOT WORK, IF HAVING ISSUES CHECK THAT THE MCTS BOARD DOES NOT MODIFY THE MAIN GAME BOARD">
-      <created>1531051003999</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1531051003999</updated>
     </task>
     <task id="LOCAL-00118" summary="CluedoMCTS copy method (may also be wrong) check here if errors occur">
       <created>1531052231024</created>
@@ -1118,7 +1114,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532263833277</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary=" new print statement and allow heuristic agents to accuse before they know envelope">
+      <created>1532290463634</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1532290463634</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1127,7 +1130,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info active="true" anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" visible="true" weight="0.31652662" />
+      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" weight="0.31652662" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="right" id="Maven Projects" order="3" />
@@ -1203,7 +1206,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added classes from catan that appear to do the uniform sampling of actions" />
     <MESSAGE value="added sampling from action type. disappointingly still trying to accuse" />
     <MESSAGE value="Removed movement goals and turn from state description (still not working :'( )" />
     <MESSAGE value="Searching takes forever now. Maybe it works?" />
@@ -1228,7 +1230,8 @@
     <MESSAGE value="Can fix the problem if we don't enforce that player hands must be 4 cards. Hacky but beats random 9 out of 10 times. Need to find a way to fix this." />
     <MESSAGE value="I THINK IT WORKS!!!! (rollouts sometime exceed limit: should check on why this occurs)" />
     <MESSAGE value="switched to determinizations. Somehow envelope card is still sometimes getting prob 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="switched to determinizations. Somehow envelope card is still sometimes getting prob 0" />
+    <MESSAGE value=" new print statement and allow heuristic agents to accuse before they know envelope" />
+    <option name="LAST_COMMIT_MESSAGE" value=" new print statement and allow heuristic agents to accuse before they know envelope" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1590,26 +1593,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="302" column="60" selection-start-line="302" selection-start-column="60" selection-end-line="302" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="56" column="66" selection-start-line="56" selection-start-column="66" selection-end-line="56" selection-end-column="66" />
-          <folding>
-            <element signature="method#createDBObject#0;class#Logger#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
+        <state relative-caret-position="322">
           <caret line="385" column="48" lean-forward="true" selection-start-line="385" selection-start-column="48" selection-end-line="385" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1623,31 +1609,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="759">
+          <caret line="302" column="60" selection-start-line="302" selection-start-column="60" selection-end-line="302" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="321" column="41" selection-start-line="321" selection-start-column="41" selection-end-line="321" selection-end-column="41" />
+        <state relative-caret-position="130">
+          <caret line="156" column="5" lean-forward="true" selection-start-line="156" selection-start-column="5" selection-end-line="156" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="29" column="58" selection-start-line="29" selection-start-column="58" selection-end-line="29" selection-end-column="58" />
+        <state relative-caret-position="92">
+          <caret line="55" column="40" lean-forward="true" selection-start-line="55" selection-start-column="40" selection-end-line="55" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="29" />
+        <state relative-caret-position="322">
+          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
+        <state relative-caret-position="92">
+          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="101" column="51" lean-forward="true" selection-start-line="101" selection-start-column="51" selection-end-line="101" selection-end-column="51" />
+          <folding>
+            <element signature="method#createDBObject#0;class#Logger#0" />
+          </folding>
         </state>
       </provider>
     </entry>
