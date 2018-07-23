@@ -62,7 +62,7 @@ public class Gamelog {
         document.put("Start_State", startStateLog);
         document.put("Action_Log", actionLog);
         document.put("Turns_taken", turnsTaken);
-        int i = 0;
+        int i = 1;
         for(BasicDBObject playerLog: playerLogList) {
             document.put("Player_Log"+i, playerLog);
             i++;
