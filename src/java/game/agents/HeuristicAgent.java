@@ -123,11 +123,15 @@ public class HeuristicAgent extends Agent implements Player{
     }
 
     private void logSuggestion(Card[] suggestion){
-        int numKnown = 1;
+        int numKnown = 0;
         LinkedList<String> suggestionList = new LinkedList<>();
-        for(Card card: suggestion){
-            suggestionList.add(card.cardName);
-            suggestionList.add(notebook.knowCard(card));
+        for(Card card: suggestion) {
+            if (notebook.knowCard(card)) {
+                suggestionList.add("true");
+                numKnown++;
+            } else {
+                suggestionList.add("false");
+            }
         }
         playerLog.logSuggestion(numKnown, suggestionList);
     }

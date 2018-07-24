@@ -97,7 +97,7 @@ public class Logger {
         BasicDBObject document = new BasicDBObject();
         document.put("Gamelog",gameDoc);
         document.put("Game_ID", uniqueID.toString());
-        simlog.addGameResults(gamelog.getTurnsTaken(),winner);
+        simlog.addGameResults(gamelog.getTurnsTaken(),winner,gamelog.playerLogs);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
         File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"gamelogs/gamelog"+simlog.i);

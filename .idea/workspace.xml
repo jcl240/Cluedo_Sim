@@ -8,15 +8,26 @@
   <component name="ChangeListManager">
     <list default="true" id="2a833c31-d84c-499a-bfa8-af72c5658c60" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/Agent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/Agent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/BMCTSAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/BMCTSAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicNotebook.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HeuristicNotebook.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HumanAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/HumanAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/Player.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/RandomAgent.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/agents/RandomAgent.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/main/Cluedo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Playerlog.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Cluedo_Sim/simulation/Playerlog.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/HumanAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/HumanAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/agents/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/agents/Notebook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/Notebook.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/agents/RandomAgent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/agents/RandomAgent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/main/Cluedo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Gamelog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Gamelog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Logger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Logger.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Playerlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Playerlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Simlog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Simlog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/cluedo_gradle/.gradle/" />
@@ -48,29 +59,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Simulator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cluedo.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="621">
-              <caret line="317" column="13" lean-forward="true" selection-start-line="317" selection-start-column="13" selection-end-line="317" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="94" column="34" lean-forward="true" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
+            <state relative-caret-position="414">
+              <caret line="99" column="68" selection-start-line="99" selection-start-column="68" selection-end-line="99" selection-end-column="68" />
               <folding>
                 <element signature="method#createDBObject#0;class#Logger#0" />
               </folding>
@@ -78,24 +71,78 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Gamelog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Gamelog.java">
+      <file leaf-file-name="Simlog.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simlog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="64" column="10" lean-forward="true" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+            <state relative-caret-position="251">
+              <caret line="74" column="13" lean-forward="true" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Playerlog.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Gamelog.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Gamelog.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1288">
+              <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Playerlog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Playerlog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
+            <state relative-caret-position="283">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HeuristicAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="235">
+              <caret line="130" column="27" lean-forward="true" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
               <folding>
-                <element signature="e#1134#1135#0" expanded="true" />
-                <element signature="e#1162#1163#0" expanded="true" />
+                <element signature="e#3815#3816#0" expanded="true" />
+                <element signature="e#3883#3884#0" expanded="true" />
+                <element signature="e#4383#4384#0" expanded="true" />
+                <element signature="e#4433#4434#0" expanded="true" />
+                <element signature="e#4479#4480#0" expanded="true" />
+                <element signature="e#4515#4516#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BMCTSAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="229" column="43" lean-forward="true" selection-start-line="229" selection-start-column="43" selection-end-line="229" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8028#8029#0" expanded="true" />
+                <element signature="e#8096#8097#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Notebook.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/agents/Notebook.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="258">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RandomAgent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/java/game/agents/RandomAgent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
             </state>
           </provider>
         </entry>
@@ -112,7 +159,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>myIdx</find>
       <find>HeuristicNotebook</find>
       <find>i</find>
       <find>myIndex</find>
@@ -142,6 +188,7 @@
       <find>numR</find>
       <find>numSuggestions</find>
       <find>logSu</find>
+      <find>numKnown</find>
     </findStrings>
     <replaceStrings>
       <replace>log</replace>
@@ -459,7 +506,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/java/game/agents/Action.java" />
         <option value="$PROJECT_DIR$/src/java/game/GUI/PlayerPanel.java" />
         <option value="$PROJECT_DIR$/src/java/game/GUI/PlayerManager.java" />
         <option value="$PROJECT_DIR$/src/java/game/GUI/InfoActionPanel.java" />
@@ -487,7 +533,6 @@
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoConfig.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/MCTS.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/tree/node/StandardNode.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/Notebook.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/tree/ExpansionPolicy.java" />
         <option value="$PROJECT_DIR$/src/java/game/main/Card.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/GameFactory.java" />
@@ -496,20 +541,22 @@
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoBelief.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/tree/SimulationPolicy.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java" />
-        <option value="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" />
         <option value="$PROJECT_DIR$/src/java/game/mcts/game/cluedo/HeuristicMCTS.java" />
-        <option value="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" />
-        <option value="$PROJECT_DIR$/src/java/game/simulation/Logger.java" />
         <option value="$PROJECT_DIR$/src/java/game/simulation/Gamelog.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" />
         <option value="$PROJECT_DIR$/src/java/game/agents/Agent.java" />
         <option value="$PROJECT_DIR$/src/java/game/agents/Player.java" />
         <option value="$PROJECT_DIR$/src/java/game/agents/HumanAgent.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/RandomAgent.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" />
-        <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
-        <option value="$PROJECT_DIR$/src/java/game/simulation/Playerlog.java" />
         <option value="$PROJECT_DIR$/src/java/game/main/Cluedo.java" />
+        <option value="$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Simulator.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Logger.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Playerlog.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/Notebook.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/RandomAgent.java" />
+        <option value="$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java" />
+        <option value="$PROJECT_DIR$/src/java/game/simulation/Simlog.java" />
       </list>
     </option>
   </component>
@@ -526,7 +573,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -557,35 +603,12 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="game" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="agents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Cluedo_Sim" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Cluedo_Sim" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="game" type="462c0819:PsiDirectoryNode" />
-              <item name="simulation" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -697,13 +720,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1527778656653</updated>
-    </task>
-    <task id="LOCAL-00121" summary="Moving seems to be working">
-      <created>1531155410600</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1531155410600</updated>
     </task>
     <task id="LOCAL-00122" summary="Working on secret passages">
       <created>1531156392316</created>
@@ -1041,7 +1057,14 @@
       <option name="project" value="LOCAL" />
       <updated>1532342743940</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="measuring average entropy decrease per suggestion per agent. Need to combine these averages across types">
+      <created>1532356612696</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1532356612696</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1054,7 +1077,7 @@
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23389356" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.2345679" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32913166" />
       <window_info anchor="right" id="Mongo Explorer" order="4" />
       <window_info anchor="bottom" id="Terminal" order="7" />
@@ -1065,60 +1088,42 @@
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" visible="true" weight="0.40056023" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" visible="true" weight="0.4229692" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" id="Coverage" order="4" side_tool="true" weight="0.18412492" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Mongo Explorer" order="4" />
-      <window_info anchor="right" id="Gradle" order="4" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32913166" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.2345679" />
-      <window_info id="Designer" order="2" />
-      <window_info id="UI Designer" order="2" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" visible="true" weight="0.4238683" />
-      <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.3292011" />
-      <window_info anchor="bottom" id="Messages" order="7" sideWeight="0.49967468" weight="0.31687242" />
-      <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16265452" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Mongo Explorer" order="7" />
       <window_info anchor="right" id="Gradle" order="8" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23529412" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32913166" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16265452" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32913166" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49967468" weight="0.32492998" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.509434" weight="0.23529412" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Designer" order="2" />
       <window_info id="UI Designer" order="3" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32492998" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5035784" weight="0.5560224" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.18412492" />
+      <window_info anchor="right" id="Mongo Explorer" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.4964216" side_tool="true" weight="0.41456583" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="11" weight="0.3292011" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49967468" weight="0.32492998" />
+      <window_info anchor="right" id="Coverage" order="6" side_tool="true" weight="0.18412492" />
       <window_info id="Favorites" order="4" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -1126,7 +1131,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Ready for trial on eddie" />
     <MESSAGE value="Print statement for errorchecking in eddie" />
     <MESSAGE value="Print statement fixed and gamefactory moved. Need to try it out on diff parallel env" />
     <MESSAGE value="Heading in direction of using HeuristicAgents in rollouts" />
@@ -1151,7 +1155,8 @@
     <MESSAGE value="Store simlogs and gamelogs in simname directory" />
     <MESSAGE value="start playerlogs at index 1" />
     <MESSAGE value="start numSuggestions at 0" />
-    <option name="LAST_COMMIT_MESSAGE" value="start numSuggestions at 0" />
+    <MESSAGE value="measuring average entropy decrease per suggestion per agent. Need to combine these averages across types" />
+    <option name="LAST_COMMIT_MESSAGE" value="measuring average entropy decrease per suggestion per agent. Need to combine these averages across types" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1162,11 +1167,17 @@
           <properties />
           <option name="timeStamp" value="1115" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/java/game/simulation/Playerlog.java</url>
+          <line>42</line>
+          <properties />
+          <option name="timeStamp" value="1193" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="1188" />
+      <option name="time" value="1194" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -1344,13 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Card.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1372,20 +1376,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simlog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Notebook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="58" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/main/Board.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
@@ -1397,9 +1387,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="184">
           <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1407,9 +1394,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="598">
           <caret line="29" column="68" selection-start-line="29" selection-start-column="68" selection-end-line="29" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1434,13 +1418,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="21" column="33" lean-forward="true" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/mcts/game/cluedo/CluedoMCTS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="207">
@@ -1454,20 +1431,6 @@
             <element signature="e#17668#17816#0" />
             <element signature="e#17822#18213#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="260" column="9" lean-forward="true" selection-start-line="260" selection-start-column="9" selection-end-line="260" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/RandomAgent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="93" column="49" lean-forward="true" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1492,68 +1455,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/mcts/MCTSConfig.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="216" column="5" lean-forward="true" selection-start-line="216" selection-start-column="5" selection-end-line="216" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#8028#8029#0" expanded="true" />
-            <element signature="e#8073#8074#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="161">
+          <caret line="14" column="2" lean-forward="true" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="111" column="9" lean-forward="true" selection-start-line="111" selection-start-column="9" selection-end-line="111" selection-end-column="9" />
-          <folding>
-            <element signature="e#3815#3816#0" expanded="true" />
-            <element signature="e#3879#3880#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="552">
+          <caret line="32" column="27" lean-forward="true" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3933">
+          <caret line="317" column="13" selection-start-line="317" selection-start-column="13" selection-end-line="317" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="94" column="34" lean-forward="true" selection-start-line="94" selection-start-column="34" selection-end-line="94" selection-end-column="34" />
+        <state relative-caret-position="414">
+          <caret line="99" column="68" selection-start-line="99" selection-start-column="68" selection-end-line="99" selection-end-column="68" />
           <folding>
             <element signature="method#createDBObject#0;class#Logger#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Gamelog.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/Notebook.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="64" column="10" lean-forward="true" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+        <state relative-caret-position="258">
+          <caret line="95" selection-start-line="95" selection-end-line="95" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/main/Cluedo.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/RandomAgent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="621">
-          <caret line="317" column="13" lean-forward="true" selection-start-line="317" selection-start-column="13" selection-end-line="317" selection-end-column="13" />
+        <state relative-caret-position="120">
+          <caret line="116" column="46" selection-start-line="116" selection-start-column="46" selection-end-line="116" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simulator.java">
+    <entry file="file://$PROJECT_DIR$/src/java/game/main/Card.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="26" column="29" lean-forward="true" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+        <state relative-caret-position="422">
+          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicNotebook.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="461">
+          <caret line="457" column="69" lean-forward="true" selection-start-line="457" selection-start-column="69" selection-end-line="457" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/BMCTSAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="229" column="43" lean-forward="true" selection-start-line="229" selection-start-column="43" selection-end-line="229" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8028#8029#0" expanded="true" />
+            <element signature="e#8096#8097#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/agents/HeuristicAgent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="130" column="27" lean-forward="true" selection-start-line="130" selection-start-column="27" selection-end-line="130" selection-end-column="27" />
+          <folding>
+            <element signature="e#3815#3816#0" expanded="true" />
+            <element signature="e#3883#3884#0" expanded="true" />
+            <element signature="e#4383#4384#0" expanded="true" />
+            <element signature="e#4433#4434#0" expanded="true" />
+            <element signature="e#4479#4480#0" expanded="true" />
+            <element signature="e#4515#4516#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Playerlog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="46" column="53" lean-forward="true" selection-start-line="46" selection-start-column="53" selection-end-line="46" selection-end-column="53" />
-          <folding>
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1162#1163#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="283">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Gamelog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1288">
+          <caret line="64" column="10" selection-start-line="64" selection-start-column="10" selection-end-line="64" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/java/game/simulation/Simlog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="74" column="13" lean-forward="true" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
         </state>
       </provider>
     </entry>

@@ -115,7 +115,6 @@ public class RandomAgent extends  Agent implements Player {
         LinkedList<String> suggestionList = new LinkedList<>();
         for(Card card: suggestion){
             suggestionList.add(card.cardName);
-            suggestionList.add(notebook.knowCard(card));
         }
         playerLog.logSuggestion(numKnown, suggestionList);
     }

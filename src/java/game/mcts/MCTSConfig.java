@@ -17,8 +17,8 @@ import mcts.tree.update.UpdatePolicy;
 public class MCTSConfig {
 	//default values and policies
 	public int nIterations = 20000;
-	public int nThreads = 16;
-	public long timeLimit = 2500;
+	public int nThreads = 8;
+	public long timeLimit = 3500;
 	public int treeSize = 500000;
 	public int maxTreeDepth = 500;
 	public boolean afterstates = true;

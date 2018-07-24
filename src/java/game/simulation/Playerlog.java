@@ -12,16 +12,19 @@ public class Playerlog {
     LinkedList<String> hand = new LinkedList<>();
     LinkedList<LinkedList<String>> suggestions = new LinkedList<>();
     public int numRoomsVisited = 0;
+    public int averageNumCardsKnown = 0;
     int numSuggestions = 0;
     double averageEntropyDecrease = 0;
     double entropyBefore;
     private Agent myAgent;
+    public String agentType;
 
     public Playerlog(Agent agent){
         playerIndex = agent.playerIndex;
         agent.setLog(this);
         setHand(agent);
         this.myAgent = agent;
+        this.agentType=agent.playerType;
     }
 
     private void setHand(Agent agent) {
@@ -33,10 +36,11 @@ public class Playerlog {
     }
 
     public void logSuggestion(int numKnown, LinkedList<String> suggestionList){
+        numSuggestions++;
         suggestionList.addFirst("LinkedList<String>");
         suggestionList.addFirst("Suggestion"+numSuggestions+1);
         suggestions.add(suggestionList);
-        numSuggestions++;
+        averageNumCardsKnown = averageNumCardsKnown + ((numKnown-averageNumCardsKnown)/numSuggestions);
     }
 
     public void entropyBefore(double currentEntropy){

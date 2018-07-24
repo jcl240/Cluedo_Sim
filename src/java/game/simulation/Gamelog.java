@@ -11,7 +11,7 @@ import java.util.LinkedList;
 public class Gamelog {
 
     private LinkedList<LinkedList<String>> actionLog = new LinkedList<>();
-    private LinkedList<Playerlog> playerLogs = new LinkedList<>();
+    LinkedList<Playerlog> playerLogs = new LinkedList<>();
     private LinkedList<LinkedList<String>> startState = new LinkedList<>();
     private int turnsTaken = 0;
 

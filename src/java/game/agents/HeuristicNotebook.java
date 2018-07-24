@@ -440,4 +440,21 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
         }
         return envelope;
     }
+
+    public boolean knowCard(Card card){
+        int cardType = 0;
+        switch (card.cardType){
+            case "room":
+                cardType = ROOM;
+                break;
+            case "suspect":
+                cardType = SUSPECT;
+                break;
+            case "weapon":
+                cardType = WEAPON;
+                break;
+        }
+        int offset = getOffset(cardType);
+        return (getEntropy(probabilities[card.cardIndex+offset])==0);
+    }
 }

@@ -222,11 +222,17 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
     }
 
     private void logSuggestion(Card[] suggestion){
-        int numKnown = 1;
+        int numKnown = 0;
         LinkedList<String> suggestionList = new LinkedList<>();
         for(Card card: suggestion){
             suggestionList.add(card.cardName);
-            suggestionList.add(notebook.knowCard(card));
+            if(notebook.knowCard(card)){
+                suggestionList.add("true");
+                numKnown++;
+            }
+            else{
+                suggestionList.add("false");
+            }
         }
         playerLog.logSuggestion(numKnown, suggestionList);
     }
