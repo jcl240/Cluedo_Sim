@@ -56,39 +56,47 @@ public class Logger {
         document.put(simlog.simName ,simDoc);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/simlogs/simlog");
+        /*File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/simlogs/simlog");
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);
             fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //simulationCollection.insert(document);
     }
 
     public static BasicDBObject createDBObject(LinkedList<LinkedList<String>> log) {
         BasicDBObject document = new BasicDBObject();
         for(LinkedList<String> fieldList: log){
-            String fieldName = fieldList.removeFirst();
-            String fieldType = fieldList.removeFirst();
+            String fieldName = fieldList.get(0);
+            String fieldType = fieldList.get(1);
             switch (fieldType) {
                 case "LinkedList<String>":
-                    document.put(fieldName, fieldList);
+                    LinkedList<String> subList = getSubList(fieldList);
+                    document.put(fieldName, subList);
                     break;
                 case "int": {
-                    int fieldValue = Integer.getInteger(fieldList.removeFirst());
+                    int fieldValue = Integer.getInteger(fieldList.get(2));
                     document.put(fieldName, fieldValue);
                     break;
                 }
                 case "String": {
-                    String fieldValue = fieldList.removeFirst();
+                    String fieldValue = fieldList.get(2);
                     document.put(fieldName, fieldValue);
                     break;
                 }
             }
         }
         return document;
+    }
+
+    private static LinkedList<String> getSubList(LinkedList<String> fieldList) {
+        LinkedList<String> subList = (LinkedList<String>)fieldList.clone();
+        subList.removeFirst();
+        subList.removeFirst();
+        return subList;
     }
 
     public void storeGame(Gamelog gamelog, Agent winner){
@@ -100,14 +108,14 @@ public class Logger {
         simlog.addGameResults(gamelog.getTurnsTaken(),winner,gamelog.playerLogs);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"gamelogs/gamelog"+simlog.i);
+        /*File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/gamelogs/gamelog"+simlog.i);
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);
             fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         //gameCollection.insert(document);
     }
 

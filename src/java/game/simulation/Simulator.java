@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Simulator {
 
     public Logger logger;
-    public static int numGames = 2;
+    public static int numGames = 2000;
     public static String playerOneType = "Heuristic";
     public static String playerTwoType = "MCTS";
     public int playerOneWins = 0;
@@ -41,8 +41,8 @@ public class Simulator {
             if(i%100==0){
                 System.out.println(playerOneType + " wins: "+ playerOneWins);
                 System.out.println(playerTwoType + " wins: "+ playerTwoWins);
+                logger.storeSimulation();
             }
-
             System.gc();
         }
 
@@ -51,20 +51,6 @@ public class Simulator {
     }
 
     public static void main(String[] args) {
-        /*
-        if(args.length != 3){
-            System.out.println("Need 3 params: #games, agent1, agent2");
-            return;
-        }
-        try {
-            numGames = Integer.valueOf(args[0]);
-            playerOneType = args[1];
-            playerTwoType = args[2];
-        }
-        catch(IllegalArgumentException e){
-            System.out.println("Something was wrong with the parameters provided.");
-        }
-        */
         Simulator simulator = new Simulator();
     }
 

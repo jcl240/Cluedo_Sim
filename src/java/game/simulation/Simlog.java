@@ -36,6 +36,8 @@ public class Simlog {
         doc.put("Average_turns", totalTurns/(i-1));
         doc.put(playerOneType + " average decrease in entropy", playerOneEntropyDecreaseAverage);
         doc.put(playerTwoType + " average decrease in entropy", playerTwoEntropyDecreaseAverage);
+        doc.put(playerOneType + " average cards known per suggestion", playerOneNumKnownAverage);
+        doc.put(playerTwoType + " average cards known per suggestion", playerTwoNumKnownAverage);
         doc.put("Max turns", maxTurns);
         doc.put("Min turns", minTurns);
         return doc;
