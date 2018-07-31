@@ -32,6 +32,8 @@ public class CluedoBelief implements Belief, GameStateConstants {
     }
 
     private void determinizeEnvelope() {
+        int[] envelope = getMostLikelySolution();
+        /*
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         int[] envelope = new int[]{-1,-1,-1};;
         int count = 0;
@@ -59,8 +61,32 @@ public class CluedoBelief implements Belief, GameStateConstants {
                     }
                     break;
             }
-        }
+        }*/
         setEnvelopeContents(envelope);
+    }
+
+    public int[] getMostLikelySolution(){
+        int[] solution = new int[3];
+        int j = 0;
+        int i = 0;
+        double maxProb = -1;
+        for(double[] prob: probabilities){
+            if(i == 9 || i == 15) {
+                j++;
+                maxProb = -1;
+            }
+            if(prob[0] > maxProb){
+                if(i < 9)
+                    solution[j] = i;
+                else if (i < 15)
+                    solution[j] = i-9;
+                else
+                    solution[j] = i-15;
+                maxProb = prob[0];
+            }
+            i++;
+        }
+        return solution;
     }
 
     public void setEnvelopeContents(int[] envelopeContents) {

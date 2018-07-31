@@ -397,7 +397,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         double roomProb = belief.getCardProb(state[ACCUSED_ROOM],ROOM,0);
         double suspectProb = belief.getCardProb(state[ACCUSED_SUSPECT],SUSPECT,0);
         double weaponProb = belief.getCardProb(state[ACCUSED_WEAPON],WEAPON,0);
-        double jointProb = belief.getJointProbabilityInEnvelope(roomProb,suspectProb,weaponProb);
+        double jointProb = roomProb*suspectProb*weaponProb;
         if(jointProb>0) {
             options.put(Actions.newAction(GAME_WON), jointProb);
             if(!actionTypes.contains(GAME_WON)){
