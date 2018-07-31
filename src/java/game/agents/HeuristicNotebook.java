@@ -51,11 +51,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                         probs[i] = .25;
                 }
             }
-            else{
-                for(int i = 0; i < 5; i++){
-                    probs[i] = .20;
-                }
-            }
         }
         index++;
     }

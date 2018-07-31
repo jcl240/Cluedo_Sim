@@ -56,14 +56,14 @@ public class Logger {
         document.put(simlog.simName ,simDoc);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        /*File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/simlogs/simlog");
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"nolimit/simlogs/simlog");
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);
             fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         //simulationCollection.insert(document);
     }
 
@@ -108,14 +108,14 @@ public class Logger {
         simlog.addGameResults(gamelog.getTurnsTaken(),winner,gamelog.playerLogs);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        /*File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/gamelogs/gamelog"+simlog.i);
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"nolimit/gamelogs/gamelog"+simlog.i);
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);
             fileWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
         //gameCollection.insert(document);
     }
 
