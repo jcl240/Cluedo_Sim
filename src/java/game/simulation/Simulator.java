@@ -20,7 +20,7 @@ public class Simulator {
     public int playerTwoWins = 0;
 
     public Simulator(){
-        String simName = playerOneType+"Vs"+playerTwoType+"nolimit";
+        String simName = playerOneType+"Vs"+playerTwoType;
         logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
         int i = 0;

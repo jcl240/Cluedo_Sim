@@ -32,8 +32,8 @@ public class CluedoBelief implements Belief, GameStateConstants {
     }
 
     private void determinizeEnvelope() {
-        int[] envelope = getMostLikelySolution();
-        /*
+        //int[] envelope = getMostLikelySolution();
+
         ThreadLocalRandom rnd = ThreadLocalRandom.current();
         int[] envelope = new int[]{-1,-1,-1};;
         int count = 0;
@@ -61,7 +61,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
                     }
                     break;
             }
-        }*/
+        }
         setEnvelopeContents(envelope);
     }
 
