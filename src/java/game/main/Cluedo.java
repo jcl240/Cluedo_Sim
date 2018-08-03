@@ -58,6 +58,11 @@ public class Cluedo {
 
     private void play() {
         while(!gameFinished){
+            if(gamelog.getTurnsTaken() > 1000) {
+                gameFinished = true;
+                winner = null;
+                break;
+            }
             Player currentPlayer = players[playerTurnIndex];
             boolean actionSuccessful;
             if(((Agent)currentPlayer).accused){

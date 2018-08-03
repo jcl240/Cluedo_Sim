@@ -54,13 +54,17 @@ public class Simlog {
         totalTurns += turns;
         result.add("Game"+i);
         result.add("String");
-        result.add(winner.playerType);
-        gameResults.add(result);
-        if(winner.playerType.equals(playerOneType)){
-            playerOneWinCount++;
+        if(winner != null) {
+            result.add(winner.playerType);
+            if (winner.playerType.equals(playerOneType)) {
+                playerOneWinCount++;
+            } else
+                playerTwoWinCount++;
         }
-        else
-            playerTwoWinCount++;
+        else{
+            result.add("NOWINNER");
+        }
+        gameResults.add(result);
         getAverageDecreaseInEntropy(playerLogs);
         i++;
     }

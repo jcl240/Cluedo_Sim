@@ -132,6 +132,7 @@ public class HeuristicAgent extends Agent implements Player{
             } else {
                 suggestionList.add("false");
             }
+            suggestionList.add(card.cardName);
         }
         playerLog.logSuggestion(numKnown, suggestionList);
     }

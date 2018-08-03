@@ -20,7 +20,7 @@ public class Simulator {
     public int playerTwoWins = 0;
 
     public Simulator(){
-        String simName = playerOneType+"Vs"+playerTwoType;
+        String simName = playerOneType+"Vs"+playerTwoType+"nolimit";
         logger = new Logger(simName,playerOneType,playerTwoType);
         PrintWriter out = null;
         int i = 0;
@@ -29,14 +29,18 @@ public class Simulator {
             agents.add(playerOneType);agents.add(playerTwoType);agents.add(playerTwoType);agents.add(playerTwoType);
             Cluedo game = new Cluedo(agents);
             i++;
+            if(game.winner != null) {
+                if (game.winner.playerType.equals(playerOneType)) {
+                    playerOneWins++;
+                } else {
+                    playerTwoWins++;
+                }
+                System.out.println("Game " + i +" over, winner: "+ game.winner.playerType);
+            }
+            else{
+                System.out.println("Game " + i +" over. NO WINNER");
+            }
             logger.storeGame(game.gamelog, game.winner);
-            if(game.winner.playerType.equals(playerOneType)){
-                playerOneWins++;
-            }
-            else {
-                playerTwoWins++;
-            }
-            System.out.println("Game " + i +" over, winner: "+ game.winner.playerType);
 
             if(i%100==0){
                 System.out.println(playerOneType + " wins: "+ playerOneWins);
