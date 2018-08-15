@@ -48,7 +48,7 @@ public class CluedoMCTS implements Game, GameStateConstants {
         this.belief = (CluedoBelief)belief.copy();
         this.myIdx = playerIdx;
         setBoard(board, false);
-        //determinizeEnvelope();
+        determinizeEnvelope();
     }
 
     private void determinizeEnvelope() {
@@ -425,11 +425,11 @@ public class CluedoMCTS implements Game, GameStateConstants {
         for(int idx = SUGGESTED_ROOM; idx <= SUGGESTED_WEAPON; idx++){
             int cardType = cardTypes[i];
             double prob;
-            /*int[] envelopeContent = belief.getDeterminizedEnvelope();
+            int[] envelopeContent = belief.getDeterminizedEnvelope();
             if(state[idx] == envelopeContent[i]){
                 i++;
                 continue;
-            }*/
+            }
             if(myIdx == getCurrentPlayer()) {
                 prob = belief.getCardProb(state[idx], cardType, getCurrentPlayer() + 1);
                 if(belief.knownHandSize(myIdx+1) >= 4 && prob != 1){

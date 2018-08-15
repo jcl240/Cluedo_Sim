@@ -36,8 +36,6 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     @Override
     public Action takeTurn(LinkedList<Action> possibleActions, int[] currentLocation) {
-        if(notebook.knowEnvelope())
-            notebook=notebook;
         if(actionFailCount > 3)
             return new Action("doNothing");
         gameFactory = new GameFactory(new CluedoConfig(), new CluedoBelief(notebook.getProbabilities()), playerIndex-1, board);
@@ -105,9 +103,7 @@ public class BMCTSAgent extends Agent implements Player, GameStateConstants {
 
     private Action getAccuseAction(LinkedList<Action> possibleActions, int[] actionArray) {
         Action action = getActionFromType("accuse", possibleActions);
-        Card[] accusation = new Card[]{Card.getCardFromIndex(actionArray[1],ROOM),
-                Card.getCardFromIndex(actionArray[2],SUSPECT),Card.getCardFromIndex(actionArray[3],WEAPON)};
-        accusation = notebook.getMostLikelySolution();
+        Card[] accusation = notebook.getMostLikelySolution();
         action.accusation = accusation;
         return action;
     }

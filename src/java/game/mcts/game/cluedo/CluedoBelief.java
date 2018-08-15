@@ -19,7 +19,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
         for(int i = 0; i < arr.length; i++){
             this.probabilities[i] = arr[i].clone();
         }
-        //determinizeEnvelope();
+        determinizeEnvelope();
         unknownCount = unknownCardCount();
     }
 
@@ -27,7 +27,7 @@ public class CluedoBelief implements Belief, GameStateConstants {
         for(int i = 0; i < old.probabilities.length; i++){
             this.probabilities[i] = old.probabilities[i].clone();
         }
-        //this.envelopeContents = old.envelopeContents.clone();
+        this.envelopeContents = old.envelopeContents.clone();
         unknownCount = unknownCardCount();
     }
 

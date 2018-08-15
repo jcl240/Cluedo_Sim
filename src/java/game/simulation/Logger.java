@@ -56,7 +56,7 @@ public class Logger {
         document.put(simlog.simName ,simDoc);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/simlogs/simlog");
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/simlogs/simlogb");
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);
@@ -108,7 +108,7 @@ public class Logger {
         simlog.addGameResults(gamelog.getTurnsTaken(),winner,gamelog.playerLogs);
         JsonWriterSettings settings = JsonWriterSettings.builder().indent(true).build();
         String docString = document.toJson(settings);
-        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/gamelogs/gamelog"+simlog.i);
+        File file = new File("Cluedo_Sim/out/artifacts/Simulator/"+simlog.simName+"/gamelogs/gamelogb"+simlog.i);
         try {
             FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(docString);

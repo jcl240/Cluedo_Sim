@@ -51,11 +51,6 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
                         probs[i] = .25;
                 }
             }
-            else{
-                for(int i = 0; i < 5; i++){
-                    probs[i] = .2;
-                }
-            }
         }
         index++;
     }
@@ -218,10 +213,8 @@ public class HeuristicNotebook extends Notebook implements GameStateConstants {
             if (index == -1)
                 index = cardList.indexOf(new Tuple<>(card, true));
 
-            if(probabilities[index][playerIndex] < .9 && probabilities[index][playerIndex] > .1) {
-                probabilities[index][playerIndex] *= update;
-                normalizeProbabilities(index);
-            }
+            probabilities[index][playerIndex] *= update;
+            normalizeProbabilities(index);
 
         }
 

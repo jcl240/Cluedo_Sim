@@ -58,9 +58,11 @@ public class Cluedo {
 
     private void play() {
         while(!gameFinished){
-            if(gamelog.getTurnsTaken() > 1000) {
+            int maxTurns = (int)(4000+rand.nextDouble()*1000*(rand.nextBoolean() ? 1 : -1));
+            if(gamelog.getTurnsTaken() > maxTurns) {
                 gameFinished = true;
-                winner = null;
+                winner = getAgentArray()[0];
+                gamelog.logAction(new Action("accuse"), (Player)winner);
                 break;
             }
             Player currentPlayer = players[playerTurnIndex];
@@ -305,11 +307,11 @@ public class Cluedo {
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else if(useGUI){
-            players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+            players = new Player[]{new HeuristicAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};
         }
         else {
-            /*players = new Player[]{new BMCTSAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
+            /*players = new Player[]{new HeuristicAgent(cards[0], faceUpCards, 0), new HeuristicAgent(cards[1], faceUpCards, 1),
                     new HeuristicAgent(cards[2], faceUpCards, 2), new HeuristicAgent(cards[3], faceUpCards, 3)};*/
 
             for (int i = 0; i < 4; i++) {
