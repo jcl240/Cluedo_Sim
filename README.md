@@ -3,11 +3,17 @@ Cluedo board game simulator for MSc Dissertation
 
 
 All code is under the src/java/game directory and seperated into 6 packages.
+
 Agents - Where the agent's code lives
+
 GUI - The GUI for the game
+
 main - The main game logic
+
 mcts - Mihai Dobre's MCTS code adapted for this project with our factored Cluedo code
+
 search - AStar for pathfinding
+
 simulation - the simulation suite
 
 You can find the jars used on the cluster under 'Cluster jars'.

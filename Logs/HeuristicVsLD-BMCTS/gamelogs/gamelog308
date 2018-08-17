@@ -1,0 +1,106 @@
+{
+  "Gamelog" : {
+    "Start_State" : {
+      "envelope" : ["library", "green", "candlestick"],
+      "faceUpCards" : ["mustard", "lounge"]
+    },
+    "Action_Log" : {
+      "Turn0" : ["Player1", "move"],
+      "Turn1" : ["Player2", "move"],
+      "Turn2" : ["Player3", "move"],
+      "Turn3" : ["Player4", "move"],
+      "Turn4" : ["Player1", "move"],
+      "Turn5" : ["Player2", "move"],
+      "Turn6" : ["Player3", "move"],
+      "Turn7" : ["Player4", "move"],
+      "Turn8" : ["Player1", "move"],
+      "Turn9" : ["Player2", "move"],
+      "Turn10" : ["Player3", "move"],
+      "Turn11" : ["Player4", "move"],
+      "Turn12" : ["Player1", "suggest"],
+      "Turn13" : ["Player2", "suggest"],
+      "Turn14" : ["Player3", "move"],
+      "Turn15" : ["Player4", "move"],
+      "Turn16" : ["Player1", "move"],
+      "Turn17" : ["Player2", "move"],
+      "Turn18" : ["Player3", "move"],
+      "Turn19" : ["Player4", "move"],
+      "Turn20" : ["Player1", "suggest"],
+      "Turn21" : ["Player2", "move"],
+      "Turn22" : ["Player3", "move"],
+      "Turn23" : ["Player4", "move"],
+      "Turn24" : ["Player1", "suggest"],
+      "Turn25" : ["Player2", "move"],
+      "Turn26" : ["Player3", "move"],
+      "Turn27" : ["Player4", "move"],
+      "Turn28" : ["Player1", "move"],
+      "Turn29" : ["Player2", "move"],
+      "Turn30" : ["Player3", "move"],
+      "Turn31" : ["Player4", "move"],
+      "Turn32" : ["Player1", "move"],
+      "Turn33" : ["Player2", "move"],
+      "Turn34" : ["Player3", "suggest"],
+      "Turn35" : ["Player4", "move"],
+      "Turn36" : ["Player1", "move"],
+      "Turn37" : ["Player2", "move"],
+      "Turn38" : ["Player3", "move"],
+      "Turn39" : ["Player4", "move"],
+      "Turn40" : ["Player1", "suggest"],
+      "Turn41" : ["Player2", "move"],
+      "Turn42" : ["Player3", "move"],
+      "Turn43" : ["Player4", "move"],
+      "Turn44" : ["Player1", "move"],
+      "Turn45" : ["Player2", "move"],
+      "Turn46" : ["Player3", "move"],
+      "Turn47" : ["Player4", "suggest"],
+      "Turn48" : ["Player1", "move"],
+      "Turn49" : ["Player2", "move"],
+      "Turn50" : ["Player3", "move"],
+      "Turn51" : ["Player4", "move"],
+      "Turn52" : ["Player1", "move"],
+      "Turn53" : ["Player2", "move"],
+      "Turn54" : ["Player3", "move"],
+      "Turn55" : ["Player4", "move"],
+      "Turn56" : ["Player1", "move"],
+      "Turn57" : ["Player2", "move"],
+      "Turn58" : ["Player3", "suggest"],
+      "Turn59" : ["Player4", "suggest"],
+      "Turn60" : ["Player1", "accuse"]
+    },
+    "Turns_taken" : 61,
+    "Player_Log1" : {
+      "Player1_Hand" : ["rope", "peacock", "revolver", "diningroom"],
+      "Suggestions" : {
+        "Suggestion11" : ["hall", "false", "peacock", "true", "knife", "false"],
+        "Suggestion21" : ["study", "false", "scarlet", "false", "rope", "true"],
+        "Suggestion31" : ["kitchen", "false", "plum", "false", "revolver", "true"],
+        "Suggestion41" : ["ballroom", "false", "scarlet", "true", "wrench", "false"]
+      },
+      "Rooms_Visited" : 4
+    },
+    "Player_Log2" : {
+      "Player2_Hand" : ["knife", "kitchen", "wrench", "hall"],
+      "Suggestions" : {
+        "Suggestion11" : ["billiardroom", "false", "scarlet", "false", "leadpipe", "false"]
+      },
+      "Rooms_Visited" : 1
+    },
+    "Player_Log3" : {
+      "Player3_Hand" : ["billiardroom", "scarlet", "plum", "leadpipe"],
+      "Suggestions" : {
+        "Suggestion11" : ["false", "ballroom", "false", "green", "false", "candlestick"],
+        "Suggestion21" : ["false", "library", "false", "green", "false", "candlestick"]
+      },
+      "Rooms_Visited" : 2
+    },
+    "Player_Log4" : {
+      "Player4_Hand" : ["conservatory", "white", "study", "ballroom"],
+      "Suggestions" : {
+        "Suggestion11" : ["hall", "false", "scarlet", "false", "rope", "false"],
+        "Suggestion21" : ["library", "false", "green", "false", "candlestick", "false"]
+      },
+      "Rooms_Visited" : 2
+    }
+  },
+  "Game_ID" : "bac6f8fe-84ea-4ee9-b6f8-3d2d77fd4339"
+}

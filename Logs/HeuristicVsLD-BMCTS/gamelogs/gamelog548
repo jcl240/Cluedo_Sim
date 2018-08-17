@@ -1,0 +1,63 @@
+{
+  "Gamelog" : {
+    "Start_State" : {
+      "envelope" : ["lounge", "green", "revolver"],
+      "faceUpCards" : ["conservatory", "mustard"]
+    },
+    "Action_Log" : {
+      "Turn0" : ["Player1", "move"],
+      "Turn1" : ["Player2", "move"],
+      "Turn2" : ["Player3", "move"],
+      "Turn3" : ["Player4", "move"],
+      "Turn4" : ["Player1", "move"],
+      "Turn5" : ["Player2", "move"],
+      "Turn6" : ["Player3", "move"],
+      "Turn7" : ["Player4", "move"],
+      "Turn8" : ["Player1", "move"],
+      "Turn9" : ["Player2", "suggest"],
+      "Turn10" : ["Player3", "move"],
+      "Turn11" : ["Player4", "move"],
+      "Turn12" : ["Player1", "suggest"],
+      "Turn13" : ["Player2", "suggest"],
+      "Turn14" : ["Player3", "suggest"],
+      "Turn15" : ["Player4", "move"],
+      "Turn16" : ["Player1", "move"],
+      "Turn17" : ["Player2", "suggest"],
+      "Turn18" : ["Player3", "suggest"],
+      "Turn19" : ["Player4", "move"],
+      "Turn20" : ["Player1", "move"],
+      "Turn21" : ["Player2", "accuse"]
+    },
+    "Turns_taken" : 22,
+    "Player_Log1" : {
+      "Player1_Hand" : ["diningroom", "candlestick", "kitchen", "library"],
+      "Suggestions" : {
+        "Suggestion11" : ["hall", "false", "green", "false", "revolver", "false"]
+      },
+      "Rooms_Visited" : 1
+    },
+    "Player_Log2" : {
+      "Player2_Hand" : ["rope", "scarlet", "study", "plum"],
+      "Suggestions" : {
+        "Suggestion11" : ["ballroom", "false", "white", "false", "rope", "true"],
+        "Suggestion21" : ["conservatory", "true", "green", "false", "rope", "true"],
+        "Suggestion31" : ["lounge", "false", "green", "true", "revolver", "false"]
+      },
+      "Rooms_Visited" : 3
+    },
+    "Player_Log3" : {
+      "Player3_Hand" : ["knife", "billiardroom", "white", "peacock"],
+      "Suggestions" : {
+        "Suggestion11" : ["lounge", "false", "scarlet", "false", "rope", "false"],
+        "Suggestion21" : ["conservatory", "true", "scarlet", "false", "revolver", "true"]
+      },
+      "Rooms_Visited" : 2
+    },
+    "Player_Log4" : {
+      "Player4_Hand" : ["hall", "leadpipe", "ballroom", "wrench"],
+      "Suggestions" : { },
+      "Rooms_Visited" : 0
+    }
+  },
+  "Game_ID" : "c500225e-a352-46ce-9ed2-cc07e69bd58d"
+}

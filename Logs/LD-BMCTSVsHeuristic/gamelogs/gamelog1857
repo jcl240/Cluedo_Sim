@@ -1,0 +1,101 @@
+{
+  "Gamelog" : {
+    "Start_State" : {
+      "envelope" : ["hall", "plum", "revolver"],
+      "faceUpCards" : ["kitchen", "rope"]
+    },
+    "Action_Log" : {
+      "Turn0" : ["Player1", "move"],
+      "Turn1" : ["Player2", "move"],
+      "Turn2" : ["Player3", "move"],
+      "Turn3" : ["Player4", "move"],
+      "Turn4" : ["Player1", "move"],
+      "Turn5" : ["Player2", "move"],
+      "Turn6" : ["Player3", "move"],
+      "Turn7" : ["Player4", "move"],
+      "Turn8" : ["Player1", "move"],
+      "Turn9" : ["Player2", "suggest"],
+      "Turn10" : ["Player3", "move"],
+      "Turn11" : ["Player4", "move"],
+      "Turn12" : ["Player1", "move"],
+      "Turn13" : ["Player2", "move"],
+      "Turn14" : ["Player3", "move"],
+      "Turn15" : ["Player4", "move"],
+      "Turn16" : ["Player1", "move"],
+      "Turn17" : ["Player2", "suggest"],
+      "Turn18" : ["Player3", "move"],
+      "Turn19" : ["Player4", "suggest"],
+      "Turn20" : ["Player1", "move"],
+      "Turn21" : ["Player2", "move"],
+      "Turn22" : ["Player3", "move"],
+      "Turn23" : ["Player4", "move"],
+      "Turn24" : ["Player1", "suggest"],
+      "Turn25" : ["Player2", "move"],
+      "Turn26" : ["Player3", "move"],
+      "Turn27" : ["Player4", "suggest"],
+      "Turn28" : ["Player1", "move"],
+      "Turn29" : ["Player2", "move"],
+      "Turn30" : ["Player3", "suggest"],
+      "Turn31" : ["Player4", "move"],
+      "Turn32" : ["Player1", "suggest"],
+      "Turn33" : ["Player2", "move"],
+      "Turn34" : ["Player3", "suggest"],
+      "Turn35" : ["Player4", "move"],
+      "Turn36" : ["Player1", "move"],
+      "Turn37" : ["Player2", "move"],
+      "Turn38" : ["Player3", "suggest"],
+      "Turn39" : ["Player4", "move"],
+      "Turn40" : ["Player1", "move"],
+      "Turn41" : ["Player2", "move"],
+      "Turn42" : ["Player3", "move"],
+      "Turn43" : ["Player4", "suggest"],
+      "Turn44" : ["Player1", "move"],
+      "Turn45" : ["Player2", "suggest"],
+      "Turn46" : ["Player3", "move"],
+      "Turn47" : ["Player4", "suggest"],
+      "Turn48" : ["Player1", "suggest"],
+      "Turn49" : ["Player2", "move"],
+      "Turn50" : ["Player3", "move"],
+      "Turn51" : ["Player4", "accuse"]
+    },
+    "Turns_taken" : 52,
+    "Player_Log1" : {
+      "Player1_Hand" : ["peacock", "ballroom", "conservatory", "library"],
+      "Suggestions" : {
+        "Suggestion11" : ["hall", "false", "white", "false", "candlestick", "false"],
+        "Suggestion21" : ["hall", "false", "peacock", "true", "knife", "false"],
+        "Suggestion31" : ["library", "true", "mustard", "false", "candlestick", "false"]
+      },
+      "Rooms_Visited" : 3
+    },
+    "Player_Log2" : {
+      "Player2_Hand" : ["billiardroom", "white", "green", "study"],
+      "Suggestions" : {
+        "Suggestion11" : ["false", "conservatory", "false", "mustard", "false", "knife"],
+        "Suggestion21" : ["false", "ballroom", "false", "plum", "false", "knife"],
+        "Suggestion31" : ["false", "hall", "false", "scarlet", "false", "leadpipe"]
+      },
+      "Rooms_Visited" : 3
+    },
+    "Player_Log3" : {
+      "Player3_Hand" : ["mustard", "diningroom", "lounge", "candlestick"],
+      "Suggestions" : {
+        "Suggestion11" : ["false", "conservatory", "false", "peacock", "false", "leadpipe"],
+        "Suggestion21" : ["true", "lounge", "false", "scarlet", "false", "wrench"],
+        "Suggestion31" : ["false", "conservatory", "false", "plum", "false", "wrench"]
+      },
+      "Rooms_Visited" : 3
+    },
+    "Player_Log4" : {
+      "Player4_Hand" : ["scarlet", "wrench", "leadpipe", "knife"],
+      "Suggestions" : {
+        "Suggestion11" : ["false", "library", "false", "green", "false", "candlestick"],
+        "Suggestion21" : ["false", "hall", "false", "green", "false", "revolver"],
+        "Suggestion31" : ["false", "study", "false", "white", "false", "candlestick"],
+        "Suggestion41" : ["true", "kitchen", "false", "plum", "false", "revolver"]
+      },
+      "Rooms_Visited" : 4
+    }
+  },
+  "Game_ID" : "350cb70c-67ee-4487-b587-b2d40fd3205a"
+}

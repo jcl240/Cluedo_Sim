@@ -1,4 +1,4 @@
-\documentclass[msc, ai, twoside, notimes, logo, parskip, leftchapter, normalheadings]{infthesis}
+\documentclass[msc, ai, logo, twoside, notimes, parskip, leftchapter, normalheadings]{infthesis}
 \usepackage{url}
 \usepackage{graphics}
 \usepackage{multirow}
@@ -34,12 +34,16 @@ linktoc=all, %set to all if you want both sections and subsections linked
 
 \begin{document}
 \begin{preliminary}
-\title{Monte Carlo Planning in the Belief Domain to Play Cluedo}
+
+
+\title{\vspace{2.25cm}Monte Carlo Planning \hspace{8cm} in the Belief Domain \hspace{8cm} to Play Cluedo}
 \author{Joseph Ledford}
 
-\abstract{ This dissertation is concerned with creating an agent capable of playing the partially observable board game Cluedo by planning in the belief domain using Monte Carlo methods. We implemented an experimental infrastructure and simulator that allows play between agents and optionally human players. This work is inspired by two recent methods for tractable learning in large complex partially observable games where we reason about our belief of the current game state rather than a fully observable state. We also analyze the strength of our main agent against a heuristic baseline.}
+\abstract{This dissertation is concerned with creating an agent capable of playing the partially observable board game Cluedo by planning in the belief domain using Monte Carlo methods. We implemented an experimental infrastructure and simulator that allows play between agents and optionally human players. This work is inspired by two recent methods for tractable learning in large complex partially observable games where we reason about our belief of the current game state rather than a fully observable state. We also analyze the strength of our main agent against a heuristic baseline.}
 
 \maketitle
+
+
 
 \begin{acknowledgements}
 I would like to thank first and foremost my supervisor Alex Lascarides for her great advice, support and confidence throughout my work on this project. I would also like to thank my parents, without whom I would never have been able to reach such heights. I have deep gratitude for the friends I have made throughout this program and who helped test my simulator and enabled me to learn more profoundly than I ever have before. Last but absolutely not least, I would like to thank the wonderful Julia whose enormous patience, love and support have made this all possible.
@@ -418,6 +422,7 @@ This factored belief representation implies a factorization amongst the joint pr
 \bibliographystyle{abbrvnat}
 
 \end{document}
+
 
 
 

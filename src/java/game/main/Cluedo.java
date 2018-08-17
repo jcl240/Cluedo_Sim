@@ -58,13 +58,6 @@ public class Cluedo {
 
     private void play() {
         while(!gameFinished){
-            int maxTurns = (int)(4000+rand.nextDouble()*1000*(rand.nextBoolean() ? 1 : -1));
-            if(gamelog.getTurnsTaken() > maxTurns) {
-                gameFinished = true;
-                winner = getAgentArray()[0];
-                gamelog.logAction(new Action("accuse"), (Player)winner);
-                break;
-            }
             Player currentPlayer = players[playerTurnIndex];
             boolean actionSuccessful;
             if(((Agent)currentPlayer).accused){

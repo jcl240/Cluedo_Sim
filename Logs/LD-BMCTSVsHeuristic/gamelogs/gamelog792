@@ -1,0 +1,60 @@
+{
+  "Gamelog" : {
+    "Start_State" : {
+      "envelope" : ["lounge", "green", "leadpipe"],
+      "faceUpCards" : ["library", "diningroom"]
+    },
+    "Action_Log" : {
+      "Turn0" : ["Player1", "move"],
+      "Turn1" : ["Player2", "move"],
+      "Turn2" : ["Player3", "move"],
+      "Turn3" : ["Player4", "move"],
+      "Turn4" : ["Player1", "move"],
+      "Turn5" : ["Player2", "move"],
+      "Turn6" : ["Player3", "move"],
+      "Turn7" : ["Player4", "move"],
+      "Turn8" : ["Player1", "move"],
+      "Turn9" : ["Player2", "move"],
+      "Turn10" : ["Player3", "move"],
+      "Turn11" : ["Player4", "suggest"],
+      "Turn12" : ["Player1", "move"],
+      "Turn13" : ["Player2", "move"],
+      "Turn14" : ["Player3", "move"],
+      "Turn15" : ["Player4", "suggest"],
+      "Turn16" : ["Player1", "move"],
+      "Turn17" : ["Player2", "move"],
+      "Turn18" : ["Player3", "move"],
+      "Turn19" : ["Player4", "suggest"],
+      "Turn20" : ["Player1", "move"],
+      "Turn21" : ["Player2", "move"],
+      "Turn22" : ["Player3", "move"],
+      "Turn23" : ["Player4", "accuse"]
+    },
+    "Turns_taken" : 24,
+    "Player_Log1" : {
+      "Player1_Hand" : ["kitchen", "hall", "rope", "knife"],
+      "Suggestions" : { },
+      "Rooms_Visited" : 0
+    },
+    "Player_Log2" : {
+      "Player2_Hand" : ["white", "plum", "billiardroom", "candlestick"],
+      "Suggestions" : { },
+      "Rooms_Visited" : 0
+    },
+    "Player_Log3" : {
+      "Player3_Hand" : ["scarlet", "revolver", "wrench", "ballroom"],
+      "Suggestions" : { },
+      "Rooms_Visited" : 0
+    },
+    "Player_Log4" : {
+      "Player4_Hand" : ["mustard", "conservatory", "peacock", "study"],
+      "Suggestions" : {
+        "Suggestion11" : ["lounge", "false", "mustard", "true", "wrench", "false"],
+        "Suggestion21" : ["conservatory", "true", "mustard", "true", "rope", "false"],
+        "Suggestion31" : ["lounge", "false", "green", "false", "leadpipe", "false"]
+      },
+      "Rooms_Visited" : 3
+    }
+  },
+  "Game_ID" : "a2ac2bef-90fa-4870-83ad-60edc9725c92"
+}

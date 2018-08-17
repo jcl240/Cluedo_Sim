@@ -1,0 +1,78 @@
+{
+  "Gamelog" : {
+    "Start_State" : {
+      "envelope" : ["diningroom", "green", "wrench"],
+      "faceUpCards" : ["conservatory", "hall"]
+    },
+    "Action_Log" : {
+      "Turn0" : ["Player1", "move"],
+      "Turn1" : ["Player2", "move"],
+      "Turn2" : ["Player3", "move"],
+      "Turn3" : ["Player4", "move"],
+      "Turn4" : ["Player1", "move"],
+      "Turn5" : ["Player2", "move"],
+      "Turn6" : ["Player3", "move"],
+      "Turn7" : ["Player4", "move"],
+      "Turn8" : ["Player1", "suggest"],
+      "Turn9" : ["Player2", "move"],
+      "Turn10" : ["Player3", "move"],
+      "Turn11" : ["Player4", "suggest"],
+      "Turn12" : ["Player1", "move"],
+      "Turn13" : ["Player2", "suggest"],
+      "Turn14" : ["Player3", "move"],
+      "Turn15" : ["Player4", "move"],
+      "Turn16" : ["Player1", "suggest"],
+      "Turn17" : ["Player2", "move"],
+      "Turn18" : ["Player3", "move"],
+      "Turn19" : ["Player4", "suggest"],
+      "Turn20" : ["Player1", "move"],
+      "Turn21" : ["Player2", "move"],
+      "Turn22" : ["Player3", "move"],
+      "Turn23" : ["Player4", "move"],
+      "Turn24" : ["Player1", "suggest"],
+      "Turn25" : ["Player2", "move"],
+      "Turn26" : ["Player3", "move"],
+      "Turn27" : ["Player4", "move"],
+      "Turn28" : ["Player1", "doNothing"],
+      "Turn29" : ["Player2", "move"],
+      "Turn30" : ["Player3", "move"],
+      "Turn31" : ["Player4", "suggest"],
+      "Turn32" : ["Player1", "move"],
+      "Turn33" : ["Player2", "move"],
+      "Turn34" : ["Player3", "move"],
+      "Turn35" : ["Player4", "accuse"]
+    },
+    "Turns_taken" : 36,
+    "Player_Log1" : {
+      "Player1_Hand" : ["lounge", "billiardroom", "leadpipe", "scarlet"],
+      "Suggestions" : {
+        "Suggestion11" : ["hall", "true", "white", "false", "wrench", "false"],
+        "Suggestion21" : ["study", "false", "white", "true", "wrench", "false"],
+        "Suggestion31" : ["library", "false", "plum", "false", "knife", "false"]
+      },
+      "Rooms_Visited" : 3
+    },
+    "Player_Log2" : {
+      "Player2_Hand" : ["knife", "study", "rope", "kitchen"],
+      "Suggestions" : {
+        "Suggestion11" : ["false", "ballroom", "false", "plum", "false", "candlestick"]
+      },
+      "Rooms_Visited" : 1
+    },
+    "Player_Log3" : {
+      "Player3_Hand" : ["white", "peacock", "ballroom", "library"],
+      "Suggestions" : { },
+      "Rooms_Visited" : 0
+    },
+    "Player_Log4" : {
+      "Player4_Hand" : ["mustard", "candlestick", "revolver", "plum"],
+      "Suggestions" : {
+        "Suggestion11" : ["lounge", "false", "mustard", "true", "rope", "false"],
+        "Suggestion21" : ["diningroom", "false", "mustard", "true", "wrench", "false"],
+        "Suggestion31" : ["diningroom", "true", "green", "false", "wrench", "true"]
+      },
+      "Rooms_Visited" : 3
+    }
+  },
+  "Game_ID" : "7889521a-4234-41a2-81f2-ccb284e2fc9a"
+}
